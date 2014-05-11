@@ -38,10 +38,8 @@ import cpw.mods.ironchest.MappableItemStackWrapper;
 import cpw.mods.ironchest.TileEntityIronChest;
 
 public class TileEntityIronChestRenderer extends TileEntitySpecialRenderer {
-    @SuppressWarnings("unused")
-    private static Map<MappableItemStackWrapper, Integer> renderList = new HashMap<MappableItemStackWrapper, Integer>();
-
     private static Map<IronChestType, ResourceLocation> locations;
+    
     static {
         Builder<IronChestType, ResourceLocation> builder = ImmutableMap.<IronChestType,ResourceLocation>builder();
         for (IronChestType typ : IronChestType.values()) {
@@ -49,11 +47,8 @@ public class TileEntityIronChestRenderer extends TileEntitySpecialRenderer {
         }
         locations = builder.build();
     }
+    
     private Random random;
-
-    @SuppressWarnings("unused")
-    private RenderBlocks renderBlocks;
-
     private RenderItem itemRenderer;
 
     private static float[][] shifts = { { 0.3F, 0.45F, 0.3F }, { 0.7F, 0.45F, 0.3F }, { 0.3F, 0.45F, 0.7F }, { 0.7F, 0.45F, 0.7F }, { 0.3F, 0.1F, 0.3F },
@@ -63,7 +58,6 @@ public class TileEntityIronChestRenderer extends TileEntitySpecialRenderer {
     {
         model = new ModelChest();
         random = new Random();
-        renderBlocks = new RenderBlocks();
         itemRenderer = new RenderItem() {
             @Override
             public byte getMiniBlockCount(ItemStack stack, byte original) {

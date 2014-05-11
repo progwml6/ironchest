@@ -9,12 +9,7 @@ package cpw.mods.ironchest;
 import java.util.Properties;
 
 public class Version {
-    private static String major;
-    private static String minor;
-    private static String rev;
-    private static String build;
-    @SuppressWarnings("unused")
-    private static String mcversion;
+    private static String major, minor, rev, build, mcversion;
 
     static void init(Properties properties)
     {
