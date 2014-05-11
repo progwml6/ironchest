@@ -1,7 +1,14 @@
+# Ignore Eclipse related things
 build/
 .classpath
 .project
 .gradle/
+.settings/
 eclipse/
 bin/
 repo/
+
+# Ignore OS cache files and directories
+*.DS_Store
+_MACOSX
+Thumbs.db
