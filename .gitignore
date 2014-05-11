@@ -1,3 +1,4 @@
+# Ignore Eclipse related things
 build/
 .classpath
 .project
@@ -5,3 +6,8 @@ build/
 eclipse/
 bin/
 repo/
+
+# Ignore OS cache files and directories
+*.DS_Store
+_MACOSX
+Thumbs.db
