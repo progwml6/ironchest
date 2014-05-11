@@ -43,7 +43,7 @@ public class BlockIronChest extends BlockContainer {
 		setBlockName("IronChest");
 		setHardness(3.0F);
 		setBlockBounds(0.0625F, 0F, 0.0625F, 0.9375F, 0.875F, 0.9375F);
-		setCreativeTab(CreativeTabs.tabDecorations);
+		setCreativeTab(IronChest.tabIronChest);
 	}
 
 	/**

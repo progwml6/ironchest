@@ -1,5 +1,7 @@
 package cpw.mods.ironchest;
 
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -8,15 +10,27 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
-@Mod(modid = "IronChest", name = "Iron Chests", dependencies = "required-after:Forge@[7.0,);required-after:FML@[5.0.5,)")
+@Mod(modid = IronChest.modid, name = IronChest.name, dependencies = "required-after:Forge@[7.0,);required-after:FML@[5.0.5,)")
 public class IronChest {
+	public static final String modid = "IronChest", name = "Iron Chests";
+
 	public static BlockIronChest ironChestBlock;
+
+	public static CreativeTabs tabIronChest = new CreativeTabs(modid) {
+		@Override
+		@SideOnly(Side.CLIENT)
+		public Item getTabIconItem() {
+			return Item.getItemFromBlock(ironChestBlock);
+		}
+	};
 
 	@SidedProxy(clientSide = "cpw.mods.ironchest.client.ClientProxy", serverSide = "cpw.mods.ironchest.CommonProxy")
 	public static CommonProxy proxy;
 
-	@Instance("IronChest")
+	@Instance(modid)
 	public static IronChest instance;
 
 	@EventHandler

@@ -1,7 +1,6 @@
 package cpw.mods.ironchest;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -21,7 +20,7 @@ public class ItemChestChanger extends Item {
 		setMaxStackSize(1);
 		this.type = type;
 		setUnlocalizedName("ironchest:" + type.name());
-		setCreativeTab(CreativeTabs.tabMisc);
+		setCreativeTab(IronChest.tabIronChest);
 	}
 
 	@Override
