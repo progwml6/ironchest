@@ -206,13 +206,12 @@ public class TileEntityIronChest extends TileEntity implements IInventory {
 		if (worldObj != null && !worldObj.isRemote && numUsingPlayers != 0 && (ticksSinceSync + xCoord + yCoord + zCoord) % 200 == 0) {
 			numUsingPlayers = 0;
 			float var1 = 5.0F;
-			List<EntityPlayer> var2 = worldObj.getEntitiesWithinAABB(EntityPlayer.class, AxisAlignedBB.getAABBPool().getAABB((double) ((float) xCoord - var1), (double) ((float) yCoord - var1), (double) ((float) zCoord - var1), (double) ((float) (xCoord + 1) + var1), (double) ((float) (yCoord + 1) + var1), (double) ((float) (zCoord + 1) + var1)));
-			Iterator<EntityPlayer> var3 = var2.iterator();
 
-			while (var3.hasNext()) {
-				EntityPlayer var4 = var3.next();
+			List<EntityPlayer> playerlist = worldObj.getEntitiesWithinAABB(EntityPlayer.class, AxisAlignedBB.getAABBPool().getAABB((double) ((float) xCoord - var1), (double) ((float) yCoord - var1), (double) ((float) zCoord - var1), (double) ((float) (xCoord + 1) + var1), (double) ((float) (yCoord + 1) + var1), (double) ((float) (zCoord + 1) + var1)));
+			Iterator<EntityPlayer> player = playerlist.iterator();
 
-				if (var4.openContainer instanceof ContainerIronChest) {
+			while (player.hasNext()) {
+				if (player.next().openContainer instanceof ContainerIronChest) {
 					++numUsingPlayers;
 				}
 			}
@@ -261,13 +260,10 @@ public class TileEntityIronChest extends TileEntity implements IInventory {
 	public boolean receiveClientEvent(int i, int j) {
 		if (i == 1) {
 			numUsingPlayers = j;
-		} else if (i == 2) {
-			facing = (byte) j;
-		} else if (i == 3) {
-			facing = (byte) (j & 0x7);
-			numUsingPlayers = (j & 0xF8) >> 3;
+			return true;
+		} else {
+			return super.receiveClientEvent(i, j);
 		}
-		return true;
 	}
 
 	@Override
