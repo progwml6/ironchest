@@ -6,40 +6,27 @@ import net.minecraft.world.World;
 import cpw.mods.fml.common.network.IGuiHandler;
 
 public class CommonProxy implements IGuiHandler {
-    public void registerRenderInformation()
-    {
+	public void registerRenderInformation() {}
 
-    }
+	public void registerTileEntitySpecialRenderer(IronChestType typ) {}
 
-    public void registerTileEntitySpecialRenderer(IronChestType typ)
-    {
+	@Override
+	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
+		return null;
+	}
 
-    }
+	@Override
+	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int X, int Y, int Z) {
+		TileEntity te = world.getTileEntity(X, Y, Z);
+		if (te != null && te instanceof TileEntityIronChest) {
+			TileEntityIronChest icte = (TileEntityIronChest) te;
+			return new ContainerIronChest(player.inventory, icte, icte.getType(), 0, 0);
+		} else {
+			return null;
+		}
+	}
 
-    @Override
-    public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
-    {
-        return null;
-    }
-
-    @Override
-    public Object getServerGuiElement(int ID, EntityPlayer player, World world, int X, int Y, int Z)
-    {
-        TileEntity te = world.getTileEntity(X, Y, Z);
-        if (te != null && te instanceof TileEntityIronChest)
-        {
-            TileEntityIronChest icte = (TileEntityIronChest) te;
-            return new ContainerIronChest(player.inventory, icte, icte.getType(), 0, 0);
-        }
-        else
-        {
-            return null;
-        }
-    }
-
-    public World getClientWorld()
-    {
-        return null;
-    }
-
+	public World getClientWorld() {
+		return null;
+	}
 }

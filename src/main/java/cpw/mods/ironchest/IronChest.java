@@ -11,32 +11,32 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 @Mod(modid = "IronChest", name = "Iron Chests", dependencies = "required-after:Forge@[7.0,);required-after:FML@[5.0.5,)")
 public class IronChest {
-    public static BlockIronChest ironChestBlock;
-    
-    @SidedProxy(clientSide = "cpw.mods.ironchest.client.ClientProxy", serverSide = "cpw.mods.ironchest.CommonProxy")
-    public static CommonProxy proxy;
-    
-    @Instance("IronChest")
-    public static IronChest instance;
+	public static BlockIronChest ironChestBlock;
 
-    @EventHandler
-    public void load(FMLInitializationEvent e)
-    {
-    	ChestChangerType.buildItems();
-    	
-    	ironChestBlock = new BlockIronChest();
-        GameRegistry.registerBlock(ironChestBlock, ItemIronChest.class, "BlockIronChest");
-        
-        PacketHandler.INSTANCE.ordinal();
-        for (IronChestType typ : IronChestType.values())
-        {
-            GameRegistry.registerTileEntityWithAlternatives(typ.clazz, "IronChest."+typ.name(), typ.name());
-            proxy.registerTileEntitySpecialRenderer(typ);
-        }
-        IronChestType.registerBlocksAndRecipes(ironChestBlock);
-        ChestChangerType.generateRecipes();
-        NetworkRegistry.INSTANCE.registerGuiHandler(instance, proxy);
-        proxy.registerRenderInformation();
-        MinecraftForge.EVENT_BUS.register(this);
-    }
+	@SidedProxy(clientSide = "cpw.mods.ironchest.client.ClientProxy", serverSide = "cpw.mods.ironchest.CommonProxy")
+	public static CommonProxy proxy;
+
+	@Instance("IronChest")
+	public static IronChest instance;
+
+	@EventHandler
+	public void load(FMLInitializationEvent e) {
+		ChestChangerType.buildItems();
+
+		ironChestBlock = new BlockIronChest();
+		GameRegistry.registerBlock(ironChestBlock, ItemIronChest.class, "BlockIronChest");
+
+		for (IronChestType typ : IronChestType.values()) {
+			GameRegistry.registerTileEntityWithAlternatives(typ.clazz, "IronChest." + typ.name(), typ.name());
+			proxy.registerTileEntitySpecialRenderer(typ);
+		}
+
+		IronChestType.registerBlocksAndRecipes(ironChestBlock);
+		ChestChangerType.generateRecipes();
+
+		PacketHandler.INSTANCE.ordinal();
+		NetworkRegistry.INSTANCE.registerGuiHandler(instance, proxy);
+		proxy.registerRenderInformation();
+		MinecraftForge.EVENT_BUS.register(this);
+	}
 }

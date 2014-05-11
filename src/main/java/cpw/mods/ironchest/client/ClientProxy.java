@@ -11,35 +11,28 @@ import cpw.mods.ironchest.IronChestType;
 import cpw.mods.ironchest.TileEntityIronChest;
 
 public class ClientProxy extends CommonProxy {
-    @Override
-    public void registerRenderInformation()
-    {
-        TileEntityRendererChestHelper.instance = new IronChestRenderHelper();
-    }
+	@Override
+	public void registerRenderInformation() {
+		TileEntityRendererChestHelper.instance = new IronChestRenderHelper();
+	}
 
-    @Override
-    public void registerTileEntitySpecialRenderer(IronChestType typ)
-    {
-        ClientRegistry.bindTileEntitySpecialRenderer(typ.clazz, new TileEntityIronChestRenderer());
-    }
+	@Override
+	public void registerTileEntitySpecialRenderer(IronChestType typ) {
+		ClientRegistry.bindTileEntitySpecialRenderer(typ.clazz, new TileEntityIronChestRenderer());
+	}
 
-    @Override
-    public World getClientWorld()
-    {
-        return FMLClientHandler.instance().getClient().theWorld;
-    }
+	@Override
+	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
+		TileEntity te = world.getTileEntity(x, y, z);
+		if (te != null && te instanceof TileEntityIronChest) {
+			return GuiIronChest.GUI.buildGUI(IronChestType.values()[ID], player.inventory, (TileEntityIronChest) te);
+		} else {
+			return null;
+		}
+	}
 
-    @Override
-    public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
-    {
-        TileEntity te = world.getTileEntity(x, y, z);
-        if (te != null && te instanceof TileEntityIronChest)
-        {
-            return GUIChest.GUI.buildGUI(IronChestType.values()[ID], player.inventory, (TileEntityIronChest) te);
-        }
-        else
-        {
-            return null;
-        }
-    }
+	@Override
+	public World getClientWorld() {
+		return FMLClientHandler.instance().getClient().theWorld;
+	}
 }
