@@ -1,4 +1,4 @@
-package cpw.mods.ironchest;
+package cpw.ironchest.common.lib;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,6 +14,16 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagByte;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import cpw.ironchest.common.blocks.BlockIronChest;
+import cpw.ironchest.common.containers.ValidatingSlot;
+import cpw.ironchest.common.tiles.TileEntityCopperChest;
+import cpw.ironchest.common.tiles.TileEntityCrystalChest;
+import cpw.ironchest.common.tiles.TileEntityDiamondChest;
+import cpw.ironchest.common.tiles.TileEntityDirtChest;
+import cpw.ironchest.common.tiles.TileEntityGoldChest;
+import cpw.ironchest.common.tiles.TileEntityIronChest;
+import cpw.ironchest.common.tiles.TileEntityObsidianChest;
+import cpw.ironchest.common.tiles.TileEntitySilverChest;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

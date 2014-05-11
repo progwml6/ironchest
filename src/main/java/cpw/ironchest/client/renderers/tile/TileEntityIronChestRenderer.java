@@ -1,4 +1,4 @@
-package cpw.mods.ironchest.client;
+package cpw.ironchest.client.renderers.tile;
 
 import static org.lwjgl.opengl.GL11.glColor4f;
 import static org.lwjgl.opengl.GL11.glDisable;
@@ -25,8 +25,8 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableMap.Builder;
 import com.google.common.primitives.SignedBytes;
 
-import cpw.mods.ironchest.IronChestType;
-import cpw.mods.ironchest.TileEntityIronChest;
+import cpw.ironchest.common.lib.IronChestType;
+import cpw.ironchest.common.tiles.TileEntityIronChest;
 
 public class TileEntityIronChestRenderer extends TileEntitySpecialRenderer {
 	private ModelChest model;

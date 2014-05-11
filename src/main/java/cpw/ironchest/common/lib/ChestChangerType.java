@@ -1,15 +1,16 @@
-package cpw.mods.ironchest;
+package cpw.ironchest.common.lib;
 
-import static cpw.mods.ironchest.IronChestType.COPPER;
-import static cpw.mods.ironchest.IronChestType.CRYSTAL;
-import static cpw.mods.ironchest.IronChestType.DIAMOND;
-import static cpw.mods.ironchest.IronChestType.GOLD;
-import static cpw.mods.ironchest.IronChestType.IRON;
-import static cpw.mods.ironchest.IronChestType.OBSIDIAN;
-import static cpw.mods.ironchest.IronChestType.SILVER;
-import static cpw.mods.ironchest.IronChestType.WOOD;
+import static cpw.ironchest.common.lib.IronChestType.COPPER;
+import static cpw.ironchest.common.lib.IronChestType.CRYSTAL;
+import static cpw.ironchest.common.lib.IronChestType.DIAMOND;
+import static cpw.ironchest.common.lib.IronChestType.GOLD;
+import static cpw.ironchest.common.lib.IronChestType.IRON;
+import static cpw.ironchest.common.lib.IronChestType.OBSIDIAN;
+import static cpw.ironchest.common.lib.IronChestType.SILVER;
+import static cpw.ironchest.common.lib.IronChestType.WOOD;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import cpw.ironchest.common.items.ItemChestChanger;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public enum ChestChangerType {

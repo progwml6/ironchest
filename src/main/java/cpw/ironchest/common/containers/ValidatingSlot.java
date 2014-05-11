@@ -1,5 +1,6 @@
-package cpw.mods.ironchest;
+package cpw.ironchest.common.containers;
 
+import cpw.ironchest.common.lib.IronChestType;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;

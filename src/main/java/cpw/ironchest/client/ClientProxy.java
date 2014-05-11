@@ -1,14 +1,17 @@
-package cpw.mods.ironchest.client;
+package cpw.ironchest.client;
 
 import net.minecraft.client.renderer.tileentity.TileEntityRendererChestHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import cpw.ironchest.client.gui.GuiIronChest;
+import cpw.ironchest.client.renderers.tile.IronChestRenderHelper;
+import cpw.ironchest.client.renderers.tile.TileEntityIronChestRenderer;
+import cpw.ironchest.common.CommonProxy;
+import cpw.ironchest.common.lib.IronChestType;
+import cpw.ironchest.common.tiles.TileEntityIronChest;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.ClientRegistry;
-import cpw.mods.ironchest.CommonProxy;
-import cpw.mods.ironchest.IronChestType;
-import cpw.mods.ironchest.TileEntityIronChest;
 
 public class ClientProxy extends CommonProxy {
 	@Override

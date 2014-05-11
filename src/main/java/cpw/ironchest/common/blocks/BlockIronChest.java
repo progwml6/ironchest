@@ -1,4 +1,4 @@
-package cpw.mods.ironchest;
+package cpw.ironchest.common.blocks;
 
 import static net.minecraftforge.common.util.ForgeDirection.DOWN;
 import static net.minecraftforge.common.util.ForgeDirection.UP;
@@ -32,6 +32,9 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 import com.google.common.collect.Lists;
 
+import cpw.ironchest.common.IronChest;
+import cpw.ironchest.common.lib.IronChestType;
+import cpw.ironchest.common.tiles.TileEntityIronChest;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 

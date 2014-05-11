@@ -1,4 +1,4 @@
-package cpw.mods.ironchest;
+package cpw.ironchest.common.lib.network;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
@@ -9,6 +9,8 @@ import java.util.EnumMap;
 import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import cpw.ironchest.common.IronChest;
+import cpw.ironchest.common.tiles.TileEntityIronChest;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.FMLEmbeddedChannel;
 import cpw.mods.fml.common.network.FMLIndexedMessageToMessageCodec;

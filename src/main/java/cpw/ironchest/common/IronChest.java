@@ -1,8 +1,13 @@
-package cpw.mods.ironchest;
+package cpw.ironchest.common;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
+import cpw.ironchest.common.blocks.BlockIronChest;
+import cpw.ironchest.common.blocks.BlockIronChestItem;
+import cpw.ironchest.common.lib.ChestChangerType;
+import cpw.ironchest.common.lib.IronChestType;
+import cpw.ironchest.common.lib.network.PacketHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -27,7 +32,7 @@ public class IronChest {
 		}
 	};
 
-	@SidedProxy(clientSide = "cpw.mods.ironchest.client.ClientProxy", serverSide = "cpw.mods.ironchest.CommonProxy")
+	@SidedProxy(clientSide = "cpw.ironchest.client.ClientProxy", serverSide = "cpw.ironchest.CommonProxy")
 	public static CommonProxy proxy;
 
 	@Instance(modid)
@@ -38,7 +43,7 @@ public class IronChest {
 		ChestChangerType.buildItems();
 
 		ironChestBlock = new BlockIronChest();
-		GameRegistry.registerBlock(ironChestBlock, ItemIronChest.class, "BlockIronChest");
+		GameRegistry.registerBlock(ironChestBlock, BlockIronChestItem.class, "BlockIronChest");
 
 		for (IronChestType typ : IronChestType.values()) {
 			GameRegistry.registerTileEntityWithAlternatives(typ.clazz, "IronChest." + typ.name(), typ.name());

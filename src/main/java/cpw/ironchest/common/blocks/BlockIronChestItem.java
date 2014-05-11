@@ -1,11 +1,12 @@
-package cpw.mods.ironchest;
+package cpw.ironchest.common.blocks;
 
+import cpw.ironchest.common.lib.IronChestType;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
-public class ItemIronChest extends ItemBlock {
-	public ItemIronChest(Block block) {
+public class BlockIronChestItem extends ItemBlock {
+	public BlockIronChestItem(Block block) {
 		super(block);
 		setMaxDamage(0);
 		setHasSubtypes(true);

@@ -1,5 +1,6 @@
-package cpw.mods.ironchest;
+package cpw.ironchest.common.containers;
 
+import cpw.ironchest.common.lib.IronChestType;
 import invtweaks.api.container.ChestContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;

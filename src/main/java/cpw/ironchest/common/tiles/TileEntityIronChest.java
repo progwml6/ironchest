@@ -1,10 +1,16 @@
-package cpw.mods.ironchest;
+package cpw.ironchest.common.tiles;
 
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
+import cpw.ironchest.common.IronChest;
+import cpw.ironchest.common.blocks.BlockIronChest;
+import cpw.ironchest.common.containers.ContainerIronChest;
+import cpw.ironchest.common.items.ItemChestChanger;
+import cpw.ironchest.common.lib.IronChestType;
+import cpw.ironchest.common.lib.network.PacketHandler;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -70,7 +76,7 @@ public class TileEntityIronChest extends TileEntity implements IInventory {
 		sortTopStacks();
 	}
 
-	protected void sortTopStacks() {
+	public void sortTopStacks() {
 		if (!type.isTransparent() || (worldObj != null && worldObj.isRemote)) {
 			return;
 		}
@@ -380,7 +386,7 @@ public class TileEntityIronChest extends TileEntity implements IInventory {
 		return false;
 	}
 
-	void rotateAround(ForgeDirection axis) {
+	public void rotateAround(ForgeDirection axis) {
 		setFacing((byte) ForgeDirection.getOrientation(facing).getRotation(axis).ordinal());
 		worldObj.addBlockEvent(xCoord, yCoord, zCoord, IronChest.ironChestBlock, 2, getFacing());
 	}

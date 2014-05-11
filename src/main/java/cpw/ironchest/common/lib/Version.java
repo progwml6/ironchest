@@ -1,4 +1,4 @@
-package cpw.mods.ironchest;
+package cpw.ironchest.common.lib;
 
 import java.util.Properties;
 

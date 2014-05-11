@@ -1,8 +1,11 @@
-package cpw.mods.ironchest;
+package cpw.ironchest.common;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import cpw.ironchest.common.containers.ContainerIronChest;
+import cpw.ironchest.common.lib.IronChestType;
+import cpw.ironchest.common.tiles.TileEntityIronChest;
 import cpw.mods.fml.common.network.IGuiHandler;
 
 public class CommonProxy implements IGuiHandler {

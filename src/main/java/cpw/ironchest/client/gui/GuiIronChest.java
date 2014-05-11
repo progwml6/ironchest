@@ -1,4 +1,4 @@
-package cpw.mods.ironchest.client;
+package cpw.ironchest.client.gui;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.Container;
@@ -7,9 +7,9 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import cpw.mods.ironchest.ContainerIronChest;
-import cpw.mods.ironchest.IronChestType;
-import cpw.mods.ironchest.TileEntityIronChest;
+import cpw.ironchest.common.containers.ContainerIronChest;
+import cpw.ironchest.common.lib.IronChestType;
+import cpw.ironchest.common.tiles.TileEntityIronChest;
 
 public class GuiIronChest extends GuiContainer {
 	public enum ResourceList {

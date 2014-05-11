@@ -1,5 +1,6 @@
-package cpw.mods.ironchest;
+package cpw.ironchest.common.tiles;
 
+import cpw.ironchest.common.lib.IronChestType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;

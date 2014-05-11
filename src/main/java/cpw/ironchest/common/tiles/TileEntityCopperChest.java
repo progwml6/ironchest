@@ -1,4 +1,6 @@
-package cpw.mods.ironchest;
+package cpw.ironchest.common.tiles;
+
+import cpw.ironchest.common.lib.IronChestType;
 
 public class TileEntityCopperChest extends TileEntityIronChest {
 	public TileEntityCopperChest() {
