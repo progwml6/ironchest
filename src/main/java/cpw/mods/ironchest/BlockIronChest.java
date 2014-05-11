@@ -4,10 +4,9 @@ import static net.minecraftforge.common.util.ForgeDirection.DOWN;
 import static net.minecraftforge.common.util.ForgeDirection.UP;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
-
-import com.google.common.collect.Lists;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -17,6 +16,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
@@ -24,10 +24,14 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import com.google.common.collect.Lists;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -81,8 +85,8 @@ public class BlockIronChest extends BlockContainer {
         return IronChestType.makeEntity(metadata);
     }
 
-    @SideOnly(Side.CLIENT)
     @Override
+    @SideOnly(Side.CLIENT)
     public IIcon getIcon(int i, int j)
     {
         if (j < IronChestType.values().length)
@@ -102,31 +106,78 @@ public class BlockIronChest extends BlockContainer {
         items.add(stack);
         return items;
     }
+    
     @Override
     public boolean onBlockActivated(World world, int i, int j, int k, EntityPlayer player, int i1, float f1, float f2, float f3)
     {
-        TileEntity te = world.getTileEntity(i, j, k);
-
-        if (te == null || !(te instanceof TileEntityIronChest))
+    	if (world.isRemote)
+            return true;
+        else
         {
+            IInventory iinventory = chestInventory(world, i, j, k);
+
+            if (iinventory != null && world.getTileEntity(i, j, k) instanceof TileEntityIronChest)
+            	player.openGui(IronChest.instance, ((TileEntityIronChest) world.getTileEntity(i, j, k)).getType().ordinal(), world, i, j, k);
+
             return true;
         }
+    }
 
-        if (world.isSideSolid(i, j + 1, k, ForgeDirection.DOWN))
+    public IInventory chestInventory(World world, int i, int j, int k)
+    {
+        TileEntity object = (TileEntityIronChest)world.getTileEntity(i, j, k);
+
+        if (object == null)
         {
-            return true;
+            return null;
         }
-
-        if (world.isRemote)
+        else if (world.isSideSolid(i, j + 1, k, DOWN))
         {
-            return true;
+            return null;
         }
+        else if (isOcelotOnChest(world, i, j, k))
+        {
+            return null;
+        }
+        else if (world.getBlock(i - 1, j, k) == this && (world.isSideSolid(i - 1, j + 1, k, DOWN) || isOcelotOnChest(world, i - 1, j, k)))
+        {
+            return null;
+        }
+        else if (world.getBlock(i + 1, j, k) == this && (world.isSideSolid(i + 1, j + 1, k, DOWN) || isOcelotOnChest(world, i + 1, j, k)))
+        {
+            return null;
+        }
+        else if (world.getBlock(i, j, k - 1) == this && (world.isSideSolid(i, j + 1, k - 1, DOWN) || isOcelotOnChest(world, i, j, k - 1)))
+        {
+            return null;
+        }
+        else if (world.getBlock(i, j, k + 1) == this && (world.isSideSolid(i, j + 1, k + 1, DOWN) || isOcelotOnChest(world, i, j, k + 1)))
+        {
+            return null;
+        }
+        else
+            return (IInventory)object;
+    }
 
-        player.openGui(IronChest.instance, ((TileEntityIronChest) te).getType().ordinal(), world, i, j, k);
+    private static boolean isOcelotOnChest(World world, int i, int j, int k)
+    {
+        Iterator iterator = world.getEntitiesWithinAABB(EntityOcelot.class, AxisAlignedBB.getAABBPool().getAABB((double)i, (double)(j + 1), (double)k, (double)(i + 1), (double)(j + 2), (double)(k + 1))).iterator();
+        EntityOcelot entityocelot1;
+
+        do
+        {
+            if (!iterator.hasNext())
+                return false;
+
+            EntityOcelot entityocelot = (EntityOcelot)iterator.next();
+            entityocelot1 = (EntityOcelot)entityocelot;
+        }
+        while (!entityocelot1.isSitting());
+
         return true;
     }
 
-    @Override
+	@Override
     public void onBlockAdded(World world, int i, int j, int k)
     {
         super.onBlockAdded(world, i, j, k);
@@ -218,7 +269,6 @@ public class BlockIronChest extends BlockContainer {
     }
 
     @Override
-    @SuppressWarnings({ "rawtypes", "unchecked" })
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List par3List)
     {
@@ -265,6 +315,7 @@ public class BlockIronChest extends BlockContainer {
     }
 
     private static final ForgeDirection[] validRotationAxes = new ForgeDirection[] { UP, DOWN };
+    
     @Override
     public ForgeDirection[] getValidRotations(World worldObj, int x, int y, int z)
     {

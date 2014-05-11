@@ -50,7 +50,7 @@ public enum ChestChangerType {
         return this.target.ordinal();
     }
 
-    public ItemChestChanger buildItem(Configuration cfg)
+    public ItemChestChanger buildItem()
     {
         item = new ItemChestChanger(this);
         GameRegistry.registerItem(item, itemName);
@@ -70,11 +70,11 @@ public enum ChestChangerType {
         }
     }
 
-    public static void buildItems(Configuration cfg)
+    public static void buildItems()
     {
         for (ChestChangerType type : values())
         {
-            type.buildItem(cfg);
+            type.buildItem();
         }
     }
 
