@@ -3,6 +3,7 @@ build/
 .classpath
 .project
 .gradle/
+.settings/
 eclipse/
 bin/
 repo/
