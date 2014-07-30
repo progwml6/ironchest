@@ -26,6 +26,7 @@ repositories {
         dirs "repo"
     }
 }
+
 // IronChest uses git tagging to mark major versions. This sets up the project version to that version data
 def versionInfo = getGitVersion()
 version = "${versionInfo['IronChest.version']}"
@@ -38,11 +39,11 @@ archivesBaseName = "ironchest"
 // Setup the forge minecraft plugin data. Specify the preferred forge/minecraft version here
 minecraft {
     version = "1.7.10-10.13.0.1150"
+    runDir = "eclipse/assets"
 }
 
 // This wrangles the resources for the jar files- stuff like textures and languages
-processResources
-{
+processResources {
     // we're omitting the .xcf files - they're development only
 	exclude '**/*.xcf'
     // we only want to do search/replace stuff in mcmod.info, nothing else
@@ -74,7 +75,6 @@ processResources
 jar {
     classifier = 'universal'
     version = "${project.minecraft.version}-${project.version}"
-
 }
 
 println "FISHBUM ${jar.version}"
@@ -165,8 +165,7 @@ uploadArchives {
 }
 
 // This is a special task for pulling the version information from git and the environment (for BUILD_NUMBER)
-def getGitVersion()
-{
+def getGitVersion() {
 	def out = [:]
 
 	// call git command.
