@@ -1,14 +1,19 @@
-build/
-.classpath
-.project
-.gradle/
-eclipse/
+# Ignore Gradle cache files & directories
 bin/
-repo/
-/run/
+build/
+## Eclipse
+eclipse/
+.classpath
+.gradle/
+.project
 .settings/
-#IDEA files from Gradle
-.idea/
+## Idea
+.idea
 /*.iml
 /*.ipr
 /*.iws
+
+# Ignore OS cache files & directories
+*.DS_Store
+_MACOSX
+Thumbs.db
