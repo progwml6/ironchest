@@ -296,14 +296,6 @@ public class BlockIronChest extends BlockContainer {
        return super.getExplosionResistance(par1Entity, world, x, y, z, explosionX, explosionY, explosionZ);
     }
 
-
-    @Override
-    public int getComparatorInputOverride(World par1World, int par2, int par3, int par4, int par5)
-    {
-        return Container.calcRedstoneFromInventory((TileEntityIronChest) par1World.getTileEntity(par2, par3, par4));
-    }
-
-
     @Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister par1IconRegister)
@@ -337,5 +329,16 @@ public class BlockIronChest extends BlockContainer {
             return true;
         }
         return false;
+    }
+
+    public boolean hasComparatorInputOverride()
+    {
+    	return true;
+    }
+
+    @Override
+    public int getComparatorInputOverride(World world, int i, int j, int k, int l)
+    {
+    	return Container.calcRedstoneFromInventory(chestInventory(world, i, j, k));
     }
 }
