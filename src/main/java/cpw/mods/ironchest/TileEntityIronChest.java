@@ -527,6 +527,5 @@ public class TileEntityIronChest extends TileEntity implements IInventory {
 
     public void removeAdornments()
     {
-
     }
 }

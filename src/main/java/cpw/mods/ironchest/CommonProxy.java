@@ -18,12 +18,10 @@ import cpw.mods.fml.common.network.IGuiHandler;
 public class CommonProxy implements IGuiHandler {
     public void registerRenderInformation()
     {
-
     }
 
     public void registerTileEntitySpecialRenderer(IronChestType typ)
     {
-
     }
 
     @Override

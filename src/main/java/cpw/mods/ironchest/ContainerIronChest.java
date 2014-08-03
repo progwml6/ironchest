@@ -101,8 +101,7 @@ public class ContainerIronChest extends Container {
         {
             for (int playerInvCol = 0; playerInvCol < 9; playerInvCol++)
             {
-                addSlotToContainer(new Slot(playerInventory, playerInvCol + playerInvRow * 9 + 9, leftCol + playerInvCol * 18, ySize - (4 - playerInvRow) * 18
-                        - 10));
+                addSlotToContainer(new Slot(playerInventory, playerInvCol + playerInvRow * 9 + 9, leftCol + playerInvCol * 18, ySize - (4 - playerInvRow) * 18 - 10));
             }
 
         }

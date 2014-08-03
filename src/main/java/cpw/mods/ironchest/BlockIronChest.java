@@ -17,8 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import com.google.common.collect.Lists;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -38,15 +36,15 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import com.google.common.collect.Lists;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockIronChest extends BlockContainer {
 
     private Random random;
-
-    @SideOnly(Side.CLIENT)
-    private IIcon[][] icons;
 
     public BlockIronChest()
     {
@@ -58,13 +56,10 @@ public class BlockIronChest extends BlockContainer {
         setCreativeTab(CreativeTabs.tabDecorations);
     }
 
-    /**
-     * Overridden by {@link #createTileEntity(World, int)}
-     */
     @Override
-    public TileEntity createNewTileEntity(World w, int i)
+    public TileEntity createNewTileEntity(World world, int meta)
     {
-        return null;
+    	return IronChestType.makeEntity(meta);
     }
 
     @Override
@@ -86,13 +81,7 @@ public class BlockIronChest extends BlockContainer {
     }
 
     @Override
-    public TileEntity createTileEntity(World world, int metadata)
-    {
-        return IronChestType.makeEntity(metadata);
-    }
-
     @SideOnly(Side.CLIENT)
-    @Override
     public IIcon getIcon(int i, int j)
     {
         if (j < IronChestType.values().length)
@@ -112,6 +101,7 @@ public class BlockIronChest extends BlockContainer {
         items.add(stack);
         return items;
     }
+
     @Override
     public boolean onBlockActivated(World world, int i, int j, int k, EntityPlayer player, int i1, float f1, float f2, float f3)
     {
@@ -228,7 +218,6 @@ public class BlockIronChest extends BlockContainer {
     }
 
     @Override
-    @SuppressWarnings({ "rawtypes", "unchecked" })
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List par3List)
     {
@@ -272,7 +261,6 @@ public class BlockIronChest extends BlockContainer {
         return 0;
     }
 
-
     @Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister par1IconRegister)
@@ -283,11 +271,10 @@ public class BlockIronChest extends BlockContainer {
         }
     }
 
-    private static final ForgeDirection[] validRotationAxes = new ForgeDirection[] { UP, DOWN };
     @Override
     public ForgeDirection[] getValidRotations(World worldObj, int x, int y, int z)
     {
-        return validRotationAxes;
+        return new ForgeDirection[] { UP, DOWN };
     }
 
     @Override
