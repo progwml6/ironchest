@@ -33,6 +33,9 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockIronChest extends BlockContainer {
+	@SideOnly(Side.CLIENT)
+    public static IIcon icon[] = new IIcon[IronChestType.values().length];
+
     public BlockIronChest()
     {
         super(Material.iron);
@@ -68,14 +71,22 @@ public class BlockIronChest extends BlockContainer {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public IIcon getIcon(int i, int j)
+    public void registerBlockIcons(IIconRegister r)
     {
-        if (j < IronChestType.values().length)
-        {
-            IronChestType type = IronChestType.values()[j];
-            return type.getIcon(i);
-        }
-        return null;
+    	for (IronChestType type : IronChestType.values())
+    	{
+    		if (type.isValidForCreativeMode())
+    		{
+    			icon[type.ordinal()] = r.registerIcon("ironchest:" + type.name().toLowerCase());
+    		}
+    	}
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public IIcon getIcon(int side, int meta)
+    {
+    	return icon[meta];
     }
 
     @Override
@@ -236,16 +247,6 @@ public class BlockIronChest extends BlockContainer {
             return Container.calcRedstoneFromInventory((IInventory)te);
         }
         return 0;
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void registerBlockIcons(IIconRegister par1IconRegister)
-    {
-        for (IronChestType typ: IronChestType.values())
-        {
-            typ.makeIcons(par1IconRegister);
-        }
     }
 
     @Override
