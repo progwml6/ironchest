@@ -33,15 +33,12 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockIronChest extends BlockContainer {
-    private Random random;
-
     public BlockIronChest()
     {
         super(Material.iron);
         setBlockName("IronChest");
         setHardness(3.0F);
         setBlockBounds(0.0625F, 0F, 0.0625F, 0.9375F, 0.875F, 0.9375F);
-        random = new Random();
         setCreativeTab(CreativeTabs.tabDecorations);
     }
 
@@ -96,17 +93,7 @@ public class BlockIronChest extends BlockContainer {
     {
         TileEntity te = world.getTileEntity(i, j, k);
 
-        if (te == null || !(te instanceof TileEntityIronChest))
-        {
-            return true;
-        }
-
-        if (world.isSideSolid(i, j + 1, k, ForgeDirection.DOWN))
-        {
-            return true;
-        }
-
-        if (world.isRemote)
+        if (te == null || !(te instanceof TileEntityIronChest) || world.isSideSolid(i, j + 1, k, ForgeDirection.DOWN) || world.isRemote)
         {
             return true;
         }
@@ -166,42 +153,43 @@ public class BlockIronChest extends BlockContainer {
         if (tileentitychest != null)
         {
             tileentitychest.removeAdornments();
-            dropContent(0, tileentitychest, world, tileentitychest.xCoord, tileentitychest.yCoord, tileentitychest.zCoord);
+            dropItems(0, tileentitychest, world, tileentitychest.xCoord, tileentitychest.yCoord, tileentitychest.zCoord);
         }
         super.breakBlock(world, i, j, k, i1, i2);
     }
 
-    public void dropContent(int newSize, IInventory chest, World world, int xCoord, int yCoord, int zCoord)
+    public void dropItems(int newSize, IInventory chest, World world, int i, int j, int k)
     {
-        for (int l = newSize; l < chest.getSizeInventory(); l++)
+    	for (int i1 = 0; i1 < chest.getSizeInventory(); ++i1)
         {
-            ItemStack itemstack = chest.getStackInSlot(l);
-            if (itemstack == null)
+    		Random rand = new Random();
+            ItemStack is = chest.getStackInSlot(i1);
+
+            if (is != null)
             {
-                continue;
-            }
-            float f = random.nextFloat() * 0.8F + 0.1F;
-            float f1 = random.nextFloat() * 0.8F + 0.1F;
-            float f2 = random.nextFloat() * 0.8F + 0.1F;
-            while (itemstack.stackSize > 0)
-            {
-                int i1 = random.nextInt(21) + 10;
-                if (i1 > itemstack.stackSize)
+                EntityItem entityitem;
+
+                for (float f = rand.nextFloat() * 0.8F + 0.1F; is.stackSize > 0; world.spawnEntityInWorld(entityitem))
                 {
-                    i1 = itemstack.stackSize;
+                    int j1 = rand.nextInt(21) + 10;
+
+                    if (j1 > is.stackSize)
+                    {
+                        j1 = is.stackSize;
+                    }
+
+                    is.stackSize -= j1;
+                    entityitem = new EntityItem(world, (double)((float)i + f), (double)((float)j + f), (double)((float)k + f), new ItemStack(is.getItem(), j1, is.getItemDamage()));
+                    float f2 = 0.05F;
+                    entityitem.motionX = (double)((float)rand.nextGaussian() * f2);
+                    entityitem.motionY = (double)((float)rand.nextGaussian() * f2 + 0.2F);
+                    entityitem.motionZ = (double)((float)rand.nextGaussian() * f2);
+
+                    if (is.hasTagCompound())
+                    {
+                        entityitem.getEntityItem().setTagCompound((NBTTagCompound)is.getTagCompound().copy());
+                    }
                 }
-                itemstack.stackSize -= i1;
-                EntityItem entityitem = new EntityItem(world, (float) xCoord + f, (float) yCoord + (newSize > 0 ? 1 : 0) + f1, (float) zCoord + f2,
-                        new ItemStack(itemstack.getItem(), i1, itemstack.getItemDamage()));
-                float f3 = 0.05F;
-                entityitem.motionX = (float) random.nextGaussian() * f3;
-                entityitem.motionY = (float) random.nextGaussian() * f3 + 0.2F;
-                entityitem.motionZ = (float) random.nextGaussian() * f3;
-                if (itemstack.hasTagCompound())
-                {
-                    entityitem.getEntityItem().setTagCompound((NBTTagCompound) itemstack.getTagCompound().copy());
-                }
-                world.spawnEntityInWorld(entityitem);
             }
         }
     }

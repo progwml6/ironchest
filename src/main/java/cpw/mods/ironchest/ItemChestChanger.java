@@ -64,7 +64,7 @@ public class ItemChestChanger extends Item {
             ItemStack[] chestContents = ObfuscationReflectionHelper.getPrivateValue(TileEntityChest.class, tec, 0);
             System.arraycopy(chestContents, 0, newchest.chestContents, 0, Math.min(newSize, chestContents.length));
             BlockIronChest block = IronChest.ironChestBlock;
-            block.dropContent(newSize, tec, world, tec.xCoord, tec.yCoord, tec.zCoord);
+            block.dropItems(newSize, tec, world, tec.xCoord, tec.yCoord, tec.zCoord);
             newchest.setFacing((byte) tec.getBlockMetadata());
             newchest.sortTopStacks();
             for (int i = 0; i < Math.min(newSize, chestContents.length); i++)
@@ -75,8 +75,7 @@ public class ItemChestChanger extends Item {
             world.setBlock(X, Y, Z, Blocks.air, 0, 3);
             // Force the Chest TE to reset it's knowledge of neighbouring blocks
             tec.updateContainingBlockInfo();
-            // Force the Chest TE to update any neighbours so they update next
-            // tick
+            // Force the Chest TE to update any neighbours so they update next tick
             tec.checkForAdjacentChests();
             // And put in our block instead
             world.setBlock(X, Y, Z, block, newchest.getType().ordinal(), 3);

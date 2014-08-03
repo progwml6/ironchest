@@ -373,11 +373,7 @@ public class TileEntityIronChest extends TileEntity implements IInventory {
 
     public TileEntityIronChest applyUpgradeItem(ItemChestChanger itemChestChanger)
     {
-        if (numUsingPlayers > 0)
-        {
-            return null;
-        }
-        if (!itemChestChanger.getType().canUpgrade(this.getType()))
+        if (numUsingPlayers > 0 || !itemChestChanger.getType().canUpgrade(this.getType()))
         {
             return null;
         }
@@ -385,7 +381,7 @@ public class TileEntityIronChest extends TileEntity implements IInventory {
         int newSize = newEntity.chestContents.length;
         System.arraycopy(chestContents, 0, newEntity.chestContents, 0, Math.min(newSize, chestContents.length));
         BlockIronChest block = IronChest.ironChestBlock;
-        block.dropContent(newSize, this, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
+        block.dropItems(newSize, this, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
         newEntity.setFacing(facing);
         newEntity.sortTopStacks();
         newEntity.ticksSinceSync = -1;
@@ -486,11 +482,6 @@ public class TileEntityIronChest extends TileEntity implements IInventory {
         {
             return null;
         }
-    }
-
-    public void setMaxStackSize(int size)
-    {
-
     }
 
     @Override
