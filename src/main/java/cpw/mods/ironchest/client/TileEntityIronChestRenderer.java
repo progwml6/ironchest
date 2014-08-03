@@ -32,9 +32,8 @@ public class TileEntityIronChestRenderer extends TileEntitySpecialRenderer {
     private static Map<IronChestType, ResourceLocation> locations;
     static {
         Builder<IronChestType, ResourceLocation> builder = ImmutableMap.<IronChestType,ResourceLocation>builder();
-        for (IronChestType typ : IronChestType.values()) {
-            builder.put(typ, new ResourceLocation("ironchest","textures/model/"+typ.getModelTexture()));
-        }
+        for (IronChestType typ : IronChestType.values())
+            builder.put(typ, new ResourceLocation("ironchest", "textures/models/" + typ.getModelTexture()));
         locations = builder.build();
     }
 
