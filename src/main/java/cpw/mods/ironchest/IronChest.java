@@ -10,15 +10,17 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid = "IronChest", name = "Iron Chests", dependencies = "required-after:Forge@[10.10,);required-after:FML@[7.2,)")
+@Mod(modid = IronChest.modid, name = IronChest.name)
 public class IronChest {
-    public static BlockIronChest ironChestBlock;
+	public static final String modid = "IronChest", name = "Iron Chests";
 
-    @SidedProxy(clientSide = "cpw.mods.ironchest.client.ClientProxy", serverSide = "cpw.mods.ironchest.CommonProxy")
-    public static CommonProxy proxy;
+	@Instance(modid)
+	public static IronChest instance;
 
-    @Instance("IronChest")
-    public static IronChest instance;
+	@SidedProxy(clientSide = "cpw.mods.ironchest.client.ClientProxy", serverSide = "cpw.mods.ironchest.CommonProxy")
+	public static CommonProxy proxy;
+
+	public static BlockIronChest ironChestBlock;
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent e)
@@ -39,7 +41,7 @@ public class IronChest {
     {
         for (IronChestType typ : IronChestType.values())
         {
-            GameRegistry.registerTileEntityWithAlternatives(typ.clazz, "IronChest." + typ.name(), typ.name());
+            GameRegistry.registerTileEntityWithAlternatives(typ.clazz, modid + "." + typ.name(), typ.name());
             proxy.registerTileEntitySpecialRenderer(typ);
         }
         IronChestType.registerBlocksAndRecipes(ironChestBlock);
