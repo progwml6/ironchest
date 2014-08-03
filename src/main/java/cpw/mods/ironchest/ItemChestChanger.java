@@ -1,13 +1,3 @@
-/*******************************************************************************
- * Copyright (c) 2012 cpw.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the GNU Public License v3.0
- * which accompanies this distribution, and is available at
- * http://www.gnu.org/licenses/gpl.html
- *
- * Contributors:
- *     cpw - initial API and implementation
- ******************************************************************************/
 package cpw.mods.ironchest;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -24,7 +14,6 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemChestChanger extends Item {
-
     private ChestChangerType type;
 
     public ItemChestChanger(ChestChangerType type)
@@ -35,7 +24,6 @@ public class ItemChestChanger extends Item {
         setUnlocalizedName("ironchest:"+type.name());
         setCreativeTab(CreativeTabs.tabMisc);
     }
-
 
     @Override
     @SideOnly(Side.CLIENT)
