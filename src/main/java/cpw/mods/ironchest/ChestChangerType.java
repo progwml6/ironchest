@@ -10,7 +10,6 @@ import static cpw.mods.ironchest.IronChestType.SILVER;
 import static cpw.mods.ironchest.IronChestType.WOOD;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.config.Configuration;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public enum ChestChangerType {
@@ -50,7 +49,7 @@ public enum ChestChangerType {
         return this.target.ordinal();
     }
 
-    public ItemChestChanger buildItem(Configuration cfg)
+    public ItemChestChanger buildItem()
     {
         item = new ItemChestChanger(this);
         GameRegistry.registerItem(item, itemName);
@@ -67,14 +66,6 @@ public enum ChestChangerType {
                 Object sourceMaterial = IronChestType.translateOreName(sourceMat);
                 IronChestType.addRecipe(new ItemStack(item), recipe, 'm', targetMaterial, 's', sourceMaterial, 'G', Blocks.glass, 'O', Blocks.obsidian);
             }
-        }
-    }
-
-    public static void buildItems(Configuration cfg)
-    {
-        for (ChestChangerType type : values())
-        {
-            type.buildItem(cfg);
         }
     }
 
