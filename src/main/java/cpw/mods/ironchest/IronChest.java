@@ -9,16 +9,17 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.ironchest.net.UniversalProxy;
 
 @Mod(modid = IronChest.modid, name = IronChest.name)
 public class IronChest {
-	public static final String modid = "IronChest", name = "Iron Chests";
+	public static final String modid = "IronChest", name = "Iron Chests", proxyPath = "cpw.mods.ironchest.net.UniversalProxy";
 
 	@Instance(modid)
 	public static IronChest instance;
 
-	@SidedProxy(clientSide = "cpw.mods.ironchest.client.ClientProxy", serverSide = "cpw.mods.ironchest.CommonProxy")
-	public static CommonProxy proxy;
+	@SidedProxy(clientSide = proxyPath, serverSide = proxyPath)
+	public static UniversalProxy proxy;
 
 	public static BlockIronChest ironChestBlock;
 

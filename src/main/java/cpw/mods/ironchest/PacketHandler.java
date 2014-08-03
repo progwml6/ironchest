@@ -9,6 +9,7 @@ import java.util.EnumMap;
 import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.FMLEmbeddedChannel;
 import cpw.mods.fml.common.network.FMLIndexedMessageToMessageCodec;
@@ -70,7 +71,7 @@ public enum PacketHandler {
         @Override
         protected void channelRead0(ChannelHandlerContext ctx, IronChestMessage msg) throws Exception
         {
-            World world = IronChest.proxy.getClientWorld();
+            World world = FMLClientHandler.instance().getClient().theWorld;
             TileEntity te = world.getTileEntity(msg.x, msg.y, msg.z);
             if (te instanceof TileEntityIronChest)
             {
