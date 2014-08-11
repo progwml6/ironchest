@@ -20,8 +20,9 @@ public class TileEntityDirtChest extends TileEntityIronChest {
         pages.appendTag(new NBTTagString(StatCollector.translateToLocal("book.ironchest:dirtchest9000.page5")));
         dirtChest9000GuideBook.setTagInfo("pages", pages);
     }
+
     public TileEntityDirtChest() {
-        super(IronChestType.DIRTCHEST9000);
+    	super(IronChestType.DIRTCHEST9000);
     }
 
     @Override

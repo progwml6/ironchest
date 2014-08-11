@@ -1,22 +1,12 @@
-/*******************************************************************************
- * Copyright (c) 2012 cpw.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the GNU Public License v3.0
- * which accompanies this distribution, and is available at
- * http://www.gnu.org/licenses/gpl.html
- *
- * Contributors:
- *     cpw - initial API and implementation
- ******************************************************************************/
 package cpw.mods.ironchest;
 
+import invtweaks.api.container.ChestContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import invtweaks.api.container.ChestContainer;
 
 @ChestContainer(isLargeChest = true)
 public class ContainerIronChest extends Container {
@@ -85,13 +75,13 @@ public class ContainerIronChest extends Container {
     protected void layoutContainer(IInventory playerInventory, IInventory chestInventory, IronChestType type, int xSize, int ySize)
     {
         if (type == IronChestType.DIRTCHEST9000) {
-            addSlotToContainer(type.makeSlot(chestInventory, 0, 12 + 4 * 18, 8 + 2 * 18));
+            addSlotToContainer(new Slot(chestInventory, 0, 12 + 4 * 18, 8 + 2 * 18));
         } else {
             for (int chestRow = 0; chestRow < type.getRowCount(); chestRow++)
             {
                 for (int chestCol = 0; chestCol < type.getRowLength(); chestCol++)
                 {
-                    addSlotToContainer(type.makeSlot(chestInventory, chestCol + chestRow * type.getRowLength(), 12 + chestCol * 18, 8 + chestRow * 18));
+                    addSlotToContainer(new Slot(chestInventory, chestCol + chestRow * type.getRowLength(), 12 + chestCol * 18, 8 + chestRow * 18));
                 }
             }
         }
@@ -101,8 +91,7 @@ public class ContainerIronChest extends Container {
         {
             for (int playerInvCol = 0; playerInvCol < 9; playerInvCol++)
             {
-                addSlotToContainer(new Slot(playerInventory, playerInvCol + playerInvRow * 9 + 9, leftCol + playerInvCol * 18, ySize - (4 - playerInvRow) * 18
-                        - 10));
+                addSlotToContainer(new Slot(playerInventory, playerInvCol + playerInvRow * 9 + 9, leftCol + playerInvCol * 18, ySize - (4 - playerInvRow) * 18 - 10));
             }
 
         }

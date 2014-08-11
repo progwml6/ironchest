@@ -1,13 +1,3 @@
-/*******************************************************************************
- * Copyright (c) 2012 cpw.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the GNU Public License v3.0
- * which accompanies this distribution, and is available at
- * http://www.gnu.org/licenses/gpl.html
- *
- * Contributors:
- *     cpw - initial API and implementation
- ******************************************************************************/
 package cpw.mods.ironchest;
 
 import java.util.Arrays;
@@ -383,11 +373,7 @@ public class TileEntityIronChest extends TileEntity implements IInventory {
 
     public TileEntityIronChest applyUpgradeItem(ItemChestChanger itemChestChanger)
     {
-        if (numUsingPlayers > 0)
-        {
-            return null;
-        }
-        if (!itemChestChanger.getType().canUpgrade(this.getType()))
+        if (numUsingPlayers > 0 || !itemChestChanger.getType().canUpgrade(this.getType()))
         {
             return null;
         }
@@ -395,7 +381,7 @@ public class TileEntityIronChest extends TileEntity implements IInventory {
         int newSize = newEntity.chestContents.length;
         System.arraycopy(chestContents, 0, newEntity.chestContents, 0, Math.min(newSize, chestContents.length));
         BlockIronChest block = IronChest.ironChestBlock;
-        block.dropContent(newSize, this, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
+        block.dropItems(newSize, this, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
         newEntity.setFacing(facing);
         newEntity.sortTopStacks();
         newEntity.ticksSinceSync = -1;
@@ -498,11 +484,6 @@ public class TileEntityIronChest extends TileEntity implements IInventory {
         }
     }
 
-    public void setMaxStackSize(int size)
-    {
-
-    }
-
     @Override
     public boolean isItemValidForSlot(int i, ItemStack itemstack)
     {
@@ -527,6 +508,5 @@ public class TileEntityIronChest extends TileEntity implements IInventory {
 
     public void removeAdornments()
     {
-
     }
 }

@@ -1,14 +1,28 @@
-build/
-.classpath
-.project
-.gradle/
-eclipse/
+gnore Gradle cache files & directories
 bin/
+build/
+
+## Exclusive to IronChests
 repo/
-/run/
+run/
+
+## Forge
+forge-*.txt
+
+## Eclipse
+eclipse/
+.classpath
+.gradle/
+.project
 .settings/
-#IDEA files from Gradle
-.idea/
+
+## Idea
+.idea
 /*.iml
 /*.ipr
 /*.iws
+
+# Ignore OS cache files & directories
+*.DS_Store
+_MACOSX
+Thumbs.db

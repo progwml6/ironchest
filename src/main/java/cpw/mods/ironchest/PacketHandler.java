@@ -1,22 +1,15 @@
-/*******************************************************************************
- * Copyright (c) 2012 cpw.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the GNU Public License v3.0
- * which accompanies this distribution, and is available at
- * http://www.gnu.org/licenses/gpl.html
- *
- * Contributors:
- *     cpw - initial API and implementation
- ******************************************************************************/
 package cpw.mods.ironchest;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
+
 import java.util.EnumMap;
+
 import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.FMLEmbeddedChannel;
 import cpw.mods.fml.common.network.FMLIndexedMessageToMessageCodec;
@@ -28,7 +21,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 /**
  * Handles the packet wrangling for IronChest
  * @author cpw
- *
  */
 public enum PacketHandler {
     INSTANCE;
@@ -79,7 +71,7 @@ public enum PacketHandler {
         @Override
         protected void channelRead0(ChannelHandlerContext ctx, IronChestMessage msg) throws Exception
         {
-            World world = IronChest.proxy.getClientWorld();
+            World world = FMLClientHandler.instance().getClient().theWorld;
             TileEntity te = world.getTileEntity(msg.x, msg.y, msg.z);
             if (te instanceof TileEntityIronChest)
             {

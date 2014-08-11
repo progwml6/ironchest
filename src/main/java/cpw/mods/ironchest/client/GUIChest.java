@@ -1,13 +1,3 @@
-/*******************************************************************************
- * Copyright (c) 2012 cpw.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the GNU Public License v3.0
- * which accompanies this distribution, and is available at
- * http://www.gnu.org/licenses/gpl.html
- *
- * Contributors:
- *     cpw - initial API and implementation
- ******************************************************************************/
 package cpw.mods.ironchest.client;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -23,15 +13,15 @@ import cpw.mods.ironchest.TileEntityIronChest;
 
 public class GUIChest extends GuiContainer {
     public enum ResourceList {
-        IRON(new ResourceLocation("ironchest", "textures/gui/ironcontainer.png")),
-        COPPER(new ResourceLocation("ironchest", "textures/gui/coppercontainer.png")),
-        SILVER(new ResourceLocation("ironchest", "textures/gui/silvercontainer.png")),
-        GOLD(new ResourceLocation("ironchest", "textures/gui/goldcontainer.png")),
-        DIAMOND(new ResourceLocation("ironchest", "textures/gui/diamondcontainer.png")),
-        DIRT(new ResourceLocation("ironchest", "textures/gui/dirtcontainer.png"));
+        IRON(new ResourceLocation("ironchest", "textures/gui/gui_chest_iron.png")),
+        COPPER(new ResourceLocation("ironchest", "textures/gui/gui_chest_copper.png")),
+        SILVER(new ResourceLocation("ironchest", "textures/gui/gui_chest_silver.png")),
+        GOLD(new ResourceLocation("ironchest", "textures/gui/gui_chest_gold.png")),
+        DIAMOND(new ResourceLocation("ironchest", "textures/gui/gui_chest_diamond.png")),
+        DIRT(new ResourceLocation("ironchest", "textures/gui/gui_chest_dirt.png"));
         public final ResourceLocation location;
         private ResourceList(ResourceLocation loc) {
-            this.location = loc;
+            location = loc;
         }
     }
     public enum GUI {
@@ -89,8 +79,7 @@ public class GUIChest extends GuiContainer {
     protected void drawGuiContainerBackgroundLayer(float f, int i, int j)
     {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        // new "bind tex"
-        this.mc.getTextureManager().bindTexture(type.guiResourceList.location);
+        mc.getTextureManager().bindTexture(type.guiResourceList.location);
         int x = (width - xSize) / 2;
         int y = (height - ySize) / 2;
         drawTexturedModalRect(x, y, 0, 0, xSize, ySize);

@@ -1,13 +1,3 @@
-/*******************************************************************************
- * Copyright (c) 2012 cpw.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the GNU Public License v3.0
- * which accompanies this distribution, and is available at
- * http://www.gnu.org/licenses/gpl.html
- *
- * Contributors:
- *     cpw - initial API and implementation
- ******************************************************************************/
 package cpw.mods.ironchest;
 
 import static net.minecraftforge.common.util.ForgeDirection.DOWN;
@@ -16,8 +6,6 @@ import static net.minecraftforge.common.util.ForgeDirection.UP;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import com.google.common.collect.Lists;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -38,15 +26,15 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import com.google.common.collect.Lists;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockIronChest extends BlockContainer {
-
-    private Random random;
-
-    @SideOnly(Side.CLIENT)
-    private IIcon[][] icons;
+	@SideOnly(Side.CLIENT)
+    public static IIcon icon[] = new IIcon[IronChestType.values().length];
 
     public BlockIronChest()
     {
@@ -54,17 +42,13 @@ public class BlockIronChest extends BlockContainer {
         setBlockName("IronChest");
         setHardness(3.0F);
         setBlockBounds(0.0625F, 0F, 0.0625F, 0.9375F, 0.875F, 0.9375F);
-        random = new Random();
         setCreativeTab(CreativeTabs.tabDecorations);
     }
 
-    /**
-     * Overridden by {@link #createTileEntity(World, int)}
-     */
     @Override
-    public TileEntity createNewTileEntity(World w, int i)
+    public TileEntity createNewTileEntity(World world, int meta)
     {
-        return null;
+    	return IronChestType.makeEntity(meta);
     }
 
     @Override
@@ -86,21 +70,23 @@ public class BlockIronChest extends BlockContainer {
     }
 
     @Override
-    public TileEntity createTileEntity(World world, int metadata)
+    @SideOnly(Side.CLIENT)
+    public void registerBlockIcons(IIconRegister r)
     {
-        return IronChestType.makeEntity(metadata);
+    	for (IronChestType type : IronChestType.values())
+    	{
+    		if (type.isValidForCreativeMode())
+    		{
+    			icon[type.ordinal()] = r.registerIcon("ironchest:" + type.name().toLowerCase());
+    		}
+    	}
     }
 
-    @SideOnly(Side.CLIENT)
     @Override
-    public IIcon getIcon(int i, int j)
+    @SideOnly(Side.CLIENT)
+    public IIcon getIcon(int side, int meta)
     {
-        if (j < IronChestType.values().length)
-        {
-            IronChestType type = IronChestType.values()[j];
-            return type.getIcon(i);
-        }
-        return null;
+    	return icon[meta];
     }
 
     @Override
@@ -112,22 +98,13 @@ public class BlockIronChest extends BlockContainer {
         items.add(stack);
         return items;
     }
+
     @Override
     public boolean onBlockActivated(World world, int i, int j, int k, EntityPlayer player, int i1, float f1, float f2, float f3)
     {
         TileEntity te = world.getTileEntity(i, j, k);
 
-        if (te == null || !(te instanceof TileEntityIronChest))
-        {
-            return true;
-        }
-
-        if (world.isSideSolid(i, j + 1, k, ForgeDirection.DOWN))
-        {
-            return true;
-        }
-
-        if (world.isRemote)
+        if (te == null || !(te instanceof TileEntityIronChest) || world.isSideSolid(i, j + 1, k, ForgeDirection.DOWN) || world.isRemote)
         {
             return true;
         }
@@ -187,48 +164,48 @@ public class BlockIronChest extends BlockContainer {
         if (tileentitychest != null)
         {
             tileentitychest.removeAdornments();
-            dropContent(0, tileentitychest, world, tileentitychest.xCoord, tileentitychest.yCoord, tileentitychest.zCoord);
+            dropItems(0, tileentitychest, world, tileentitychest.xCoord, tileentitychest.yCoord, tileentitychest.zCoord);
         }
         super.breakBlock(world, i, j, k, i1, i2);
     }
 
-    public void dropContent(int newSize, IInventory chest, World world, int xCoord, int yCoord, int zCoord)
+    public void dropItems(int newSize, IInventory chest, World world, int i, int j, int k)
     {
-        for (int l = newSize; l < chest.getSizeInventory(); l++)
+    	for (int i1 = 0; i1 < chest.getSizeInventory(); ++i1)
         {
-            ItemStack itemstack = chest.getStackInSlot(l);
-            if (itemstack == null)
+    		Random rand = new Random();
+            ItemStack is = chest.getStackInSlot(i1);
+
+            if (is != null)
             {
-                continue;
-            }
-            float f = random.nextFloat() * 0.8F + 0.1F;
-            float f1 = random.nextFloat() * 0.8F + 0.1F;
-            float f2 = random.nextFloat() * 0.8F + 0.1F;
-            while (itemstack.stackSize > 0)
-            {
-                int i1 = random.nextInt(21) + 10;
-                if (i1 > itemstack.stackSize)
+                EntityItem entityitem;
+
+                for (float f = rand.nextFloat() * 0.8F + 0.1F; is.stackSize > 0; world.spawnEntityInWorld(entityitem))
                 {
-                    i1 = itemstack.stackSize;
+                    int j1 = rand.nextInt(21) + 10;
+
+                    if (j1 > is.stackSize)
+                    {
+                        j1 = is.stackSize;
+                    }
+
+                    is.stackSize -= j1;
+                    entityitem = new EntityItem(world, (double)((float)i + f), (double)((float)j + f), (double)((float)k + f), new ItemStack(is.getItem(), j1, is.getItemDamage()));
+                    float f2 = 0.05F;
+                    entityitem.motionX = (double)((float)rand.nextGaussian() * f2);
+                    entityitem.motionY = (double)((float)rand.nextGaussian() * f2 + 0.2F);
+                    entityitem.motionZ = (double)((float)rand.nextGaussian() * f2);
+
+                    if (is.hasTagCompound())
+                    {
+                        entityitem.getEntityItem().setTagCompound((NBTTagCompound)is.getTagCompound().copy());
+                    }
                 }
-                itemstack.stackSize -= i1;
-                EntityItem entityitem = new EntityItem(world, (float) xCoord + f, (float) yCoord + (newSize > 0 ? 1 : 0) + f1, (float) zCoord + f2,
-                        new ItemStack(itemstack.getItem(), i1, itemstack.getItemDamage()));
-                float f3 = 0.05F;
-                entityitem.motionX = (float) random.nextGaussian() * f3;
-                entityitem.motionY = (float) random.nextGaussian() * f3 + 0.2F;
-                entityitem.motionZ = (float) random.nextGaussian() * f3;
-                if (itemstack.hasTagCompound())
-                {
-                    entityitem.getEntityItem().setTagCompound((NBTTagCompound) itemstack.getTagCompound().copy());
-                }
-                world.spawnEntityInWorld(entityitem);
             }
         }
     }
 
     @Override
-    @SuppressWarnings({ "rawtypes", "unchecked" })
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List par3List)
     {
@@ -272,22 +249,10 @@ public class BlockIronChest extends BlockContainer {
         return 0;
     }
 
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void registerBlockIcons(IIconRegister par1IconRegister)
-    {
-        for (IronChestType typ: IronChestType.values())
-        {
-            typ.makeIcons(par1IconRegister);
-        }
-    }
-
-    private static final ForgeDirection[] validRotationAxes = new ForgeDirection[] { UP, DOWN };
     @Override
     public ForgeDirection[] getValidRotations(World worldObj, int x, int y, int z)
     {
-        return validRotationAxes;
+        return new ForgeDirection[] { UP, DOWN };
     }
 
     @Override
