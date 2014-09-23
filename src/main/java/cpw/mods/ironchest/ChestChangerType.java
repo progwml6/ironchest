@@ -16,7 +16,6 @@ import static cpw.mods.ironchest.IronChestType.SILVER;
 import static cpw.mods.ironchest.IronChestType.WOOD;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.config.Configuration;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public enum ChestChangerType {
@@ -56,7 +55,7 @@ public enum ChestChangerType {
         return this.target.ordinal();
     }
 
-    public ItemChestChanger buildItem(Configuration cfg)
+    public ItemChestChanger buildItem()
     {
         item = new ItemChestChanger(this);
         GameRegistry.registerItem(item, itemName);
@@ -76,11 +75,11 @@ public enum ChestChangerType {
         }
     }
 
-    public static void buildItems(Configuration cfg)
+    public static void buildItems()
     {
         for (ChestChangerType type : values())
         {
-            type.buildItem(cfg);
+            type.buildItem();
         }
     }
 
