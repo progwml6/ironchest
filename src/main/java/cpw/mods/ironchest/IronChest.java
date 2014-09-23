@@ -18,7 +18,6 @@ import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -57,16 +56,6 @@ public class IronChest {
         ChestChangerType.generateRecipes();
         NetworkRegistry.INSTANCE.registerGuiHandler(instance, proxy);
         proxy.registerRenderInformation();
-//        if (OCELOTS_SITONCHESTS)
-//        {
-//            MinecraftForge.EVENT_BUS.register(new OcelotsSitOnChestsHandler());
-//        }
         MinecraftForge.EVENT_BUS.register(this);
     }
-
-    @EventHandler
-    public void modsLoaded(FMLPostInitializationEvent evt)
-    {
-    }
-
 }
