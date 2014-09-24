@@ -1,10 +1,11 @@
-ironchest
-=========
+# IronChest
+A Minecraft mod that adds more chest variants to the game!
 
-Iron Chest minecraft mod
+## License
+[GPL v3](http://www.gnu.org/copyleft/gpl.html)
 
-a GPL v3 licensed mod by cpw
+## Maintainers
+Originally by cpw, currently maintained by ProgWML6
 
-Currently Maintained by ProgWML6
-
-See http://files.minecraftforge.net/IronChests2/ for downloads
+## Downloads
+Head over [here](http://files.minecraftforge.net/IronChests2/) for downloads!

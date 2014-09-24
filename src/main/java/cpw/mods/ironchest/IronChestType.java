@@ -13,11 +13,9 @@ package cpw.mods.ironchest;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Slot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagByte;
@@ -225,11 +223,6 @@ public enum IronChestType {
 
     private static String[] sideNames = { "top", "front", "side" };
     private static int[] sideMapping = { 0, 0, 2, 1, 2, 2, 2 };
-
-    public Slot makeSlot(IInventory chestInventory, int index, int x, int y)
-    {
-        return new ValidatingSlot(chestInventory, index, x, y, this);
-    }
 
     public boolean acceptsStack(ItemStack itemstack)
     {
