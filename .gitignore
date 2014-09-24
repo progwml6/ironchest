@@ -12,5 +12,11 @@ Thumbs.db
 # Project-specific dependencies
 bin/
 build/
+eclipse/
 repo/
 run/
+
+# IDEA files
+*.iml
+*.ipr
+*.iws
