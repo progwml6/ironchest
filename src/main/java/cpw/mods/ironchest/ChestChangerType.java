@@ -6,97 +6,90 @@
  ******************************************************************************/
 package cpw.mods.ironchest;
 
-import static cpw.mods.ironchest.IronChestType.COPPER;
-import static cpw.mods.ironchest.IronChestType.CRYSTAL;
-import static cpw.mods.ironchest.IronChestType.DIAMOND;
-import static cpw.mods.ironchest.IronChestType.GOLD;
-import static cpw.mods.ironchest.IronChestType.IRON;
-import static cpw.mods.ironchest.IronChestType.OBSIDIAN;
-import static cpw.mods.ironchest.IronChestType.SILVER;
-import static cpw.mods.ironchest.IronChestType.WOOD;
+import static cpw.mods.ironchest.IronChestTypeSimple.COPPER;
+import static cpw.mods.ironchest.IronChestTypeSimple.CRYSTAL;
+import static cpw.mods.ironchest.IronChestTypeSimple.DIAMOND;
+import static cpw.mods.ironchest.IronChestTypeSimple.GOLD;
+import static cpw.mods.ironchest.IronChestTypeSimple.IRON;
+import static cpw.mods.ironchest.IronChestTypeSimple.OBSIDIAN;
+import static cpw.mods.ironchest.IronChestTypeSimple.SILVER;
+import static cpw.mods.ironchest.IronChestTypeSimple.WOOD;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import cpw.mods.ironchest.client.ModelHelper;
 import net.minecraftforge.fml.relauncher.Side;
+import cpw.mods.ironchest.client.ModelHelper;
 
 public enum ChestChangerType {
-    IRONGOLD(IRON, GOLD, "ironGoldUpgrade", "Iron to Gold Chest Upgrade", "mmm", "msm", "mmm"),
-    GOLDDIAMOND(GOLD, DIAMOND, "goldDiamondUpgrade", "Gold to Diamond Chest Upgrade", "GGG", "msm", "GGG"),
-    COPPERSILVER(COPPER, SILVER, "copperSilverUpgrade", "Copper to Silver Chest Upgrade", "mmm", "msm", "mmm"),
-    SILVERGOLD(SILVER, GOLD, "silverGoldUpgrade", "Silver to Gold Chest Upgrade", "mGm", "GsG", "mGm"),
-    COPPERIRON(COPPER, IRON, "copperIronUpgrade", "Copper to Iron Chest Upgrade", "mGm", "GsG", "mGm"),
-    DIAMONDCRYSTAL(DIAMOND, CRYSTAL, "diamondCrystalUpgrade", "Diamond to Crystal Chest Upgrade", "GGG", "GOG", "GGG"),
-    WOODIRON(WOOD, IRON, "woodIronUpgrade", "Normal chest to Iron Chest Upgrade", "mmm", "msm", "mmm"),
-    WOODCOPPER(WOOD, COPPER, "woodCopperUpgrade", "Normal chest to Copper Chest Upgrade", "mmm", "msm", "mmm"),
-    DIAMONDOBSIDIAN(DIAMOND, OBSIDIAN, "diamondObsidianUpgrade", "Diamond to Obsidian Chest Upgrade", "mmm", "mGm", "mmm");
-
-    private IronChestType source;
-    private IronChestType target;
-    public String itemName;
-    public String descriptiveName;
-    public ItemChestChanger item;
-    private String[] recipe;
-
-    private ChestChangerType(IronChestType source, IronChestType target, String itemName, String descriptiveName, String... recipe)
-    {
-        this.source = source;
-        this.target = target;
-        this.itemName = itemName;
-        this.descriptiveName = descriptiveName;
-        this.recipe = recipe;
-    }
-    
-    public IronChestType getSource(){
-    	return source;
-    }
-
-    public boolean canUpgrade(IronChestType from)
-    {
-        return from == this.source;
-    }
-
-    public int getTarget()
-    {
-        return this.target.ordinal();
-    }
-
-    public ItemChestChanger buildItem()
-    {
-        item = new ItemChestChanger(this);
-        GameRegistry.registerItem(item, itemName);
-        if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
-            ModelHelper.registerItem(item, "ironchest:" + itemName);
-        return item;
-    }
-
-    public void addRecipes()
-    {
-        for (String sourceMat : source.getMatList())
-        {
-            for (String targetMat : target.getMatList())
-            {
-                Object targetMaterial = IronChestType.translateOreName(targetMat);
-                Object sourceMaterial = IronChestType.translateOreName(sourceMat);
-                IronChestType.addRecipe(new ItemStack(item), recipe, 'm', targetMaterial, 's', sourceMaterial, 'G', "blockGlass", 'O', Blocks.obsidian);
-            }
-        }
-    }
-
-    public static void buildItems()
-    {
-        for (ChestChangerType type : values())
-        {
-            type.buildItem();
-        }
-    }
-
-    public static void generateRecipes()
-    {
-        for (ChestChangerType item : values())
-        {
-            item.addRecipes();
-        }
-    }
+	WOOD_UPGRADE(WOOD, new IronChestTypeSimple[] {IRON, GOLD, DIAMOND, OBSIDIAN}, "woodUpgrade", new String[][] {{"ttt", "tst", "ttt"}, {"ttt", "tst", "ttt"}, {"GGG", "tst", "GGG"}, {"tst", "tGt", "ttt"}}),
+	IRON_UPGRADE(IRON, new IronChestTypeSimple[] {GOLD, DIAMOND, OBSIDIAN}, "ironUpgrade", new String[][] {{"ttt", "tst", "ttt"}, {"GGG", "tst", "GGG"}, {"tst", "tGt", "ttt"}}),
+	GOLD_UPGRADE(GOLD, new IronChestTypeSimple[] {DIAMOND, OBSIDIAN}, "goldUpgrade", new String[][] {{"GGG", "tst", "GGG"}, {"tst", "tGt", "ttt"}}),
+	DIAMOND_OBSIDIAN_UPGRADE(DIAMOND, new IronChestTypeSimple[] {OBSIDIAN}, "diamondObsidianUpgrade", new String[][] {{"tst", "tGt", "ttt"}}),
+	DIAMOND_CRYSTAL_UPGRADE(DIAMOND, new IronChestTypeSimple[] {CRYSTAL}, "diamondCrystalUpgrade", new String[][] {{"GsG", "GOG", "GGG"}}),
+	COPPER_UPGRADE(COPPER, new IronChestTypeSimple[] {IRON, GOLD, DIAMOND, OBSIDIAN}, "copperUpgrade", new String[][] {{"tGt", "GsG", "tGt"}, {"ttt", "tst", "ttt"}, {"GGG", "tst", "GGG"}, {"tst", "tGt", "ttt"}}),
+	SILVER_UPGRADE(SILVER, new IronChestTypeSimple[] {GOLD, DIAMOND, OBSIDIAN}, "silverUpgrade", new String[][] {{"tGt", "GsG", "tGt"}, {"GGG", "tst", "GGG"}, {"tst", "tGt", "ttt"}});
+	
+	private IronChestTypeSimple source;
+	IronChestTypeSimple[] upgradeChain;
+	public ItemChestChanger item;
+	public String itemName;
+	private String[][] recipe;
+	
+	private ChestChangerType(IronChestTypeSimple source, IronChestTypeSimple[] upgradeChain, String itemName, String[][] recipes) {
+		this.source = source;
+		this.upgradeChain = upgradeChain;
+		this.itemName = itemName;
+		this.recipe = recipes;
+	}
+	
+	public IronChestTypeSimple getSource() {
+		return source;
+	}
+	
+	public boolean canUpgrade(IronChestTypeSimple from) {
+		return from == this.source;
+	}
+	
+	public int getTarget(int meta) {
+		return this.upgradeChain[meta].ordinal();
+	}
+	
+	public String getTargetName(int meta) {
+		return this.upgradeChain[meta].getName();
+	}
+	
+	public ItemChestChanger buildItem() {
+		item = new ItemChestChanger(this);
+		GameRegistry.registerItem(item, itemName);
+		if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
+			for (int i = 0; i < this.upgradeChain.length; i ++) {
+				String targetName = this.upgradeChain[i].getName().substring(0, 1).toUpperCase() + this.upgradeChain[i].getName().substring(1);
+				ModelHelper.registerItem(item, i, itemName + targetName);
+			}
+		}
+		return item;
+	}
+	
+	public void addRecipes() {
+		Object sourceMaterial = this.source.toObject();
+		Object targetMaterial = this.upgradeChain[0].toObject();
+		IronChestType.addRecipe(new ItemStack(item), recipe[0], 's', sourceMaterial, 't', targetMaterial, 'G', "blockGlass", 'O', Blocks.obsidian);
+		for (int i = 1; i < this.upgradeChain.length; i ++) {
+			targetMaterial = this.upgradeChain[i].toObject();
+			IronChestType.addRecipe(new ItemStack(item, 1, i), recipe[i], 's', new ItemStack(this.item, 1, i - 1), 't', targetMaterial, 'G', "blockGlass", 'O', Blocks.obsidian);
+		}
+	}
+	
+	public static void buildItems() {
+		for (ChestChangerType type : values()) {
+			type.buildItem();
+		}
+	}
+	
+	public static void generateRecipes() {
+		for (ChestChangerType item : values()) {
+			item.addRecipes();
+		}
+	}
 }
