@@ -19,6 +19,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.Item;
@@ -41,8 +42,6 @@ public class BlockIronChest extends Block
 {
     public static final PropertyEnum<IronChestType> VARIANT_PROP = PropertyEnum.create("variant", IronChestType.class);
 
-    protected static final AxisAlignedBB IRON_CHEST_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.875D, 0.9375D);
-
     public BlockIronChest()
     {
         super(Material.IRON);
@@ -58,7 +57,7 @@ public class BlockIronChest extends Block
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
-        return IRON_CHEST_AABB;
+        return Blocks.ENDER_CHEST.getBoundingBox(state, source, pos);
     }
 
     @Override
