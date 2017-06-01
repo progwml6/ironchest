@@ -20,7 +20,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -213,12 +212,7 @@ public class BlockIronChest extends Block
     @Override
     public int getComparatorInputOverride(IBlockState blockState, World world, BlockPos pos)
     {
-        TileEntity te = world.getTileEntity(pos);
-        if (te instanceof IInventory)
-        {
-            return Container.calcRedstoneFromInventory((IInventory) te);
-        }
-        return 0;
+        return Container.calcRedstone(world.getTileEntity(pos));
     }
 
     private static final EnumFacing[] validRotationAxes = new EnumFacing[] { EnumFacing.UP, EnumFacing.DOWN };
