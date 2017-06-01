@@ -79,28 +79,17 @@ public class BlockIronChest extends Block
     }
 
     @Override
-    //@formatter:off
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing heldItem, float side, float hitX, float hitY)
-    //@formatter:on
     {
         TileEntity te = worldIn.getTileEntity(pos);
 
-        if (te == null || !(te instanceof TileEntityIronChest))
+        if (te instanceof TileEntityIronChest && !worldIn.isRemote && !worldIn.isSideSolid(pos.add(0, 1, 0), EnumFacing.DOWN))
         {
+        	TileEntityIronChest teic = (TileEntityIronChest) te;
+        	playerIn.openGui(IronChest.instance, teic.getType().ordinal(), worldIn, pos.getX(), pos.getY(), pos.getZ());
             return true;
         }
 
-        if (worldIn.isSideSolid(pos.add(0, 1, 0), EnumFacing.DOWN))
-        {
-            return true;
-        }
-
-        if (worldIn.isRemote)
-        {
-            return true;
-        }
-
-        playerIn.openGui(IronChest.instance, ((TileEntityIronChest) te).getType().ordinal(), worldIn, pos.getX(), pos.getY(), pos.getZ());
         return true;
     }
 
@@ -158,7 +147,8 @@ public class BlockIronChest extends Block
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
         TileEntity te = worldIn.getTileEntity(pos);
-        if (te != null && te instanceof TileEntityIronChest)
+
+        if (te instanceof TileEntityIronChest)
         {
             TileEntityIronChest teic = (TileEntityIronChest) te;
             teic.wasPlaced(placer, stack);
@@ -176,14 +166,15 @@ public class BlockIronChest extends Block
     @Override
     public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
     {
-        TileEntityIronChest tileentity = (TileEntityIronChest) worldIn.getTileEntity(pos);
+        TileEntity te = worldIn.getTileEntity(pos);
 
-        if (tileentity != null)
+        if (te instanceof TileEntityIronChest)
         {
-            tileentity.removeAdornments();
-
-            InventoryHelper.dropInventoryItems(worldIn, pos, tileentity);
+        	TileEntityIronChest teic = (TileEntityIronChest) te;
+            teic.removeAdornments();
+            InventoryHelper.dropInventoryItems(worldIn, pos, teic);
         }
+
         super.breakBlock(worldIn, pos, state);
     }
 
@@ -191,14 +182,17 @@ public class BlockIronChest extends Block
     public float getExplosionResistance(World world, BlockPos pos, Entity exploder, Explosion explosion)
     {
         TileEntity te = world.getTileEntity(pos);
+
         if (te instanceof TileEntityIronChest)
         {
             TileEntityIronChest teic = (TileEntityIronChest) te;
+
             if (teic.getType().isExplosionResistant())
             {
                 return 10000F;
             }
         }
+
         return super.getExplosionResistance(world, pos, exploder, explosion);
     }
 
@@ -231,10 +225,11 @@ public class BlockIronChest extends Block
         }
         if (axis == EnumFacing.UP || axis == EnumFacing.DOWN)
         {
-            TileEntity tileEntity = worldObj.getTileEntity(pos);
-            if (tileEntity instanceof TileEntityIronChest)
+            TileEntity te = worldObj.getTileEntity(pos);
+
+            if (te instanceof TileEntityIronChest)
             {
-                TileEntityIronChest icte = (TileEntityIronChest) tileEntity;
+                TileEntityIronChest icte = (TileEntityIronChest) te;
                 icte.rotateAround();
             }
             return true;
@@ -247,7 +242,7 @@ public class BlockIronChest extends Block
     public boolean eventReceived(IBlockState state, World worldIn, BlockPos pos, int id, int param)
     {
         super.eventReceived(state, worldIn, pos, id, param);
-        TileEntity tileentity = worldIn.getTileEntity(pos);
-        return tileentity != null && tileentity.receiveClientEvent(id, param);
+        TileEntity te = worldIn.getTileEntity(pos);
+        return te != null && te.receiveClientEvent(id, param);
     }
 }
