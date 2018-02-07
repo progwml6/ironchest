@@ -265,9 +265,12 @@ public class BlockIronShulkerBox extends Block
     public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player)
     {
         TileEntityIronShulkerBox tileentityironshulkerbox = (TileEntityIronShulkerBox) worldIn.getTileEntity(pos);
-
-        tileentityironshulkerbox.setDestroyedByCreativePlayer(player.capabilities.isCreativeMode);
-        tileentityironshulkerbox.fillWithLoot(player);
+        if (tileentityironshulkerbox != null) {
+            tileentityironshulkerbox.setDestroyedByCreativePlayer(player.capabilities.isCreativeMode);
+            tileentityironshulkerbox.fillWithLoot(player);
+        } else {
+            // We don't have any drops here since the tile entity is null
+        }
     }
 
     /**

@@ -18,6 +18,7 @@ import cpw.mods.ironchest.common.tileentity.shulker.TileEntityGoldShulkerBox;
 import cpw.mods.ironchest.common.tileentity.shulker.TileEntityIronShulkerBox;
 import cpw.mods.ironchest.common.tileentity.shulker.TileEntityObsidianShulkerBox;
 import cpw.mods.ironchest.common.tileentity.shulker.TileEntitySilverShulkerBox;
+import cpw.mods.ironchest.common.tileentity.shulker.TileEntityDirtShulkerBox;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.EnumDyeColor;
@@ -33,6 +34,7 @@ public enum IronShulkerBoxType implements IStringSerializable
     SILVER(72, 9, false, "_silver.png", TileEntitySilverShulkerBox.class, 184, 238),
     CRYSTAL(108, 12, true, "_crystal.png", TileEntityCrystalShulkerBox.class, 238, 256),
     OBSIDIAN(108, 12, false, "_obsidian.png", TileEntityObsidianShulkerBox.class, 238, 256),
+    DIRT(1, 1, false, "_dirt.png", TileEntityDirtShulkerBox.class, 184, 184),
     VANILLA(0, 0, false, "", null, 0, 0);
     //@formatter:on
 
@@ -145,6 +147,8 @@ public enum IronShulkerBoxType implements IStringSerializable
             return new TileEntityCrystalShulkerBox(colorIn);
         case OBSIDIAN:
             return new TileEntityObsidianShulkerBox(colorIn);
+        case DIRT:
+            return new TileEntityDirtShulkerBox(colorIn);
         default:
             return null;
         }

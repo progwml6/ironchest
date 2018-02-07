@@ -151,6 +151,23 @@ tile.ironchest.shulker_box.obsidian.green.name=Green Obsidian Shulker Box
 tile.ironchest.shulker_box.obsidian.red.name=Red Obsidian Shulker Box
 tile.ironchest.shulker_box.obsidian.black.name=Black Obsidian Shulker Box
 
+tile.ironchest.shulker_box.dirt.white.name=White Dirt Shulker Box
+tile.ironchest.shulker_box.dirt.orange.name=Orange Dirt Shulker Box
+tile.ironchest.shulker_box.dirt.magenta.name=Magenta Dirt Shulker Box
+tile.ironchest.shulker_box.dirt.light_blue.name=Light Blue Dirt Shulker Box
+tile.ironchest.shulker_box.dirt.yellow.name=Yellow Dirt Shulker Box
+tile.ironchest.shulker_box.dirt.lime.name=Lime Dirt Shulker Box
+tile.ironchest.shulker_box.dirt.pink.name=Pink Dirt Shulker Box
+tile.ironchest.shulker_box.dirt.gray.name=Gray Dirt Shulker Box
+tile.ironchest.shulker_box.dirt.silver.name=Silver Dirt Shulker Box
+tile.ironchest.shulker_box.dirt.cyan.name=Cyan Dirt Shulker Box
+tile.ironchest.shulker_box.dirt.purple.name=Purple Dirt Shulker Box
+tile.ironchest.shulker_box.dirt.blue.name=Blue Dirt Shulker Box
+tile.ironchest.shulker_box.dirt.brown.name=Brown Dirt Shulker Box
+tile.ironchest.shulker_box.dirt.green.name=Green Dirt Shulker Box
+tile.ironchest.shulker_box.dirt.red.name=Red Dirt Shulker Box
+tile.ironchest.shulker_box.dirt.black.name=Black Dirt Shulker Box
+
 item.ironchest.shulker_box.iron_gold.name=Iron to Gold Shulker Box Upgrade
 item.ironchest.shulker_box.iron_gold.tooltip=Used to upgrade a Iron Shulker Box to a Gold Shulker Box\nThe color of the Shulker Box will stay the same.
 item.ironchest.shulker_box.gold_diamond.name=Gold to Diamond Shulker Box Upgrade

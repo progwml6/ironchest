@@ -28,7 +28,8 @@ public class GUIShulkerChest extends GuiContainer
         COPPER(new ResourceLocation("ironchest", "textures/gui/copper_container.png")),
         SILVER(new ResourceLocation("ironchest", "textures/gui/silver_container.png")),
         GOLD(new ResourceLocation("ironchest", "textures/gui/gold_container.png")),
-        DIAMOND(new ResourceLocation("ironchest", "textures/gui/diamond_container.png"));
+        DIAMOND(new ResourceLocation("ironchest", "textures/gui/diamond_container.png")),
+        DIRT(new ResourceLocation("ironchest", "textures/gui/dirt_container.png"));
         //@formatter:on
 
         public final ResourceLocation location;
@@ -48,7 +49,8 @@ public class GUIShulkerChest extends GuiContainer
         COPPER(184, 184, ResourceList.COPPER, IronShulkerBoxType.COPPER),
         SILVER(184, 238, ResourceList.SILVER, IronShulkerBoxType.SILVER),
         CRYSTAL(238, 256, ResourceList.DIAMOND, IronShulkerBoxType.CRYSTAL),
-        OBSIDIAN(238, 256, ResourceList.DIAMOND,IronShulkerBoxType.OBSIDIAN);
+        OBSIDIAN(238, 256, ResourceList.DIAMOND,IronShulkerBoxType.OBSIDIAN),
+        DIRT(184, 184, ResourceList.DIRT,IronShulkerBoxType.DIRT);
         //@formatter:on
 
         private int xSize;
