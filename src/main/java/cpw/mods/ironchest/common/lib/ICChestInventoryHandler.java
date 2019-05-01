@@ -79,10 +79,11 @@ public class ICChestInventoryHandler implements IItemHandlerModifiable
         }
         else
         {
-            if (!ItemHandlerHelper.canItemStacksStack(stack, currentStack))
+            int accepted = Math.min(stack.getMaxStackSize(), inv.getInventoryStackLimit()) - currentStack.getCount();
+
+            if (accepted <= 0 || !ItemHandlerHelper.canItemStacksStack(stack, currentStack))
                 return stack;
 
-            int accepted = Math.min(stack.getMaxStackSize(), inv.getInventoryStackLimit()) - currentStack.getCount();
             if (accepted < stack.getCount())
             {
                 if (!simulate)
