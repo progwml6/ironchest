@@ -42,7 +42,6 @@ public class ICShulkerInventoryHandler implements IItemHandlerModifiable
     {
         if (stack.isEmpty())
             return stack;
-        stack = stack.copy();
 
         if (!inv.isItemValidForSlot(slot, stack))
             return stack;
