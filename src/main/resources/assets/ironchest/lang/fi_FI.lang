@@ -1,0 +1,177 @@
+################
+#    Chests    #
+################
+
+tile.ironchest.chest.iron.name=Rauta arkku
+tile.ironchest.chest.gold.name=Kulta arkku
+tile.ironchest.chest.diamond.name=Timantti arkku
+tile.ironchest.chest.copper.name=Kupari arkku
+tile.ironchest.chest.silver.name=Hopea arkku
+tile.ironchest.chest.crystal.name=Kristalliarkku
+tile.ironchest.chest.obsidian.name=Obsidiaaniarkku
+tile.ironchest.chest.dirtchest9000.name=Multa arkku 9000!
+
+item.ironchest.chest.iron_gold.name=Rautaisesta kultaiseen arkkuun parannus
+item.ironchest.chest.gold_diamond.name=Kultaisesta timanttiseen arkkuun parannus
+item.ironchest.chest.copper_silver.name=Kuparisesta hopeiseen arkkuun parannus
+item.ironchest.chest.silver_gold.name=Hopeisesta kultaiseen arkkuun parannus
+item.ironchest.chest.copper_iron.name=Kuparisesta rautaiseen arkkuun parannus
+item.ironchest.chest.diamond_crystal.name=Timanttisesta krystalliseen arkkuun parannus
+item.ironchest.chest.wood_iron.name=Puisesta rautaiseen arkkuun parannus
+item.ironchest.chest.wood_copper.name=Puisesta kupariseen arkkuun parannus
+item.ironchest.chest.diamond_obsidian.name=Timanttisesta obsidiaaniseen arkkuun parannus
+
+book.ironchest.dirtchest9000.title=Ohjeet multa arkku 9000!
+book.ironchest.dirtchest9000.page1="Tapaa uusi Earthen Chest 9000! Toivomme, että olet tyytyväinen monien vuosien ajan tallentamaan maanpinoasi tässä tallennuslaitteessa."
+book.ironchest.dirtchest9000.page2="Sovellus: yksinkertaisesti työnnä valittu maapallopakkaus erittäin herkkään paikkaan ja nauti mahdol- lisuudesta helposti maapalloon aina, kun ylität rinnan!"
+book.ironchest.dirtchest9000.page3="Toivomme, että pidit tästä oppaasta ja toivomme, että käytät tuotteitamme tulevaisuudessa! Ystävällisin terveisin, Earth Chesten kirjoittajat 9000."
+book.ironchest.dirtchest9000.page4="Takuu: Tässä tuotteessa ei ole takuuta. Maa ei välttämättä selviydy, se voi hitaasti purkautua, tai päinvastoin mikään ei voi tapahtua."
+book.ironchest.dirtchest9000.page5="Earth Chest 9000 on ympäristöystävällinen. Hävitä tämä ohje vastuullisesti, mutta ei tavalliseen tapaan, heittää se laavaan, muuten olemme järkyttyneitä."
+
+#######################
+#    Shulker Boxes    #
+#######################
+
+tile.ironchest.shulker_box.iron.white.name=Valkoinen Rauta Shulker-laatikko
+tile.ironchest.shulker_box.iron.orange.name=Oranssi Rauta Shulker-laatikko
+tile.ironchest.shulker_box.iron.magenta.name=Violetti Rauta Shulker-laatikko
+tile.ironchest.shulker_box.iron.light_blue.name=Vaaleansininen Rauta Shulker-laatikko
+tile.ironchest.shulker_box.iron.yellow.name=Keltainen Rauta Shulker-laatikko
+tile.ironchest.shulker_box.iron.lime.name=Lime Rauta Shulker-laatikko
+tile.ironchest.shulker_box.iron.pink.name=Pinkki Rauta Shulker-laatikko
+tile.ironchest.shulker_box.iron.gray.name=Harmaa Rauta Shulker-laatikko
+tile.ironchest.shulker_box.iron.silver.name=Vaaleanharmaa Rauta Shulker-laatikko
+tile.ironchest.shulker_box.iron.cyan.name=Syaani Rauta Shulker-laatikko
+tile.ironchest.shulker_box.iron.purple.name=Rauta Shulker-laatikko
+tile.ironchest.shulker_box.iron.blue.name=Sininen Rauta Shulker-laatikko
+tile.ironchest.shulker_box.iron.brown.name=Ruskea Rauta Shulker-laatikko
+tile.ironchest.shulker_box.iron.green.name=Vihreä Rauta Shulker-laatikko
+tile.ironchest.shulker_box.iron.red.name=Punainen Rauta Shulker-laatikko
+tile.ironchest.shulker_box.iron.black.name=Musta Rauta Shulker-laatikko
+
+tile.ironchest.shulker_box.gold.white.name=Valkoinen Kulta Shulker-laatikko
+tile.ironchest.shulker_box.gold.orange.name=Oranssi Kulta Shulker-laatikko
+tile.ironchest.shulker_box.gold.magenta.name=Violetti Kulta Shulker-laatikko
+tile.ironchest.shulker_box.gold.light_blue.name=Vaaleansininen Kulta Shulker-laatikko
+tile.ironchest.shulker_box.gold.yellow.name=Keltainen Kulta Shulker-laatikko
+tile.ironchest.shulker_box.gold.lime.name=Lime Kulta Shulker-laatikko
+tile.ironchest.shulker_box.gold.pink.name=Pinkki Kulta Shulker-laatikko
+tile.ironchest.shulker_box.gold.gray.name=Harmaa Kulta Shulker-laatikko
+tile.ironchest.shulker_box.gold.silver.name=Vaaleanharmaa Kulta Shulker-laatikko
+tile.ironchest.shulker_box.gold.cyan.name=Syaani Kulta Shulker-laatikko
+tile.ironchest.shulker_box.gold.purple.name=Kulta Shulker-laatikko
+tile.ironchest.shulker_box.gold.blue.name=Sininen Kulta Shulker-laatikko
+tile.ironchest.shulker_box.gold.brown.name=Ruskea Kulta Shulker-laatikko
+tile.ironchest.shulker_box.gold.green.name=Vihreä Kulta Shulker-laatikko
+tile.ironchest.shulker_box.gold.red.name=Punainen Kulta Shulker-laatikko
+tile.ironchest.shulker_box.gold.black.name=Musta Kulta Shulker-laatikko
+
+tile.ironchest.shulker_box.diamond.white.name=Valkoinen Timantti Shulker-laatikko
+tile.ironchest.shulker_box.diamond.orange.name=Oranssi Timantti Shulker-laatikko
+tile.ironchest.shulker_box.diamond.magenta.name=Violetti Timantti Shulker-laatikko
+tile.ironchest.shulker_box.diamond.light_blue.name=Vaaleansininen Timantti Shulker-laatikko
+tile.ironchest.shulker_box.diamond.yellow.name=Keltainen Timantti Shulker-laatikko
+tile.ironchest.shulker_box.diamond.lime.name=Lime Timantti Shulker-laatikko
+tile.ironchest.shulker_box.diamond.pink.name=Pinkki Timantti Shulker-laatikko
+tile.ironchest.shulker_box.diamond.gray.name=Harmaa Timantti Shulker-laatikko
+tile.ironchest.shulker_box.diamond.silver.name=Vaaleanharmaa Timantti Shulker-laatikko
+tile.ironchest.shulker_box.diamond.cyan.name=Syaani Timantti Shulker-laatikko
+tile.ironchest.shulker_box.diamond.purple.name=Timantti Shulker-laatikko
+tile.ironchest.shulker_box.diamond.blue.name=Sininen Timantti Shulker-laatikko
+tile.ironchest.shulker_box.diamond.brown.name=Ruskea Timantti Shulker-laatikko
+tile.ironchest.shulker_box.diamond.green.name=Vihreä Timantti Shulker-laatikko
+tile.ironchest.shulker_box.diamond.red.name=Punainen Timantti Shulker-laatikko
+tile.ironchest.shulker_box.diamond.black.name=Musta Timantti Shulker-laatikko
+
+tile.ironchest.shulker_box.copper.white.name=Valkoinen Kupari Shulker-laatikko
+tile.ironchest.shulker_box.copper.orange.name=Oranssi Kupari Shulker-laatikko
+tile.ironchest.shulker_box.copper.magenta.name=Violetti Kupari Shulker-laatikko
+tile.ironchest.shulker_box.copper.light_blue.name=Vaaleansininen Kupari Shulker-laatikko
+tile.ironchest.shulker_box.copper.yellow.name=Keltainen Kupari Shulker-laatikko
+tile.ironchest.shulker_box.copper.lime.name=Lime Kupari Shulker-laatikko
+tile.ironchest.shulker_box.copper.pink.name=Pinkki Kupari Shulker-laatikko
+tile.ironchest.shulker_box.copper.gray.name=Harmaa Kupari Shulker-laatikko
+tile.ironchest.shulker_box.copper.silver.name=Vaaleanharmaa Kupari Shulker-laatikko
+tile.ironchest.shulker_box.copper.cyan.name=Syaani Kupari Shulker-laatikko
+tile.ironchest.shulker_box.copper.purple.name=Kupari Shulker-laatikko
+tile.ironchest.shulker_box.copper.blue.name=Sininen Kupari Shulker-laatikko
+tile.ironchest.shulker_box.copper.brown.name=Ruskea Kupari Shulker-laatikko
+tile.ironchest.shulker_box.copper.green.name=Vihreä Kupari Shulker-laatikko
+tile.ironchest.shulker_box.copper.red.name=Punainen Kupari Shulker-laatikko
+tile.ironchest.shulker_box.copper.black.name=Musta Kupari Shulker-laatikko
+
+tile.ironchest.shulker_box.silver.white.name=Valkoinen Hopea Shulker-laatikko
+tile.ironchest.shulker_box.silver.orange.name=Oranssi Hopea Shulker-laatikko
+tile.ironchest.shulker_box.silver.magenta.name=Violetti Hopea Shulker-laatikko
+tile.ironchest.shulker_box.silver.light_blue.name=Vaaleansininen Hopea Shulker-laatikko
+tile.ironchest.shulker_box.silver.yellow.name=Keltainen Hopea Shulker-laatikko
+tile.ironchest.shulker_box.silver.lime.name=Lime Hopea Shulker-laatikko
+tile.ironchest.shulker_box.silver.pink.name=Pinkki Hopea Shulker-laatikko
+tile.ironchest.shulker_box.silver.gray.name=Harmaa Hopea Shulker-laatikko
+tile.ironchest.shulker_box.silver.silver.name=Vaaleanharmaa Hopea Shulker-laatikko
+tile.ironchest.shulker_box.silver.cyan.name=Syaani Hopea Shulker-laatikko
+tile.ironchest.shulker_box.silver.purple.name=Hopea Shulker-laatikko
+tile.ironchest.shulker_box.silver.blue.name=Sininen Hopea Shulker-laatikko
+tile.ironchest.shulker_box.silver.brown.name=Ruskea Hopea Shulker-laatikko
+tile.ironchest.shulker_box.silver.green.name=Vihreä Hopea Shulker-laatikko
+tile.ironchest.shulker_box.silver.red.name=Punainen Hopea Shulker-laatikko
+tile.ironchest.shulker_box.silver.black.name=Musta Hopea Shulker-laatikko
+
+tile.ironchest.shulker_box.crystal.white.name=Valkoinen Kristalli Shulker-laatikko
+tile.ironchest.shulker_box.crystal.orange.name=Oranssi Kristalli Shulker-laatikko
+tile.ironchest.shulker_box.crystal.magenta.name=Violetti Kristalli Shulker-laatikko
+tile.ironchest.shulker_box.crystal.light_blue.name=Vaaleansininen Kristalli Shulker-laatikko
+tile.ironchest.shulker_box.crystal.yellow.name=Keltainen Kristalli Shulker-laatikko
+tile.ironchest.shulker_box.crystal.lime.name=Lime Kristalli Shulker-laatikko
+tile.ironchest.shulker_box.crystal.pink.name=Pinkki Kristalli Shulker-laatikko
+tile.ironchest.shulker_box.crystal.gray.name=Harmaa Kristalli Shulker-laatikko
+tile.ironchest.shulker_box.crystal.silver.name=Vaaleanharmaa Kristalli Shulker-laatikko
+tile.ironchest.shulker_box.crystal.cyan.name=Syaani Kristalli Shulker-laatikko
+tile.ironchest.shulker_box.crystal.purple.name=Kristalli Shulker-laatikko
+tile.ironchest.shulker_box.crystal.blue.name=Sininen Kristalli Shulker-laatikko
+tile.ironchest.shulker_box.crystal.brown.name=Ruskea Kristalli Shulker-laatikko
+tile.ironchest.shulker_box.crystal.green.name=Vihreä Kristalli Shulker-laatikko
+tile.ironchest.shulker_box.crystal.red.name=Punainen Kristalli Shulker-laatikko
+tile.ironchest.shulker_box.crystal.black.name=Musta Kristalli Shulker-laatikko
+
+tile.ironchest.shulker_box.obsidian.white.name=Valkoinen Obsidiaani Shulker-laatikko
+tile.ironchest.shulker_box.obsidian.orange.name=Oranssi Obsidiaani Shulker-laatikko
+tile.ironchest.shulker_box.obsidian.magenta.name=Violetti Obsidiaani Shulker-laatikko
+tile.ironchest.shulker_box.obsidian.light_blue.name=Vaaleansininen Obsidiaani Shulker-laatikko
+tile.ironchest.shulker_box.obsidian.yellow.name=Keltainen Obsidiaani Shulker-laatikko
+tile.ironchest.shulker_box.obsidian.lime.name=Lime Obsidiaani Shulker-laatikko
+tile.ironchest.shulker_box.obsidian.pink.name=Pinkki Obsidiaani Shulker-laatikko
+tile.ironchest.shulker_box.obsidian.gray.name=Harmaa Obsidiaani Shulker-laatikko
+tile.ironchest.shulker_box.obsidian.silver.name=Vaaleanharmaa Obsidiaani Shulker-laatikko
+tile.ironchest.shulker_box.obsidian.cyan.name=Syaani Obsidiaani Shulker-laatikko
+tile.ironchest.shulker_box.obsidian.purple.name=Obsidiaani Shulker-laatikko
+tile.ironchest.shulker_box.obsidian.blue.name=Sininen Obsidiaani Shulker-laatikko
+tile.ironchest.shulker_box.obsidian.brown.name=Ruskea Obsidiaani Shulker-laatikko
+tile.ironchest.shulker_box.obsidian.green.name=Vihreä Obsidiaani Shulker-laatikko
+tile.ironchest.shulker_box.obsidian.red.name=Punainen Obsidiaani Shulker-laatikko
+tile.ironchest.shulker_box.obsidian.black.name=Musta Obsidiaani Shulker-laatikko
+
+item.ironchest.shulker_box.iron_gold.name=Rautaisesta kultaiseen Shulker-laatikkoon parannus
+item.ironchest.shulker_box.iron_gold.tooltip= 
+item.ironchest.shulker_box.gold_diamond.name=Kultaisesta timanttiseen Shulker-laatikkoon parannus
+item.ironchest.shulker_box.iron_gold.tooltip= 
+item.ironchest.shulker_box.copper_silver.name=Kuparisesta hopeiseen Shulker-laatikkoon parannus
+item.ironchest.shulker_box.iron_gold.tooltip= 
+item.ironchest.shulker_box.silver_gold.name=Hopeisesta kultaiseen Shulker-laatikkoon parannus
+item.ironchest.shulker_box.iron_gold.tooltip= 
+item.ironchest.shulker_box.copper_iron.name=Kuparisesta rautaiseen Shulker-laatikkoon parannus
+item.ironchest.shulker_box.iron_gold.tooltip= 
+item.ironchest.shulker_box.diamond_crystal.name=Timanttisesta krystalliseen Shulker-laatikkoon parannus
+item.ironchest.shulker_box.iron_gold.tooltip= 
+item.ironchest.shulker_box.vanilla_iron.name=Puisesta rautaiseen Shulker-laatikkoon parannus
+item.ironchest.shulker_box.iron_gold.tooltip= 
+item.ironchest.shulker_box.vanilla_copper.name=Puisesta kupariseen Shulker-laatikkoon parannus
+item.ironchest.shulker_box.iron_gold.tooltip= 
+item.ironchest.shulker_box.diamond_obsidian.name=Timanttisesta obsidiaaniseen Shulker-laatikkoon parannus
+item.ironchest.shulker_box.iron_gold.tooltip= 
+
+##############
+#    GUIs    #
+##############
+
+itemGroup.ironchest=Rautaiset arkut
