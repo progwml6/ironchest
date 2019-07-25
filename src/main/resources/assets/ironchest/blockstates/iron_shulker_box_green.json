@@ -43,7 +43,7 @@
             }
          },
          "obsidian":{  
-            "textures":{  
+            "textures":{
                "particle":"minecraft:blocks/obsidian",
                "texture":"ironchest:model/shulker/green/shulker_green_obsidian"
             }
@@ -52,6 +52,12 @@
             "textures":{  
                "particle":"minecraft:blocks/shulker_top_green",
                "texture":"minecraft:entity/shulker/shulker_green"
+            }
+         },
+         "dirt":{
+            "textures": {
+               "particle": "minecraft:blocks/dirt",
+               "texture": "ironchest:model/shulker/green/shulker_green_dirt"
             }
          }
       }

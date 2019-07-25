@@ -53,6 +53,12 @@
                "particle":"minecraft:blocks/shulker_top_yellow",
                "texture":"minecraft:entity/shulker/shulker_yellow"
             }
+         },
+         "dirt":{
+            "textures": {
+               "particle": "minecraft:blocks/dirt",
+               "texture": "ironchest:model/shulker/yellow/shulker_yellow_dirt"
+            }
          }
       }
    }

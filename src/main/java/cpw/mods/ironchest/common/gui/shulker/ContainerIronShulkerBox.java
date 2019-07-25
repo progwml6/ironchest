@@ -39,11 +39,18 @@ public class ContainerIronShulkerBox extends Container
 
     protected void layoutContainer(IInventory playerInventory, IInventory shulkerBoxInventory, IronShulkerBoxType type, int xSize, int ySize)
     {
-        for (int chestRow = 0; chestRow < type.getRowCount(); chestRow++)
+        if (type == IronShulkerBoxType.DIRT)
         {
-            for (int chestCol = 0; chestCol < type.rowLength; chestCol++)
+            this.addSlotToContainer(type.makeSlot(shulkerBoxInventory, 0, 12 + 4 * 18, 8 + 2 * 18));
+        }
+        else
+        {
+            for (int chestRow = 0; chestRow < type.getRowCount(); chestRow++)
             {
-                this.addSlotToContainer(type.makeSlot(shulkerBoxInventory, chestCol + chestRow * type.rowLength, 12 + chestCol * 18, 8 + chestRow * 18));
+                for (int chestCol = 0; chestCol < type.rowLength; chestCol++)
+                {
+                    this.addSlotToContainer(type.makeSlot(shulkerBoxInventory, chestCol + chestRow * type.rowLength, 12 + chestCol * 18, 8 + chestRow * 18));
+                }
             }
         }
 
