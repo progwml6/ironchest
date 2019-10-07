@@ -1,0 +1,22 @@
+################
+#    Chests    #
+################
+
+tile.ironchest.chest.iron.name=Желязен Сандък
+tile.ironchest.chest.gold.name=Златен Сандък
+tile.ironchest.chest.diamond.name=Диамантен Сандък
+tile.ironchest.chest.copper.name=Меден Сандък
+tile.ironchest.chest.silver.name=Среберен Сандък
+tile.ironchest.chest.crystal.name=Кристален Сандък
+tile.ironchest.chest.obsidian.name=Обсидиан Сандък
+tile.ironchest.chest.dirtchest9000.name=Земен-Сандък 9000!
+
+item.ironchest.chest.iron_gold.name=Желязен към Златен Сандък (Подобрение)
+item.ironchest.chest.gold_diamond.name=Златен към Диамантен Сандък (Подобрение)
+item.ironchest.chest.copper_silver.name=Меден към Среберен Сандък (Подобрение)
+item.ironchest.chest.silver_gold.name=Сребърен към Златен Сандък (Подобрение)
+item.ironchest.chest.copper_iron.name=Меден към Желязен Сандък (Подобрение)
+item.ironchest.chest.diamond_crystal.name=Диамантен към Кристален Сандък (Подобрение)
+item.ironchest.chest.wood_iron.name=Дървен към Желязен Сандък (Подобрение)
+item.ironchest.chest.wood_copper.name=Дървен към Меден Сандък (Подобрение)
+item.ironchest.chest.diamond_obsidian.name=Диамантен към Обсидиан Сандък (Подобрение)
