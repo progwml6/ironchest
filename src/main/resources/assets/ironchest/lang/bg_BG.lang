@@ -1,0 +1,12 @@
+################
+#    Chests    #
+################
+
+tile.ironchest.chest.iron.name=Желязен Сандък
+tile.ironchest.chest.gold.name=Златен Сандък
+tile.ironchest.chest.diamond.name=Диаманден Сандък
+tile.ironchest.chest.copper.name=Меден Сандък
+tile.ironchest.chest.silver.name=Среберен Сандък
+tile.ironchest.chest.crystal.name=Кристален Сандък
+tile.ironchest.chest.obsidian.name=Сандък от Обсидиан
+tile.ironchest.chest.dirtchest9000.name=Земен-Сандък 9000!
