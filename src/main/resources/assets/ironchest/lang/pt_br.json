@@ -1,0 +1,43 @@
+{
+  "_comment": "Blocks",
+  "block.ironchest.iron_chest": "Baú de Ferro",
+  "block.ironchest.gold_chest": "Baú de Ouro",
+  "block.ironchest.diamond_chest": "Baú de Diamante",
+  "block.ironchest.copper_chest": "Baú de Cobre",
+  "block.ironchest.silver_chest": "Baú de Prata",
+  "block.ironchest.crystal_chest": "Baú de Cristal",
+  "block.ironchest.obsidian_chest": "Baú de Obsidiana",
+  "block.ironchest.dirt_chest": "BaúDeTerra 9000!",
+
+  "_comment": "Upgrades",
+  "item.ironchest.iron_to_gold_chest_upgrade": "[Aprimoramento] Baú de Ferro para Ouro",
+  "item.ironchest.gold_to_diamond_chest_upgrade": "[Aprimoramento] Baú de Ouro para Diamante",
+  "item.ironchest.copper_to_silver_chest_upgrade": "[Aprimoramento] Baú de Cobre para Prata",
+  "item.ironchest.silver_to_gold_chest_upgrade": "[Aprimoramento] Baú de Prata para Ouro",
+  "item.ironchest.copper_to_iron_chest_upgrade": "[Aprimoramento] Baú de Cobre para Ferro",
+  "item.ironchest.diamond_to_crystal_chest_upgrade": "[Aprimoramento] Baú de Diamante para Cristal",
+  "item.ironchest.wood_to_iron_chest_upgrade": "[Aprimoramento] Baú de Madeira para Ferro",
+  "item.ironchest.wood_to_copper_chest_upgrade": "[Aprimoramento] Baú de Madeira para Cobre",
+  "item.ironchest.diamond_to_obsidian_chest_upgrade": "[Aprimoramento] Baú de Diamante para Obsidiana",
+
+  "_comment": "Books",
+  "book.ironchest.dirtchest9000.title": "Como utilizar seu BaúDeTerra 9000!",
+  "book.ironchest.dirtchest9000.page1": "Bem-vindo ao seu novo BaúDeTerra 9000! Esperamos que desfrute de muitos anos felizes de armazenagem de sua pilha de sujeira em nosso utilitário de armazenamento.",
+  "book.ironchest.dirtchest9000.page2": "Uso: basta inserir o pilha de terra de sua escolha no slot altamente receptivo e apreciar a grande conveniência de ter essa terra à sua disposição, sempre que passar por este baú!",
+  "book.ironchest.dirtchest9000.page3": "Esperamos que você tenha gostado da leitura deste manual de instruções e que considere usar nossos produtos no futuro! Atenciosamente, os escritores do manual BaúDeTerra 9000 incorporados.",
+  "book.ironchest.dirtchest9000.page4": "Garantia: Este produto não tem garantia de nenhum tipo. Sua sujeira pode não ser armazenada, pode lentamente infiltrar-se no meio ambiente ou, alternativamente, pode não fazer absolutamente nada.",
+  "book.ironchest.dirtchest9000.page5": "BaúDeTerra 9000 é bom para o meio ambiente. Elimine este guia de forma responsável, faça o que fizer, apenas não o atire em alguma lava. Ficaríamos muito tristes.",
+
+  "_comment": "Containers",
+  "ironchest.container.iron_chest": "Baú de Ferro",
+  "ironchest.container.gold_chest": "Baú de Ouro",
+  "ironchest.container.diamond_chest": "Baú de Diamante",
+  "ironchest.container.copper_chest": "Baú de Cobre",
+  "ironchest.container.silver_chest": "Baú de Prata",
+  "ironchest.container.crystal_chest": "Baú de Cristal",
+  "ironchest.container.obsidian_chest": "Baú de Obsidiana",
+  "ironchest.container.dirt_chest": "BaúDeTerra 9000!",
+
+  "_comment": "Item Groups",
+  "itemGroup.ironchest": "Iron Chests"
+}
