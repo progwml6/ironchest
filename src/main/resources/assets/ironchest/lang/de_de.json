@@ -1,0 +1,43 @@
+{
+  "_comment": "Blocks",
+  "block.ironchest.iron_chest": "Eisentruhe",
+  "block.ironchest.gold_chest": "Goldtruhe",
+  "block.ironchest.diamond_chest": "Diamanttruhe",
+  "block.ironchest.copper_chest": "Kupfertruhe",
+  "block.ironchest.silver_chest": "Silbertruhe",
+  "block.ironchest.crystal_chest": "Kristalltruhe",
+  "block.ironchest.obsidian_chest": "Obsidiantruhe",
+  "block.ironchest.dirt_chest": "Dreckstruhe 9000!",
+
+  "_comment": "Upgrades",
+  "item.ironchest.iron_to_gold_chest_upgrade": "Upgrade von Eisen auf Goldtruhen",
+  "item.ironchest.gold_to_diamond_chest_upgrade": "Upgrade von Gold auf Diamanttruhe",
+  "item.ironchest.copper_to_silver_chest_upgrade": "Upgrade von Kupfer auf Silbertruhe",
+  "item.ironchest.silver_to_gold_chest_upgrade": "Upgrade von Silber auf Gold Chest",
+  "item.ironchest.copper_to_iron_chest_upgrade": "Upgrade von Kupfer auf Eisentruhe",
+  "item.ironchest.diamond_to_crystal_chest_upgrade": "Upgrade von Diamant auf Kristalltruhe",
+  "item.ironchest.wood_to_iron_chest_upgrade": "Upgrade von Holz  auf Eisentruhe",
+  "item.ironchest.wood_to_copper_chest_upgrade": "Upgrade von Wood auf Copper Chest",
+  "item.ironchest.diamond_to_obsidian_chest_upgrade": "Upgrade von Diamant auf Obsidiantruhe",
+
+  "_comment": "Books",
+  "book.ironchest.dirtchest9000.title": "Wie Sie Ihre Dreckstruhe 9000! Verwenden",
+  "book.ironchest.dirtchest9000.page1": "Willkommen zu Ihrer neuen Dreckstruhe 9000! Wir hoffen, Sie werden viele glückliche Jahre damit verbringen, Ihren Schmutz in unserem Produkt zu lagern.",
+  "book.ironchest.dirtchest9000.page2": "Verwendung: Legen Sie einfach den Schmutz Ihrer Wahl in das äußerst tolle Fach und genießen Sie die große Bequemlichkeit, ihn jederzeit zur Verfügung zu haben, wenn Sie vorbeikommen!",
+  "book.ironchest.dirtchest9000.page3": "Wir hoffen, dass Ihnen das Lesen gefallen hat, und hoffen, dass Sie auch in Zukunft die Verwendung unserer Produkte in Betracht ziehen! Mit freundlichen Grüßen, Die Handbuchschreiber",
+  "book.ironchest.dirtchest9000.page4": "Garantie: Für dieses Produkt gibt es keinerlei Garantie. Ihr Schmutz wird möglicherweise nicht gelagert, kann langsam in die Umwelt gelangen oder alternativ überhaupt nichts bewirken.",
+  "book.ironchest.dirtchest9000.page5": "Die Dreckstruhe 9000 ist umweltfreundlich. Bitte entsorgen Sie dieses Handbuch verantwortungsbewusst und tun Sie nicht das was Sie immer tun und werfen es in Lava. Wir wären sehr traurig.",
+
+  "_comment": "Containers",
+  "ironchest.container.iron_chest": "Eisentruhe",
+  "ironchest.container.gold_chest": "Goldtruhe",
+  "ironchest.container.diamond_chest": "Diamanttruhe",
+  "ironchest.container.copper_chest": "Kupfertruhe",
+  "ironchest.container.silver_chest": "Silbertruhe",
+  "ironchest.container.crystal_chest": "Kristalltruhe",
+  "ironchest.container.obsidian_chest": "Obsidiantruhe",
+  "ironchest.container.dirt_chest": "Dreckstruhe 9000!",
+
+  "_comment": "Item Groups",
+  "itemGroup.ironchest": "Iron Chests"
+}
