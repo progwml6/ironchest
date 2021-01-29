@@ -1,0 +1,43 @@
+{
+  "_comment": "Blocks",
+  "block.ironchest.iron_chest": "Железный сундук",
+  "block.ironchest.gold_chest": "Золотой сундук",
+  "block.ironchest.diamond_chest": "Алмазный сундук",
+  "block.ironchest.copper_chest": "Медный сундук",
+  "block.ironchest.silver_chest": "Серебряный сундук",
+  "block.ironchest.crystal_chest": "Кристальный сундук",
+  "block.ironchest.obsidian_chest": "Обсидиановый сундук",
+  "block.ironchest.dirt_chest": "Земляной Сундук 9000!",
+
+  "_comment": "Upgrades",
+  "item.ironchest.iron_to_gold_chest_upgrade": "Улучшение из железного в золотой сундук",
+  "item.ironchest.gold_to_diamond_chest_upgrade": "Улучшение из золотого в алмазный сундук",
+  "item.ironchest.copper_to_silver_chest_upgrade": "Улучшение из медного в серебряный сундук",
+  "item.ironchest.silver_to_gold_chest_upgrade": "Улучшение из серебряного в золотой сундук",
+  "item.ironchest.copper_to_iron_chest_upgrade": "Улучшение из медного в железный сундук",
+  "item.ironchest.diamond_to_crystal_chest_upgrade": "Улучшение из алмазного в кристальный сундук",
+  "item.ironchest.wood_to_iron_chest_upgrade": "Улучшение из деревянного в железный сундук",
+  "item.ironchest.wood_to_copper_chest_upgrade": "Улучшение из деревянного в медный сундук",
+  "item.ironchest.diamond_to_obsidian_chest_upgrade": "Улучшение из алмазного в обсидиановый сундук",
+
+  "_comment": "Books",
+  "book.ironchest.dirtchest9000.title": "Инструкция к Земляному Сундуку 9000!",
+  "book.ironchest.dirtchest9000.page1": "Встречайте новый Земляной Сундук 9000! Мы надеемся, что вы будете рады многие годы хранить вашу стопку земли в этом приспособлении для хранения.",
+  "book.ironchest.dirtchest9000.page2": "Применение: просто вставьте выбранную стопку земли в высоко восприимчивый слот, и насладитесь удобством легкого доступа к земле каждый раз, когда вы проходите мимо сундука!",
+  "book.ironchest.dirtchest9000.page3": "Мы надеемся, что вам понравилась эта инструкция, и надеемся, что вы будете использовать наши продукты и в будущем! С Уважением, авторы Земляного Сундука 9000.",
+  "book.ironchest.dirtchest9000.page4": "Гарантия: Этот продукт не имеет никакой гарантии. Ваша земля может не сохраниться, она может медленно просочиться наружу, или, наоборот, может вовсе ничего не произойти.",
+  "book.ironchest.dirtchest9000.page5": "Земляной Сундук 9000 является экологически чистым. Пожалуйста, утилизируйте эту инструкцию ответственно, а, не так, как обычно, выкидывая в лаву, иначе мы расстроимся",
+
+  "_comment": "Containers",
+  "ironchest.container.iron_chest": "Железный сундук",
+  "ironchest.container.gold_chest": "Золотой сундук",
+  "ironchest.container.diamond_chest": "Алмазный сундук",
+  "ironchest.container.copper_chest": "Медный сундук",
+  "ironchest.container.silver_chest": "Серебряный сундук",
+  "ironchest.container.crystal_chest": "Кристальный сундук",
+  "ironchest.container.obsidian_chest": "Обсидиановый сундук",
+  "ironchest.container.dirt_chest": "Земляной сундук 9000!",
+
+  "_comment": "Item Groups",
+  "itemGroup.ironchest": "Металлические сундуки"
+}
