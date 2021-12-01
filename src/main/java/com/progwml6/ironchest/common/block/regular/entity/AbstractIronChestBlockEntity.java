@@ -95,14 +95,12 @@ public abstract class AbstractIronChestBlockEntity extends RandomizableContainer
   }
 
   @Override
-  public CompoundTag save(CompoundTag compoundTag) {
-    super.save(compoundTag);
+  public void saveAdditional(CompoundTag compoundTag) {
+    super.saveAdditional(compoundTag);
 
     if (!this.trySaveLootTable(compoundTag)) {
       ContainerHelper.saveAllItems(compoundTag, this.items);
     }
-
-    return compoundTag;
   }
 
   public static void lidAnimateTick(Level level, BlockPos blockPos, BlockState blockState, AbstractIronChestBlockEntity chestBlockEntity) {

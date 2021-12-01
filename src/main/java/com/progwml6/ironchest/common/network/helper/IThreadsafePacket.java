@@ -1,6 +1,6 @@
 package com.progwml6.ironchest.common.network.helper;
 
-import net.minecraftforge.fmllegacy.network.NetworkEvent;
+import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 

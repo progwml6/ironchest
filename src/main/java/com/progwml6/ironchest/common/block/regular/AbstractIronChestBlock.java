@@ -126,7 +126,7 @@ public abstract class AbstractIronChestBlock extends BaseEntityBlock implements 
   @Deprecated
   public BlockState updateShape(BlockState blockState, Direction direction, BlockState facingState, LevelAccessor levelAccessor, BlockPos currentPos, BlockPos facingPos) {
     if (blockState.getValue(WATERLOGGED)) {
-      levelAccessor.getLiquidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(levelAccessor));
+      levelAccessor.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(levelAccessor));
     }
 
     return super.updateShape(blockState, direction, facingState, levelAccessor, currentPos, facingPos);

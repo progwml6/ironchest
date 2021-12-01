@@ -2,7 +2,7 @@ package com.progwml6.ironchest.common.inventory;
 
 import com.progwml6.ironchest.IronChests;
 import net.minecraft.world.inventory.MenuType;
-import net.minecraftforge.fmllegacy.RegistryObject;
+import net.minecraftforge.registries.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
