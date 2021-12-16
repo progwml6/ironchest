@@ -48,8 +48,8 @@ public class ChestUpgradeItem extends Item {
     }
 
     if (this.type.canUpgrade(IronChestsTypes.WOOD)) {
-      if (!(world.getBlockState(blockPos).getBlock() instanceof ChestBlock)) {
-        return InteractionResult.PASS;
+      if (world.getBlockState(blockPos).getBlock() instanceof ChestBlock) {
+        passed = true;
       }
     } else {
       for (Block block : IronChestsTypes.get(this.type.source)) {
@@ -130,9 +130,9 @@ public class ChestUpgradeItem extends Item {
         boolean trapped = tileEntity instanceof TrappedChestBlockEntity;
 
         if(trapped) {
-          iBlockState = IronChestsTypes.get(this.type.source).get(1).defaultBlockState();
+          iBlockState = IronChestsTypes.get(this.type.target).get(1).defaultBlockState();
         } else {
-          iBlockState = IronChestsTypes.get(this.type.source).get(0).defaultBlockState();
+          iBlockState = IronChestsTypes.get(this.type.target).get(0).defaultBlockState();
         }
 
         iBlockState = iBlockState.setValue(AbstractIronChestBlock.FACING, chestFacing);

@@ -10,6 +10,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
+import javax.annotation.Nullable;
+
 public interface ICrystalChest {
 
   default NonNullList<ItemStack> buildItemStackDataList() {
@@ -46,6 +48,7 @@ public interface ICrystalChest {
 
   NonNullList<ItemStack> getTopItems();
 
+  @Nullable
   Level getChestLevel();
 
   BlockPos getChestWorldPosition();
@@ -57,15 +60,15 @@ public interface ICrystalChest {
       return;
     }
 
-    NonNullList<ItemStack> tempCopy = NonNullList.<ItemStack>withSize(this.getContainerSize(), ItemStack.EMPTY);
+    NonNullList<ItemStack> tempCopy = NonNullList.<ItemStack>withSize(IronChestsTypes.CRYSTAL.size, ItemStack.EMPTY);
 
     boolean hasStuff = false;
 
     int compressedIdx = 0;
 
     mainLoop:
-    for (int i = 0; i < this.getContainerSize(); i++) {
-      ItemStack itemStack = this.getItems().get(i);
+    for (int i = 0; i < IronChestsTypes.CRYSTAL.size; i++) {
+      ItemStack itemStack = this.getCurrentItems().get(i);
 
       if (!itemStack.isEmpty()) {
         for (int j = 0; j < compressedIdx; j++) {
@@ -143,11 +146,9 @@ public interface ICrystalChest {
     this.sendTopStacksPacket();
   }
 
-  NonNullList<ItemStack> getItems();
+  NonNullList<ItemStack> getCurrentItems();
 
   void setHadStuff(boolean hadStuff);
   
   boolean getHadStuff();
-
-  int getContainerSize();
 }

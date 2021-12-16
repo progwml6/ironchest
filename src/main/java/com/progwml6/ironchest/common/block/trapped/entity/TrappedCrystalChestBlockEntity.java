@@ -76,6 +76,11 @@ public class TrappedCrystalChestBlockEntity extends AbstractTrappedIronChestBloc
   }
 
   @Override
+  public NonNullList<ItemStack> getCurrentItems() {
+    return this.getItems();
+  }
+
+  @Override
   public void setHadStuff(boolean hadStuff) {
     this.hadStuff = hadStuff;
   }

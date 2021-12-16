@@ -83,4 +83,9 @@ public class CrystalChestBlockEntity extends AbstractIronChestBlockEntity implem
   public boolean getHadStuff() {
     return this.hadStuff;
   }
+
+  @Override
+  public NonNullList<ItemStack> getCurrentItems() {
+    return this.getItems();
+  }
 }

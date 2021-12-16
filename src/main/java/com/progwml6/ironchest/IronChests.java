@@ -12,10 +12,14 @@ import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -94,6 +98,16 @@ public class IronChests {
     if (event.includeServer()) {
       datagenerator.addProvider(new IronChestsRecipeProvider(datagenerator));
     }
+  }
+
+  @SubscribeEvent
+  void missingBlocks(final RegistryEvent.MissingMappings<Block> event) {
+
+  }
+
+  @SubscribeEvent
+  void missingItems(final RegistryEvent.MissingMappings<Item> event) {
+
   }
 
 }
