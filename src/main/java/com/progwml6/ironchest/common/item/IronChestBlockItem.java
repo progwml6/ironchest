@@ -40,8 +40,8 @@ public class IronChestBlockItem extends BlockItem {
   public IronChestBlockItem(Block block, Properties properties, Supplier<Callable<IronChestsTypes>> type, Supplier<Callable<Boolean>> trapped) {
     super(block, properties);
 
-    IronChestsTypes tempType = DistExecutor.callWhenOn(Dist.CLIENT, type);
-    Boolean tempTrapped = DistExecutor.callWhenOn(Dist.CLIENT, trapped);
+    IronChestsTypes tempType = DistExecutor.unsafeCallWhenOn(Dist.CLIENT, type);
+    Boolean tempTrapped = DistExecutor.unsafeCallWhenOn(Dist.CLIENT, trapped);
 
     this.type = tempType == null ? null : () -> tempType;
     this.trapped = tempTrapped == null ? null : () -> tempTrapped;

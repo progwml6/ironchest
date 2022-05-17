@@ -43,7 +43,7 @@ public class IronChests {
     modBus.addListener(this::setup);
     modBus.addListener(this::gatherData);
 
-    DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
+    DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
       // Client setup
       modBus.addListener(this::setupClient);
     });

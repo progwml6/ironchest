@@ -109,8 +109,8 @@ public class IronChestMenu extends AbstractContainerMenu {
 
     }
 
-    for (int hotbarSlot = 0; hotbarSlot < 9; hotbarSlot++) {
-      this.addSlot(new Slot(playerInventory, hotbarSlot, leftCol + hotbarSlot * 18, chestType.ySize - 24));
+    for (int hotHarSlot = 0; hotHarSlot < 9; hotHarSlot++) {
+      this.addSlot(new Slot(playerInventory, hotHarSlot, leftCol + hotHarSlot * 18, chestType.ySize - 24));
     }
   }
 

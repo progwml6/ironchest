@@ -17,6 +17,7 @@ import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.Tags;
@@ -30,7 +31,7 @@ import java.util.function.Consumer;
 
 public class IronChestsRecipeProvider extends RecipeProvider implements IConditionBuilder {
 
-  public static final Tags.IOptionalNamedTag<Item> INGOTS_COPPER = tag("ingots/copper");
+  public static final TagKey<Item> INGOTS_COPPER = tag("ingots/copper");
 
   public IronChestsRecipeProvider(DataGenerator generatorIn) {
     super(generatorIn);
@@ -284,7 +285,7 @@ public class IronChestsRecipeProvider extends RecipeProvider implements IConditi
     return new ResourceLocation(IronChests.MOD_ID, id);
   }
 
-  private static Tags.IOptionalNamedTag<Item> tag(String name) {
-    return ItemTags.createOptional(new ResourceLocation("forge", name));
+  private static TagKey<Item> tag(String name) {
+    return ItemTags.create(new ResourceLocation("forge", name));
   }
 }

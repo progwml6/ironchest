@@ -2,19 +2,36 @@ buildscript {
     repositories {
         mavenLocal()
         maven { url = 'https://maven.minecraftforge.net' }
+        maven { url = 'https://libraries.minecraft.net/' }
         mavenCentral()
         jcenter()
+        maven {
+            name "Parchment"
+            url "https://maven.parchmentmc.org"
+        }
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
+        classpath 'org.parchmentmc:librarian:1.+'
     }
 }
 
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
+apply plugin: 'org.parchmentmc.librarian.forgegradle'
 
 repositories {
+    mavenCentral()
+    mavenLocal()
+    maven { // Vanilla
+        name 'Vanilla'
+        url 'https://libraries.minecraft.net/'
+    }
+    maven { // Forge
+        name 'ForgeFS'
+        url 'https://maven.minecraftforge.net/'
+    }
     maven {
         name 'DVS1 Maven FS'
         url 'https://dvs1.progwml6.com/files/maven'
@@ -26,8 +43,37 @@ group = "com.progwml6.ironchest"
 // Mojang ships Java 17 to end users in 1.18+, so your mod should target Java 17.
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
+task buildInfo {
+    def cmd = "git rev-parse --short HEAD"
+    def proc = cmd.execute()
+    proc.waitFor()
+    if (proc.exitValue() == 0) {
+        ext.revision = proc.text.trim()
+    } else {
+        ext.revision = "GITBORK"
+    }
+
+    if (System.getenv().BUILD_NUMBER != null) {
+        ext.buildNum = System.getenv().BUILD_NUMBER
+    } else {
+        ext.buildNum = "DEV.${project.buildInfo.revision}"
+    }
+}
+
+version = "${minecraft_version}-${mod_version}.${project.buildInfo.buildNum}"
+
+sourceSets {
+    main {
+        resources {
+            srcDirs "src/generated/resources"
+            //But exclude the cache of the generated data from what gets built
+            exclude '.cache'
+        }
+    }
+}
+
 minecraft {
-    mappings channel: 'official', version: mappings_version
+    mappings channel: 'parchment', version: "${parchment_version}-${minecraft_version}"
 
     accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
@@ -97,6 +143,9 @@ minecraft {
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'debug'
 
+            environment 'assetIndex', '{asset_index}'
+            environment 'assetDirectory', '{assets_root}'
+
             args '--mod', 'ironchest', '--all', '--output', file('src/generated/resources/')
 
             mods {
@@ -108,42 +157,13 @@ minecraft {
     }
 }
 
-task buildInfo {
-    def cmd = "git rev-parse --short HEAD"
-    def proc = cmd.execute()
-    proc.waitFor()
-    if (proc.exitValue() == 0) {
-        ext.revision = proc.text.trim()
-    } else {
-        ext.revision = "GITBORK"
-    }
-
-    if (System.getenv().BUILD_NUMBER != null) {
-        ext.buildNum = System.getenv().BUILD_NUMBER
-    } else {
-        ext.buildNum = "DEV.${project.buildInfo.revision}"
-    }
-}
-
-version = "${minecraft_version}-${mod_version}.${project.buildInfo.buildNum}"
-
-sourceSets {
-    main {
-        resources {
-            srcDirs "src/generated/resources"
-            //But exclude the cache of the generated data from what gets built
-            exclude '.cache'
-        }
-    }
-}
-
 dependencies {
     minecraft 'net.minecraftforge:forge:' + minecraft_version + '-' + forge_version
 
     // compile against the JEI API but do not include it at runtime
-    //compileOnly fg.deobf("mezz.jei:jei-${jei_version}:api")
+    compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}:api")
     // at runtime, use the full JEI jar
-    //runtimeOnly fg.deobf("mezz.jei:jei-${jei_version}")
+    runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}")
 }
 
 def modsTomlSpec = copySpec{
