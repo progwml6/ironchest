@@ -92,8 +92,7 @@ public class IronChests {
     DataGenerator datagenerator = event.getGenerator();
 
     if (event.includeServer()) {
-      datagenerator.addProvider(new IronChestsRecipeProvider(datagenerator));
+      datagenerator.addProvider(true, new IronChestsRecipeProvider(datagenerator));
     }
   }
-
 }

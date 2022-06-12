@@ -25,6 +25,7 @@ import net.minecraftforge.common.crafting.ConditionalAdvancement;
 import net.minecraftforge.common.crafting.ConditionalRecipe;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 import net.minecraftforge.common.crafting.conditions.TagEmptyCondition;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Objects;
 import java.util.function.Consumer;
@@ -277,7 +278,7 @@ public class IronChestsRecipeProvider extends RecipeProvider implements IConditi
   }
 
   protected static ResourceLocation prefix(ItemLike item, String prefix) {
-    ResourceLocation loc = Objects.requireNonNull(item.asItem().getRegistryName());
+    ResourceLocation loc = Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(item.asItem()));
     return location(prefix + loc.getPath());
   }
 

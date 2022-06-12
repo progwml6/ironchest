@@ -8,7 +8,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -80,7 +79,7 @@ public abstract class AbstractIronChestBlockEntity extends RandomizableContainer
 
   @Override
   protected Component getDefaultName() {
-    return new TranslatableComponent(IronChests.MOD_ID + ".container." + this.chestType.getId() + "_chest");
+    return Component.translatable(IronChests.MOD_ID + ".container." + this.chestType.getId() + "_chest");
   }
 
   @Override

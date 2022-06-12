@@ -9,6 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.stats.Stat;
 import net.minecraft.stats.Stats;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.CompoundContainer;
 import net.minecraft.world.Container;
 import net.minecraft.world.Containers;
@@ -309,7 +310,7 @@ public abstract class AbstractIronChestBlock extends BaseEntityBlock implements 
   }
 
   @Override
-  public void tick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, Random random) {
+  public void tick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, RandomSource random) {
     BlockEntity blockEntity = serverLevel.getBlockEntity(blockPos);
 
     if (blockEntity instanceof AbstractIronChestBlockEntity) {

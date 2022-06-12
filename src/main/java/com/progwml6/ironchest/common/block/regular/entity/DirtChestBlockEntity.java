@@ -9,7 +9,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.StringTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -60,11 +59,11 @@ public class DirtChestBlockEntity extends AbstractIronChestBlockEntity {
     DIRT_CHEST_BOOK.addTagElement("title", StringTag.valueOf(I18n.get("book.ironchest.dirtchest9000.title")));
 
     ListTag pages = new ListTag();
-    pages.add(StringTag.valueOf(Component.Serializer.toJson(new TranslatableComponent("book.ironchest.dirtchest9000.page1"))));
-    pages.add(StringTag.valueOf(Component.Serializer.toJson(new TranslatableComponent("book.ironchest.dirtchest9000.page2"))));
-    pages.add(StringTag.valueOf(Component.Serializer.toJson(new TranslatableComponent("book.ironchest.dirtchest9000.page3"))));
-    pages.add(StringTag.valueOf(Component.Serializer.toJson(new TranslatableComponent("book.ironchest.dirtchest9000.page4"))));
-    pages.add(StringTag.valueOf(Component.Serializer.toJson(new TranslatableComponent("book.ironchest.dirtchest9000.page5"))));
+    pages.add(StringTag.valueOf(Component.Serializer.toJson(Component.translatable("book.ironchest.dirtchest9000.page1"))));
+    pages.add(StringTag.valueOf(Component.Serializer.toJson(Component.translatable("book.ironchest.dirtchest9000.page2"))));
+    pages.add(StringTag.valueOf(Component.Serializer.toJson(Component.translatable("book.ironchest.dirtchest9000.page3"))));
+    pages.add(StringTag.valueOf(Component.Serializer.toJson(Component.translatable("book.ironchest.dirtchest9000.page4"))));
+    pages.add(StringTag.valueOf(Component.Serializer.toJson(Component.translatable("book.ironchest.dirtchest9000.page5"))));
 
     DIRT_CHEST_BOOK.addTagElement("pages", pages);
 
