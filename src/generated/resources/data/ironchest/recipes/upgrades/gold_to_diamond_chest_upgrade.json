@@ -1,21 +1,21 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "GGG",
-    "MSM",
-    "GGG"
-  ],
   "key": {
+    "G": {
+      "tag": "forge:glass"
+    },
     "M": {
       "tag": "forge:gems/diamond"
     },
     "S": {
       "tag": "forge:ingots/gold"
-    },
-    "G": {
-      "tag": "forge:glass"
     }
   },
+  "pattern": [
+    "GGG",
+    "MSM",
+    "GGG"
+  ],
   "result": {
     "item": "ironchest:gold_to_diamond_chest_upgrade"
   }

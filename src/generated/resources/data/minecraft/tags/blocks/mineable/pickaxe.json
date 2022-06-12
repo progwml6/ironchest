@@ -1,0 +1,16 @@
+{
+  "values": [
+    "ironchest:iron_chest",
+    "ironchest:gold_chest",
+    "ironchest:diamond_chest",
+    "ironchest:copper_chest",
+    "ironchest:crystal_chest",
+    "ironchest:obsidian_chest",
+    "ironchest:trapped_iron_chest",
+    "ironchest:trapped_gold_chest",
+    "ironchest:trapped_diamond_chest",
+    "ironchest:trapped_copper_chest",
+    "ironchest:trapped_crystal_chest",
+    "ironchest:trapped_obsidian_chest"
+  ]
+}

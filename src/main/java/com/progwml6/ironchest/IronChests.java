@@ -1,9 +1,10 @@
 package com.progwml6.ironchest;
 
-import com.progwml6.ironchest.client.screen.IronChestScreen;
 import com.progwml6.ironchest.client.render.IronChestRenderer;
-import com.progwml6.ironchest.common.block.entity.IronChestsBlockEntityTypes;
+import com.progwml6.ironchest.client.screen.IronChestScreen;
 import com.progwml6.ironchest.common.block.IronChestsBlocks;
+import com.progwml6.ironchest.common.block.entity.IronChestsBlockEntityTypes;
+import com.progwml6.ironchest.common.data.IronChestsBlockTags;
 import com.progwml6.ironchest.common.data.IronChestsRecipeProvider;
 import com.progwml6.ironchest.common.inventory.IronChestsContainerTypes;
 import com.progwml6.ironchest.common.item.IronChestsItems;
@@ -93,6 +94,10 @@ public class IronChests {
 
     if (event.includeServer()) {
       datagenerator.addProvider(true, new IronChestsRecipeProvider(datagenerator));
+    }
+
+    if (event.includeClient()) {
+      datagenerator.addProvider(true, new IronChestsBlockTags(datagenerator, event.getExistingFileHelper()));
     }
   }
 }

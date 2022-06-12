@@ -1,10 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "GGG",
-    "GSG",
-    "GGG"
-  ],
   "key": {
     "G": {
       "tag": "forge:glass"
@@ -13,6 +8,11 @@
       "item": "ironchest:diamond_chest"
     }
   },
+  "pattern": [
+    "GGG",
+    "GSG",
+    "GGG"
+  ],
   "result": {
     "item": "ironchest:crystal_chest"
   }

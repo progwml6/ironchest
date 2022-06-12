@@ -4,31 +4,31 @@
     {
       "conditions": [
         {
+          "type": "forge:not",
           "value": {
-            "tag": "forge:ingots/copper",
-            "type": "forge:tag_empty"
-          },
-          "type": "forge:not"
+            "type": "forge:tag_empty",
+            "tag": "forge:ingots/copper"
+          }
         }
       ],
       "recipe": {
         "type": "minecraft:crafting_shaped",
-        "pattern": [
-          "MGM",
-          "GSG",
-          "MGM"
-        ],
         "key": {
+          "G": {
+            "tag": "forge:glass"
+          },
           "M": {
             "tag": "forge:ingots/iron"
           },
           "S": {
             "tag": "forge:ingots/copper"
-          },
-          "G": {
-            "tag": "forge:glass"
           }
         },
+        "pattern": [
+          "MGM",
+          "GSG",
+          "MGM"
+        ],
         "result": {
           "item": "ironchest:copper_to_iron_chest_upgrade"
         }
