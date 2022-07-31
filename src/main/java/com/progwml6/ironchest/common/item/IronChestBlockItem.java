@@ -24,7 +24,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.IItemRenderProperties;
+import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import net.minecraftforge.fml.DistExecutor;
 
 import java.util.concurrent.Callable;
@@ -48,12 +48,12 @@ public class IronChestBlockItem extends BlockItem {
   }
 
   @Override
-  public void initializeClient(Consumer<IItemRenderProperties> consumer) {
+  public void initializeClient(Consumer<IClientItemExtensions> consumer) {
     super.initializeClient(consumer);
 
-    consumer.accept(new IItemRenderProperties() {
+    consumer.accept(new IClientItemExtensions() {
       @Override
-      public BlockEntityWithoutLevelRenderer getItemStackRenderer() {
+      public BlockEntityWithoutLevelRenderer getCustomRenderer() {
         Supplier<BlockEntity> modelToUse;
 
         if (trapped.get()) {

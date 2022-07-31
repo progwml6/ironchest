@@ -8,7 +8,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class IronChestsContainerTypes {
 
-  public static final DeferredRegister<MenuType<?>> CONTAINERS = DeferredRegister.create(ForgeRegistries.CONTAINERS, IronChests.MOD_ID);
+  public static final DeferredRegister<MenuType<?>> CONTAINERS = DeferredRegister.create(ForgeRegistries.MENU_TYPES, IronChests.MOD_ID);
 
   public static final RegistryObject<MenuType<IronChestMenu>> IRON_CHEST = CONTAINERS.register("iron_chest", () -> new MenuType<>(IronChestMenu::createIronContainer));
 

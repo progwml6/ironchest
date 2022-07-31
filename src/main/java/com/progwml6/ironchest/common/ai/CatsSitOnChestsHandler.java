@@ -14,8 +14,8 @@ import java.util.HashSet;
 public class CatsSitOnChestsHandler {
 
   @SubscribeEvent
-  static void changeSittingTaskForOcelots(final LivingEvent.LivingUpdateEvent evt) {
-    if (evt.getEntityLiving().tickCount < 5 && evt.getEntityLiving() instanceof Cat cat) {
+  static void changeSittingTaskForOcelots(final LivingEvent.LivingTickEvent evt) {
+    if (evt.getEntity().tickCount < 5 && evt.getEntity() instanceof Cat cat) {
       HashSet<WrappedGoal> goals = new HashSet<>();
 
       for (WrappedGoal goal : cat.goalSelector.availableGoals) {

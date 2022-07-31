@@ -17,55 +17,64 @@ import com.progwml6.ironchest.common.block.trapped.entity.TrappedGoldChestBlockE
 import com.progwml6.ironchest.common.block.trapped.entity.TrappedIronChestBlockEntity;
 import com.progwml6.ironchest.common.block.trapped.entity.TrappedObsidianChestBlockEntity;
 
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class IronChestsBlockEntityTypes {
-  public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITIES, IronChests.MOD_ID);
+  public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, IronChests.MOD_ID);
 
   public static final RegistryObject<BlockEntityType<IronChestBlockEntity>> IRON_CHEST = BLOCK_ENTITIES.register(
-    "iron_chest", () -> BlockEntityType.Builder.of(IronChestBlockEntity::new, IronChestsBlocks.IRON_CHEST.get()).build(null));
+    "iron_chest", () -> typeOf(IronChestBlockEntity::new, IronChestsBlocks.IRON_CHEST.get()));
 
   public static final RegistryObject<BlockEntityType<GoldChestBlockEntity>> GOLD_CHEST = BLOCK_ENTITIES.register(
-    "gold_chest", () -> BlockEntityType.Builder.of(GoldChestBlockEntity::new, IronChestsBlocks.GOLD_CHEST.get()).build(null));
+    "gold_chest", () -> typeOf(GoldChestBlockEntity::new, IronChestsBlocks.GOLD_CHEST.get()));
 
   public static final RegistryObject<BlockEntityType<DiamondChestBlockEntity>> DIAMOND_CHEST = BLOCK_ENTITIES.register(
-    "diamond_chest", () -> BlockEntityType.Builder.of(DiamondChestBlockEntity::new, IronChestsBlocks.DIAMOND_CHEST.get()).build(null));
+    "diamond_chest", () -> typeOf(DiamondChestBlockEntity::new, IronChestsBlocks.DIAMOND_CHEST.get()));
 
   public static final RegistryObject<BlockEntityType<CopperChestBlockEntity>> COPPER_CHEST = BLOCK_ENTITIES.register(
-    "copper_chest", () -> BlockEntityType.Builder.of(CopperChestBlockEntity::new, IronChestsBlocks.COPPER_CHEST.get()).build(null));
+    "copper_chest", () -> typeOf(CopperChestBlockEntity::new, IronChestsBlocks.COPPER_CHEST.get()));
 
   public static final RegistryObject<BlockEntityType<CrystalChestBlockEntity>> CRYSTAL_CHEST = BLOCK_ENTITIES.register(
-    "crystal_chest", () -> BlockEntityType.Builder.of(CrystalChestBlockEntity::new, IronChestsBlocks.CRYSTAL_CHEST.get()).build(null));
+    "crystal_chest", () -> typeOf(CrystalChestBlockEntity::new, IronChestsBlocks.CRYSTAL_CHEST.get()));
 
   public static final RegistryObject<BlockEntityType<ObsidianChestBlockEntity>> OBSIDIAN_CHEST = BLOCK_ENTITIES.register(
-    "obsidian_chest", () -> BlockEntityType.Builder.of(ObsidianChestBlockEntity::new, IronChestsBlocks.OBSIDIAN_CHEST.get()).build(null));
+    "obsidian_chest", () -> typeOf(ObsidianChestBlockEntity::new, IronChestsBlocks.OBSIDIAN_CHEST.get()));
 
   public static final RegistryObject<BlockEntityType<DirtChestBlockEntity>> DIRT_CHEST = BLOCK_ENTITIES.register(
-    "dirt_chest", () -> BlockEntityType.Builder.of(DirtChestBlockEntity::new, IronChestsBlocks.DIRT_CHEST.get()).build(null));
+    "dirt_chest", () -> typeOf(DirtChestBlockEntity::new, IronChestsBlocks.DIRT_CHEST.get()));
 
   // Trapped Chests
 
   public static final RegistryObject<BlockEntityType<TrappedIronChestBlockEntity>> TRAPPED_IRON_CHEST = BLOCK_ENTITIES.register(
-    "trapped_iron_chest", () -> BlockEntityType.Builder.of(TrappedIronChestBlockEntity::new, IronChestsBlocks.TRAPPED_IRON_CHEST.get()).build(null));
+    "trapped_iron_chest", () -> typeOf(TrappedIronChestBlockEntity::new, IronChestsBlocks.TRAPPED_IRON_CHEST.get()));
 
   public static final RegistryObject<BlockEntityType<TrappedGoldChestBlockEntity>> TRAPPED_GOLD_CHEST = BLOCK_ENTITIES.register(
-    "trapped_gold_chest", () -> BlockEntityType.Builder.of(TrappedGoldChestBlockEntity::new, IronChestsBlocks.TRAPPED_GOLD_CHEST.get()).build(null));
+    "trapped_gold_chest", () -> typeOf(TrappedGoldChestBlockEntity::new, IronChestsBlocks.TRAPPED_GOLD_CHEST.get()));
 
   public static final RegistryObject<BlockEntityType<TrappedDiamondChestBlockEntity>> TRAPPED_DIAMOND_CHEST = BLOCK_ENTITIES.register(
-    "trapped_diamond_chest", () -> BlockEntityType.Builder.of(TrappedDiamondChestBlockEntity::new, IronChestsBlocks.TRAPPED_DIAMOND_CHEST.get()).build(null));
+    "trapped_diamond_chest", () -> typeOf(TrappedDiamondChestBlockEntity::new, IronChestsBlocks.TRAPPED_DIAMOND_CHEST.get()));
 
   public static final RegistryObject<BlockEntityType<TrappedCopperChestBlockEntity>> TRAPPED_COPPER_CHEST = BLOCK_ENTITIES.register(
-    "trapped_copper_chest", () -> BlockEntityType.Builder.of(TrappedCopperChestBlockEntity::new, IronChestsBlocks.TRAPPED_COPPER_CHEST.get()).build(null));
+    "trapped_copper_chest", () -> typeOf(TrappedCopperChestBlockEntity::new, IronChestsBlocks.TRAPPED_COPPER_CHEST.get()));
 
   public static final RegistryObject<BlockEntityType<TrappedCrystalChestBlockEntity>> TRAPPED_CRYSTAL_CHEST = BLOCK_ENTITIES.register(
-    "trapped_crystal_chest", () -> BlockEntityType.Builder.of(TrappedCrystalChestBlockEntity::new, IronChestsBlocks.TRAPPED_CRYSTAL_CHEST.get()).build(null));
+    "trapped_crystal_chest", () -> typeOf(TrappedCrystalChestBlockEntity::new, IronChestsBlocks.TRAPPED_CRYSTAL_CHEST.get()));
 
   public static final RegistryObject<BlockEntityType<TrappedObsidianChestBlockEntity>> TRAPPED_OBSIDIAN_CHEST = BLOCK_ENTITIES.register(
-    "trapped_obsidian_chest", () -> BlockEntityType.Builder.of(TrappedObsidianChestBlockEntity::new, IronChestsBlocks.TRAPPED_OBSIDIAN_CHEST.get()).build(null));
+    "trapped_obsidian_chest", () -> typeOf(TrappedObsidianChestBlockEntity::new, IronChestsBlocks.TRAPPED_OBSIDIAN_CHEST.get()));
 
   public static final RegistryObject<BlockEntityType<TrappedDirtChestBlockEntity>> TRAPPED_DIRT_CHEST = BLOCK_ENTITIES.register(
-    "trapped_dirt_chest", () -> BlockEntityType.Builder.of(TrappedDirtChestBlockEntity::new, IronChestsBlocks.TRAPPED_DIRT_CHEST.get()).build(null));
+    "trapped_dirt_chest", () -> typeOf(TrappedDirtChestBlockEntity::new, IronChestsBlocks.TRAPPED_DIRT_CHEST.get()));
+
+  /**
+   * Helper method to avoid having a NonNull error on each line
+   */
+  private static <T extends BlockEntity> BlockEntityType<T> typeOf(BlockEntityType.BlockEntitySupplier<T> entity, Block... blocks) {
+    return BlockEntityType.Builder.of(entity, blocks).build(null);
+  }
 }
