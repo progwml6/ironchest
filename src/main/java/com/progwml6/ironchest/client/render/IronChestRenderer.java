@@ -172,7 +172,7 @@ public class IronChestRenderer<T extends BlockEntity & LidBlockEntity> implement
     Vector3f center = modelItem.getCenter();
     matrices.translate(center.x(), center.y(), center.z());
 
-    matrices.mulPose(Vector3f.YP.rotation(rotation));
+    matrices.mulPose(Vector3f.YP.rotationDegrees(rotation));
 
     // scale
     float scale = modelItem.getSizeScaled();
