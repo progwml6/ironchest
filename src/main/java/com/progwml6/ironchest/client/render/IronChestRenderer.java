@@ -2,6 +2,7 @@ package com.progwml6.ironchest.client.render;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.math.Axis;
 import com.progwml6.ironchest.IronChestsClientEvents;
 import com.progwml6.ironchest.client.model.IronChestsModels;
 import com.progwml6.ironchest.client.model.inventory.ModelItem;
@@ -37,10 +38,10 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.DoubleBlockCombiner;
 import net.minecraft.core.Direction;
 import net.minecraft.world.phys.Vec3;
-import com.mojang.math.Vector3f;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.joml.Vector3f;
 
 import java.util.Arrays;
 import java.util.List;
@@ -108,7 +109,7 @@ public class IronChestRenderer<T extends BlockEntity & LidBlockEntity> implement
       float f = blockState.getValue(AbstractIronChestBlock.FACING).toYRot();
 
       poseStack.translate(0.5D, 0.5D, 0.5D);
-      poseStack.mulPose(Vector3f.YP.rotationDegrees(-f));
+      poseStack.mulPose(Axis.YP.rotationDegrees(-f));
       poseStack.translate(-0.5D, -0.5D, -0.5D);
 
       DoubleBlockCombiner.NeighborCombineResult<? extends AbstractIronChestBlockEntity> neighborCombineResult;
@@ -172,7 +173,7 @@ public class IronChestRenderer<T extends BlockEntity & LidBlockEntity> implement
     Vector3f center = modelItem.getCenter();
     matrices.translate(center.x(), center.y(), center.z());
 
-    matrices.mulPose(Vector3f.YP.rotationDegrees(rotation));
+    matrices.mulPose(Axis.YP.rotationDegrees(rotation));
 
     // scale
     float scale = modelItem.getSizeScaled();

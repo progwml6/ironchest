@@ -74,7 +74,7 @@ public interface ICrystalChest {
         for (int j = 0; j < compressedIdx; j++) {
           ItemStack tempCopyStack = tempCopy.get(j);
 
-          if (ItemStack.isSameIgnoreDurability(tempCopyStack, itemStack)) {
+          if (ItemStack.isSame(tempCopyStack, itemStack)) {
             if (itemStack.getCount() != tempCopyStack.getCount()) {
               tempCopyStack.grow(itemStack.getCount());
             }

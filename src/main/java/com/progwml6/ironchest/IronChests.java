@@ -6,36 +6,38 @@ import com.progwml6.ironchest.common.block.IronChestsBlocks;
 import com.progwml6.ironchest.common.block.entity.IronChestsBlockEntityTypes;
 import com.progwml6.ironchest.common.data.IronChestsBlockTags;
 import com.progwml6.ironchest.common.data.IronChestsRecipeProvider;
+import com.progwml6.ironchest.common.data.IronChestsSpriteSourceProvider;
 import com.progwml6.ironchest.common.inventory.IronChestsContainerTypes;
 import com.progwml6.ironchest.common.item.IronChestsItems;
 import com.progwml6.ironchest.common.network.IronChestNetwork;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.data.PackOutput;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
+import net.minecraftforge.event.CreativeModeTabEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.RegistryObject;
+
+import java.util.concurrent.CompletableFuture;
 
 @Mod(IronChests.MOD_ID)
 public class IronChests {
 
   public static final String MOD_ID = "ironchest";
-
-  public static final CreativeModeTab IRONCHESTS_ITEM_GROUP = (new CreativeModeTab("ironchest") {
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public ItemStack makeIcon() {
-      return new ItemStack(IronChestsBlocks.IRON_CHEST.get());
-    }
-  });
 
   public IronChests() {
     IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -56,6 +58,8 @@ public class IronChests {
     IronChestsItems.ITEMS.register(modBus);
     IronChestsBlockEntityTypes.BLOCK_ENTITIES.register(modBus);
     IronChestsContainerTypes.CONTAINERS.register(modBus);
+
+    modBus.addListener(this::registerCreativeModeTabs);
   }
 
   @OnlyIn(Dist.CLIENT)
@@ -90,14 +94,24 @@ public class IronChests {
   }
 
   private void gatherData(GatherDataEvent event) {
-    DataGenerator datagenerator = event.getGenerator();
+    ExistingFileHelper ext = event.getExistingFileHelper();
+    DataGenerator gen = event.getGenerator();
+    PackOutput packOutput = gen.getPackOutput();
+    CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
-    if (event.includeServer()) {
-      datagenerator.addProvider(true, new IronChestsRecipeProvider(datagenerator));
-    }
+    gen.addProvider(event.includeClient(), new IronChestsRecipeProvider(packOutput));
+    gen.addProvider(event.includeClient(), new IronChestsBlockTags(packOutput, lookupProvider, ext));
 
-    if (event.includeClient()) {
-      datagenerator.addProvider(true, new IronChestsBlockTags(datagenerator, event.getExistingFileHelper()));
-    }
+    gen.addProvider(event.includeClient(), new IronChestsSpriteSourceProvider(packOutput, ext));
+  }
+
+  public void registerCreativeModeTabs(final CreativeModeTabEvent.Register eventIn) {
+    eventIn.registerCreativeModeTab(new ResourceLocation(IronChests.MOD_ID, IronChests.MOD_ID), builder -> builder
+      .title(Component.translatable("itemGroup." + IronChests.MOD_ID))
+      .icon(() -> new ItemStack(IronChestsBlocks.IRON_CHEST.get()))
+      .displayItems((featureFlagSet, output, hasPermissions) -> {
+        for (final RegistryObject<Item> item : IronChestsItems.ITEMS.getEntries())
+          output.accept(item.get());
+      }));
   }
 }

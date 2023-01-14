@@ -8,9 +8,10 @@ import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.RequirementsStrategy;
 import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
+import net.minecraft.data.PackOutput;
+import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
@@ -34,12 +35,12 @@ public class IronChestsRecipeProvider extends RecipeProvider implements IConditi
 
   public static final TagKey<Item> INGOTS_COPPER = tag("ingots/copper");
 
-  public IronChestsRecipeProvider(DataGenerator generatorIn) {
-    super(generatorIn);
+  public IronChestsRecipeProvider(PackOutput output) {
+    super(output);
   }
 
   @Override
-  protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer) {
+  protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
     this.addChestsRecipes(consumer);
     this.addUpgradesRecipes(consumer);
   }
@@ -47,7 +48,7 @@ public class IronChestsRecipeProvider extends RecipeProvider implements IConditi
   private void addChestsRecipes(Consumer<FinishedRecipe> consumer) {
     String folder = "chests/";
 
-    ShapedRecipeBuilder.shaped(IronChestsBlocks.IRON_CHEST.get())
+    ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, IronChestsBlocks.IRON_CHEST.get())
       .define('M', Tags.Items.INGOTS_IRON)
       .define('S', Tags.Items.CHESTS_WOODEN)
       .pattern("MMM")
@@ -56,7 +57,7 @@ public class IronChestsRecipeProvider extends RecipeProvider implements IConditi
       .unlockedBy("has_iron_ingot", has(Tags.Items.INGOTS_IRON))
       .save(consumer, location(folder + "vanilla_iron_chest"));
 
-    ShapedRecipeBuilder.shaped(IronChestsBlocks.GOLD_CHEST.get())
+    ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, IronChestsBlocks.GOLD_CHEST.get())
       .define('M', Tags.Items.INGOTS_GOLD)
       .define('S', IronChestsBlocks.IRON_CHEST.get())
       .pattern("MMM")
@@ -65,7 +66,7 @@ public class IronChestsRecipeProvider extends RecipeProvider implements IConditi
       .unlockedBy("has_gold_ingot", has(Tags.Items.INGOTS_GOLD))
       .save(consumer, location(folder + "iron_gold_chest"));
 
-    ShapedRecipeBuilder.shaped(IronChestsBlocks.DIAMOND_CHEST.get())
+    ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, IronChestsBlocks.DIAMOND_CHEST.get())
       .define('M', Tags.Items.GEMS_DIAMOND)
       .define('S', IronChestsBlocks.GOLD_CHEST.get())
       .define('G', Tags.Items.GLASS)
@@ -75,7 +76,7 @@ public class IronChestsRecipeProvider extends RecipeProvider implements IConditi
       .unlockedBy("has_diamonds", has(Tags.Items.GEMS_DIAMOND))
       .save(consumer, location(folder + "gold_diamond_chest"));
 
-    ShapedRecipeBuilder.shaped(IronChestsBlocks.OBSIDIAN_CHEST.get())
+    ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, IronChestsBlocks.OBSIDIAN_CHEST.get())
       .define('M', Blocks.OBSIDIAN)
       .define('S', IronChestsBlocks.DIAMOND_CHEST.get())
       .pattern("MMM")
@@ -84,7 +85,7 @@ public class IronChestsRecipeProvider extends RecipeProvider implements IConditi
       .unlockedBy("has_obsidian", has(Blocks.OBSIDIAN))
       .save(consumer, location(folder + "diamond_obsidian_chest"));
 
-    ShapedRecipeBuilder.shaped(IronChestsBlocks.CRYSTAL_CHEST.get())
+    ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, IronChestsBlocks.CRYSTAL_CHEST.get())
       .define('G', Tags.Items.GLASS)
       .define('S', IronChestsBlocks.DIAMOND_CHEST.get())
       .pattern("GGG")
@@ -93,7 +94,7 @@ public class IronChestsRecipeProvider extends RecipeProvider implements IConditi
       .unlockedBy("has_glass", has(Tags.Items.GLASS))
       .save(consumer, location(folder + "diamond_crystal_chest"));
 
-    ShapedRecipeBuilder.shaped(IronChestsBlocks.DIRT_CHEST.get())
+    ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, IronChestsBlocks.DIRT_CHEST.get())
       .define('M', Ingredient.of(Blocks.DIRT, Blocks.COARSE_DIRT, Blocks.PODZOL))
       .define('S', Tags.Items.CHESTS_WOODEN)
       .pattern("MMM")
@@ -102,43 +103,43 @@ public class IronChestsRecipeProvider extends RecipeProvider implements IConditi
       .unlockedBy("has_iron_ingot", has(Blocks.DIRT))
       .save(consumer, location(folder + "vanilla_dirt_chest"));
 
-    ShapelessRecipeBuilder.shapeless(IronChestsBlocks.TRAPPED_IRON_CHEST.get())
+    ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, IronChestsBlocks.TRAPPED_IRON_CHEST.get())
       .requires(IronChestsBlocks.IRON_CHEST.get())
       .requires(Blocks.TRIPWIRE_HOOK)
       .unlockedBy("has_tripwire_hook", has(Blocks.TRIPWIRE_HOOK))
       .save(consumer, location(folder + "trapped_iron_chest"));
 
-    ShapelessRecipeBuilder.shapeless(IronChestsBlocks.TRAPPED_GOLD_CHEST.get())
+    ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, IronChestsBlocks.TRAPPED_GOLD_CHEST.get())
       .requires(IronChestsBlocks.GOLD_CHEST.get())
       .requires(Blocks.TRIPWIRE_HOOK)
       .unlockedBy("has_tripwire_hook", has(Blocks.TRIPWIRE_HOOK))
       .save(consumer, location(folder + "trapped_gold_chest"));
 
-    ShapelessRecipeBuilder.shapeless(IronChestsBlocks.TRAPPED_DIAMOND_CHEST.get())
+    ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, IronChestsBlocks.TRAPPED_DIAMOND_CHEST.get())
       .requires(IronChestsBlocks.DIAMOND_CHEST.get())
       .requires(Blocks.TRIPWIRE_HOOK)
       .unlockedBy("has_tripwire_hook", has(Blocks.TRIPWIRE_HOOK))
       .save(consumer, location(folder + "trapped_diamond_chest"));
 
-    ShapelessRecipeBuilder.shapeless(IronChestsBlocks.TRAPPED_COPPER_CHEST.get())
+    ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, IronChestsBlocks.TRAPPED_COPPER_CHEST.get())
       .requires(IronChestsBlocks.COPPER_CHEST.get())
       .requires(Blocks.TRIPWIRE_HOOK)
       .unlockedBy("has_tripwire_hook", has(Blocks.TRIPWIRE_HOOK))
       .save(consumer, location(folder + "trapped_copper_chest"));
 
-    ShapelessRecipeBuilder.shapeless(IronChestsBlocks.TRAPPED_CRYSTAL_CHEST.get())
+    ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, IronChestsBlocks.TRAPPED_CRYSTAL_CHEST.get())
       .requires(IronChestsBlocks.CRYSTAL_CHEST.get())
       .requires(Blocks.TRIPWIRE_HOOK)
       .unlockedBy("has_tripwire_hook", has(Blocks.TRIPWIRE_HOOK))
       .save(consumer, location(folder + "trapped_crystal_chest"));
 
-    ShapelessRecipeBuilder.shapeless(IronChestsBlocks.TRAPPED_OBSIDIAN_CHEST.get())
+    ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, IronChestsBlocks.TRAPPED_OBSIDIAN_CHEST.get())
       .requires(IronChestsBlocks.OBSIDIAN_CHEST.get())
       .requires(Blocks.TRIPWIRE_HOOK)
       .unlockedBy("has_tripwire_hook", has(Blocks.TRIPWIRE_HOOK))
       .save(consumer, location(folder + "trapped_obsidian_chest"));
 
-    ShapelessRecipeBuilder.shapeless(IronChestsBlocks.TRAPPED_DIRT_CHEST.get())
+    ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, IronChestsBlocks.TRAPPED_DIRT_CHEST.get())
       .requires(IronChestsBlocks.DIRT_CHEST.get())
       .requires(Blocks.TRIPWIRE_HOOK)
       .unlockedBy("has_tripwire_hook", has(Blocks.TRIPWIRE_HOOK))
@@ -147,7 +148,7 @@ public class IronChestsRecipeProvider extends RecipeProvider implements IConditi
     ResourceLocation copperToIronChest = location(folder + "copper_iron_chest");
     ConditionalRecipe.builder()
       .addCondition(not(new TagEmptyCondition("forge:ingots/copper")))
-      .addRecipe(ShapedRecipeBuilder.shaped(IronChestsBlocks.IRON_CHEST.get())
+      .addRecipe(ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, IronChestsBlocks.IRON_CHEST.get())
         .define('M', Tags.Items.INGOTS_IRON)
         .define('S', IronChestsBlocks.COPPER_CHEST.get())
         .define('G', Tags.Items.GLASS)
@@ -168,7 +169,7 @@ public class IronChestsRecipeProvider extends RecipeProvider implements IConditi
     ResourceLocation vanillaToCopperChest = location(folder + "vanilla_copper_chest");
     ConditionalRecipe.builder()
       .addCondition(not(new TagEmptyCondition("forge:ingots/copper")))
-      .addRecipe(ShapedRecipeBuilder.shaped(IronChestsBlocks.COPPER_CHEST.get())
+      .addRecipe(ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, IronChestsBlocks.COPPER_CHEST.get())
         .define('M', INGOTS_COPPER)
         .define('S', Tags.Items.CHESTS_WOODEN)
         .pattern("MMM")
@@ -189,7 +190,7 @@ public class IronChestsRecipeProvider extends RecipeProvider implements IConditi
   private void addUpgradesRecipes(Consumer<FinishedRecipe> consumer) {
     String folder = "upgrades/";
 
-    ShapedRecipeBuilder.shaped(IronChestsItems.UPGRADES.get(IronChestsUpgradeType.WOOD_TO_IRON).get())
+    ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, IronChestsItems.UPGRADES.get(IronChestsUpgradeType.WOOD_TO_IRON).get())
       .define('M', Tags.Items.INGOTS_IRON)
       .define('P', ItemTags.PLANKS)
       .pattern("MMM")
@@ -198,7 +199,7 @@ public class IronChestsRecipeProvider extends RecipeProvider implements IConditi
       .unlockedBy("has_iron_ingot", has(Tags.Items.INGOTS_IRON))
       .save(consumer, prefix(IronChestsItems.UPGRADES.get(IronChestsUpgradeType.WOOD_TO_IRON).get(), folder));
 
-    ShapedRecipeBuilder.shaped(IronChestsItems.UPGRADES.get(IronChestsUpgradeType.IRON_TO_GOLD).get())
+    ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, IronChestsItems.UPGRADES.get(IronChestsUpgradeType.IRON_TO_GOLD).get())
       .define('I', Tags.Items.INGOTS_IRON)
       .define('G', Tags.Items.INGOTS_GOLD)
       .pattern("GGG")
@@ -207,7 +208,7 @@ public class IronChestsRecipeProvider extends RecipeProvider implements IConditi
       .unlockedBy("has_iron_ingot", has(Tags.Items.INGOTS_IRON))
       .save(consumer, prefix(IronChestsItems.UPGRADES.get(IronChestsUpgradeType.IRON_TO_GOLD).get(), folder));
 
-    ShapedRecipeBuilder.shaped(IronChestsItems.UPGRADES.get(IronChestsUpgradeType.GOLD_TO_DIAMOND).get())
+    ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, IronChestsItems.UPGRADES.get(IronChestsUpgradeType.GOLD_TO_DIAMOND).get())
       .define('M', Tags.Items.GEMS_DIAMOND)
       .define('S', Tags.Items.INGOTS_GOLD)
       .define('G', Tags.Items.GLASS)
@@ -217,7 +218,7 @@ public class IronChestsRecipeProvider extends RecipeProvider implements IConditi
       .unlockedBy("has_glass", has(Tags.Items.GLASS))
       .save(consumer, prefix(IronChestsItems.UPGRADES.get(IronChestsUpgradeType.GOLD_TO_DIAMOND).get(), folder));
 
-    ShapedRecipeBuilder.shaped(IronChestsItems.UPGRADES.get(IronChestsUpgradeType.DIAMOND_TO_OBSIDIAN).get())
+    ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, IronChestsItems.UPGRADES.get(IronChestsUpgradeType.DIAMOND_TO_OBSIDIAN).get())
       .define('M', Blocks.OBSIDIAN)
       .define('G', Tags.Items.GLASS)
       .pattern("MMM")
@@ -226,7 +227,7 @@ public class IronChestsRecipeProvider extends RecipeProvider implements IConditi
       .unlockedBy("has_glass", has(Tags.Items.GLASS))
       .save(consumer, prefix(IronChestsItems.UPGRADES.get(IronChestsUpgradeType.DIAMOND_TO_OBSIDIAN).get(), folder));
 
-    ShapedRecipeBuilder.shaped(IronChestsItems.UPGRADES.get(IronChestsUpgradeType.DIAMOND_TO_CRYSTAL).get())
+    ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, IronChestsItems.UPGRADES.get(IronChestsUpgradeType.DIAMOND_TO_CRYSTAL).get())
       .define('M', Blocks.OBSIDIAN)
       .define('G', Tags.Items.GLASS)
       .pattern("GGG")
@@ -238,7 +239,7 @@ public class IronChestsRecipeProvider extends RecipeProvider implements IConditi
     ResourceLocation woodToCopperChestUpgradeId = prefix(IronChestsItems.UPGRADES.get(IronChestsUpgradeType.WOOD_TO_COPPER).get(), folder);
     ConditionalRecipe.builder()
       .addCondition(not(new TagEmptyCondition("forge:ingots/copper")))
-      .addRecipe(ShapedRecipeBuilder.shaped(IronChestsItems.UPGRADES.get(IronChestsUpgradeType.WOOD_TO_COPPER).get())
+      .addRecipe(ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, IronChestsItems.UPGRADES.get(IronChestsUpgradeType.WOOD_TO_COPPER).get())
         .define('M', INGOTS_COPPER)
         .define('S', ItemTags.PLANKS)
         .pattern("MMM")
@@ -258,7 +259,7 @@ public class IronChestsRecipeProvider extends RecipeProvider implements IConditi
     ResourceLocation copperToIronChestUpgrade = prefix(IronChestsItems.UPGRADES.get(IronChestsUpgradeType.COPPER_TO_IRON).get(), folder);
     ConditionalRecipe.builder()
       .addCondition(not(new TagEmptyCondition("forge:ingots/copper")))
-      .addRecipe(ShapedRecipeBuilder.shaped(IronChestsItems.UPGRADES.get(IronChestsUpgradeType.COPPER_TO_IRON).get())
+      .addRecipe(ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, IronChestsItems.UPGRADES.get(IronChestsUpgradeType.COPPER_TO_IRON).get())
         .define('M', Tags.Items.INGOTS_IRON)
         .define('S', INGOTS_COPPER)
         .define('G', Tags.Items.GLASS)

@@ -2,14 +2,8 @@ package com.progwml6.ironchest.client.model;
 
 import com.progwml6.ironchest.IronChests;
 import com.progwml6.ironchest.common.block.IronChestsTypes;
-import net.minecraft.client.renderer.Sheets;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.TextureStitchEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(modid = IronChests.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class IronChestsModels {
 
   public static final ResourceLocation IRON_CHEST_LOCATION = new ResourceLocation(IronChests.MOD_ID, "model/iron_chest");
@@ -53,28 +47,5 @@ public class IronChestsModels {
         case DIRT -> DIRT_CHEST_LOCATION;
         default -> VANILLA_CHEST_LOCATION;
       };
-  }
-
-  @SubscribeEvent
-  public static void onStitch(TextureStitchEvent.Pre event) {
-    if (!event.getAtlas().location().equals(Sheets.CHEST_SHEET)) {
-      return;
-    }
-
-    event.addSprite(IRON_CHEST_LOCATION);
-    event.addSprite(GOLD_CHEST_LOCATION);
-    event.addSprite(DIAMOND_CHEST_LOCATION);
-    event.addSprite(COPPER_CHEST_LOCATION);
-    event.addSprite(CRYSTAL_CHEST_LOCATION);
-    event.addSprite(OBSIDIAN_CHEST_LOCATION);
-    event.addSprite(DIRT_CHEST_LOCATION);
-
-    event.addSprite(TRAPPED_IRON_CHEST_LOCATION);
-    event.addSprite(TRAPPED_GOLD_CHEST_LOCATION);
-    event.addSprite(TRAPPED_DIAMOND_CHEST_LOCATION);
-    event.addSprite(TRAPPED_COPPER_CHEST_LOCATION);
-    event.addSprite(TRAPPED_CRYSTAL_CHEST_LOCATION);
-    event.addSprite(TRAPPED_OBSIDIAN_CHEST_LOCATION);
-    event.addSprite(TRAPPED_DIRT_CHEST_LOCATION);
   }
 }

@@ -19,7 +19,7 @@ public class IronChestsItems {
 
   public static final ImmutableMap<IronChestsUpgradeType, RegistryObject<ChestUpgradeItem>> UPGRADES = ImmutableMap.copyOf(Arrays.stream(IronChestsUpgradeType.values())
     .collect(Collectors.toMap(Function.identity(), type -> register(type.name().toLowerCase(Locale.ROOT) + "_chest_upgrade",
-      () -> new ChestUpgradeItem(type, new Item.Properties().tab(IronChests.IRONCHESTS_ITEM_GROUP).stacksTo(1))))));
+      () -> new ChestUpgradeItem(type, new Item.Properties().stacksTo(1))))));
 
   private static <T extends Item> RegistryObject<T> register(final String name, final Supplier<T> sup) {
     return ITEMS.register(name, sup);

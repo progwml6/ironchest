@@ -1,6 +1,7 @@
 package com.progwml6.ironchest.client.model.inventory;
 
-import com.mojang.math.Vector3f;
+import org.joml.Vector3f;
+import org.joml.Vector3fc;
 
 public class ModelItem {
   private final Vector3f center;
@@ -22,7 +23,7 @@ public class ModelItem {
    */
   public Vector3f getCenterScaled() {
     if (centerScaled == null) {
-      centerScaled = center.copy();
+      centerScaled = new Vector3f(center);
       centerScaled.mul(1f / 16f);
     }
 

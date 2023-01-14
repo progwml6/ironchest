@@ -108,6 +108,6 @@ public class IronChestsBlocks {
   }
 
   private static Supplier<BlockItem> item(final RegistryObject<? extends Block> block, Supplier<Callable<IronChestsTypes>> chestType, Supplier<Callable<Boolean>> trapped) {
-    return () -> new IronChestBlockItem(block.get(), new Item.Properties().tab(IronChests.IRONCHESTS_ITEM_GROUP), chestType, trapped);
+    return () -> new IronChestBlockItem(block.get(), new Item.Properties(), chestType, trapped);
   }
 }
