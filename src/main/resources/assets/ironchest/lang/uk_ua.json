@@ -1,0 +1,43 @@
+{
+  "_comment": "Blocks",
+  "block.ironchest.iron_chest": "Залізна скриня",
+  "block.ironchest.gold_chest": "Золота скриня",
+  "block.ironchest.diamond_chest": "Діамантова скриня",
+  "block.ironchest.copper_chest": "Мідна скриня",
+  "block.ironchest.silver_chest": "Срібна скриня",
+  "block.ironchest.crystal_chest": "Кришталева скриня",
+  "block.ironchest.obsidian_chest": "Обсидіанова скриня",
+  "block.ironchest.dirt_chest": "ЗемлянаСкриня 9000!",
+
+  "_comment": "Upgrades",
+  "item.ironchest.iron_to_gold_chest_upgrade": "Покращення скрині з залізної до золотої",
+  "item.ironchest.gold_to_diamond_chest_upgrade": "Покращення скрині з золотої до діамантової",
+  "item.ironchest.copper_to_silver_chest_upgrade": "Покращення скрині з мідної до срібної",
+  "item.ironchest.silver_to_gold_chest_upgrade": "Покращення скрині з срібної до золотої",
+  "item.ironchest.copper_to_iron_chest_upgrade": "Покращення скрині з мідної до залізної",
+  "item.ironchest.diamond_to_crystal_chest_upgrade": "Покращення скрині з діамантової до кришталевої",
+  "item.ironchest.wood_to_iron_chest_upgrade": "Покращення скрині з дерев'яної до залізної",
+  "item.ironchest.wood_to_copper_chest_upgrade": "Покращення скрині з дерев'яної до мідної",
+  "item.ironchest.diamond_to_obsidian_chest_upgrade": "Покращення скрині з діамантової до обсидіанової",
+
+  "_comment": "Books",
+  "book.ironchest.dirtchest9000.title": "Як користуватися вашею ЗемляноюСкринею 9000!",
+  "book.ironchest.dirtchest9000.page1": "Вітаємо у новій ЗемлянійСкрині 9000! Ми сподіваємось, що ви будете насолоджуватися довгими щасливими роками, зберігаючи стак ґрунту в нашій службі зберігання.",
+  "book.ironchest.dirtchest9000.page2": "Використання: просто вставте стак ґрунту у будь-який високо сприйнятливий слот на ваш вибір і насолоджуйтесь зручним доступом до ґрунту у будь-який час, коли ви проходите повз цю скриню",
+  "book.ironchest.dirtchest9000.page3": "Ми сподіваємось, що вам сподобалася інструкція, і сподіваємось, що ви надалі розглянете можливість використання нашої продукції! З повагою, автори посібника по ЗемляніїСкрині 9000.",
+  "book.ironchest.dirtchest9000.page4": "Гарантія: Цей виріб не має жодних гарантій. Ваш ґрунт може повільно потрапляти у навколишнє середовище, або, взагалі, він може нічого не робити.",
+  "book.ironchest.dirtchest9000.page5": "ЗемлянаСкриня 9000 не шкідливий для навколишнього середовища. Будь ласка, утилізуйте цей посібник правильно і не кидайте просто його в лаву. Нам буде дуже сумно.",
+
+  "_comment": "Containers",
+  "ironchest.container.iron_chest": "Залізна скриня",
+  "ironchest.container.gold_chest": "Золота скриня",
+  "ironchest.container.diamond_chest": "Діамантова скриня",
+  "ironchest.container.copper_chest": "Мідна скриня",
+  "ironchest.container.silver_chest": "Срібна скриня",
+  "ironchest.container.crystal_chest": "Кришталева скриня",
+  "ironchest.container.obsidian_chest": "Обсидіанова скриня",
+  "ironchest.container.dirt_chest": "ЗемлянаСкриня 9000!",
+
+  "_comment": "Item Groups",
+  "itemGroup.ironchest": "Iron Chests"
+}
