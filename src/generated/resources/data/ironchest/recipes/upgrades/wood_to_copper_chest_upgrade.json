@@ -1,36 +1,20 @@
 {
-  "type": "forge:conditional",
-  "recipes": [
-    {
-      "conditions": [
-        {
-          "type": "forge:not",
-          "value": {
-            "type": "forge:tag_empty",
-            "tag": "forge:ingots/copper"
-          }
-        }
-      ],
-      "recipe": {
-        "type": "minecraft:crafting_shaped",
-        "category": "misc",
-        "key": {
-          "M": {
-            "tag": "forge:ingots/copper"
-          },
-          "S": {
-            "tag": "minecraft:planks"
-          }
-        },
-        "pattern": [
-          "MMM",
-          "MSM",
-          "MMM"
-        ],
-        "result": {
-          "item": "ironchest:wood_to_copper_chest_upgrade"
-        }
-      }
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "M": {
+      "tag": "forge:ingots/copper"
+    },
+    "P": {
+      "tag": "minecraft:planks"
     }
-  ]
+  },
+  "pattern": [
+    "MMM",
+    "MPM",
+    "MMM"
+  ],
+  "result": {
+    "item": "ironchest:wood_to_copper_chest_upgrade"
+  }
 }

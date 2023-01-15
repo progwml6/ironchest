@@ -1,5 +1,7 @@
 {
-    "variants": {
-        "": { "model": "ironchest:block/diamond_chest" }
+  "variants": {
+    "": {
+      "model": "ironchest:block/diamond_chest"
     }
+  }
 }

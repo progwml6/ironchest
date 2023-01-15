@@ -1,5 +1,7 @@
 {
-    "variants": {
-        "": { "model": "ironchest:block/trapped_dirt_chest" }
+  "variants": {
+    "": {
+      "model": "ironchest:block/dirt_chest"
     }
+  }
 }

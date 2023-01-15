@@ -1,5 +1,7 @@
 {
-    "variants": {
-        "": { "model": "ironchest:block/trapped_crystal_chest" }
+  "variants": {
+    "": {
+      "model": "ironchest:block/crystal_chest"
     }
+  }
 }

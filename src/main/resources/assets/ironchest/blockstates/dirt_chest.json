@@ -1,5 +1,7 @@
 {
-    "variants": {
-        "": { "model": "ironchest:block/dirt_chest" }
+  "variants": {
+    "": {
+      "model": "ironchest:block/dirt_chest"
     }
+  }
 }

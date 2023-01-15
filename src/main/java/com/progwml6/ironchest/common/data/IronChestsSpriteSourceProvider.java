@@ -15,6 +15,5 @@ public class IronChestsSpriteSourceProvider extends SpriteSourceProvider {
   @Override
   protected void addSources() {
     atlas(CHESTS_ATLAS).addSource(new DirectoryLister("model", "model/"));
-    atlas(BLOCKS_ATLAS).addSource(new DirectoryLister("model", "model/"));
   }
 }
