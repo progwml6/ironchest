@@ -1,0 +1,43 @@
+{
+  "_comment": "Blocchi",
+  "block.ironchest.iron_chest": "Baule di Ferro",
+  "block.ironchest.gold_chest": "Baule d'Oro",
+  "block.ironchest.diamond_chest": "Baule di Diamante",
+  "block.ironchest.copper_chest": "Baule di Rame",
+  "block.ironchest.silver_chest": "Baule d'Argento",
+  "block.ironchest.crystal_chest": "Baule di Cristallo",
+  "block.ironchest.obsidian_chest": "Baule di Ossidiana",
+  "block.ironchest.dirt_chest": "Baulediterra 9000!",
+
+  "_comment": "Miglioramenti",
+  "item.ironchest.iron_to_gold_chest_upgrade": "Miglioramento da Baule di Ferro a Baule d'Oro",
+  "item.ironchest.gold_to_diamond_chest_upgrade": "Miglioramento da Baule d'Oro a Baule di Diamante",
+  "item.ironchest.copper_to_silver_chest_upgrade": "Miglioramento da Baule di Rame a Baule d'Argento",
+  "item.ironchest.silver_to_gold_chest_upgrade": "Miglioramento da Baule d'Argento a Baule d'Oro",
+  "item.ironchest.copper_to_iron_chest_upgrade": "Miglioramento da Baule di Rame a Baule di Ferro",
+  "item.ironchest.diamond_to_crystal_chest_upgrade": "Miglioramento da Baule di Diamante a Baule di Cristallo",
+  "item.ironchest.wood_to_iron_chest_upgrade": "Miglioramento da Baule di Legno a Baule di Ferro",
+  "item.ironchest.wood_to_copper_chest_upgrade": "Miglioramento da Baule di Legno a Baule di Rame",
+  "item.ironchest.diamond_to_obsidian_chest_upgrade": "Miglioramento da Baule di Diamante a Baule di Ossidiana",
+
+  "_comment": "Libri",
+  "book.ironchest.dirtchest9000.title": "Come usare il tuo Baulediterra 9000!",
+  "book.ironchest.dirtchest9000.page1": "Benvenuto al tuo nuovo Baulediterra 9000! Ci auguriamo che ti godrai molti anni felici immagazzinando la tua pila di terra nella nostra utilità di archiviazione.",
+  "book.ironchest.dirtchest9000.page2": "Utilizzo: inserisci semplicemente la pila di terra a tua scelta nello slot altamente ricettivo e goditi la grande comodità di avere quella terra a tua disposizione, ogni volta che passi davanti a questa cassa!",
+  "book.ironchest.dirtchest9000.page3": "Ci auguriamo che abbiate apprezzato la lettura di questo manuale di istruzioni e speriamo che prendiate in considerazione l'utilizzo dei nostri prodotti in futuro! Cordiali saluti, gli scrittori del manuale del Baulediterra 9000 inc. .",
+  "book.ironchest.dirtchest9000.page4": "Garanzia: Questo prodotto non ha garanzie di alcun tipo. La tua terra potrebbe non essere immagazzinata, potrebbe lentamente riversarsi nell'ambiente o, in alternativa, potrebbe non fare nulla.",
+  "book.ironchest.dirtchest9000.page5": "Baulediterra 9000 rispetta l'ambiente. Per favore, smaltisci questa guida in modo responsabile, e non fare ciò che faresti, ossia buttala nella lava. Saremmo molto tristi.",
+
+  "_comment": "Recipienti",
+  "ironchest.container.iron_chest": "Baule di Ferro",
+  "ironchest.container.gold_chest": "Baule d'Oro",
+  "ironchest.container.diamond_chest": "Baule di Diamante",
+  "ironchest.container.copper_chest": "Baule di Rame",
+  "ironchest.container.silver_chest": "Baule d'Argento",
+  "ironchest.container.crystal_chest": "Baule di Cristallo",
+  "ironchest.container.obsidian_chest": "Baule di Ossidiana",
+  "ironchest.container.dirt_chest": "Baulediterra 9000!",
+
+  "_comment": "Gruppi di oggetti",
+  "itemGroup.ironchest": "Bauli di Ferro"
+}
