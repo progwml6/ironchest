@@ -1,0 +1,52 @@
+{
+  "_translators_comment": "Translated by Harutyun Soghomonyan",
+
+  "_comment": "Blocks",
+  "block.ironchest.iron_chest": "Երկաթյա Գանձարկղ",
+  "block.ironchest.gold_chest": "Ոսկե Գանձարկղ",
+  "block.ironchest.diamond_chest": "Ադամանդե Գանձարկղ",
+  "block.ironchest.copper_chest": "Պղնձե Գանձարկղ",
+  "block.ironchest.crystal_chest": "Բյուրեղյա Գանձարկղ",
+  "block.ironchest.obsidian_chest": "Օբսիդիանե Գանձարկղ",
+  "block.ironchest.dirt_chest": "ԿեղտԱրկղ 9000!",
+
+  "block.ironchest.trapped_iron_chest": "Թակարդված Երկաթյա Գանձարկղ",
+  "block.ironchest.trapped_gold_chest": "Թակարդված Ոսկե Գանձարկղ",
+  "block.ironchest.trapped_diamond_chest": "Թակարդված Ադամանդե Գանձարկղ",
+  "block.ironchest.trapped_copper_chest": "Թակարդված Պղնձե Գանձարկղ",
+  "block.ironchest.trapped_crystal_chest": "Թակարդված Բյուրեղյա Գանձարկղ",
+  "block.ironchest.trapped_obsidian_chest": "Թակարդված Օբսիդիանե Գանձարկղ",
+  "block.ironchest.trapped_dirt_chest": "Թակարդված ԿեղտԱրկղ 9000!",
+
+  "_comment": "Upgrades",
+  "item.ironchest.iron_to_gold_chest_upgrade": "Բարելավում Երկաթյա Գանձարկղից դեպի Ոսկե",
+  "item.ironchest.gold_to_diamond_chest_upgrade": "Բարելավում Ոսկե Գանձարկղից դեպի Ադամանդե",
+  "item.ironchest.copper_to_silver_chest_upgrade": "Բարելավում Պղնձե Գանձարկղից դեպի Արծաթյա",
+  "item.ironchest.silver_to_gold_chest_upgrade": "Բարելավում Արծաթյա Գանձարկղից դեպի Ոսկե",
+  "item.ironchest.copper_to_iron_chest_upgrade": "Բարելավում Պղնձե Գանձարկղից դեպի Երկաթյա",
+  "item.ironchest.diamond_to_crystal_chest_upgrade": "Բարելավում Ադամանդե Գանձարկղից դեպի Բյուրեղյա",
+  "item.ironchest.wood_to_iron_chest_upgrade": "Բարելավում Փայտե Գանձարկղից դեպի Երկաթյա",
+  "item.ironchest.wood_to_copper_chest_upgrade": "Բարելավում Պղնձե Գանձարկղից դեպի Պղնձե",
+  "item.ironchest.diamond_to_obsidian_chest_upgrade": "Բարելավում Ադամանդե Գանձարկղից դեպի Օբսիդիանե",
+
+  "_comment": "Books",
+  "book.ironchest.dirtchest9000.title": "Ինչպե՞ս օգտագործել ԿեղտԱրկղ 9000-ը։",
+  "book.ironchest.dirtchest9000.page1": "Բարի գալուստ Ձեր նոր ԿեղտԱրկղ 9000! Մենք հուսով ենք, որ դուք երկար և երջանիկ տարիներ կպահեք Ձեր կեղտի ստակը մեր պահպանման սարքի մեջ։",
+  "book.ironchest.dirtchest9000.page2": "Օգտագործում. Պարզապես տեղադրեք Ձեր ընտրած կեղտի ստակը բարձր ընկալունակ բնիկի մեջ և վայելեք այդ կեղտը ամեն անգամ գանձարկղի կողքով անցնելիս:",
+  "book.ironchest.dirtchest9000.page3": "Հուսով ենք, որ Ձեզ դուր եկավ այս ձեռնարկի ընթերցումը, և հուսով ենք, որ կմտածեք ապագայում մեր արտադրանքի օգտագործման մասին: Հարգանքներով, ԿեղտԱրկղ 9000-ի ձեռնարկը գրող ընկերություն:",
+  "book.ironchest.dirtchest9000.page4": "Երաշխիք․ Այս ապրանքը չունի որևէ երաշխիք: Ձեր կեղտը կարող է չպահպանվել, այն կարող է կամաց-կամաց քայքայվել շրջակա միջավայր, կամ, որպես այլընտրանք, իր հետ կարող է ոչինչ չկատարվել:",
+  "book.ironchest.dirtchest9000.page5": "ԿեղտԱրկղ 9000-ը էկոլոգիապես մաքուր է շրջակա միջավայրի համար։ Խնդրում ենք պատասխանատու կերպով տնօրինվեք այս ձեռնարկով և նույնիսկ չփորձեք այն նետել առաջին պատահած լավայի մեջ։ Մենք շատ կտխրենք։",
+
+  "_comment": "Containers",
+  "ironchest.container.iron_chest": "Երկաթյա Գանձարկղ",
+  "ironchest.container.gold_chest": "Ոսկե Գանձարկղ",
+  "ironchest.container.diamond_chest": "Ադամանդե Գանձարկղ",
+  "ironchest.container.copper_chest": "Պղնձե Գանձարկղ",
+  "ironchest.container.silver_chest": "Արծաթյա Գանձարկղ",
+  "ironchest.container.crystal_chest": "Բյուրեղյա Գանձարկղ",
+  "ironchest.container.obsidian_chest": "Օբսիդիանե Գանձարկղ",
+  "ironchest.container.dirt_chest": "ԿեղտԱրկղ 9000!",
+
+  "_comment": "Item Groups",
+  "itemGroup.ironchest": "Մետաղյա Գանձարկղեր"
+}
