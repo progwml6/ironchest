@@ -7,6 +7,7 @@ import com.progwml6.ironchest.common.block.entity.IronChestsBlockEntityTypes;
 import com.progwml6.ironchest.common.data.IronChestsBlockTags;
 import com.progwml6.ironchest.common.data.IronChestsRecipeProvider;
 import com.progwml6.ironchest.common.data.IronChestsSpriteSourceProvider;
+import com.progwml6.ironchest.common.data.loot.IronChestsLootTableProvider;
 import com.progwml6.ironchest.common.inventory.IronChestsContainerTypes;
 import com.progwml6.ironchest.common.item.IronChestsItems;
 import com.progwml6.ironchest.common.network.IronChestNetwork;
@@ -99,9 +100,10 @@ public class IronChests {
     PackOutput packOutput = gen.getPackOutput();
     CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
+    gen.addProvider(event.includeServer(), new IronChestsLootTableProvider(packOutput));
+
     gen.addProvider(event.includeClient(), new IronChestsRecipeProvider(packOutput));
     gen.addProvider(event.includeClient(), new IronChestsBlockTags(packOutput, lookupProvider, ext));
-
     gen.addProvider(event.includeClient(), new IronChestsSpriteSourceProvider(packOutput, ext));
   }
 
