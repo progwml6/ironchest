@@ -19,5 +19,6 @@
   ],
   "result": {
     "item": "ironchest:copper_to_iron_chest_upgrade"
-  }
+  },
+  "show_notification": true
 }

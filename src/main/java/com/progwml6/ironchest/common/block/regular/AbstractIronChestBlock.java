@@ -174,9 +174,11 @@ public abstract class AbstractIronChestBlock extends BaseEntityBlock implements 
   @Deprecated
   public void onRemove(BlockState blockState, Level level, BlockPos blockPos, BlockState newState, boolean isMoving) {
     if (!blockState.is(newState.getBlock())) {
-      BlockEntity blockentity = level.getBlockEntity(blockPos);
-      if (blockentity instanceof Container) {
-        Containers.dropContents(level, blockPos, (Container) blockentity);
+      BlockEntity blockEntity = level.getBlockEntity(blockPos);
+      if (blockEntity instanceof AbstractIronChestBlockEntity) {
+        ((AbstractIronChestBlockEntity) blockEntity).removeAdornments();
+
+        Containers.dropContents(level, blockPos, (AbstractIronChestBlockEntity) blockEntity);
         level.updateNeighbourForOutputSignal(blockPos, this);
       }
 

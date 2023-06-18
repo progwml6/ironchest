@@ -5,6 +5,7 @@ import com.progwml6.ironchest.client.screen.IronChestScreen;
 import com.progwml6.ironchest.common.block.IronChestsBlocks;
 import com.progwml6.ironchest.common.block.entity.IronChestsBlockEntityTypes;
 import com.progwml6.ironchest.common.data.IronChestsBlockTags;
+import com.progwml6.ironchest.common.data.IronChestsLanguageProvider;
 import com.progwml6.ironchest.common.data.IronChestsRecipeProvider;
 import com.progwml6.ironchest.common.data.IronChestsSpriteSourceProvider;
 import com.progwml6.ironchest.common.data.loot.IronChestsLootTableProvider;
@@ -105,13 +106,14 @@ public class IronChests {
     gen.addProvider(event.includeClient(), new IronChestsRecipeProvider(packOutput));
     gen.addProvider(event.includeClient(), new IronChestsBlockTags(packOutput, lookupProvider, ext));
     gen.addProvider(event.includeClient(), new IronChestsSpriteSourceProvider(packOutput, ext));
+    gen.addProvider(event.includeClient(), new IronChestsLanguageProvider(packOutput, "en_us"));
   }
 
   public void registerCreativeModeTabs(final CreativeModeTabEvent.Register eventIn) {
     eventIn.registerCreativeModeTab(new ResourceLocation(IronChests.MOD_ID, IronChests.MOD_ID), builder -> builder
       .title(Component.translatable("itemGroup." + IronChests.MOD_ID))
       .icon(() -> new ItemStack(IronChestsBlocks.IRON_CHEST.get()))
-      .displayItems((featureFlagSet, output, hasPermissions) -> {
+      .displayItems((featureFlagSet, output) -> {
         for (final RegistryObject<Item> item : IronChestsItems.ITEMS.getEntries())
           output.accept(item.get());
       }));

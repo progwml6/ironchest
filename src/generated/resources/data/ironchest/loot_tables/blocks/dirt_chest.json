@@ -15,6 +15,17 @@
             {
               "function": "minecraft:copy_name",
               "source": "block_entity"
+            },
+            {
+              "function": "minecraft:copy_nbt",
+              "ops": [
+                {
+                  "op": "replace",
+                  "source": "ChestPlacedAlready",
+                  "target": "ChestPlacedAlready"
+                }
+              ],
+              "source": "block_entity"
             }
           ],
           "name": "ironchest:dirt_chest"

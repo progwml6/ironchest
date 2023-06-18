@@ -3,6 +3,7 @@ package com.progwml6.ironchest.client.model;
 import com.progwml6.ironchest.IronChests;
 import com.progwml6.ironchest.common.block.IronChestsTypes;
 import net.minecraft.resources.ResourceLocation;
+import org.jetbrains.annotations.NotNull;
 
 public class IronChestsModels {
 
@@ -25,27 +26,24 @@ public class IronChestsModels {
   public static final ResourceLocation TRAPPED_VANILLA_CHEST_LOCATION = new ResourceLocation("entity/chest/trapped");
 
   public static ResourceLocation chooseChestTexture(IronChestsTypes type, boolean trapped) {
-    if (trapped)
-      return switch (type) {
-        case IRON -> TRAPPED_IRON_CHEST_LOCATION;
-        case GOLD -> TRAPPED_GOLD_CHEST_LOCATION;
-        case DIAMOND -> TRAPPED_DIAMOND_CHEST_LOCATION;
-        case COPPER -> TRAPPED_COPPER_CHEST_LOCATION;
-        case CRYSTAL -> TRAPPED_CRYSTAL_CHEST_LOCATION;
-        case OBSIDIAN -> TRAPPED_OBSIDIAN_CHEST_LOCATION;
-        case DIRT -> TRAPPED_DIRT_CHEST_LOCATION;
-        default -> TRAPPED_VANILLA_CHEST_LOCATION;
-      };
-    else
-      return switch (type) {
-        case IRON -> IRON_CHEST_LOCATION;
-        case GOLD -> GOLD_CHEST_LOCATION;
-        case DIAMOND -> DIAMOND_CHEST_LOCATION;
-        case COPPER -> COPPER_CHEST_LOCATION;
-        case CRYSTAL -> CRYSTAL_CHEST_LOCATION;
-        case OBSIDIAN -> OBSIDIAN_CHEST_LOCATION;
-        case DIRT -> DIRT_CHEST_LOCATION;
-        default -> VANILLA_CHEST_LOCATION;
-      };
+    if (trapped) {
+      return getResourceLocation(type, TRAPPED_IRON_CHEST_LOCATION, TRAPPED_GOLD_CHEST_LOCATION, TRAPPED_DIAMOND_CHEST_LOCATION, TRAPPED_COPPER_CHEST_LOCATION, TRAPPED_CRYSTAL_CHEST_LOCATION, TRAPPED_OBSIDIAN_CHEST_LOCATION, TRAPPED_DIRT_CHEST_LOCATION, TRAPPED_VANILLA_CHEST_LOCATION);
+    } else {
+      return getResourceLocation(type, IRON_CHEST_LOCATION, GOLD_CHEST_LOCATION, DIAMOND_CHEST_LOCATION, COPPER_CHEST_LOCATION, CRYSTAL_CHEST_LOCATION, OBSIDIAN_CHEST_LOCATION, DIRT_CHEST_LOCATION, VANILLA_CHEST_LOCATION);
+    }
+  }
+
+  @NotNull
+  private static ResourceLocation getResourceLocation(IronChestsTypes type, ResourceLocation ironChestLocation, ResourceLocation goldChestLocation, ResourceLocation diamondChestLocation, ResourceLocation copperChestLocation, ResourceLocation crystalChestLocation, ResourceLocation obsidianChestLocation, ResourceLocation dirtChestLocation, ResourceLocation vanillaChestLocation) {
+    return switch (type) {
+      case IRON -> ironChestLocation;
+      case GOLD -> goldChestLocation;
+      case DIAMOND -> diamondChestLocation;
+      case COPPER -> copperChestLocation;
+      case CRYSTAL -> crystalChestLocation;
+      case OBSIDIAN -> obsidianChestLocation;
+      case DIRT -> dirtChestLocation;
+      default -> vanillaChestLocation;
+    };
   }
 }

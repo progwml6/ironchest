@@ -5,6 +5,13 @@ import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.functions.CopyNameFunction;
+import net.minecraft.world.level.storage.loot.functions.CopyNbtFunction;
+import net.minecraft.world.level.storage.loot.providers.nbt.ContextNbtProvider;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.Set;
@@ -25,7 +32,7 @@ public class IronChestsBlockLoot extends BlockLootSubProvider {
     this.add(IronChestsBlocks.COPPER_CHEST.get(), this::createNameableBlockEntityTable);
     this.add(IronChestsBlocks.CRYSTAL_CHEST.get(), this::createNameableBlockEntityTable);
     this.add(IronChestsBlocks.OBSIDIAN_CHEST.get(), this::createNameableBlockEntityTable);
-    this.add(IronChestsBlocks.DIRT_CHEST.get(), this::createNameableBlockEntityTable);
+    this.add(IronChestsBlocks.DIRT_CHEST.get(), this::createDirtChestNameableBlockEntityTable);
 
     // Trapped Chests
     this.add(IronChestsBlocks.TRAPPED_IRON_CHEST.get(), this::createNameableBlockEntityTable);
@@ -34,7 +41,11 @@ public class IronChestsBlockLoot extends BlockLootSubProvider {
     this.add(IronChestsBlocks.TRAPPED_COPPER_CHEST.get(), this::createNameableBlockEntityTable);
     this.add(IronChestsBlocks.TRAPPED_CRYSTAL_CHEST.get(), this::createNameableBlockEntityTable);
     this.add(IronChestsBlocks.TRAPPED_OBSIDIAN_CHEST.get(), this::createNameableBlockEntityTable);
-    this.add(IronChestsBlocks.TRAPPED_DIRT_CHEST.get(), this::createNameableBlockEntityTable);
+    this.add(IronChestsBlocks.TRAPPED_DIRT_CHEST.get(), this::createDirtChestNameableBlockEntityTable);
+  }
+
+  protected LootTable.Builder createDirtChestNameableBlockEntityTable(Block p_252291_) {
+    return LootTable.lootTable().withPool(this.applyExplosionCondition(p_252291_, LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(p_252291_).apply(CopyNameFunction.copyName(CopyNameFunction.NameSource.BLOCK_ENTITY)).apply(CopyNbtFunction.copyData(ContextNbtProvider.BLOCK_ENTITY).copy("ChestPlacedAlready", "ChestPlacedAlready")))));
   }
 
   @Override

@@ -1,15 +1,15 @@
-// 1.19.3	2023-01-18T19:03:50.4829587	Loot Tables
+// 1.19.4	2023-06-18T18:29:45.7411425	Loot Tables
 a8e705f12f3415499fcb5eee1c1611f703e2c701 data/ironchest/loot_tables/blocks/copper_chest.json
 747e4ad5f996de023c95e05cd341a5e0b685f05a data/ironchest/loot_tables/blocks/crystal_chest.json
 a6abc343de87e4e2064142a303735e75ecf66739 data/ironchest/loot_tables/blocks/diamond_chest.json
-c6cebed9920716887b0ae3960e3f5a9edfb916c9 data/ironchest/loot_tables/blocks/dirt_chest.json
+d9730942f431d327bf964e73609871874bb6555f data/ironchest/loot_tables/blocks/dirt_chest.json
 7896a423f09d09b4966b84eb731887f3284ee237 data/ironchest/loot_tables/blocks/gold_chest.json
 2925f04420ee327ebd4f457c565c0b8fe79fef79 data/ironchest/loot_tables/blocks/iron_chest.json
 95f6c08a00c747a8d02994ccaae88d6ab5ca7bdc data/ironchest/loot_tables/blocks/obsidian_chest.json
 56e877a9cbf0627217e594adf80d88119d1e1a94 data/ironchest/loot_tables/blocks/trapped_copper_chest.json
 f573bef4c6b12c996df0a8a56a63aae7df4de5dc data/ironchest/loot_tables/blocks/trapped_crystal_chest.json
 4b7444f01db55213ea24304f29b8f511baf0c566 data/ironchest/loot_tables/blocks/trapped_diamond_chest.json
-5ed9c0d79a1eea166ec537fa345bf1b76ad2e5c1 data/ironchest/loot_tables/blocks/trapped_dirt_chest.json
+883be8be4f96264a6d47088feecfacb315f581da data/ironchest/loot_tables/blocks/trapped_dirt_chest.json
 e6ea17903d63225b9907f05d0ef04b1a45640116 data/ironchest/loot_tables/blocks/trapped_gold_chest.json
 afa615322ce19408067e61b5554b07aac97b5d84 data/ironchest/loot_tables/blocks/trapped_iron_chest.json
 b6d98a105c4123a5ff2d33db29e03e3085cf5ca4 data/ironchest/loot_tables/blocks/trapped_obsidian_chest.json
