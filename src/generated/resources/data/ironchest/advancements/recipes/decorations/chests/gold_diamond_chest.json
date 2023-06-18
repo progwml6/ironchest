@@ -28,5 +28,6 @@
     "recipes": [
       "ironchest:chests/gold_diamond_chest"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

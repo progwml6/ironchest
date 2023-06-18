@@ -5,21 +5,15 @@ import com.progwml6.ironchest.common.block.IronChestsBlocks;
 import com.progwml6.ironchest.common.block.IronChestsTypes;
 import com.progwml6.ironchest.common.block.entity.IronChestsBlockEntityTypes;
 import com.progwml6.ironchest.common.inventory.IronChestMenu;
-import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
-import net.minecraft.nbt.StringTag;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.state.BlockState;
 
 import javax.annotation.Nullable;
-import java.util.Objects;
 
 public class TrappedDirtChestBlockEntity extends AbstractTrappedIronChestBlockEntity {
 
@@ -49,7 +43,7 @@ public class TrappedDirtChestBlockEntity extends AbstractTrappedIronChestBlockEn
 
   @Override
   public void removeAdornments() {
-    if (!this.getItems().get(0).isEmpty() && this.getItems().get(0).sameItem(DIRT_CHEST_BOOK)) {
+    if (!this.getItems().get(0).isEmpty() && ItemStack.isSameItem(this.getItems().get(0), DIRT_CHEST_BOOK)) {
       this.getItems().set(0, ItemStack.EMPTY);
     }
   }

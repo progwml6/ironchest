@@ -43,7 +43,7 @@ public class DirtChestBlockEntity extends AbstractIronChestBlockEntity {
 
   @Override
   public void removeAdornments() {
-    if (!this.getItems().get(0).isEmpty() && this.getItems().get(0).sameItem(DIRT_CHEST_BOOK)) {
+    if (!this.getItems().get(0).isEmpty() && ItemStack.isSameItem(this.getItems().get(0), DIRT_CHEST_BOOK)) {
       this.getItems().set(0, ItemStack.EMPTY);
     }
   }

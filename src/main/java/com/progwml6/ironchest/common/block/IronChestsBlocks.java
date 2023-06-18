@@ -20,7 +20,7 @@ import com.progwml6.ironchest.common.item.IronChestsItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.registries.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -35,60 +35,60 @@ public class IronChestsBlocks {
   public static final DeferredRegister<Item> ITEMS = IronChestsItems.ITEMS;
 
   public static final RegistryObject<IronChestBlock> IRON_CHEST = register(
-    "iron_chest", () -> new IronChestBlock(Block.Properties.of(Material.METAL).strength(3.0F)),
+    "iron_chest", () -> new IronChestBlock(Block.Properties.of().mapColor(MapColor.METAL).strength(3.0F)),
     IronChestsTypes.IRON, false);
 
   public static final RegistryObject<GoldChestBlock> GOLD_CHEST = register(
-    "gold_chest", () -> new GoldChestBlock(Block.Properties.of(Material.METAL).strength(3.0F)),
+    "gold_chest", () -> new GoldChestBlock(Block.Properties.of().mapColor(MapColor.METAL).strength(3.0F)),
     IronChestsTypes.GOLD, false);
 
   public static final RegistryObject<DiamondChestBlock> DIAMOND_CHEST = register(
-    "diamond_chest", () -> new DiamondChestBlock(Block.Properties.of(Material.METAL).strength(3.0F)),
+    "diamond_chest", () -> new DiamondChestBlock(Block.Properties.of().mapColor(MapColor.METAL).strength(3.0F)),
     IronChestsTypes.DIAMOND, false);
 
   public static final RegistryObject<CopperChestBlock> COPPER_CHEST = register(
-    "copper_chest", () -> new CopperChestBlock(Block.Properties.of(Material.METAL).strength(3.0F)),
+    "copper_chest", () -> new CopperChestBlock(Block.Properties.of().mapColor(MapColor.METAL).strength(3.0F)),
     IronChestsTypes.COPPER, false);
 
   public static final RegistryObject<CrystalChestBlock> CRYSTAL_CHEST = register(
-    "crystal_chest", () -> new CrystalChestBlock(Block.Properties.of(Material.METAL).strength(3.0F)),
+    "crystal_chest", () -> new CrystalChestBlock(Block.Properties.of().mapColor(MapColor.METAL).strength(3.0F)),
     IronChestsTypes.CRYSTAL, false);
 
   public static final RegistryObject<ObsidianChestBlock> OBSIDIAN_CHEST = register(
-    "obsidian_chest", () -> new ObsidianChestBlock(Block.Properties.of(Material.METAL).strength(3.0F)),
+    "obsidian_chest", () -> new ObsidianChestBlock(Block.Properties.of().mapColor(MapColor.METAL).strength(3.0F)),
     IronChestsTypes.OBSIDIAN, false);
 
   public static final RegistryObject<DirtChestBlock> DIRT_CHEST = register(
-    "dirt_chest", () -> new DirtChestBlock(Block.Properties.of(Material.METAL).strength(3.0F)),
+    "dirt_chest", () -> new DirtChestBlock(Block.Properties.of().mapColor(MapColor.METAL).strength(3.0F)),
     IronChestsTypes.DIRT, false);
 
   // Trapped Chests
   public static final RegistryObject<TrappedIronChestBlock> TRAPPED_IRON_CHEST = register(
-    "trapped_iron_chest", () -> new TrappedIronChestBlock(Block.Properties.of(Material.METAL).strength(3.0F)),
+    "trapped_iron_chest", () -> new TrappedIronChestBlock(Block.Properties.of().mapColor(MapColor.METAL).strength(3.0F)),
     IronChestsTypes.IRON, true);
 
   public static final RegistryObject<TrappedGoldChestBlock> TRAPPED_GOLD_CHEST = register(
-    "trapped_gold_chest", () -> new TrappedGoldChestBlock(Block.Properties.of(Material.METAL).strength(3.0F)),
+    "trapped_gold_chest", () -> new TrappedGoldChestBlock(Block.Properties.of().mapColor(MapColor.METAL).strength(3.0F)),
     IronChestsTypes.GOLD, true);
 
   public static final RegistryObject<TrappedDiamondChestBlock> TRAPPED_DIAMOND_CHEST = register(
-    "trapped_diamond_chest", () -> new TrappedDiamondChestBlock(Block.Properties.of(Material.METAL).strength(3.0F)),
+    "trapped_diamond_chest", () -> new TrappedDiamondChestBlock(Block.Properties.of().mapColor(MapColor.METAL).strength(3.0F)),
     IronChestsTypes.DIAMOND, true);
 
   public static final RegistryObject<TrappedCopperChestBlock> TRAPPED_COPPER_CHEST = register(
-    "trapped_copper_chest", () -> new TrappedCopperChestBlock(Block.Properties.of(Material.METAL).strength(3.0F)),
+    "trapped_copper_chest", () -> new TrappedCopperChestBlock(Block.Properties.of().mapColor(MapColor.METAL).strength(3.0F)),
     IronChestsTypes.COPPER, true);
 
   public static final RegistryObject<TrappedCrystalChestBlock> TRAPPED_CRYSTAL_CHEST = register(
-    "trapped_crystal_chest", () -> new TrappedCrystalChestBlock(Block.Properties.of(Material.METAL).strength(3.0F)),
+    "trapped_crystal_chest", () -> new TrappedCrystalChestBlock(Block.Properties.of().mapColor(MapColor.METAL).strength(3.0F)),
     IronChestsTypes.CRYSTAL, true);
 
   public static final RegistryObject<TrappedObsidianChestBlock> TRAPPED_OBSIDIAN_CHEST = register(
-    "trapped_obsidian_chest", () -> new TrappedObsidianChestBlock(Block.Properties.of(Material.METAL).strength(3.0F)),
+    "trapped_obsidian_chest", () -> new TrappedObsidianChestBlock(Block.Properties.of().mapColor(MapColor.METAL).strength(3.0F)),
     IronChestsTypes.OBSIDIAN, true);
 
   public static final RegistryObject<TrappedDirtChestBlock> TRAPPED_DIRT_CHEST = register(
-    "trapped_dirt_chest", () -> new TrappedDirtChestBlock(Block.Properties.of(Material.METAL).strength(3.0F)),
+    "trapped_dirt_chest", () -> new TrappedDirtChestBlock(Block.Properties.of().mapColor(MapColor.METAL).strength(3.0F)),
     IronChestsTypes.DIRT, true);
 
   //HELPERS

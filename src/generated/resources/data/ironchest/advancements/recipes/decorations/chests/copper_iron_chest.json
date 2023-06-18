@@ -28,5 +28,6 @@
     "recipes": [
       "ironchest:chests/copper_iron_chest"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

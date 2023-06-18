@@ -74,7 +74,7 @@ public interface ICrystalChest {
         for (int j = 0; j < compressedIdx; j++) {
           ItemStack tempCopyStack = tempCopy.get(j);
 
-          if (ItemStack.isSame(tempCopyStack, itemStack)) {
+          if (ItemStack.isSameItemSameTags(tempCopyStack, itemStack)) {
             if (itemStack.getCount() != tempCopyStack.getCount()) {
               tempCopyStack.grow(itemStack.getCount());
             }
@@ -149,6 +149,6 @@ public interface ICrystalChest {
   NonNullList<ItemStack> getCurrentItems();
 
   void setHadStuff(boolean hadStuff);
-  
+
   boolean getHadStuff();
 }

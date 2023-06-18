@@ -30,5 +30,6 @@
     "recipes": [
       "ironchest:chests/vanilla_dirt_chest"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

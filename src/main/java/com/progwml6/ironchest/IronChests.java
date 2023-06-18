@@ -4,6 +4,7 @@ import com.progwml6.ironchest.client.render.IronChestRenderer;
 import com.progwml6.ironchest.client.screen.IronChestScreen;
 import com.progwml6.ironchest.common.block.IronChestsBlocks;
 import com.progwml6.ironchest.common.block.entity.IronChestsBlockEntityTypes;
+import com.progwml6.ironchest.common.creativetabs.IronChestsCreativeTabs;
 import com.progwml6.ironchest.common.data.IronChestsBlockTags;
 import com.progwml6.ironchest.common.data.IronChestsLanguageProvider;
 import com.progwml6.ironchest.common.data.IronChestsRecipeProvider;
@@ -17,22 +18,16 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
-import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
-import net.minecraftforge.event.CreativeModeTabEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.RegistryObject;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -60,8 +55,7 @@ public class IronChests {
     IronChestsItems.ITEMS.register(modBus);
     IronChestsBlockEntityTypes.BLOCK_ENTITIES.register(modBus);
     IronChestsContainerTypes.CONTAINERS.register(modBus);
-
-    modBus.addListener(this::registerCreativeModeTabs);
+    IronChestsCreativeTabs.CREATIVE_MODE_TABS.register(modBus);
   }
 
   @OnlyIn(Dist.CLIENT)
@@ -107,15 +101,5 @@ public class IronChests {
     gen.addProvider(event.includeClient(), new IronChestsBlockTags(packOutput, lookupProvider, ext));
     gen.addProvider(event.includeClient(), new IronChestsSpriteSourceProvider(packOutput, ext));
     gen.addProvider(event.includeClient(), new IronChestsLanguageProvider(packOutput, "en_us"));
-  }
-
-  public void registerCreativeModeTabs(final CreativeModeTabEvent.Register eventIn) {
-    eventIn.registerCreativeModeTab(new ResourceLocation(IronChests.MOD_ID, IronChests.MOD_ID), builder -> builder
-      .title(Component.translatable("itemGroup." + IronChests.MOD_ID))
-      .icon(() -> new ItemStack(IronChestsBlocks.IRON_CHEST.get()))
-      .displayItems((featureFlagSet, output) -> {
-        for (final RegistryObject<Item> item : IronChestsItems.ITEMS.getEntries())
-          output.accept(item.get());
-      }));
   }
 }

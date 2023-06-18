@@ -30,5 +30,6 @@
     "recipes": [
       "ironchest:chests/trapped_copper_chest"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }
