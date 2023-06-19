@@ -21,12 +21,12 @@
   "item.ironchest.diamond_to_obsidian_chest_upgrade": "Amélioration Diamant à Obsidienne",
 
   "_comment": "Books",
-  "book.ironchest.dirtchest9000.title": "Comment utiliser votre DirtChest 9000!",
-  "book.ironchest.dirtchest9000.page1": "Découvrez votre nouveau DirtChest 9000! Nous espérons que vous allez aprécier de nombreuse années de stockage de terre dans notre coffre",
-  "book.ironchest.dirtchest9000.page2": "Utilisation: Inserrez simplement votre terre dans le slot prévu à cet effet et profitez de la simplicité de l'avoir à portée de main dés que vous passez près du coffre!",
-  "book.ironchest.dirtchest9000.page3": "Nous espérons que ce guide vous aura été utile et que vous continuerez d'utilisez nos produits à l'avenir! Cordialement, la rédaction des manuels DirtChest 9000.",
-  "book.ironchest.dirtchest9000.page4": "Garantie: Ce produit n'est sous aucune garantie d'aucune sorte. Votre terre ne rentrera peut être pas, elle s'infiltrera peut être lentement dans l'environement ou il ne se passera peut être rien du tout.",
-  "book.ironchest.dirtchest9000.page5": "Le DirtChest 9000 est bon pour la planette. Merci de vous débarasser de ce guide responsablement et de ne pas le jeter dans la lave, ça nous rendrait triste.",
+  "ironchest.book.dirtchest9000": "Comment utiliser votre DirtChest 9000!",
+  "ironchest.book.dirtchest9000.1": "Découvrez votre nouveau DirtChest 9000! Nous espérons que vous allez aprécier de nombreuse années de stockage de terre dans notre coffre",
+  "ironchest.book.dirtchest9000.2": "Utilisation: Inserrez simplement votre terre dans le slot prévu à cet effet et profitez de la simplicité de l'avoir à portée de main dés que vous passez près du coffre!",
+  "ironchest.book.dirtchest9000.3": "Nous espérons que ce guide vous aura été utile et que vous continuerez d'utilisez nos produits à l'avenir! Cordialement, la rédaction des manuels DirtChest 9000.",
+  "ironchest.book.dirtchest9000.4": "Garantie: Ce produit n'est sous aucune garantie d'aucune sorte. Votre terre ne rentrera peut être pas, elle s'infiltrera peut être lentement dans l'environement ou il ne se passera peut être rien du tout.",
+  "ironchest.book.dirtchest9000.5": "Le DirtChest 9000 est bon pour la planette. Merci de vous débarasser de ce guide responsablement et de ne pas le jeter dans la lave, ça nous rendrait triste.",
 
   "_comment": "Containers",
   "ironchest.container.iron_chest": "Coffre en fer",

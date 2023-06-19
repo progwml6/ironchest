@@ -21,12 +21,12 @@
   "item.ironchest.diamond_to_obsidian_chest_upgrade": "Mejora de cofre de diamante a obsidiana",
 
   "_comment": "Books",
-  "book.ironchest.dirtchest9000.title": "¡Cómo usar su CofreTierra 9000!",
-  "book.ironchest.dirtchest9000.page1": "¡Le damos la bienvenida a su nuevo CofreTierra 9000! Esperamos que disfrute de muchos años preservando sus montones de tierra en nuestra gran utilidad de almacenamiento.",
-  "book.ironchest.dirtchest9000.page2": "Modo de uso: simplemente introduzca el stack de tierra a su elección en el espacio altamente receptivo, y disfrute de la maravillosa comodidad de tener tierra disponible siempre que pase cerca del cofre",
-  "book.ironchest.dirtchest9000.page3": "¡Esperamos que haya disfrutado de la lectura de este manual de instrucciones, y que considere usar nuestros productos en el futuro! Saludos cordiales, los escritores del manual del CofreTierra 9000 y asociados.",
-  "book.ironchest.dirtchest9000.page4": "Garantía: Este producto no tiene ningún tipo de garantía. Es posible que su tierra no se preserve o que se fitre lentamente en el entorno. Alternativamente, puede que no pase nada en lo absoluto.",
-  "book.ironchest.dirtchest9000.page5": "CofreTierra 9000 es amigable con el ambiente. Por favor deshagase de esta guía de forma responsable y, ante todo, no lo tire en la lava. Nos pondría muy trsites.",
+  "ironchest.book.dirtchest9000": "¡Cómo usar su CofreTierra 9000!",
+  "ironchest.book.dirtchest9000.1": "¡Le damos la bienvenida a su nuevo CofreTierra 9000! Esperamos que disfrute de muchos años preservando sus montones de tierra en nuestra gran utilidad de almacenamiento.",
+  "ironchest.book.dirtchest9000.2": "Modo de uso: simplemente introduzca el stack de tierra a su elección en el espacio altamente receptivo, y disfrute de la maravillosa comodidad de tener tierra disponible siempre que pase cerca del cofre",
+  "ironchest.book.dirtchest9000.3": "¡Esperamos que haya disfrutado de la lectura de este manual de instrucciones, y que considere usar nuestros productos en el futuro! Saludos cordiales, los escritores del manual del CofreTierra 9000 y asociados.",
+  "ironchest.book.dirtchest9000.4": "Garantía: Este producto no tiene ningún tipo de garantía. Es posible que su tierra no se preserve o que se fitre lentamente en el entorno. Alternativamente, puede que no pase nada en lo absoluto.",
+  "ironchest.book.dirtchest9000.5": "CofreTierra 9000 es amigable con el ambiente. Por favor deshagase de esta guía de forma responsable y, ante todo, no lo tire en la lava. Nos pondría muy trsites.",
 
   "_comment": "Containers",
   "ironchest.container.iron_chest": "Cofre de hierro",

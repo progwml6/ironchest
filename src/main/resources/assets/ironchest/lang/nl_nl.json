@@ -30,12 +30,12 @@
   "item.ironchest.diamond_to_obsidian_chest_upgrade": "Kistverbeteraar (diamant naar obsidiaan)",
 
   "_comment": "Books",
-  "book.ironchest.dirtchest9000.title": "Zo gebruikt u uw DirtChest 9000!",
-  "book.ironchest.dirtchest9000.page1": "Welkom bij uw nieuwe DirtChest 9000! Wij hopen dat u jarenlang plezier zult hebben bij het opslaan van uw stapel aarde.",
-  "book.ironchest.dirtchest9000.page2": "Gebruiksaanwijzing: Leg gewoon een stapel aarde naar keuze in het zeer receptieve vakje en ervaar elke keer dat u langs deze kist loopt het gemak van direct bij uw aarde kunnen.",
-  "book.ironchest.dirtchest9000.page3": "We hopen dat deze gebruiksaanwijzing u een prettige leeservaring heeft geboden, en dat u in de toekomst nogmaals onze producten zult overwegen! Met vriendelijke groet, De DirtChest 9000 Gebruiksaanwijzingsschrijvers B.V.",
-  "book.ironchest.dirtchest9000.page4": "Garantie: Wij kunnen geen garantie bieden voor dit product. Het kan zijn dat het product uw aarde niet opslaat, dat de aarde langzaam uit het product sijpelt, of dat het product helemaal niet functioneert.",
-  "book.ironchest.dirtchest9000.page5": "DirtChest 9000 is ontworpen voor milieuvriendelijkheid. Ga op een verantwoordelijke manier om met de handleiding als deze niet meer gelezen wordt, en gooi hem niet gewoon in de lava. Dan worden we heel verdrietig.",
+  "ironchest.book.dirtchest9000": "Zo gebruikt u uw DirtChest 9000!",
+  "ironchest.book.dirtchest9000.1": "Welkom bij uw nieuwe DirtChest 9000! Wij hopen dat u jarenlang plezier zult hebben bij het opslaan van uw stapel aarde.",
+  "ironchest.book.dirtchest9000.2": "Gebruiksaanwijzing: Leg gewoon een stapel aarde naar keuze in het zeer receptieve vakje en ervaar elke keer dat u langs deze kist loopt het gemak van direct bij uw aarde kunnen.",
+  "ironchest.book.dirtchest9000.3": "We hopen dat deze gebruiksaanwijzing u een prettige leeservaring heeft geboden, en dat u in de toekomst nogmaals onze producten zult overwegen! Met vriendelijke groet, De DirtChest 9000 Gebruiksaanwijzingsschrijvers B.V.",
+  "ironchest.book.dirtchest9000.4": "Garantie: Wij kunnen geen garantie bieden voor dit product. Het kan zijn dat het product uw aarde niet opslaat, dat de aarde langzaam uit het product sijpelt, of dat het product helemaal niet functioneert.",
+  "ironchest.book.dirtchest9000.5": "DirtChest 9000 is ontworpen voor milieuvriendelijkheid. Ga op een verantwoordelijke manier om met de handleiding als deze niet meer gelezen wordt, en gooi hem niet gewoon in de lava. Dan worden we heel verdrietig.",
 
   "_comment": "Containers",
   "ironchest.container.iron_chest": "IJzeren kist",

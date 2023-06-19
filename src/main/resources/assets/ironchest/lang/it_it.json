@@ -21,12 +21,12 @@
   "item.ironchest.diamond_to_obsidian_chest_upgrade": "Miglioramento da Baule di Diamante a Baule di Ossidiana",
 
   "_comment": "Libri",
-  "book.ironchest.dirtchest9000.title": "Come usare il tuo Baulediterra 9000!",
-  "book.ironchest.dirtchest9000.page1": "Benvenuto al tuo nuovo Baulediterra 9000! Ci auguriamo che ti godrai molti anni felici immagazzinando la tua pila di terra nella nostra utilità di archiviazione.",
-  "book.ironchest.dirtchest9000.page2": "Utilizzo: inserisci semplicemente la pila di terra a tua scelta nello slot altamente ricettivo e goditi la grande comodità di avere quella terra a tua disposizione, ogni volta che passi davanti a questa cassa!",
-  "book.ironchest.dirtchest9000.page3": "Ci auguriamo che abbiate apprezzato la lettura di questo manuale di istruzioni e speriamo che prendiate in considerazione l'utilizzo dei nostri prodotti in futuro! Cordiali saluti, gli scrittori del manuale del Baulediterra 9000 inc. .",
-  "book.ironchest.dirtchest9000.page4": "Garanzia: Questo prodotto non ha garanzie di alcun tipo. La tua terra potrebbe non essere immagazzinata, potrebbe lentamente riversarsi nell'ambiente o, in alternativa, potrebbe non fare nulla.",
-  "book.ironchest.dirtchest9000.page5": "Baulediterra 9000 rispetta l'ambiente. Per favore, smaltisci questa guida in modo responsabile, e non fare ciò che faresti, ossia buttala nella lava. Saremmo molto tristi.",
+  "ironchest.book.dirtchest9000": "Come usare il tuo Baulediterra 9000!",
+  "ironchest.book.dirtchest9000.1": "Benvenuto al tuo nuovo Baulediterra 9000! Ci auguriamo che ti godrai molti anni felici immagazzinando la tua pila di terra nella nostra utilità di archiviazione.",
+  "ironchest.book.dirtchest9000.2": "Utilizzo: inserisci semplicemente la pila di terra a tua scelta nello slot altamente ricettivo e goditi la grande comodità di avere quella terra a tua disposizione, ogni volta che passi davanti a questa cassa!",
+  "ironchest.book.dirtchest9000.3": "Ci auguriamo che abbiate apprezzato la lettura di questo manuale di istruzioni e speriamo che prendiate in considerazione l'utilizzo dei nostri prodotti in futuro! Cordiali saluti, gli scrittori del manuale del Baulediterra 9000 inc. .",
+  "ironchest.book.dirtchest9000.4": "Garanzia: Questo prodotto non ha garanzie di alcun tipo. La tua terra potrebbe non essere immagazzinata, potrebbe lentamente riversarsi nell'ambiente o, in alternativa, potrebbe non fare nulla.",
+  "ironchest.book.dirtchest9000.5": "Baulediterra 9000 rispetta l'ambiente. Per favore, smaltisci questa guida in modo responsabile, e non fare ciò che faresti, ossia buttala nella lava. Saremmo molto tristi.",
 
   "_comment": "Recipienti",
   "ironchest.container.iron_chest": "Baule di Ferro",

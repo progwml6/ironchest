@@ -28,12 +28,12 @@
   "item.ironchest.diamond_to_obsidian_chest_upgrade": "Melhoria de Baú de Diamante para Obsidiana",
 
   "_comment": "Livros",
-  "book.ironchest.dirtchest9000.title": "Como usar seu BaúDeTerra 9000!",
-  "book.ironchest.dirtchest9000.page1": "Bem-vindo ao seu novo BaúDeTerra 9000! Esperamos que você aproveite muitos anos felizes guardando sua pilha de sujeira em nosso utilitário de armazenamento.",
-  "book.ironchest.dirtchest9000.page2": "Uso: basta inserir a pilha de sujeira de sua escolha no slot altamente receptivo e aproveitar a grande comodidade de ter essa sujeira disponível para você, a qualquer momento que você passar por este baú!",
-  "book.ironchest.dirtchest9000.page3": "Esperamos que tenha gostado de ler este manual de instruções e que considere a possibilidade de usar nossos produtos no futuro! Atenciosamente, Os escritores do manual BaúDeTerra 9000 incorporados.",
-  "book.ironchest.dirtchest9000.page4": "Garantia: Este produto não tem qualquer tipo de garantia. Sua sujeira pode não ser armazenada, pode se infiltrar lentamente no ambiente ou, alternativamente, pode não fazer nada.",
-  "book.ironchest.dirtchest9000.page5": "O BaúDeTerra 9000 é amigo do ambiente. Por favor, descarte este guia com responsabilidade e não faça o que fizer, apenas jogue-o na lava. Ficaríamos muito tristes.",
+  "ironchest.book.dirtchest9000": "Como usar seu BaúDeTerra 9000!",
+  "ironchest.book.dirtchest9000.1": "Bem-vindo ao seu novo BaúDeTerra 9000! Esperamos que você aproveite muitos anos felizes guardando sua pilha de sujeira em nosso utilitário de armazenamento.",
+  "ironchest.book.dirtchest9000.2": "Uso: basta inserir a pilha de sujeira de sua escolha no slot altamente receptivo e aproveitar a grande comodidade de ter essa sujeira disponível para você, a qualquer momento que você passar por este baú!",
+  "ironchest.book.dirtchest9000.3": "Esperamos que tenha gostado de ler este manual de instruções e que considere a possibilidade de usar nossos produtos no futuro! Atenciosamente, Os escritores do manual BaúDeTerra 9000 incorporados.",
+  "ironchest.book.dirtchest9000.4": "Garantia: Este produto não tem qualquer tipo de garantia. Sua sujeira pode não ser armazenada, pode se infiltrar lentamente no ambiente ou, alternativamente, pode não fazer nada.",
+  "ironchest.book.dirtchest9000.5": "O BaúDeTerra 9000 é amigo do ambiente. Por favor, descarte este guia com responsabilidade e não faça o que fizer, apenas jogue-o na lava. Ficaríamos muito tristes.",
 
   "_comment": "Inventários",
   "ironchest.container.iron_chest": "Baú de Ferro",

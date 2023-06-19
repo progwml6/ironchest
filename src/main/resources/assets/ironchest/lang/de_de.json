@@ -21,12 +21,12 @@
   "item.ironchest.diamond_to_obsidian_chest_upgrade": "Upgrade: Diamant zu Obsidiantruhe",
 
   "_comment": "Books",
-  "book.ironchest.dirtchest9000.title": "Bedienungsanleitung für ihre ErdTruhe 9000!",
-  "book.ironchest.dirtchest9000.page1": "Vielen Dank, dass sie sich für eine neue ErdTruhe 9000 entschieden haben. Wir hoffen, dass sie für Jahre Freude daran haben werden, ihre Erde in dieser Truhe zu lagern.",
-  "book.ironchest.dirtchest9000.page2": "Benutzung: füllen sie einfach einen Stack Erde nach Wahl in den äußerst aufnahmefähigen Slot ein und erfreuen sie sich jedes Mal, wenn sie an dieser Truhe vorbeilaufen, an der Bequemlichkeit, diese Erde jederzeit verfügbar zu haben.",
-  "book.ironchest.dirtchest9000.page3": "Wir hoffen, dass ihnen diese Bedienungsanleitung gefallen hat und dass sie sich auch in Zukunft für unsere Produkte entscheiden werden! Mit freundlichen Grüßen, ihre ErdTruhe 9000 GmbH & Co. KG",
-  "book.ironchest.dirtchest9000.page4": "Garantiebestimmungen: Wir übernehmen keine Gewährleistung für dieses Produkt. Ihre Erde könnte zufällig verschwinden, langsam auf den Boden rieseln oder auch überhaupt nicht gespeichert werden.",
-  "book.ironchest.dirtchest9000.page5": "DirtChest 9000 achtet die Umwelt. Bitte entsorgen sie diese Bedienungsanleitung fachgerecht und werfen sie sie nicht einfach in Lava. Wir wären sehr traurig.",
+  "ironchest.book.dirtchest9000": "Bedienungsanleitung für ihre ErdTruhe 9000!",
+  "ironchest.book.dirtchest9000.1": "Vielen Dank, dass sie sich für eine neue ErdTruhe 9000 entschieden haben. Wir hoffen, dass sie für Jahre Freude daran haben werden, ihre Erde in dieser Truhe zu lagern.",
+  "ironchest.book.dirtchest9000.2": "Benutzung: füllen sie einfach einen Stack Erde nach Wahl in den äußerst aufnahmefähigen Slot ein und erfreuen sie sich jedes Mal, wenn sie an dieser Truhe vorbeilaufen, an der Bequemlichkeit, diese Erde jederzeit verfügbar zu haben.",
+  "ironchest.book.dirtchest9000.3": "Wir hoffen, dass ihnen diese Bedienungsanleitung gefallen hat und dass sie sich auch in Zukunft für unsere Produkte entscheiden werden! Mit freundlichen Grüßen, ihre ErdTruhe 9000 GmbH & Co. KG",
+  "ironchest.book.dirtchest9000.4": "Garantiebestimmungen: Wir übernehmen keine Gewährleistung für dieses Produkt. Ihre Erde könnte zufällig verschwinden, langsam auf den Boden rieseln oder auch überhaupt nicht gespeichert werden.",
+  "ironchest.book.dirtchest9000.5": "DirtChest 9000 achtet die Umwelt. Bitte entsorgen sie diese Bedienungsanleitung fachgerecht und werfen sie sie nicht einfach in Lava. Wir wären sehr traurig.",
 
   "_comment": "Containers",
   "ironchest.container.iron_chest": "Eisentruhe",
