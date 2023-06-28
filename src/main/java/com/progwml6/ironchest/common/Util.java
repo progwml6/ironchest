@@ -1,7 +1,6 @@
 package com.progwml6.ironchest.common;
 
 import com.progwml6.ironchest.IronChests;
-import net.minecraft.client.resources.language.I18n;
 import net.minecraft.nbt.IntTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.StringTag;
@@ -39,7 +38,7 @@ public class Util {
     book.addTagElement("pages", bookPages);
     book.addTagElement("generation", IntTag.valueOf(3));
     book.addTagElement("author", StringTag.valueOf(BOOK_AUTHOR));
-    book.addTagElement("title", StringTag.valueOf(I18n.get(IronChests.MOD_ID + ".book." + key)));
+    book.addTagElement("title", StringTag.valueOf("How to use your DirtChest 9000!"));
   }
 
   public static void addTranslatedPages(ListTag bookPages, String translationKey, int pageCount) {
