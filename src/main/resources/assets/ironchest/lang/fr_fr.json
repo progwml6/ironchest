@@ -4,10 +4,17 @@
   "block.ironchest.gold_chest": "Coffre en or",
   "block.ironchest.diamond_chest": "Coffre en diamant",
   "block.ironchest.copper_chest": "Coffre en cuivre",
-  "block.ironchest.silver_chest": "Coffre en argent",
   "block.ironchest.crystal_chest": "Coffre de cristal",
   "block.ironchest.obsidian_chest": "Coffre en obsidienne",
   "block.ironchest.dirt_chest": "DirtChest 9000!",
+
+  "block.ironchest.trapped_iron_chest": "Coffre de fer piégé",
+  "block.ironchest.trapped_gold_chest": "Coffre en or piégé",
+  "block.ironchest.trapped_diamond_chest": "Coffre de diamant piégé",
+  "block.ironchest.trapped_copper_chest": "Coffre en cuivre piégé",
+  "block.ironchest.trapped_crystal_chest": "Coffre de cristal piégé",
+  "block.ironchest.trapped_obsidian_chest": "Poitrine d’obsidienne piégée",
+  "block.ironchest.trapped_dirt_chest": "Piégé DirtChest 9000!",
 
   "_comment": "Upgrades",
   "item.ironchest.iron_to_gold_chest_upgrade": "Amélioration Fer à Or",
