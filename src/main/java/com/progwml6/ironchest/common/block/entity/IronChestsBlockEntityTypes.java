@@ -16,7 +16,6 @@ import com.progwml6.ironchest.common.block.trapped.entity.TrappedDirtChestBlockE
 import com.progwml6.ironchest.common.block.trapped.entity.TrappedGoldChestBlockEntity;
 import com.progwml6.ironchest.common.block.trapped.entity.TrappedIronChestBlockEntity;
 import com.progwml6.ironchest.common.block.trapped.entity.TrappedObsidianChestBlockEntity;
-
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -25,6 +24,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class IronChestsBlockEntityTypes {
+
   public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, IronChests.MOD_ID);
 
   public static final RegistryObject<BlockEntityType<IronChestBlockEntity>> IRON_CHEST = BLOCK_ENTITIES.register(

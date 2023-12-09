@@ -3,9 +3,9 @@ package com.progwml6.ironchest.common.inventory;
 import com.progwml6.ironchest.IronChests;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.inventory.MenuType;
-import net.minecraftforge.registries.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 public class IronChestsContainerTypes {
 

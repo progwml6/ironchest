@@ -1,8 +1,8 @@
 package com.progwml6.ironchest.common.block.regular.entity;
 
 import com.progwml6.ironchest.IronChests;
-import com.progwml6.ironchest.common.block.regular.AbstractIronChestBlock;
 import com.progwml6.ironchest.common.block.IronChestsTypes;
+import com.progwml6.ironchest.common.block.regular.AbstractIronChestBlock;
 import com.progwml6.ironchest.common.inventory.IronChestMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;

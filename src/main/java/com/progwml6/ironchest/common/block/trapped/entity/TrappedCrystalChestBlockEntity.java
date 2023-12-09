@@ -2,9 +2,9 @@ package com.progwml6.ironchest.common.block.trapped.entity;
 
 import com.progwml6.ironchest.common.block.IronChestsBlocks;
 import com.progwml6.ironchest.common.block.IronChestsTypes;
-import com.progwml6.ironchest.common.block.regular.entity.AbstractIronChestBlockEntity;
 import com.progwml6.ironchest.common.block.entity.ICrystalChest;
 import com.progwml6.ironchest.common.block.entity.IronChestsBlockEntityTypes;
+import com.progwml6.ironchest.common.block.regular.entity.AbstractIronChestBlockEntity;
 import com.progwml6.ironchest.common.inventory.IronChestMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;

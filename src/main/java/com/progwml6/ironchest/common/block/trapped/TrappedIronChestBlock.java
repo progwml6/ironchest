@@ -1,8 +1,6 @@
 package com.progwml6.ironchest.common.block.trapped;
 
-import com.progwml6.ironchest.common.block.regular.AbstractIronChestBlock;
 import com.progwml6.ironchest.common.block.IronChestsTypes;
-import com.progwml6.ironchest.common.block.regular.entity.IronChestBlockEntity;
 import com.progwml6.ironchest.common.block.entity.IronChestsBlockEntityTypes;
 import com.progwml6.ironchest.common.block.trapped.entity.TrappedIronChestBlockEntity;
 import net.minecraft.core.BlockPos;

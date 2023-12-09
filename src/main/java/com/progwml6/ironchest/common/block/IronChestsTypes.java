@@ -17,10 +17,10 @@ import com.progwml6.ironchest.common.block.trapped.entity.TrappedGoldChestBlockE
 import com.progwml6.ironchest.common.block.trapped.entity.TrappedIronChestBlockEntity;
 import com.progwml6.ironchest.common.block.trapped.entity.TrappedObsidianChestBlockEntity;
 import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.util.StringRepresentable;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.state.BlockState;
 
 import javax.annotation.Nullable;
@@ -99,7 +99,7 @@ public enum IronChestsTypes implements StringRepresentable {
 
   @Nullable
   public AbstractIronChestBlockEntity makeEntity(BlockPos blockPos, BlockState blockState, boolean trapped) {
-    if(trapped) {
+    if (trapped) {
       return switch (this) {
         case IRON -> new TrappedIronChestBlockEntity(blockPos, blockState);
         case GOLD -> new TrappedGoldChestBlockEntity(blockPos, blockState);

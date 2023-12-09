@@ -1,15 +1,19 @@
 package com.progwml6.ironchest.client.model.inventory;
 
 import org.joml.Vector3f;
-import org.joml.Vector3fc;
 
 public class ModelItem {
+
   private final Vector3f center;
   private final float size;
 
-  /** Item center location in percentages, lazy loaded */
+  /**
+   * Item center location in percentages, lazy loaded
+   */
   private Vector3f centerScaled;
-  /** Item size in percentages, lazy loaded */
+  /**
+   * Item size in percentages, lazy loaded
+   */
   private Float sizeScaled;
 
   public ModelItem(Vector3f center, float size) {
@@ -19,6 +23,7 @@ public class ModelItem {
 
   /**
    * Gets the center for rendering this item, scaled for renderer
+   *
    * @return Scaled center
    */
   public Vector3f getCenterScaled() {
@@ -32,6 +37,7 @@ public class ModelItem {
 
   /**
    * Gets the size to render this item, scaled for the renderer
+   *
    * @return Size scaled
    */
   public float getSizeScaled() {
@@ -44,6 +50,7 @@ public class ModelItem {
 
   /**
    * Gets the center for rendering this item
+   *
    * @return Center
    */
   public Vector3f getCenter() {
@@ -52,6 +59,7 @@ public class ModelItem {
 
   /**
    * Gets the size to render this item
+   *
    * @return Size
    */
   public float getSize() {

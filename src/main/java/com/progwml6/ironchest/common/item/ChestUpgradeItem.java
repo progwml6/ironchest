@@ -1,26 +1,26 @@
 package com.progwml6.ironchest.common.item;
 
 import com.progwml6.ironchest.common.block.IronChestsBlocks;
-import com.progwml6.ironchest.common.block.regular.AbstractIronChestBlock;
 import com.progwml6.ironchest.common.block.IronChestsTypes;
+import com.progwml6.ironchest.common.block.regular.AbstractIronChestBlock;
 import com.progwml6.ironchest.common.block.regular.entity.AbstractIronChestBlockEntity;
 import com.progwml6.ironchest.common.block.trapped.entity.AbstractTrappedIronChestBlockEntity;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.entity.TrappedChestBlockEntity;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.ChestBlock;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.NonNullList;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
-import net.minecraft.world.level.block.entity.ChestBlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.core.Direction;
-import net.minecraft.core.NonNullList;
-import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.ChestBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.ChestBlockEntity;
+import net.minecraft.world.level.block.entity.TrappedChestBlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class ChestUpgradeItem extends Item {
 
@@ -91,7 +91,7 @@ public class ChestUpgradeItem extends Item {
 
         boolean trapped = tileEntity instanceof AbstractTrappedIronChestBlockEntity;
 
-        if(trapped) {
+        if (trapped) {
           iBlockState = IronChestsTypes.get(this.type.target).get(1).defaultBlockState();
         } else {
           iBlockState = IronChestsTypes.get(this.type.target).get(0).defaultBlockState();
@@ -129,7 +129,7 @@ public class ChestUpgradeItem extends Item {
 
         boolean trapped = tileEntity instanceof TrappedChestBlockEntity;
 
-        if(trapped) {
+        if (trapped) {
           iBlockState = IronChestsTypes.get(this.type.target).get(1).defaultBlockState();
         } else {
           iBlockState = IronChestsTypes.get(this.type.target).get(0).defaultBlockState();
