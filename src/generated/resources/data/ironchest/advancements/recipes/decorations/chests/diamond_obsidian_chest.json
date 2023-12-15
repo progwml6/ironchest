@@ -30,6 +30,5 @@
     "recipes": [
       "ironchest:chests/diamond_obsidian_chest"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

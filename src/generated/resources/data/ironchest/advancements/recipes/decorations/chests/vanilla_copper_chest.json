@@ -28,6 +28,5 @@
     "recipes": [
       "ironchest:chests/vanilla_copper_chest"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

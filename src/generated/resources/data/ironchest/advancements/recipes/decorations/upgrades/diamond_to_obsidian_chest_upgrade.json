@@ -28,6 +28,5 @@
     "recipes": [
       "ironchest:upgrades/diamond_to_obsidian_chest_upgrade"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

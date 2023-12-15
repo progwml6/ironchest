@@ -30,6 +30,5 @@
     "recipes": [
       "ironchest:chests/trapped_dirt_chest"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

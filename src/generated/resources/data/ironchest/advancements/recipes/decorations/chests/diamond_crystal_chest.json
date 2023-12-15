@@ -28,6 +28,5 @@
     "recipes": [
       "ironchest:chests/diamond_crystal_chest"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

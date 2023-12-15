@@ -1,4 +1,4 @@
-// 1.20.2	2023-12-15T10:19:33.416824	Tags for minecraft:block mod id ironchest
+// 1.20.4	2023-12-15T11:45:03.930155	Tags for minecraft:block mod id ironchest
 d8f6b5a884da49100b8e712b5b6b542d20ae1073 data/minecraft/tags/blocks/features_cannot_replace.json
 9d9739e029d3448f4948a70f64e2ee83f71c7eea data/minecraft/tags/blocks/guarded_by_piglins.json
 9d9739e029d3448f4948a70f64e2ee83f71c7eea data/minecraft/tags/blocks/mineable/pickaxe.json

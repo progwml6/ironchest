@@ -28,6 +28,5 @@
     "recipes": [
       "ironchest:upgrades/wood_to_copper_chest_upgrade"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

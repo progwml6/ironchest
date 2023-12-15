@@ -28,6 +28,5 @@
     "recipes": [
       "ironchest:upgrades/diamond_to_crystal_chest_upgrade"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

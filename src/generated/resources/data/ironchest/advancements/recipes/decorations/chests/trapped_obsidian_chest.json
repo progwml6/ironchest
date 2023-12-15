@@ -30,6 +30,5 @@
     "recipes": [
       "ironchest:chests/trapped_obsidian_chest"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }
