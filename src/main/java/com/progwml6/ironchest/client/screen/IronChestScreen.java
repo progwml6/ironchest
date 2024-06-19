@@ -9,8 +9,8 @@ import net.minecraft.client.gui.screens.inventory.MenuAccess;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class IronChestScreen extends AbstractContainerScreen<IronChestMenu> implements MenuAccess<IronChestMenu> {
@@ -21,14 +21,14 @@ public class IronChestScreen extends AbstractContainerScreen<IronChestMenu> impl
 
   private final int textureYSize;
 
-  public IronChestScreen(IronChestMenu container, Inventory playerInventory, Component title) {
-    super(container, playerInventory, title);
+  public IronChestScreen(IronChestMenu ironChestMenu, Inventory playerInventory, Component title) {
+    super(ironChestMenu, playerInventory, title);
 
-    this.chestType = container.getChestType();
-    this.imageWidth = container.getChestType().xSize;
-    this.imageHeight = container.getChestType().ySize;
-    this.textureXSize = container.getChestType().textureXSize;
-    this.textureYSize = container.getChestType().textureYSize;
+    this.chestType = ironChestMenu.getChestType();
+    this.imageWidth = ironChestMenu.getChestType().xSize;
+    this.imageHeight = ironChestMenu.getChestType().ySize;
+    this.textureXSize = ironChestMenu.getChestType().textureXSize;
+    this.textureYSize = ironChestMenu.getChestType().textureYSize;
   }
 
   @Override

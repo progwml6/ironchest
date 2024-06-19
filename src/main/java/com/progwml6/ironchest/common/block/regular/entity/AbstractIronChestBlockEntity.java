@@ -79,7 +79,7 @@ public abstract class AbstractIronChestBlockEntity extends RandomizableContainer
 
   @Override
   protected Component getDefaultName() {
-    return Component.translatable(IronChests.MOD_ID + ".container." + this.chestType.getId() + "_chest");
+    return Component.translatable(IronChests.MODID + ".container." + this.chestType.getId() + "_chest");
   }
 
   @Override

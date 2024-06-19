@@ -5,12 +5,12 @@ import com.progwml6.ironchest.common.block.IronChestsBlocks;
 import com.progwml6.ironchest.common.item.IronChestsItems;
 import com.progwml6.ironchest.common.item.IronChestsUpgradeType;
 import net.minecraft.data.PackOutput;
-import net.minecraftforge.common.data.LanguageProvider;
+import net.neoforged.neoforge.common.data.LanguageProvider;
 
 public class IronChestsLanguageProvider extends LanguageProvider {
 
   public IronChestsLanguageProvider(PackOutput output, String locale) {
-    super(output, IronChests.MOD_ID, locale);
+    super(output, IronChests.MODID, locale);
   }
 
   @Override

@@ -2,7 +2,6 @@ package com.progwml6.ironchest.common.inventory;
 
 import net.minecraft.world.Container;
 import net.minecraft.world.inventory.Slot;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
 
@@ -14,6 +13,6 @@ public class DirtChestSlot extends Slot {
 
   @Override
   public boolean mayPlace(ItemStack stack) {
-    return stack.isEmpty() || stack.getItem() == Item.byBlock(Blocks.DIRT);
+    return stack.isEmpty() || stack.getItem() == Blocks.DIRT.asItem();
   }
 }

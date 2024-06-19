@@ -1,6 +1,7 @@
 package com.progwml6.ironchest.common.data.loot;
 
 import com.progwml6.ironchest.common.block.IronChestsBlocks;
+import it.unimi.dsi.fastutil.objects.ReferenceOpenHashSet;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
@@ -12,13 +13,15 @@ import net.minecraft.world.level.storage.loot.functions.CopyNameFunction;
 import net.minecraft.world.level.storage.loot.functions.CopyNbtFunction;
 import net.minecraft.world.level.storage.loot.providers.nbt.ContextNbtProvider;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
-import net.minecraftforge.registries.RegistryObject;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Set;
 
 public class IronChestsBlockLoot extends BlockLootSubProvider {
 
   private static final Set<Item> EXPLOSION_RESISTANT = Set.of();
+
+  private final Set<Block> knownBlocks = new ReferenceOpenHashSet<>();
 
   public IronChestsBlockLoot() {
     super(EXPLOSION_RESISTANT, FeatureFlags.REGISTRY.allFlags());
@@ -49,10 +52,14 @@ public class IronChestsBlockLoot extends BlockLootSubProvider {
   }
 
   @Override
+  protected void add(@NotNull Block block, @NotNull LootTable.Builder table) {
+    //Overwrite the core register method to add to our list of known blocks
+    super.add(block, table);
+    knownBlocks.add(block);
+  }
+  
+  @Override
   protected Iterable<Block> getKnownBlocks() {
-    return IronChestsBlocks.BLOCKS.getEntries() // Get all registered entries
-      .stream() // Stream the wrapped objects
-      .flatMap(RegistryObject::stream) // Get the object if available
-      ::iterator; // Create the iterable
+    return knownBlocks;
   }
 }

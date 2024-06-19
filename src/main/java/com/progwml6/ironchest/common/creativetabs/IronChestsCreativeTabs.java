@@ -9,19 +9,19 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class IronChestsCreativeTabs {
 
-  public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, IronChests.MOD_ID);
+  public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, IronChests.MODID);
 
-  public static final RegistryObject<CreativeModeTab> IRON_CHEST_TAP = CREATIVE_MODE_TABS.register("ironchest", () -> CreativeModeTab.builder()
+  public static final DeferredHolder<CreativeModeTab, CreativeModeTab> IRON_CHEST_TAP = CREATIVE_MODE_TABS.register("ironchest", () -> CreativeModeTab.builder()
     .withTabsBefore(CreativeModeTabs.SPAWN_EGGS)
     .title(Component.translatable("itemGroup.ironchest"))
     .icon(() -> new ItemStack(IronChestsBlocks.IRON_CHEST.get()))
     .displayItems((parameters, output) -> {
-      for (final RegistryObject<Item> item : IronChestsItems.ITEMS.getEntries())
-        output.accept(item.get());
+      for (final Item item : IronChestsItems.ITEMS.getEntries().stream().map(DeferredHolder::value).toList())
+        output.accept(item);
     }).build());
 }

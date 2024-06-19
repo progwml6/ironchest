@@ -3,7 +3,7 @@ package com.progwml6.ironchest.client.render;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
-import com.progwml6.ironchest.IronChestsClientEvents;
+import com.progwml6.ironchest.client.IronChestsClientRegistration;
 import com.progwml6.ironchest.client.model.IronChestsModels;
 import com.progwml6.ironchest.client.model.inventory.ModelItem;
 import com.progwml6.ironchest.common.block.IronChestsTypes;
@@ -39,8 +39,8 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.LidBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import org.joml.Vector3f;
 
 import java.util.Arrays;
@@ -68,7 +68,7 @@ public class IronChestRenderer<T extends BlockEntity & LidBlockEntity> implement
   );
 
   public IronChestRenderer(BlockEntityRendererProvider.Context context) {
-    ModelPart modelPart = context.bakeLayer(IronChestsClientEvents.IRON_CHEST);
+    ModelPart modelPart = context.bakeLayer(IronChestsClientRegistration.IRON_CHEST);
 
     this.renderer = context.getBlockEntityRenderDispatcher();
     this.bottom = modelPart.getChild("iron_bottom");
@@ -76,7 +76,7 @@ public class IronChestRenderer<T extends BlockEntity & LidBlockEntity> implement
     this.lock = modelPart.getChild("iron_lock");
   }
 
-  public static LayerDefinition createBodyLayer() {
+  public static LayerDefinition createLayerDefinition() {
     MeshDefinition meshDefinition = new MeshDefinition();
     PartDefinition partDefinition = meshDefinition.getRoot();
 

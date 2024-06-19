@@ -33,12 +33,12 @@ public class Util {
   public static void addBookInformationStatic(ItemStack book, ListTag bookPages, @Nullable String name, int pageCount) {
     String key = name == null ? "unknown" : name;
 
-    addTranslatedPages(bookPages, IronChests.MOD_ID + ".book." + key, pageCount);
+    addTranslatedPages(bookPages, IronChests.MODID + ".book." + key, pageCount);
 
     book.addTagElement("pages", bookPages);
     book.addTagElement("generation", IntTag.valueOf(3));
     book.addTagElement("author", StringTag.valueOf(BOOK_AUTHOR));
-    book.addTagElement("title", StringTag.valueOf("How to use your DirtChest 9000!"));
+    book.addTagElement("title", StringTag.valueOf(IronChests.MODID + ".book." + key));
   }
 
   public static void addTranslatedPages(ListTag bookPages, String translationKey, int pageCount) {

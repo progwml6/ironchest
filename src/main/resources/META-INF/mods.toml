@@ -5,22 +5,23 @@ license="${mod_license}"
 
 [[mods]]
     modId="${mod_id}"
-    version="${version}"
+    version="${mod_version}"
     displayName="${mod_name}"
     authors="${mod_authors}"
     description='''${mod_description}'''
     displayURL="${mod_display_url}"
+    displayTest="MATCH_VERSION"
 
-[[dependencies${mod_id}]]
-    modId="forge"
-    mandatory=true
-    versionRange="${forge_version_range}"
+[[dependencies.${mod_id}]]
+    modId="neoforge"
+    type="required"
+    versionRange="${neo_version_range}"
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.${mod_id}]]
     modId="minecraft"
-    mandatory=true
+    type="required"
     versionRange="${minecraft_version_range}"
     ordering="NONE"
     side="BOTH"

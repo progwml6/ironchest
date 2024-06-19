@@ -9,8 +9,8 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 
@@ -25,59 +25,59 @@ public class IronChestMenu extends AbstractContainerMenu {
   }
 
   public static IronChestMenu createIronContainer(int containerId, Inventory playerInventory) {
-    return new IronChestMenu(IronChestsContainerTypes.IRON_CHEST.get(), containerId, playerInventory, new SimpleContainer(IronChestsTypes.IRON.size), IronChestsTypes.IRON);
+    return new IronChestMenu(IronChestsMenuTypes.IRON_CHEST.get(), containerId, playerInventory, new SimpleContainer(IronChestsTypes.IRON.size), IronChestsTypes.IRON);
   }
 
   public static IronChestMenu createIronContainer(int containerId, Inventory playerInventory, Container inventory) {
-    return new IronChestMenu(IronChestsContainerTypes.IRON_CHEST.get(), containerId, playerInventory, inventory, IronChestsTypes.IRON);
+    return new IronChestMenu(IronChestsMenuTypes.IRON_CHEST.get(), containerId, playerInventory, inventory, IronChestsTypes.IRON);
   }
 
   public static IronChestMenu createGoldContainer(int containerId, Inventory playerInventory) {
-    return new IronChestMenu(IronChestsContainerTypes.GOLD_CHEST.get(), containerId, playerInventory, new SimpleContainer(IronChestsTypes.GOLD.size), IronChestsTypes.GOLD);
+    return new IronChestMenu(IronChestsMenuTypes.GOLD_CHEST.get(), containerId, playerInventory, new SimpleContainer(IronChestsTypes.GOLD.size), IronChestsTypes.GOLD);
   }
 
   public static IronChestMenu createGoldContainer(int containerId, Inventory playerInventory, Container inventory) {
-    return new IronChestMenu(IronChestsContainerTypes.GOLD_CHEST.get(), containerId, playerInventory, inventory, IronChestsTypes.GOLD);
+    return new IronChestMenu(IronChestsMenuTypes.GOLD_CHEST.get(), containerId, playerInventory, inventory, IronChestsTypes.GOLD);
   }
 
   public static IronChestMenu createDiamondContainer(int containerId, Inventory playerInventory) {
-    return new IronChestMenu(IronChestsContainerTypes.DIAMOND_CHEST.get(), containerId, playerInventory, new SimpleContainer(IronChestsTypes.DIAMOND.size), IronChestsTypes.DIAMOND);
+    return new IronChestMenu(IronChestsMenuTypes.DIAMOND_CHEST.get(), containerId, playerInventory, new SimpleContainer(IronChestsTypes.DIAMOND.size), IronChestsTypes.DIAMOND);
   }
 
   public static IronChestMenu createDiamondContainer(int containerId, Inventory playerInventory, Container inventory) {
-    return new IronChestMenu(IronChestsContainerTypes.DIAMOND_CHEST.get(), containerId, playerInventory, inventory, IronChestsTypes.DIAMOND);
+    return new IronChestMenu(IronChestsMenuTypes.DIAMOND_CHEST.get(), containerId, playerInventory, inventory, IronChestsTypes.DIAMOND);
   }
 
   public static IronChestMenu createCrystalContainer(int containerId, Inventory playerInventory) {
-    return new IronChestMenu(IronChestsContainerTypes.CRYSTAL_CHEST.get(), containerId, playerInventory, new SimpleContainer(IronChestsTypes.CRYSTAL.size), IronChestsTypes.CRYSTAL);
+    return new IronChestMenu(IronChestsMenuTypes.CRYSTAL_CHEST.get(), containerId, playerInventory, new SimpleContainer(IronChestsTypes.CRYSTAL.size), IronChestsTypes.CRYSTAL);
   }
 
   public static IronChestMenu createCrystalContainer(int containerId, Inventory playerInventory, Container inventory) {
-    return new IronChestMenu(IronChestsContainerTypes.CRYSTAL_CHEST.get(), containerId, playerInventory, inventory, IronChestsTypes.CRYSTAL);
+    return new IronChestMenu(IronChestsMenuTypes.CRYSTAL_CHEST.get(), containerId, playerInventory, inventory, IronChestsTypes.CRYSTAL);
   }
 
   public static IronChestMenu createCopperContainer(int containerId, Inventory playerInventory) {
-    return new IronChestMenu(IronChestsContainerTypes.COPPER_CHEST.get(), containerId, playerInventory, new SimpleContainer(IronChestsTypes.COPPER.size), IronChestsTypes.COPPER);
+    return new IronChestMenu(IronChestsMenuTypes.COPPER_CHEST.get(), containerId, playerInventory, new SimpleContainer(IronChestsTypes.COPPER.size), IronChestsTypes.COPPER);
   }
 
   public static IronChestMenu createCopperContainer(int containerId, Inventory playerInventory, Container inventory) {
-    return new IronChestMenu(IronChestsContainerTypes.COPPER_CHEST.get(), containerId, playerInventory, inventory, IronChestsTypes.COPPER);
+    return new IronChestMenu(IronChestsMenuTypes.COPPER_CHEST.get(), containerId, playerInventory, inventory, IronChestsTypes.COPPER);
   }
 
   public static IronChestMenu createObsidianContainer(int containerId, Inventory playerInventory) {
-    return new IronChestMenu(IronChestsContainerTypes.OBSIDIAN_CHEST.get(), containerId, playerInventory, new SimpleContainer(IronChestsTypes.OBSIDIAN.size), IronChestsTypes.OBSIDIAN);
+    return new IronChestMenu(IronChestsMenuTypes.OBSIDIAN_CHEST.get(), containerId, playerInventory, new SimpleContainer(IronChestsTypes.OBSIDIAN.size), IronChestsTypes.OBSIDIAN);
   }
 
   public static IronChestMenu createObsidianContainer(int containerId, Inventory playerInventory, Container inventory) {
-    return new IronChestMenu(IronChestsContainerTypes.OBSIDIAN_CHEST.get(), containerId, playerInventory, inventory, IronChestsTypes.OBSIDIAN);
+    return new IronChestMenu(IronChestsMenuTypes.OBSIDIAN_CHEST.get(), containerId, playerInventory, inventory, IronChestsTypes.OBSIDIAN);
   }
 
   public static IronChestMenu createDirtContainer(int containerId, Inventory playerInventory) {
-    return new IronChestMenu(IronChestsContainerTypes.DIRT_CHEST.get(), containerId, playerInventory, new SimpleContainer(IronChestsTypes.DIRT.size), IronChestsTypes.DIRT);
+    return new IronChestMenu(IronChestsMenuTypes.DIRT_CHEST.get(), containerId, playerInventory, new SimpleContainer(IronChestsTypes.DIRT.size), IronChestsTypes.DIRT);
   }
 
   public static IronChestMenu createDirtContainer(int containerId, Inventory playerInventory, Container inventory) {
-    return new IronChestMenu(IronChestsContainerTypes.DIRT_CHEST.get(), containerId, playerInventory, inventory, IronChestsTypes.DIRT);
+    return new IronChestMenu(IronChestsMenuTypes.DIRT_CHEST.get(), containerId, playerInventory, inventory, IronChestsTypes.DIRT);
   }
 
   protected IronChestMenu(@Nullable MenuType<?> menuType, int containerId, Inventory playerInventory, Container inventory, IronChestsTypes chestType) {

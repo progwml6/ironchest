@@ -4,12 +4,14 @@ import com.progwml6.ironchest.IronChests;
 import com.progwml6.ironchest.common.block.IronChestsBlocks;
 import com.progwml6.ironchest.common.item.IronChestsItems;
 import com.progwml6.ironchest.common.item.IronChestsUpgradeType;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
@@ -17,11 +19,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.common.Tags;
-import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
-import net.minecraftforge.registries.ForgeRegistries;
-
-import java.util.Objects;
+import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 
 public class IronChestsRecipeProvider extends RecipeProvider implements IConditionBuilder {
 
@@ -225,12 +224,14 @@ public class IronChestsRecipeProvider extends RecipeProvider implements IConditi
   }
 
   protected static ResourceLocation prefix(ItemLike item, String prefix) {
-    ResourceLocation loc = Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(item.asItem()));
-    return location(prefix + loc.getPath());
+    ResourceLocation registryName = BuiltInRegistries.ITEM.getResourceKey(item.asItem())
+      .map(ResourceKey::location)
+      .orElseThrow(() -> new IllegalStateException("Could not retrieve registry name for output."));
+    return location(prefix + registryName.getPath());
   }
 
   private static ResourceLocation location(String id) {
-    return new ResourceLocation(IronChests.MOD_ID, id);
+    return new ResourceLocation(IronChests.MODID, id);
   }
 
   private static TagKey<Item> tag(String name) {

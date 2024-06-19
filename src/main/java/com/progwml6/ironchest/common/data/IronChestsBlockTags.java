@@ -5,15 +5,15 @@ import com.progwml6.ironchest.common.block.IronChestsBlocks;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
-import net.minecraftforge.common.data.BlockTagsProvider;
-import net.minecraftforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.common.data.BlockTagsProvider;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 import java.util.concurrent.CompletableFuture;
 
 public class IronChestsBlockTags extends BlockTagsProvider {
 
   public IronChestsBlockTags(PackOutput output, CompletableFuture<HolderLookup.Provider> lookup, ExistingFileHelper existingFileHelper) {
-    super(output, lookup, IronChests.MOD_ID, existingFileHelper);
+    super(output, lookup, IronChests.MODID, existingFileHelper);
   }
 
   @Override

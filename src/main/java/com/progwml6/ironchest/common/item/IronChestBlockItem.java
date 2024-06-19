@@ -23,28 +23,22 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.extensions.common.IClientItemExtensions;
-import net.minecraftforge.fml.DistExecutor;
+import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 
-import java.util.concurrent.Callable;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class IronChestBlockItem extends BlockItem {
 
-  protected Supplier<IronChestsTypes> type;
+  protected IronChestsTypes type;
 
-  protected Supplier<Boolean> trapped;
+  protected Boolean trapped;
 
-  public IronChestBlockItem(Block block, Properties properties, Supplier<Callable<IronChestsTypes>> type, Supplier<Callable<Boolean>> trapped) {
+  public IronChestBlockItem(Block block, Properties properties, IronChestsTypes type, Boolean trapped) {
     super(block, properties);
 
-    IronChestsTypes tempType = DistExecutor.unsafeCallWhenOn(Dist.CLIENT, type);
-    Boolean tempTrapped = DistExecutor.unsafeCallWhenOn(Dist.CLIENT, trapped);
-
-    this.type = tempType == null ? null : () -> tempType;
-    this.trapped = tempTrapped == null ? null : () -> tempTrapped;
+    this.type = type;
+    this.trapped = trapped;
   }
 
   @Override
@@ -56,8 +50,8 @@ public class IronChestBlockItem extends BlockItem {
       public BlockEntityWithoutLevelRenderer getCustomRenderer() {
         Supplier<BlockEntity> modelToUse;
 
-        if (trapped.get()) {
-          switch (type.get()) {
+        if (trapped) {
+          switch (type) {
             case GOLD -> modelToUse = () -> new TrappedGoldChestBlockEntity(BlockPos.ZERO, IronChestsBlocks.TRAPPED_GOLD_CHEST.get().defaultBlockState());
             case DIAMOND -> modelToUse = () -> new TrappedDiamondChestBlockEntity(BlockPos.ZERO, IronChestsBlocks.TRAPPED_DIAMOND_CHEST.get().defaultBlockState());
             case COPPER -> modelToUse = () -> new TrappedCopperChestBlockEntity(BlockPos.ZERO, IronChestsBlocks.TRAPPED_COPPER_CHEST.get().defaultBlockState());
@@ -67,7 +61,7 @@ public class IronChestBlockItem extends BlockItem {
             default -> modelToUse = () -> new TrappedIronChestBlockEntity(BlockPos.ZERO, IronChestsBlocks.TRAPPED_IRON_CHEST.get().defaultBlockState());
           }
         } else {
-          switch (type.get()) {
+          switch (type) {
             case GOLD -> modelToUse = () -> new GoldChestBlockEntity(BlockPos.ZERO, IronChestsBlocks.GOLD_CHEST.get().defaultBlockState());
             case DIAMOND -> modelToUse = () -> new DiamondChestBlockEntity(BlockPos.ZERO, IronChestsBlocks.DIAMOND_CHEST.get().defaultBlockState());
             case COPPER -> modelToUse = () -> new CopperChestBlockEntity(BlockPos.ZERO, IronChestsBlocks.COPPER_CHEST.get().defaultBlockState());

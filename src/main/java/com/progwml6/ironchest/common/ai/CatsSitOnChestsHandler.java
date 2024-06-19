@@ -4,13 +4,13 @@ import com.progwml6.ironchest.IronChests;
 import net.minecraft.world.entity.ai.goal.CatSitOnBlockGoal;
 import net.minecraft.world.entity.ai.goal.WrappedGoal;
 import net.minecraft.world.entity.animal.Cat;
-import net.minecraftforge.event.entity.living.LivingEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.event.entity.living.LivingEvent;
 
 import java.util.HashSet;
 
-@Mod.EventBusSubscriber(modid = IronChests.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+@Mod.EventBusSubscriber(modid = IronChests.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class CatsSitOnChestsHandler {
 
   @SubscribeEvent
@@ -18,7 +18,7 @@ public class CatsSitOnChestsHandler {
     if (evt.getEntity().tickCount < 5 && evt.getEntity() instanceof Cat cat) {
       HashSet<WrappedGoal> goals = new HashSet<>();
 
-      for (WrappedGoal goal : cat.goalSelector.availableGoals) {
+      for (WrappedGoal goal : cat.goalSelector.getAvailableGoals()) {
         if (goal.getGoal().getClass() == CatSitOnBlockGoal.class) {
           goals.add(goal);
         }

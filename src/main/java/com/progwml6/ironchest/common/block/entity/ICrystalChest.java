@@ -1,15 +1,14 @@
 package com.progwml6.ironchest.common.block.entity;
 
 import com.progwml6.ironchest.common.block.IronChestsTypes;
-import com.progwml6.ironchest.common.network.IronChestNetwork;
-import com.progwml6.ironchest.common.network.PacketTopStacksSync;
+import com.progwml6.ironchest.common.network.TopStacksSyncPacket;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.network.PacketDistributor;
+import net.neoforged.neoforge.network.PacketDistributor;
 
 import javax.annotation.Nullable;
 
@@ -43,7 +42,7 @@ public interface ICrystalChest {
     NonNullList<ItemStack> stacks = this.buildItemStackDataList();
 
     if (this.getChestLevel() != null && this.getChestLevel() instanceof ServerLevel && !this.getChestLevel().isClientSide) {
-      IronChestNetwork.INSTANCE.send(new PacketTopStacksSync(this.getChestWorldPosition(), stacks), PacketDistributor.TRACKING_CHUNK.with(this.getChestLevel().getChunkAt(this.getChestWorldPosition())));
+      PacketDistributor.TRACKING_CHUNK.with(this.getChestLevel().getChunkAt(this.getChestWorldPosition())).send(new TopStacksSyncPacket(this.getChestWorldPosition(), stacks));
     }
   }
 
