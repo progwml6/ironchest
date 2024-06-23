@@ -3,21 +3,24 @@ package com.progwml6.ironchest.common.network;
 import com.progwml6.ironchest.IronChests;
 import com.progwml6.ironchest.common.block.entity.ICrystalChest;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
-import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.neoforged.neoforge.network.handling.PlayPayloadContext;
+import net.neoforged.neoforge.network.handling.IPayloadContext;
 
-import java.util.stream.IntStream;
+import java.util.List;
 
 public class TopStacksSyncPacket implements CustomPacketPayload {
 
-  public static final ResourceLocation ID = new ResourceLocation(IronChests.MODID, "top_stacks");
+  public static final Type<TopStacksSyncPacket> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath(IronChests.MODID, "top_stacks"));
+  public static final StreamCodec<RegistryFriendlyByteBuf, TopStacksSyncPacket> STREAM_CODEC = CustomPacketPayload.codec(TopStacksSyncPacket::write, TopStacksSyncPacket::new);
 
   private final BlockPos blockPos;
   private final NonNullList<ItemStack> topItemStacks;
@@ -27,36 +30,33 @@ public class TopStacksSyncPacket implements CustomPacketPayload {
     this.topItemStacks = topItemStacks;
   }
 
-  public TopStacksSyncPacket(FriendlyByteBuf buf) {
-    BlockPos blockPos = buf.readBlockPos();
-    int size = buf.readInt();
-    NonNullList<ItemStack> topItemStacks = NonNullList.withSize(size, ItemStack.EMPTY);
+  public TopStacksSyncPacket(RegistryFriendlyByteBuf buf) {
+    this.blockPos = buf.readBlockPos();
+    List<ItemStack> topItemStacks = ItemStack.OPTIONAL_STREAM_CODEC.apply(ByteBufCodecs.list()).decode(buf);
 
-    IntStream.range(0, size).forEach(item -> {
-      ItemStack itemStack = buf.readItem();
-      topItemStacks.set(item, itemStack);
-    });
+    this.topItemStacks = NonNullList.<ItemStack>withSize(topItemStacks.size(), ItemStack.EMPTY);
 
-    this.blockPos = blockPos;
-    this.topItemStacks = topItemStacks;
+    for (int i = 0; i < topItemStacks.size(); i++) {
+      if (i < this.topItemStacks.size()) {
+        this.topItemStacks.set(i, topItemStacks.get(i));
+      }
+    }
   }
 
-  @Override
-  public void write(FriendlyByteBuf buf) {
+  public void write(RegistryFriendlyByteBuf buf) {
     buf.writeBlockPos(this.blockPos);
-    buf.writeInt(this.topItemStacks.size());
-    this.topItemStacks.forEach(buf::writeItem);
+    ItemStack.OPTIONAL_STREAM_CODEC.apply(ByteBufCodecs.list()).encode(buf, this.topItemStacks);
   }
 
   @Override
-  public ResourceLocation id() {
-    return ID;
+  public Type<? extends CustomPacketPayload> type() {
+    return TYPE;
   }
 
-  public static void handle(TopStacksSyncPacket msg, PlayPayloadContext ctx) {
+  public static void handle(TopStacksSyncPacket msg, IPayloadContext ctx) {
     if (ctx.flow().isClientbound()) {
-      ctx.workHandler().execute(() -> {
-        ClientLevel level = (ClientLevel) ctx.level().orElseThrow();
+      ctx.enqueueWork(() -> {
+        Level level = ctx.player().level();
 
         BlockEntity blockEntity = level.getBlockEntity(msg.blockPos);
 

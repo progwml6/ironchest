@@ -157,7 +157,7 @@ public class ChestUpgradeItem extends Item {
 
     if (tileEntity2 instanceof AbstractIronChestBlockEntity) {
       if (customName != null) {
-        ((AbstractIronChestBlockEntity) tileEntity2).setCustomName(customName);
+        ((AbstractIronChestBlockEntity) tileEntity2).name = customName;
       }
 
       ((AbstractIronChestBlockEntity) tileEntity2).setItems(chestContents);

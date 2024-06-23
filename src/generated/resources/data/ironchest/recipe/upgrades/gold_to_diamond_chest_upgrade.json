@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": {
+      "tag": "c:glass_blocks"
+    },
+    "M": {
+      "tag": "c:gems/diamond"
+    },
+    "S": {
+      "tag": "c:ingots/gold"
+    }
+  },
+  "pattern": [
+    "GGG",
+    "MSM",
+    "GGG"
+  ],
+  "result": {
+    "count": 1,
+    "id": "ironchest:gold_to_diamond_chest_upgrade"
+  }
+}

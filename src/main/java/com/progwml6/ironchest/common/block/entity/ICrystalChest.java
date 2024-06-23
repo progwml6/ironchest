@@ -41,8 +41,8 @@ public interface ICrystalChest {
   default void sendTopStacksPacket() {
     NonNullList<ItemStack> stacks = this.buildItemStackDataList();
 
-    if (this.getChestLevel() != null && this.getChestLevel() instanceof ServerLevel && !this.getChestLevel().isClientSide) {
-      PacketDistributor.TRACKING_CHUNK.with(this.getChestLevel().getChunkAt(this.getChestWorldPosition())).send(new TopStacksSyncPacket(this.getChestWorldPosition(), stacks));
+    if (this.getChestLevel() != null && this.getChestLevel() instanceof ServerLevel serverLevel && !this.getChestLevel().isClientSide) {
+      PacketDistributor.sendToPlayersTrackingChunk(serverLevel, serverLevel.getChunkAt(this.getChestWorldPosition()).getPos(), new TopStacksSyncPacket(this.getChestWorldPosition(), stacks));
     }
   }
 
@@ -74,7 +74,7 @@ public interface ICrystalChest {
         for (int j = 0; j < compressedIdx; j++) {
           ItemStack tempCopyStack = tempCopy.get(j);
 
-          if (ItemStack.isSameItemSameTags(tempCopyStack, itemStack)) {
+          if (ItemStack.isSameItemSameComponents(tempCopyStack, itemStack)) {
             if (itemStack.getCount() != tempCopyStack.getCount()) {
               tempCopyStack.grow(itemStack.getCount());
             }

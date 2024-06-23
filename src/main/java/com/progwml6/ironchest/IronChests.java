@@ -8,6 +8,7 @@ import com.progwml6.ironchest.common.data.IronChestsLanguageProvider;
 import com.progwml6.ironchest.common.data.IronChestsRecipeProvider;
 import com.progwml6.ironchest.common.data.IronChestsSpriteSourceProvider;
 import com.progwml6.ironchest.common.data.loot.IronChestsLootTableProvider;
+import com.progwml6.ironchest.common.datacomponents.IronChestsDataComponents;
 import com.progwml6.ironchest.common.inventory.IronChestsMenuTypes;
 import com.progwml6.ironchest.common.item.IronChestsItems;
 import com.progwml6.ironchest.common.network.TopStacksSyncPacket;
@@ -18,8 +19,8 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
-import net.neoforged.neoforge.network.event.RegisterPayloadHandlerEvent;
-import net.neoforged.neoforge.network.registration.IPayloadRegistrar;
+import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
+import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -39,6 +40,7 @@ public class IronChests {
     IronChestsBlockEntityTypes.BLOCK_ENTITIES.register(modEventBus);
     IronChestsMenuTypes.CONTAINERS.register(modEventBus);
     IronChestsCreativeTabs.CREATIVE_MODE_TABS.register(modEventBus);
+    IronChestsDataComponents.COMPONENTS.register(modEventBus);
   }
 
   public void gatherData(GatherDataEvent event) {
@@ -47,17 +49,17 @@ public class IronChests {
     PackOutput packOutput = gen.getPackOutput();
     CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
-    gen.addProvider(event.includeServer(), new IronChestsLootTableProvider(packOutput));
+    gen.addProvider(event.includeServer(), new IronChestsLootTableProvider(packOutput, lookupProvider));
 
-    gen.addProvider(event.includeClient(), new IronChestsRecipeProvider(packOutput));
+    gen.addProvider(event.includeClient(), new IronChestsRecipeProvider(packOutput, lookupProvider));
     gen.addProvider(event.includeClient(), new IronChestsBlockTags(packOutput, lookupProvider, ext));
     gen.addProvider(event.includeClient(), new IronChestsSpriteSourceProvider(packOutput, ext, lookupProvider));
     gen.addProvider(event.includeClient(), new IronChestsLanguageProvider(packOutput, "en_us"));
   }
 
-  public void setupPackets(RegisterPayloadHandlerEvent event) {
-    IPayloadRegistrar registrar = event.registrar(MODID).versioned("1.0.0").optional();
+  public void setupPackets(RegisterPayloadHandlersEvent event) {
+    PayloadRegistrar registrar = event.registrar(MODID).versioned("1.0.0").optional();
 
-    registrar.play(TopStacksSyncPacket.ID, TopStacksSyncPacket::new, payload -> payload.client(TopStacksSyncPacket::handle));
+    registrar.playBidirectional(TopStacksSyncPacket.TYPE, TopStacksSyncPacket.STREAM_CODEC, TopStacksSyncPacket::handle);
   }
 }

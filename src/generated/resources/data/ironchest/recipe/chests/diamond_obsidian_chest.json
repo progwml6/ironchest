@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "M": {
+      "item": "minecraft:obsidian"
+    },
+    "S": {
+      "item": "ironchest:diamond_chest"
+    }
+  },
+  "pattern": [
+    "MMM",
+    "MSM",
+    "MMM"
+  ],
+  "result": {
+    "count": 1,
+    "id": "ironchest:obsidian_chest"
+  }
+}

@@ -10,18 +10,14 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.stats.Stat;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.CompoundContainer;
 import net.minecraft.world.Container;
 import net.minecraft.world.Containers;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.Cat;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -64,12 +60,12 @@ public abstract class AbstractIronChestBlock extends BaseEntityBlock implements 
 
   public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-  protected static final VoxelShape AABB = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 14.0D, 15.0D);
+  protected static final VoxelShape AABB = Block.box(1.0, 0.0, 1.0, 15.0, 14.0, 15.0);
 
   private static final DoubleBlockCombiner.Combiner<AbstractIronChestBlockEntity, Optional<Container>> CHEST_COMBINER = new DoubleBlockCombiner.Combiner<>() {
     @Override
     public Optional<Container> acceptDouble(AbstractIronChestBlockEntity blockEntityOne, AbstractIronChestBlockEntity blockEntityTwo) {
-      return Optional.of(new CompoundContainer(blockEntityOne, blockEntityTwo));
+      return Optional.empty();
     }
 
     @Override
@@ -157,19 +153,6 @@ public abstract class AbstractIronChestBlock extends BaseEntityBlock implements 
   }
 
   @Override
-  public void setPlacedBy(Level level, BlockPos blockPos, BlockState blockState, @Nullable LivingEntity livingEntity, ItemStack itemStack) {
-    BlockEntity blockEntity = level.getBlockEntity(blockPos);
-
-    if (blockEntity instanceof AbstractIronChestBlockEntity) {
-      ((AbstractIronChestBlockEntity) blockEntity).wasPlaced(livingEntity, itemStack);
-
-      if (itemStack.hasCustomHoverName()) {
-        ((AbstractIronChestBlockEntity) blockEntity).setCustomName(itemStack.getHoverName());
-      }
-    }
-  }
-
-  @Override
   @Deprecated
   public void onRemove(BlockState blockState, Level level, BlockPos blockPos, BlockState newState, boolean isMoving) {
     if (!blockState.is(newState.getBlock())) {
@@ -187,15 +170,15 @@ public abstract class AbstractIronChestBlock extends BaseEntityBlock implements 
 
   @Override
   @Deprecated
-  public InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
-    if (level.isClientSide) {
+  public InteractionResult useWithoutItem(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, BlockHitResult pHitResult) {
+    if (pLevel.isClientSide) {
       return InteractionResult.SUCCESS;
     } else {
-      MenuProvider menuProvider = this.getMenuProvider(blockState, level, blockPos);
+      MenuProvider menuProvider = this.getMenuProvider(pState, pLevel, pPos);
 
       if (menuProvider != null) {
-        player.openMenu(menuProvider);
-        player.awardStat(this.getOpenChestStat());
+        pPlayer.openMenu(menuProvider);
+        pPlayer.awardStat(this.getOpenChestStat());
       }
 
       return InteractionResult.CONSUME;
@@ -219,9 +202,7 @@ public abstract class AbstractIronChestBlock extends BaseEntityBlock implements 
     BiPredicate<LevelAccessor, BlockPos> biPredicate;
 
     if (ignoreBlockedChest) {
-      biPredicate = (levelAccessor, blockPos1) -> {
-        return false;
-      };
+      biPredicate = (levelAccessor, blockPos1) -> false;
     } else {
       biPredicate = AbstractIronChestBlock::isChestBlockedAt;
     }
@@ -231,7 +212,7 @@ public abstract class AbstractIronChestBlock extends BaseEntityBlock implements 
 
   @Nullable
   public MenuProvider getMenuProvider(BlockState blockState, Level level, BlockPos blockPos) {
-    return this.combine(blockState, level, blockPos, false).<Optional<MenuProvider>>apply(MENU_PROVIDER_COMBINER).orElse((MenuProvider) null);
+    return this.combine(blockState, level, blockPos, false).apply(MENU_PROVIDER_COMBINER).orElse(null);
   }
 
   public static DoubleBlockCombiner.Combiner<AbstractIronChestBlockEntity, Float2FloatFunction> opennessCombiner(final LidBlockEntity lidBlockEntity) {
@@ -267,7 +248,17 @@ public abstract class AbstractIronChestBlock extends BaseEntityBlock implements 
   }
 
   private static boolean isCatSittingOnChest(LevelAccessor levelAccessor, BlockPos blockPos) {
-    List<Cat> list = levelAccessor.getEntitiesOfClass(Cat.class, new AABB((double) blockPos.getX(), (double) (blockPos.getY() + 1), (double) blockPos.getZ(), (double) (blockPos.getX() + 1), (double) (blockPos.getY() + 2), (double) (blockPos.getZ() + 1)));
+    List<Cat> list = levelAccessor.getEntitiesOfClass(
+      Cat.class,
+      new AABB(
+        blockPos.getX(),
+        blockPos.getY() + 1,
+        blockPos.getZ(),
+        blockPos.getX() + 1,
+        blockPos.getY() + 2,
+        blockPos.getZ() + 1
+      )
+    );
 
     if (!list.isEmpty()) {
       for (Cat cat : list) {
@@ -306,7 +297,7 @@ public abstract class AbstractIronChestBlock extends BaseEntityBlock implements 
   }
 
   @Override
-  public boolean isPathfindable(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, PathComputationType pathComputationType) {
+  protected boolean isPathfindable(BlockState pState, PathComputationType pPathComputationType) {
     return false;
   }
 

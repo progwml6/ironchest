@@ -1,30 +1,30 @@
 package com.progwml6.ironchest.common.data.loot;
 
 import com.progwml6.ironchest.common.block.IronChestsBlocks;
+import com.progwml6.ironchest.common.datacomponents.IronChestsDataComponents;
 import it.unimi.dsi.fastutil.objects.ReferenceOpenHashSet;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
-import net.minecraft.world.level.storage.loot.functions.CopyNameFunction;
-import net.minecraft.world.level.storage.loot.functions.CopyNbtFunction;
-import net.minecraft.world.level.storage.loot.providers.nbt.ContextNbtProvider;
+import net.minecraft.world.level.storage.loot.functions.CopyComponentsFunction;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Collections;
 import java.util.Set;
 
 public class IronChestsBlockLoot extends BlockLootSubProvider {
 
-  private static final Set<Item> EXPLOSION_RESISTANT = Set.of();
 
   private final Set<Block> knownBlocks = new ReferenceOpenHashSet<>();
 
-  public IronChestsBlockLoot() {
-    super(EXPLOSION_RESISTANT, FeatureFlags.REGISTRY.allFlags());
+  public IronChestsBlockLoot(HolderLookup.Provider provider) {
+    super(Collections.emptySet(), FeatureFlags.REGISTRY.allFlags(), provider);
   }
 
   @Override
@@ -47,8 +47,23 @@ public class IronChestsBlockLoot extends BlockLootSubProvider {
     this.add(IronChestsBlocks.TRAPPED_DIRT_CHEST.get(), this::createDirtChestNameableBlockEntityTable);
   }
 
-  protected LootTable.Builder createDirtChestNameableBlockEntityTable(Block p_252291_) {
-    return LootTable.lootTable().withPool(this.applyExplosionCondition(p_252291_, LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(p_252291_).apply(CopyNameFunction.copyName(CopyNameFunction.NameSource.BLOCK_ENTITY)).apply(CopyNbtFunction.copyData(ContextNbtProvider.BLOCK_ENTITY).copy("ChestPlacedAlready", "ChestPlacedAlready")))));
+  protected LootTable.Builder createDirtChestNameableBlockEntityTable(Block pBlock) {
+    return LootTable.lootTable()
+      .withPool(
+        this.applyExplosionCondition(
+          pBlock,
+          LootPool.lootPool()
+            .setRolls(ConstantValue.exactly(1.0F))
+            .add(
+              LootItem.lootTableItem(pBlock)
+                .apply(
+                  CopyComponentsFunction.copyComponents(CopyComponentsFunction.Source.BLOCK_ENTITY)
+                    .include(DataComponents.CUSTOM_NAME)
+                    .include(IronChestsDataComponents.CHEST_PLACED_ALREADY.get())
+                )
+            )
+        )
+      );
   }
 
   @Override
@@ -57,7 +72,7 @@ public class IronChestsBlockLoot extends BlockLootSubProvider {
     super.add(block, table);
     knownBlocks.add(block);
   }
-  
+
   @Override
   protected Iterable<Block> getKnownBlocks() {
     return knownBlocks;

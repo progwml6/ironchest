@@ -5,6 +5,7 @@ import com.progwml6.ironchest.common.block.IronChestsTypes;
 import com.progwml6.ironchest.common.block.regular.AbstractIronChestBlock;
 import com.progwml6.ironchest.common.inventory.IronChestMenu;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -14,7 +15,6 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.CompoundContainer;
 import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
@@ -28,12 +28,10 @@ import net.minecraft.world.level.block.entity.LidBlockEntity;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
-import javax.annotation.Nullable;
 import java.util.function.Supplier;
 
 public abstract class AbstractIronChestBlockEntity extends RandomizableContainerBlockEntity implements LidBlockEntity {
 
-  private static final int EVENT_SET_OPEN_COUNT = 1;
   private NonNullList<ItemStack> items;
 
   private final ContainerOpenersCounter openersCounter = new ContainerOpenersCounter() {
@@ -67,7 +65,7 @@ public abstract class AbstractIronChestBlockEntity extends RandomizableContainer
   protected AbstractIronChestBlockEntity(BlockEntityType<?> blockEntityType, BlockPos blockPos, BlockState blockState, IronChestsTypes chestTypeIn, Supplier<Block> blockToUseIn) {
     super(blockEntityType, blockPos, blockState);
 
-    this.items = NonNullList.<ItemStack>withSize(chestTypeIn.size, ItemStack.EMPTY);
+    this.items = NonNullList.withSize(chestTypeIn.size, ItemStack.EMPTY);
     this.chestType = chestTypeIn;
     this.blockToUse = blockToUseIn;
   }
@@ -83,22 +81,22 @@ public abstract class AbstractIronChestBlockEntity extends RandomizableContainer
   }
 
   @Override
-  public void load(CompoundTag compoundTag) {
-    super.load(compoundTag);
+  public void loadAdditional(CompoundTag pTag, HolderLookup.Provider pRegistries) {
+    super.loadAdditional(pTag, pRegistries);
 
     this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
 
-    if (!this.tryLoadLootTable(compoundTag)) {
-      ContainerHelper.loadAllItems(compoundTag, this.items);
+    if (!this.tryLoadLootTable(pTag)) {
+      ContainerHelper.loadAllItems(pTag, this.items, pRegistries);
     }
   }
 
   @Override
-  public void saveAdditional(CompoundTag compoundTag) {
-    super.saveAdditional(compoundTag);
+  public void saveAdditional(CompoundTag pTag, HolderLookup.Provider pRegistries) {
+    super.saveAdditional(pTag, pRegistries);
 
-    if (!this.trySaveLootTable(compoundTag)) {
-      ContainerHelper.saveAllItems(compoundTag, this.items);
+    if (!this.trySaveLootTable(pTag)) {
+      ContainerHelper.saveAllItems(pTag, this.items, pRegistries);
     }
   }
 
@@ -107,11 +105,11 @@ public abstract class AbstractIronChestBlockEntity extends RandomizableContainer
   }
 
   static void playSound(Level level, BlockPos blockPos, BlockState blockState, SoundEvent soundEvent) {
-    double d0 = (double) blockPos.getX() + 0.5D;
-    double d1 = (double) blockPos.getY() + 0.5D;
-    double d2 = (double) blockPos.getZ() + 0.5D;
+    double d0 = (double) blockPos.getX() + 0.5;
+    double d1 = (double) blockPos.getY() + 0.5;
+    double d2 = (double) blockPos.getZ() + 0.5;
 
-    level.playSound((Player) null, d0, d1, d2, soundEvent, SoundSource.BLOCKS, 0.5F, level.random.nextFloat() * 0.1F + 0.9F);
+    level.playSound(null, d0, d1, d2, soundEvent, SoundSource.BLOCKS, 0.5F, level.random.nextFloat() * 0.1F + 0.9F);
   }
 
   @Override
@@ -145,7 +143,7 @@ public abstract class AbstractIronChestBlockEntity extends RandomizableContainer
 
   @Override
   public void setItems(NonNullList<ItemStack> itemsIn) {
-    this.items = NonNullList.<ItemStack>withSize(this.getChestType().size, ItemStack.EMPTY);
+    this.items = NonNullList.withSize(this.getChestType().size, ItemStack.EMPTY);
 
     for (int i = 0; i < itemsIn.size(); i++) {
       if (i < this.items.size()) {
@@ -182,9 +180,6 @@ public abstract class AbstractIronChestBlockEntity extends RandomizableContainer
   protected void signalOpenCount(Level level, BlockPos blockPos, BlockState blockState, int previousCount, int newCount) {
     Block block = blockState.getBlock();
     level.blockEvent(blockPos, block, 1, newCount);
-  }
-
-  public void wasPlaced(@Nullable LivingEntity livingEntity, ItemStack stack) {
   }
 
   public void removeAdornments() {

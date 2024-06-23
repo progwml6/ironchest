@@ -5,16 +5,16 @@ import net.minecraft.world.entity.ai.goal.CatSitOnBlockGoal;
 import net.minecraft.world.entity.ai.goal.WrappedGoal;
 import net.minecraft.world.entity.animal.Cat;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.Mod;
-import net.neoforged.neoforge.event.entity.living.LivingEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.tick.EntityTickEvent;
 
 import java.util.HashSet;
 
-@Mod.EventBusSubscriber(modid = IronChests.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+@EventBusSubscriber(modid = IronChests.MODID, bus = EventBusSubscriber.Bus.GAME)
 public class CatsSitOnChestsHandler {
 
   @SubscribeEvent
-  static void changeSittingTaskForOcelots(final LivingEvent.LivingTickEvent evt) {
+  static void changeSittingTaskForOcelots(EntityTickEvent.Post evt) {
     if (evt.getEntity().tickCount < 5 && evt.getEntity() instanceof Cat cat) {
       HashSet<WrappedGoal> goals = new HashSet<>();
 

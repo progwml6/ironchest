@@ -4,13 +4,16 @@ import com.progwml6.ironchest.common.Util;
 import com.progwml6.ironchest.common.block.IronChestsBlocks;
 import com.progwml6.ironchest.common.block.IronChestsTypes;
 import com.progwml6.ironchest.common.block.entity.IronChestsBlockEntityTypes;
+import com.progwml6.ironchest.common.datacomponents.IronChestsDataComponents;
 import com.progwml6.ironchest.common.inventory.IronChestMenu;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
 import javax.annotation.Nullable;
@@ -29,19 +32,6 @@ public class TrappedDirtChestBlockEntity extends AbstractTrappedIronChestBlockEn
   }
 
   @Override
-  public void wasPlaced(@Nullable LivingEntity livingEntity, ItemStack itemStack) {
-    if (itemStack.hasTag() && itemStack.getTag() != null) {
-      CompoundTag tag = itemStack.getTagElement("BlockEntityTag");
-
-      if (tag != null) {
-        if (!tag.contains("ChestPlacedAlready")) this.setItem(0, DIRT_CHEST_BOOK.copy());
-      }
-    } else {
-      this.setItem(0, DIRT_CHEST_BOOK.copy());
-    }
-  }
-
-  @Override
   public void removeAdornments() {
     if (!this.getItems().get(0).isEmpty() && ItemStack.isSameItem(this.getItems().get(0), DIRT_CHEST_BOOK)) {
       this.getItems().set(0, ItemStack.EMPTY);
@@ -49,9 +39,31 @@ public class TrappedDirtChestBlockEntity extends AbstractTrappedIronChestBlockEn
   }
 
   @Override
-  public void saveAdditional(CompoundTag compoundTag) {
-    super.saveAdditional(compoundTag);
+  public void saveAdditional(CompoundTag pTag, HolderLookup.Provider pRegistries) {
+    super.saveAdditional(pTag, pRegistries);
 
-    compoundTag.putBoolean("ChestPlacedAlready", true);
+    pTag.putBoolean("chest_placed_already", true);
+  }
+
+
+  @Override
+  protected void applyImplicitComponents(BlockEntity.DataComponentInput pComponentInput) {
+    super.applyImplicitComponents(pComponentInput);
+
+    if (!pComponentInput.getOrDefault(IronChestsDataComponents.CHEST_PLACED_ALREADY.get(), false)) {
+      this.setItem(0, DIRT_CHEST_BOOK.copy());
+    }
+  }
+
+  @Override
+  protected void collectImplicitComponents(DataComponentMap.Builder pComponents) {
+    super.collectImplicitComponents(pComponents);
+    pComponents.set(IronChestsDataComponents.CHEST_PLACED_ALREADY.get(), true);
+  }
+
+  @Override
+  public void removeComponentsFromTag(CompoundTag pTag) {
+    super.removeComponentsFromTag(pTag);
+    pTag.remove("chest_placed_already");
   }
 }

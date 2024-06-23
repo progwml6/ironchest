@@ -7,23 +7,23 @@ import org.jetbrains.annotations.NotNull;
 
 public class IronChestsModels {
 
-  public static final ResourceLocation IRON_CHEST_LOCATION = new ResourceLocation(IronChests.MODID, "model/iron_chest");
-  public static final ResourceLocation GOLD_CHEST_LOCATION = new ResourceLocation(IronChests.MODID, "model/gold_chest");
-  public static final ResourceLocation DIAMOND_CHEST_LOCATION = new ResourceLocation(IronChests.MODID, "model/diamond_chest");
-  public static final ResourceLocation COPPER_CHEST_LOCATION = new ResourceLocation(IronChests.MODID, "model/copper_chest");
-  public static final ResourceLocation CRYSTAL_CHEST_LOCATION = new ResourceLocation(IronChests.MODID, "model/crystal_chest");
-  public static final ResourceLocation OBSIDIAN_CHEST_LOCATION = new ResourceLocation(IronChests.MODID, "model/obsidian_chest");
-  public static final ResourceLocation DIRT_CHEST_LOCATION = new ResourceLocation(IronChests.MODID, "model/dirt_chest");
-  public static final ResourceLocation VANILLA_CHEST_LOCATION = new ResourceLocation("entity/chest/normal");
+  public static final ResourceLocation IRON_CHEST_LOCATION = ResourceLocation.fromNamespaceAndPath(IronChests.MODID, "model/iron_chest");
+  public static final ResourceLocation GOLD_CHEST_LOCATION = ResourceLocation.fromNamespaceAndPath(IronChests.MODID, "model/gold_chest");
+  public static final ResourceLocation DIAMOND_CHEST_LOCATION = ResourceLocation.fromNamespaceAndPath(IronChests.MODID, "model/diamond_chest");
+  public static final ResourceLocation COPPER_CHEST_LOCATION = ResourceLocation.fromNamespaceAndPath(IronChests.MODID, "model/copper_chest");
+  public static final ResourceLocation CRYSTAL_CHEST_LOCATION = ResourceLocation.fromNamespaceAndPath(IronChests.MODID, "model/crystal_chest");
+  public static final ResourceLocation OBSIDIAN_CHEST_LOCATION = ResourceLocation.fromNamespaceAndPath(IronChests.MODID, "model/obsidian_chest");
+  public static final ResourceLocation DIRT_CHEST_LOCATION = ResourceLocation.fromNamespaceAndPath(IronChests.MODID, "model/dirt_chest");
+  public static final ResourceLocation VANILLA_CHEST_LOCATION = ResourceLocation.withDefaultNamespace("entity/chest/normal");
 
-  public static final ResourceLocation TRAPPED_IRON_CHEST_LOCATION = new ResourceLocation(IronChests.MODID, "model/trapped_iron_chest");
-  public static final ResourceLocation TRAPPED_GOLD_CHEST_LOCATION = new ResourceLocation(IronChests.MODID, "model/trapped_gold_chest");
-  public static final ResourceLocation TRAPPED_DIAMOND_CHEST_LOCATION = new ResourceLocation(IronChests.MODID, "model/trapped_diamond_chest");
-  public static final ResourceLocation TRAPPED_COPPER_CHEST_LOCATION = new ResourceLocation(IronChests.MODID, "model/trapped_copper_chest");
-  public static final ResourceLocation TRAPPED_CRYSTAL_CHEST_LOCATION = new ResourceLocation(IronChests.MODID, "model/trapped_crystal_chest");
-  public static final ResourceLocation TRAPPED_OBSIDIAN_CHEST_LOCATION = new ResourceLocation(IronChests.MODID, "model/trapped_obsidian_chest");
-  public static final ResourceLocation TRAPPED_DIRT_CHEST_LOCATION = new ResourceLocation(IronChests.MODID, "model/trapped_dirt_chest");
-  public static final ResourceLocation TRAPPED_VANILLA_CHEST_LOCATION = new ResourceLocation("entity/chest/trapped");
+  public static final ResourceLocation TRAPPED_IRON_CHEST_LOCATION = ResourceLocation.fromNamespaceAndPath(IronChests.MODID, "model/trapped_iron_chest");
+  public static final ResourceLocation TRAPPED_GOLD_CHEST_LOCATION = ResourceLocation.fromNamespaceAndPath(IronChests.MODID, "model/trapped_gold_chest");
+  public static final ResourceLocation TRAPPED_DIAMOND_CHEST_LOCATION = ResourceLocation.fromNamespaceAndPath(IronChests.MODID, "model/trapped_diamond_chest");
+  public static final ResourceLocation TRAPPED_COPPER_CHEST_LOCATION = ResourceLocation.fromNamespaceAndPath(IronChests.MODID, "model/trapped_copper_chest");
+  public static final ResourceLocation TRAPPED_CRYSTAL_CHEST_LOCATION = ResourceLocation.fromNamespaceAndPath(IronChests.MODID, "model/trapped_crystal_chest");
+  public static final ResourceLocation TRAPPED_OBSIDIAN_CHEST_LOCATION = ResourceLocation.fromNamespaceAndPath(IronChests.MODID, "model/trapped_obsidian_chest");
+  public static final ResourceLocation TRAPPED_DIRT_CHEST_LOCATION = ResourceLocation.fromNamespaceAndPath(IronChests.MODID, "model/trapped_dirt_chest");
+  public static final ResourceLocation TRAPPED_VANILLA_CHEST_LOCATION = ResourceLocation.withDefaultNamespace("entity/chest/trapped");
 
   public static ResourceLocation chooseChestTexture(IronChestsTypes type, boolean trapped) {
     if (trapped) {

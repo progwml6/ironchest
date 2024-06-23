@@ -9,14 +9,14 @@ import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 
-@Mod.EventBusSubscriber(modid = IronChests.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = IronChests.MODID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
 public class IronChestsClientRegistration {
 
-  public static final ModelLayerLocation IRON_CHEST = new ModelLayerLocation(new ResourceLocation(IronChests.MODID, "iron_chest"), "main");
+  public static final ModelLayerLocation IRON_CHEST = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(IronChests.MODID, "iron_chest"), "main");
 
   @SubscribeEvent
   public static void registerLayer(EntityRenderersEvent.RegisterLayerDefinitions event) {

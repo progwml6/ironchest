@@ -4,6 +4,7 @@ import com.progwml6.ironchest.IronChests;
 import com.progwml6.ironchest.common.block.IronChestsBlocks;
 import com.progwml6.ironchest.common.item.IronChestsItems;
 import com.progwml6.ironchest.common.item.IronChestsUpgradeType;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
@@ -22,10 +23,12 @@ import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 
+import java.util.concurrent.CompletableFuture;
+
 public class IronChestsRecipeProvider extends RecipeProvider implements IConditionBuilder {
 
-  public IronChestsRecipeProvider(PackOutput output) {
-    super(output);
+  public IronChestsRecipeProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
+    super(output, provider);
   }
 
   @Override
@@ -58,7 +61,7 @@ public class IronChestsRecipeProvider extends RecipeProvider implements IConditi
     ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, IronChestsBlocks.IRON_CHEST.get())
       .define('M', Tags.Items.INGOTS_IRON)
       .define('S', IronChestsBlocks.COPPER_CHEST.get())
-      .define('G', Tags.Items.GLASS)
+      .define('G', Tags.Items.GLASS_BLOCKS)
       .pattern("MGM")
       .pattern("GSG")
       .pattern("MGM")
@@ -77,7 +80,7 @@ public class IronChestsRecipeProvider extends RecipeProvider implements IConditi
     ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, IronChestsBlocks.DIAMOND_CHEST.get())
       .define('M', Tags.Items.GEMS_DIAMOND)
       .define('S', IronChestsBlocks.GOLD_CHEST.get())
-      .define('G', Tags.Items.GLASS)
+      .define('G', Tags.Items.GLASS_BLOCKS)
       .pattern("GGG")
       .pattern("MSM")
       .pattern("GGG")
@@ -94,12 +97,12 @@ public class IronChestsRecipeProvider extends RecipeProvider implements IConditi
       .save(recipeOutput, location(folder + "diamond_obsidian_chest"));
 
     ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, IronChestsBlocks.CRYSTAL_CHEST.get())
-      .define('G', Tags.Items.GLASS)
+      .define('G', Tags.Items.GLASS_BLOCKS)
       .define('S', IronChestsBlocks.DIAMOND_CHEST.get())
       .pattern("GGG")
       .pattern("GSG")
       .pattern("GGG")
-      .unlockedBy("has_glass", has(Tags.Items.GLASS))
+      .unlockedBy("has_glass", has(Tags.Items.GLASS_BLOCKS))
       .save(recipeOutput, location(folder + "diamond_crystal_chest"));
 
     ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, IronChestsBlocks.DIRT_CHEST.get())
@@ -178,7 +181,7 @@ public class IronChestsRecipeProvider extends RecipeProvider implements IConditi
     ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, IronChestsItems.UPGRADES.get(IronChestsUpgradeType.COPPER_TO_IRON).get())
       .define('I', Tags.Items.INGOTS_IRON)
       .define('C', Tags.Items.INGOTS_COPPER)
-      .define('G', Tags.Items.GLASS)
+      .define('G', Tags.Items.GLASS_BLOCKS)
       .pattern("IGI")
       .pattern("GCG")
       .pattern("IGI")
@@ -197,29 +200,29 @@ public class IronChestsRecipeProvider extends RecipeProvider implements IConditi
     ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, IronChestsItems.UPGRADES.get(IronChestsUpgradeType.GOLD_TO_DIAMOND).get())
       .define('M', Tags.Items.GEMS_DIAMOND)
       .define('S', Tags.Items.INGOTS_GOLD)
-      .define('G', Tags.Items.GLASS)
+      .define('G', Tags.Items.GLASS_BLOCKS)
       .pattern("GGG")
       .pattern("MSM")
       .pattern("GGG")
-      .unlockedBy("has_glass", has(Tags.Items.GLASS))
+      .unlockedBy("has_glass", has(Tags.Items.GLASS_BLOCKS))
       .save(recipeOutput, prefix(IronChestsItems.UPGRADES.get(IronChestsUpgradeType.GOLD_TO_DIAMOND).get(), folder));
 
     ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, IronChestsItems.UPGRADES.get(IronChestsUpgradeType.DIAMOND_TO_OBSIDIAN).get())
       .define('M', Blocks.OBSIDIAN)
-      .define('G', Tags.Items.GLASS)
+      .define('G', Tags.Items.GLASS_BLOCKS)
       .pattern("MMM")
       .pattern("MGM")
       .pattern("MMM")
-      .unlockedBy("has_glass", has(Tags.Items.GLASS))
+      .unlockedBy("has_glass", has(Tags.Items.GLASS_BLOCKS))
       .save(recipeOutput, prefix(IronChestsItems.UPGRADES.get(IronChestsUpgradeType.DIAMOND_TO_OBSIDIAN).get(), folder));
 
     ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, IronChestsItems.UPGRADES.get(IronChestsUpgradeType.DIAMOND_TO_CRYSTAL).get())
       .define('M', Blocks.OBSIDIAN)
-      .define('G', Tags.Items.GLASS)
+      .define('G', Tags.Items.GLASS_BLOCKS)
       .pattern("GGG")
       .pattern("GMG")
       .pattern("GGG")
-      .unlockedBy("has_glass", has(Tags.Items.GLASS))
+      .unlockedBy("has_glass", has(Tags.Items.GLASS_BLOCKS))
       .save(recipeOutput, prefix(IronChestsItems.UPGRADES.get(IronChestsUpgradeType.DIAMOND_TO_CRYSTAL).get(), folder));
   }
 
@@ -231,10 +234,10 @@ public class IronChestsRecipeProvider extends RecipeProvider implements IConditi
   }
 
   private static ResourceLocation location(String id) {
-    return new ResourceLocation(IronChests.MODID, id);
+    return ResourceLocation.fromNamespaceAndPath(IronChests.MODID, id);
   }
 
   private static TagKey<Item> tag(String name) {
-    return ItemTags.create(new ResourceLocation("forge", name));
+    return ItemTags.create(ResourceLocation.fromNamespaceAndPath("forge", name));
   }
 }

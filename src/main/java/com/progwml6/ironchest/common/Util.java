@@ -1,18 +1,22 @@
 package com.progwml6.ironchest.common;
 
 import com.progwml6.ironchest.IronChests;
-import net.minecraft.nbt.IntTag;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.ListTag;
-import net.minecraft.nbt.StringTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.network.Filterable;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.component.WrittenBookContent;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
+import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Util {
 
@@ -33,16 +37,19 @@ public class Util {
   public static void addBookInformationStatic(ItemStack book, ListTag bookPages, @Nullable String name, int pageCount) {
     String key = name == null ? "unknown" : name;
 
-    addTranslatedPages(bookPages, IronChests.MODID + ".book." + key, pageCount);
+    Function<Integer, Filterable<Component>> pageGenerationFunc = index -> Filterable.passThrough(Component.translatable(IronChests.MODID + ".book." + key + "." + (index + 1)));
 
-    book.addTagElement("pages", bookPages);
-    book.addTagElement("generation", IntTag.valueOf(3));
-    book.addTagElement("author", StringTag.valueOf(BOOK_AUTHOR));
-    book.addTagElement("title", StringTag.valueOf("How to use your DirtChest 9000!"));
-  }
+    List<Filterable<Component>> list = Stream.iterate(0, index -> index + 1)
+      .limit(pageCount)
+      .map(pageGenerationFunc)
+      .toList();
 
-  public static void addTranslatedPages(ListTag bookPages, String translationKey, int pageCount) {
-    for (int i = 1; i <= pageCount; i++)
-      bookPages.add(StringTag.valueOf(Component.Serializer.toJson(Component.translatable(translationKey + "." + i))));
+    book.set(DataComponents.WRITTEN_BOOK_CONTENT, new WrittenBookContent(
+      Filterable.passThrough("How to use your DirtChest 9000!"),
+      BOOK_AUTHOR,
+      3,
+      list,
+      true
+    ));
   }
 }
