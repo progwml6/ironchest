@@ -195,7 +195,7 @@ public abstract class AbstractIronChestBlock extends BaseEntityBlock implements 
 
   @Nullable
   public static Container getContainer(AbstractIronChestBlock chestBlock, BlockState blockState, Level level, BlockPos blockPos, boolean ignoreBlockedChest) {
-    return chestBlock.combine(blockState, level, blockPos, ignoreBlockedChest).<Optional<Container>>apply(CHEST_COMBINER).orElse((Container) null);
+    return chestBlock.combine(blockState, level, blockPos, ignoreBlockedChest).<Optional<Container>>apply(CHEST_COMBINER).orElse(null);
   }
 
   public DoubleBlockCombiner.NeighborCombineResult<? extends AbstractIronChestBlockEntity> combine(BlockState blockState, Level level, BlockPos blockPos, boolean ignoreBlockedChest) {
