@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "C": {
-      "tag": "c:ingots/copper"
-    },
-    "G": {
-      "tag": "c:glass_blocks"
-    },
-    "I": {
-      "tag": "c:ingots/iron"
-    }
+    "C": "#c:ingots/copper",
+    "G": "#c:glass_blocks",
+    "I": "#c:ingots/iron"
   },
   "pattern": [
     "IGI",

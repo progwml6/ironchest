@@ -3,19 +3,11 @@
   "category": "misc",
   "key": {
     "M": [
-      {
-        "item": "minecraft:dirt"
-      },
-      {
-        "item": "minecraft:coarse_dirt"
-      },
-      {
-        "item": "minecraft:podzol"
-      }
+      "minecraft:dirt",
+      "minecraft:coarse_dirt",
+      "minecraft:podzol"
     ],
-    "S": {
-      "tag": "c:chests/wooden"
-    }
+    "S": "#c:chests/wooden"
   },
   "pattern": [
     "MMM",

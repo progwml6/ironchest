@@ -2,7 +2,7 @@ package com.progwml6.ironchest;
 
 import com.progwml6.ironchest.common.block.IronChestsBlocks;
 import com.progwml6.ironchest.common.block.entity.IronChestsBlockEntityTypes;
-import com.progwml6.ironchest.common.block.regular.AbstractIronChestBlock;
+import com.progwml6.ironchest.common.block.regular.entity.AbstractIronChestBlockEntity;
 import com.progwml6.ironchest.common.creativetabs.IronChestsCreativeTabs;
 import com.progwml6.ironchest.common.data.IronChestsBlockTags;
 import com.progwml6.ironchest.common.data.IronChestsLanguageProvider;
@@ -16,6 +16,7 @@ import com.progwml6.ironchest.common.network.TopStacksSyncPacket;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.capabilities.Capabilities;
@@ -25,7 +26,10 @@ import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.items.wrapper.InvWrapper;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
+import java.util.Locale;
 import java.util.concurrent.CompletableFuture;
 
 @Mod(IronChests.MODID)
@@ -55,8 +59,7 @@ public class IronChests {
     CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
     gen.addProvider(event.includeServer(), new IronChestsLootTableProvider(packOutput, lookupProvider));
-
-    gen.addProvider(event.includeClient(), new IronChestsRecipeProvider(packOutput, lookupProvider));
+    gen.addProvider(event.includeClient(), new IronChestsRecipeProvider.Runner(packOutput, lookupProvider));
     gen.addProvider(event.includeClient(), new IronChestsBlockTags(packOutput, lookupProvider, ext));
     gen.addProvider(event.includeClient(), new IronChestsSpriteSourceProvider(packOutput, ext, lookupProvider));
     gen.addProvider(event.includeClient(), new IronChestsLanguageProvider(packOutput, "en_us"));
@@ -69,7 +72,7 @@ public class IronChests {
   }
 
   public void registerCapabilities(RegisterCapabilitiesEvent event) {
-    event.registerBlock(Capabilities.ItemHandler.BLOCK, (level, pos, state, blockEntity, context) -> new InvWrapper(AbstractIronChestBlock.getContainer((AbstractIronChestBlock) state.getBlock(), state, level, pos, true)),
+    event.registerBlock(Capabilities.ItemHandler.BLOCK, (level, pos, state, blockEntity, side) -> level.getBlockEntity(pos) instanceof AbstractIronChestBlockEntity ironChestBlockEntity ? new InvWrapper(ironChestBlockEntity) : null,
       IronChestsBlocks.IRON_CHEST.get(), IronChestsBlocks.TRAPPED_IRON_CHEST.get(),
       IronChestsBlocks.GOLD_CHEST.get(), IronChestsBlocks.TRAPPED_GOLD_CHEST.get(),
       IronChestsBlocks.DIAMOND_CHEST.get(), IronChestsBlocks.TRAPPED_DIAMOND_CHEST.get(),
@@ -78,5 +81,9 @@ public class IronChests {
       IronChestsBlocks.OBSIDIAN_CHEST.get(), IronChestsBlocks.TRAPPED_OBSIDIAN_CHEST.get(),
       IronChestsBlocks.DIRT_CHEST.get()
     );
+  }
+
+  public static ResourceLocation prefix(String name) {
+    return ResourceLocation.fromNamespaceAndPath(MODID, name.toLowerCase(Locale.ROOT));
   }
 }

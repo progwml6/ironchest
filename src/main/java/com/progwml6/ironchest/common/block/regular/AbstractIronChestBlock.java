@@ -2,7 +2,6 @@ package com.progwml6.ironchest.common.block.regular;
 
 import com.progwml6.ironchest.common.block.IronChestsTypes;
 import com.progwml6.ironchest.common.block.regular.entity.AbstractIronChestBlockEntity;
-import it.unimi.dsi.fastutil.floats.Float2FloatFunction;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
@@ -10,21 +9,20 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.stats.Stat;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.Container;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.animal.Cat;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.DoubleBlockCombiner;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.RenderShape;
@@ -33,13 +31,12 @@ import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.entity.LidBlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.pathfinder.PathComputationType;
@@ -50,51 +47,14 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 import javax.annotation.Nullable;
 import java.util.List;
-import java.util.Optional;
-import java.util.function.BiPredicate;
 import java.util.function.Supplier;
 
 public abstract class AbstractIronChestBlock extends BaseEntityBlock implements SimpleWaterloggedBlock {
 
-  public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
-
+  public static final EnumProperty<Direction> FACING = HorizontalDirectionalBlock.FACING;
   public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
   protected static final VoxelShape AABB = Block.box(1.0, 0.0, 1.0, 15.0, 14.0, 15.0);
-
-  private static final DoubleBlockCombiner.Combiner<AbstractIronChestBlockEntity, Optional<Container>> CHEST_COMBINER = new DoubleBlockCombiner.Combiner<>() {
-    @Override
-    public Optional<Container> acceptDouble(AbstractIronChestBlockEntity blockEntityOne, AbstractIronChestBlockEntity blockEntityTwo) {
-      return Optional.empty();
-    }
-
-    @Override
-    public Optional<Container> acceptSingle(AbstractIronChestBlockEntity blockEntity) {
-      return Optional.of(blockEntity);
-    }
-
-    @Override
-    public Optional<Container> acceptNone() {
-      return Optional.empty();
-    }
-  };
-
-  private static final DoubleBlockCombiner.Combiner<AbstractIronChestBlockEntity, Optional<MenuProvider>> MENU_PROVIDER_COMBINER = new DoubleBlockCombiner.Combiner<>() {
-    @Override
-    public Optional<MenuProvider> acceptDouble(AbstractIronChestBlockEntity blockEntityOne, AbstractIronChestBlockEntity blockEntityTwo) {
-      return Optional.empty();
-    }
-
-    @Override
-    public Optional<MenuProvider> acceptSingle(AbstractIronChestBlockEntity blockEntity) {
-      return Optional.of(blockEntity);
-    }
-
-    @Override
-    public Optional<MenuProvider> acceptNone() {
-      return Optional.empty();
-    }
-  };
 
   private final IronChestsTypes type;
 
@@ -109,33 +69,23 @@ public abstract class AbstractIronChestBlock extends BaseEntityBlock implements 
     this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(WATERLOGGED, Boolean.FALSE));
   }
 
-  public static DoubleBlockCombiner.BlockType getBlockType(BlockState blockState) {
-    return DoubleBlockCombiner.BlockType.SINGLE;
-  }
-
   @Override
   public RenderShape getRenderShape(BlockState state) {
     return RenderShape.ENTITYBLOCK_ANIMATED;
   }
 
   @Override
-  @Deprecated
-  public BlockState updateShape(BlockState blockState, Direction direction, BlockState facingState, LevelAccessor levelAccessor, BlockPos currentPos, BlockPos facingPos) {
-    if (blockState.getValue(WATERLOGGED)) {
-      levelAccessor.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(levelAccessor));
+  protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess scheduledTickAccess, BlockPos pos, Direction direction, BlockPos neighborPos, BlockState neighborState, RandomSource random) {
+    if (state.getValue(WATERLOGGED)) {
+      scheduledTickAccess.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
     }
 
-    return super.updateShape(blockState, direction, facingState, levelAccessor, currentPos, facingPos);
+    return super.updateShape(state, level, scheduledTickAccess, pos, direction, neighborPos, neighborState, random);
   }
 
   @Override
-  @Deprecated
-  public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext context) {
+  protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
     return AABB;
-  }
-
-  public static Direction getConnectedDirection(BlockState blockState) {
-    return blockState.getValue(FACING).getCounterClockWise();
   }
 
   @Override
@@ -194,57 +144,31 @@ public abstract class AbstractIronChestBlock extends BaseEntityBlock implements 
   }
 
   @Nullable
-  public static Container getContainer(AbstractIronChestBlock chestBlock, BlockState blockState, Level level, BlockPos blockPos, boolean ignoreBlockedChest) {
-    return chestBlock.combine(blockState, level, blockPos, ignoreBlockedChest).<Optional<Container>>apply(CHEST_COMBINER).orElse(null);
-  }
-
-  public DoubleBlockCombiner.NeighborCombineResult<? extends AbstractIronChestBlockEntity> combine(BlockState blockState, Level level, BlockPos blockPos, boolean ignoreBlockedChest) {
-    BiPredicate<LevelAccessor, BlockPos> biPredicate;
-
-    if (ignoreBlockedChest) {
-      biPredicate = (levelAccessor, blockPos1) -> false;
-    } else {
-      biPredicate = AbstractIronChestBlock::isChestBlockedAt;
-    }
-
-    return DoubleBlockCombiner.combineWithNeigbour(this.blockEntityType.get(), AbstractIronChestBlock::getBlockType, AbstractIronChestBlock::getConnectedDirection, FACING, blockState, level, blockPos, biPredicate);
-  }
-
-  @Nullable
-  public MenuProvider getMenuProvider(BlockState blockState, Level level, BlockPos blockPos) {
-    return this.combine(blockState, level, blockPos, false).apply(MENU_PROVIDER_COMBINER).orElse(null);
-  }
-
-  public static DoubleBlockCombiner.Combiner<AbstractIronChestBlockEntity, Float2FloatFunction> opennessCombiner(final LidBlockEntity lidBlockEntity) {
-    return new DoubleBlockCombiner.Combiner<>() {
-      public Float2FloatFunction acceptDouble(AbstractIronChestBlockEntity blockEntityOne, AbstractIronChestBlockEntity blockEntityTwo) {
-        return (lidBlockEntity) -> Math.max(blockEntityOne.getOpenNess(lidBlockEntity), blockEntityTwo.getOpenNess(lidBlockEntity));
-      }
-
-      public Float2FloatFunction acceptSingle(AbstractIronChestBlockEntity blockEntity) {
-        return blockEntity::getOpenNess;
-      }
-
-      public Float2FloatFunction acceptNone() {
-        return lidBlockEntity::getOpenNess;
-      }
-    };
-  }
-
   @Override
+  public MenuProvider getMenuProvider(BlockState state, Level level, BlockPos pos) {
+    if (isChestBlockedAt(level, pos))
+      return null;
+
+    if (level.getBlockEntity(pos) instanceof AbstractIronChestBlockEntity ironChestBlockEntity)
+      return ironChestBlockEntity;
+
+    return null;
+  }
+
   @Nullable
-  public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> blockEntityType) {
+  @Override
+  public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
     return level.isClientSide ? createTickerHelper(blockEntityType, this.blockEntityType(), AbstractIronChestBlockEntity::lidAnimateTick) : null;
   }
 
-  public static boolean isChestBlockedAt(LevelAccessor levelAccessor, BlockPos blockPos) {
-    return isBlockedChestByBlock(levelAccessor, blockPos) || isCatSittingOnChest(levelAccessor, blockPos);
+  public static boolean isChestBlockedAt(LevelAccessor level, BlockPos pos) {
+    return isBlockedChestByBlock(level, pos) || isCatSittingOnChest(level, pos);
   }
 
-  private static boolean isBlockedChestByBlock(BlockGetter blockGetter, BlockPos blockPos) {
-    BlockPos above = blockPos.above();
+  private static boolean isBlockedChestByBlock(BlockGetter level, BlockPos pos) {
+    BlockPos above = pos.above();
 
-    return blockGetter.getBlockState(above).isRedstoneConductor(blockGetter, above);
+    return level.getBlockState(above).isRedstoneConductor(level, above);
   }
 
   private static boolean isCatSittingOnChest(LevelAccessor levelAccessor, BlockPos blockPos) {
@@ -277,8 +201,11 @@ public abstract class AbstractIronChestBlock extends BaseEntityBlock implements 
   }
 
   @Override
-  public int getAnalogOutputSignal(BlockState blockState, Level level, BlockPos blockPos) {
-    return AbstractContainerMenu.getRedstoneSignalFromContainer(getContainer(this, blockState, level, blockPos, false));
+  protected int getAnalogOutputSignal(BlockState blockState, Level level, BlockPos pos) {
+    if (!isChestBlockedAt(level, pos) && level.getBlockEntity(pos) instanceof AbstractIronChestBlockEntity ironChestBlockEntity)
+      return AbstractContainerMenu.getRedstoneSignalFromContainer(ironChestBlockEntity);
+
+    return AbstractContainerMenu.getRedstoneSignalFromContainer(null);
   }
 
   @Override
@@ -287,8 +214,8 @@ public abstract class AbstractIronChestBlock extends BaseEntityBlock implements 
   }
 
   @Override
-  public BlockState mirror(BlockState blockState, Mirror mirror) {
-    return blockState.rotate(mirror.getRotation(blockState.getValue(FACING)));
+  protected BlockState mirror(BlockState state, Mirror mirror) {
+    return state.rotate(mirror.getRotation(state.getValue(FACING)));
   }
 
   @Override
@@ -308,11 +235,6 @@ public abstract class AbstractIronChestBlock extends BaseEntityBlock implements 
     if (blockEntity instanceof AbstractIronChestBlockEntity) {
       ((AbstractIronChestBlockEntity) blockEntity).recheckOpen();
     }
-  }
-
-  @Nullable
-  public static IronChestsTypes getTypeFromItem(Item itemIn) {
-    return getTypeFromBlock(Block.byItem(itemIn));
   }
 
   @Nullable

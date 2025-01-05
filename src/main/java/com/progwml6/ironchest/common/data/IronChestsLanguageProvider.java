@@ -3,7 +3,6 @@ package com.progwml6.ironchest.common.data;
 import com.progwml6.ironchest.IronChests;
 import com.progwml6.ironchest.common.block.IronChestsBlocks;
 import com.progwml6.ironchest.common.item.IronChestsItems;
-import com.progwml6.ironchest.common.item.IronChestsUpgradeType;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 
@@ -31,13 +30,13 @@ public class IronChestsLanguageProvider extends LanguageProvider {
     this.addBlock(IronChestsBlocks.TRAPPED_OBSIDIAN_CHEST, "Trapped Obsidian Chest");
     this.addBlock(IronChestsBlocks.TRAPPED_DIRT_CHEST, "Trapped DirtChest 9000!");
 
-    this.addItem(IronChestsItems.UPGRADES.get(IronChestsUpgradeType.IRON_TO_GOLD), "Iron to Gold Chest Upgrade");
-    this.addItem(IronChestsItems.UPGRADES.get(IronChestsUpgradeType.GOLD_TO_DIAMOND), "Gold to Diamond Chest Upgrade");
-    this.addItem(IronChestsItems.UPGRADES.get(IronChestsUpgradeType.COPPER_TO_IRON), "Copper to Iron Chest Upgrade");
-    this.addItem(IronChestsItems.UPGRADES.get(IronChestsUpgradeType.DIAMOND_TO_CRYSTAL), "Diamond to Crystal Chest Upgrade");
-    this.addItem(IronChestsItems.UPGRADES.get(IronChestsUpgradeType.WOOD_TO_IRON), "Wood to Iron Chest Upgrade");
-    this.addItem(IronChestsItems.UPGRADES.get(IronChestsUpgradeType.WOOD_TO_COPPER), "Wood to Copper Chest Upgrade");
-    this.addItem(IronChestsItems.UPGRADES.get(IronChestsUpgradeType.DIAMOND_TO_OBSIDIAN), "Diamond to Obsidian Chest Upgrade");
+    this.addItem(IronChestsItems.IRON_TO_GOLD_CHEST_UPGRADE, "Iron to Gold Chest Upgrade");
+    this.addItem(IronChestsItems.GOLD_TO_DIAMOND_CHEST_UPGRADE, "Gold to Diamond Chest Upgrade");
+    this.addItem(IronChestsItems.COPPER_TO_IRON_CHEST_UPGRADE, "Copper to Iron Chest Upgrade");
+    this.addItem(IronChestsItems.DIAMOND_TO_CRYSTAL_CHEST_UPGRADE, "Diamond to Crystal Chest Upgrade");
+    this.addItem(IronChestsItems.WOOD_TO_IRON_CHEST_UPGRADE, "Wood to Iron Chest Upgrade");
+    this.addItem(IronChestsItems.WOOD_TO_COPPER_CHEST_UPGRADE, "Wood to Copper Chest Upgrade");
+    this.addItem(IronChestsItems.DIAMOND_TO_OBSIDIAN_CHEST_UPGRADE, "Diamond to Obsidian Chest Upgrade");
 
     this.addBookAndContents("dirtchest9000", "How to use your DirtChest 9000!",
       "Welcome to your new DirtChest 9000! We hope you will enjoy many happy years of storing your stack of dirt in our storage utility.",

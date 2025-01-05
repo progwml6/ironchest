@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "M": {
-      "tag": "c:ingots/copper"
-    },
-    "S": {
-      "tag": "c:chests/wooden"
-    }
+    "M": "#c:ingots/copper",
+    "S": "#c:chests/wooden"
   },
   "pattern": [
     "MMM",

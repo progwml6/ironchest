@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "M": {
-      "tag": "c:ingots/gold"
-    },
-    "S": {
-      "item": "ironchest:iron_chest"
-    }
+    "M": "#c:ingots/gold",
+    "S": "ironchest:iron_chest"
   },
   "pattern": [
     "MMM",

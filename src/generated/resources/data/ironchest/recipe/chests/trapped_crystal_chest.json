@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "ironchest:crystal_chest"
-    },
-    {
-      "item": "minecraft:tripwire_hook"
-    }
+    "ironchest:crystal_chest",
+    "minecraft:tripwire_hook"
   ],
   "result": {
     "count": 1,

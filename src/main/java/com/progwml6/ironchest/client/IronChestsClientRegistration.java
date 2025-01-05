@@ -1,10 +1,13 @@
 package com.progwml6.ironchest.client;
 
 import com.progwml6.ironchest.IronChests;
+import com.progwml6.ironchest.client.model.IronChestModel;
 import com.progwml6.ironchest.client.render.IronChestRenderer;
 import com.progwml6.ironchest.client.screen.IronChestScreen;
+import com.progwml6.ironchest.common.block.IronChestsBlocks;
 import com.progwml6.ironchest.common.block.entity.IronChestsBlockEntityTypes;
 import com.progwml6.ironchest.common.inventory.IronChestsMenuTypes;
+import com.progwml6.ironchest.common.item.IronChestBlockItem;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
@@ -12,6 +15,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
+import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 
 @EventBusSubscriber(modid = IronChests.MODID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
 public class IronChestsClientRegistration {
@@ -20,7 +24,7 @@ public class IronChestsClientRegistration {
 
   @SubscribeEvent
   public static void registerLayer(EntityRenderersEvent.RegisterLayerDefinitions event) {
-    event.registerLayerDefinition(IRON_CHEST, IronChestRenderer::createLayerDefinition);
+    event.registerLayerDefinition(IRON_CHEST, IronChestModel::createLayerDefinition);
   }
 
   @SubscribeEvent
@@ -51,5 +55,14 @@ public class IronChestsClientRegistration {
     event.registerBlockEntityRenderer(IronChestsBlockEntityTypes.TRAPPED_CRYSTAL_CHEST.get(), IronChestRenderer::new);
     event.registerBlockEntityRenderer(IronChestsBlockEntityTypes.TRAPPED_OBSIDIAN_CHEST.get(), IronChestRenderer::new);
     event.registerBlockEntityRenderer(IronChestsBlockEntityTypes.TRAPPED_DIRT_CHEST.get(), IronChestRenderer::new);
+  }
+
+  @SubscribeEvent
+  public static void registerClientExtensions(RegisterClientExtensionsEvent event) {
+    event.registerItem(IronChestBlockItem.IronChestRender.INSTANCE,
+      IronChestsBlocks.IRON_CHEST.asItem(), IronChestsBlocks.TRAPPED_IRON_CHEST.asItem(), IronChestsBlocks.GOLD_CHEST.asItem(), IronChestsBlocks.TRAPPED_GOLD_CHEST.asItem(),
+      IronChestsBlocks.DIAMOND_CHEST.asItem(), IronChestsBlocks.TRAPPED_DIAMOND_CHEST.asItem(), IronChestsBlocks.COPPER_CHEST.asItem(), IronChestsBlocks.TRAPPED_COPPER_CHEST.asItem(),
+      IronChestsBlocks.CRYSTAL_CHEST.asItem(), IronChestsBlocks.TRAPPED_CRYSTAL_CHEST.asItem(), IronChestsBlocks.OBSIDIAN_CHEST.asItem(), IronChestsBlocks.TRAPPED_OBSIDIAN_CHEST.asItem(),
+      IronChestsBlocks.DIRT_CHEST.asItem(), IronChestsBlocks.TRAPPED_DIRT_CHEST.asItem());
   }
 }

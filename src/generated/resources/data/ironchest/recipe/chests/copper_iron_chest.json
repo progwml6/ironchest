@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "G": {
-      "tag": "c:glass_blocks"
-    },
-    "M": {
-      "tag": "c:ingots/iron"
-    },
-    "S": {
-      "item": "ironchest:copper_chest"
-    }
+    "G": "#c:glass_blocks",
+    "M": "#c:ingots/iron",
+    "S": "ironchest:copper_chest"
   },
   "pattern": [
     "MGM",

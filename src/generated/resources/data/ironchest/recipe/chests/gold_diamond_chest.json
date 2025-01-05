@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "G": {
-      "tag": "c:glass_blocks"
-    },
-    "M": {
-      "tag": "c:gems/diamond"
-    },
-    "S": {
-      "item": "ironchest:gold_chest"
-    }
+    "G": "#c:glass_blocks",
+    "M": "#c:gems/diamond",
+    "S": "ironchest:gold_chest"
   },
   "pattern": [
     "GGG",

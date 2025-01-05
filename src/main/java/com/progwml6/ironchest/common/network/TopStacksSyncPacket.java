@@ -34,7 +34,7 @@ public class TopStacksSyncPacket implements CustomPacketPayload {
     this.blockPos = buf.readBlockPos();
     List<ItemStack> topItemStacks = ItemStack.OPTIONAL_STREAM_CODEC.apply(ByteBufCodecs.list()).decode(buf);
 
-    this.topItemStacks = NonNullList.<ItemStack>withSize(topItemStacks.size(), ItemStack.EMPTY);
+    this.topItemStacks = NonNullList.withSize(topItemStacks.size(), ItemStack.EMPTY);
 
     for (int i = 0; i < topItemStacks.size(); i++) {
       if (i < this.topItemStacks.size()) {

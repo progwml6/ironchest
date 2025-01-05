@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "M": {
-      "tag": "c:ingots/copper"
-    },
-    "P": {
-      "tag": "minecraft:planks"
-    }
+    "M": "#c:ingots/copper",
+    "P": "#minecraft:planks"
   },
   "pattern": [
     "MMM",

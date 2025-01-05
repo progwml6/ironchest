@@ -4,6 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import com.progwml6.ironchest.client.IronChestsClientRegistration;
+import com.progwml6.ironchest.client.model.IronChestModel;
 import com.progwml6.ironchest.client.model.IronChestsModels;
 import com.progwml6.ironchest.client.model.inventory.ModelItem;
 import com.progwml6.ironchest.common.block.IronChestsTypes;
@@ -11,22 +12,13 @@ import com.progwml6.ironchest.common.block.entity.ICrystalChest;
 import com.progwml6.ironchest.common.block.regular.AbstractIronChestBlock;
 import com.progwml6.ironchest.common.block.regular.entity.AbstractIronChestBlockEntity;
 import com.progwml6.ironchest.common.block.trapped.entity.AbstractTrappedIronChestBlockEntity;
-import it.unimi.dsi.fastutil.floats.Float2FloatFunction;
-import it.unimi.dsi.fastutil.ints.Int2IntFunction;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.geom.ModelPart;
-import net.minecraft.client.model.geom.PartPose;
-import net.minecraft.client.model.geom.builders.CubeListBuilder;
-import net.minecraft.client.model.geom.builders.LayerDefinition;
-import net.minecraft.client.model.geom.builders.MeshDefinition;
-import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
-import net.minecraft.client.renderer.blockentity.BrightnessCombiner;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.core.BlockPos;
@@ -35,7 +27,6 @@ import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.DoubleBlockCombiner;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.LidBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -51,10 +42,7 @@ import java.util.List;
 @OnlyIn(Dist.CLIENT)
 public class IronChestRenderer<T extends BlockEntity & LidBlockEntity> implements BlockEntityRenderer<T> {
 
-  private final ModelPart lid;
-  private final ModelPart bottom;
-  private final ModelPart lock;
-
+  private final IronChestModel model;
   private final BlockEntityRenderDispatcher renderer;
 
   private static final List<ModelItem> MODEL_ITEMS = Arrays.asList(
@@ -70,33 +58,18 @@ public class IronChestRenderer<T extends BlockEntity & LidBlockEntity> implement
   );
 
   public IronChestRenderer(BlockEntityRendererProvider.Context context) {
-    ModelPart modelPart = context.bakeLayer(IronChestsClientRegistration.IRON_CHEST);
-
     this.renderer = context.getBlockEntityRenderDispatcher();
-    this.bottom = modelPart.getChild("iron_bottom");
-    this.lid = modelPart.getChild("iron_lid");
-    this.lock = modelPart.getChild("iron_lock");
-  }
-
-  public static LayerDefinition createLayerDefinition() {
-    MeshDefinition meshDefinition = new MeshDefinition();
-    PartDefinition partDefinition = meshDefinition.getRoot();
-
-    partDefinition.addOrReplaceChild("iron_bottom", CubeListBuilder.create().texOffs(0, 19).addBox(1.0F, 0.0F, 1.0F, 14.0F, 10.0F, 14.0F), PartPose.ZERO);
-    partDefinition.addOrReplaceChild("iron_lid", CubeListBuilder.create().texOffs(0, 0).addBox(1.0F, 0.0F, 0.0F, 14.0F, 5.0F, 14.0F), PartPose.offset(0.0F, 9.0F, 1.0F));
-    partDefinition.addOrReplaceChild("iron_lock", CubeListBuilder.create().texOffs(0, 0).addBox(7.0F, -2.0F, 14.0F, 2.0F, 4.0F, 1.0F), PartPose.offset(0.0F, 9.0F, 1.0F));
-
-    return LayerDefinition.create(meshDefinition, 64, 64);
+    this.model = new IronChestModel(context.bakeLayer(IronChestsClientRegistration.IRON_CHEST));
   }
 
   @Override
-  public void render(T tileEntityIn, float partialTicks, PoseStack poseStack, MultiBufferSource bufferSource, int combinedLightIn, int combinedOverlayIn) {
-    AbstractIronChestBlockEntity tileEntity = (AbstractIronChestBlockEntity) tileEntityIn;
+  public void render(T blockEntity, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, int packedOverlay) {
+    AbstractIronChestBlockEntity chestBlockEntity = (AbstractIronChestBlockEntity) blockEntity;
 
-    Level level = tileEntity.getLevel();
+    Level level = chestBlockEntity.getLevel();
     boolean useTileEntityBlockState = level != null;
 
-    BlockState blockState = useTileEntityBlockState ? tileEntity.getBlockState() : (BlockState) tileEntity.getBlockToUse().defaultBlockState().setValue(AbstractIronChestBlock.FACING, Direction.SOUTH);
+    BlockState blockState = useTileEntityBlockState ? chestBlockEntity.getBlockState() : chestBlockEntity.getBlockToUse().defaultBlockState().setValue(AbstractIronChestBlock.FACING, Direction.SOUTH);
     Block block = blockState.getBlock();
     IronChestsTypes chestType = IronChestsTypes.IRON;
     IronChestsTypes actualType = AbstractIronChestBlock.getTypeFromBlock(block);
@@ -105,7 +78,7 @@ public class IronChestRenderer<T extends BlockEntity & LidBlockEntity> implement
       chestType = actualType;
     }
 
-    if (block instanceof AbstractIronChestBlock abstractChestBlock) {
+    if (block instanceof AbstractIronChestBlock) {
       poseStack.pushPose();
 
       float f = blockState.getValue(AbstractIronChestBlock.FACING).toYRot();
@@ -114,47 +87,31 @@ public class IronChestRenderer<T extends BlockEntity & LidBlockEntity> implement
       poseStack.mulPose(Axis.YP.rotationDegrees(-f));
       poseStack.translate(-0.5D, -0.5D, -0.5D);
 
-      DoubleBlockCombiner.NeighborCombineResult<? extends AbstractIronChestBlockEntity> neighborCombineResult;
-
-      if (useTileEntityBlockState) {
-        neighborCombineResult = abstractChestBlock.combine(blockState, level, tileEntityIn.getBlockPos(), true);
-      } else {
-        neighborCombineResult = DoubleBlockCombiner.Combiner::acceptNone;
-      }
-
-      float openness = neighborCombineResult.<Float2FloatFunction>apply(AbstractIronChestBlock.opennessCombiner(tileEntity)).get(partialTicks);
+      float openness = chestBlockEntity.getOpenNess(partialTick);
       openness = 1.0F - openness;
       openness = 1.0F - openness * openness * openness;
 
-      int brightness = neighborCombineResult.<Int2IntFunction>apply(new BrightnessCombiner<>()).applyAsInt(combinedLightIn);
-
-      boolean trapped = tileEntityIn instanceof AbstractTrappedIronChestBlockEntity;
+      boolean trapped = blockEntity instanceof AbstractTrappedIronChestBlockEntity;
 
       Material material = new Material(Sheets.CHEST_SHEET, IronChestsModels.chooseChestTexture(chestType, trapped));
-
       VertexConsumer vertexConsumer = material.buffer(bufferSource, RenderType::entityCutout);
-
-      this.render(poseStack, vertexConsumer, this.lid, this.lock, this.bottom, openness, brightness, combinedOverlayIn);
+      this.render(poseStack, vertexConsumer, this.model, openness, packedLight, packedOverlay);
 
       poseStack.popPose();
 
-      if (chestType.isTransparent() && tileEntity instanceof ICrystalChest crystalChest && Vec3.atCenterOf(tileEntityIn.getBlockPos()).closerThan(this.renderer.camera.getPosition(), 128d)) {
-        float rotation = (float) (360D * (System.currentTimeMillis() & 0x3FFFL) / 0x3FFFL) - partialTicks;
+      if (chestType.isTransparent() && chestBlockEntity instanceof ICrystalChest crystalChest && Vec3.atCenterOf(blockEntity.getBlockPos()).closerThan(this.renderer.camera.getPosition(), 128d)) {
+        float rotation = (float) (360D * (System.currentTimeMillis() & 0x3FFFL) / 0x3FFFL) - partialTick;
 
         for (int j = 0; j < MODEL_ITEMS.size() - 1; j++) {
-          renderItem(poseStack, bufferSource, crystalChest.getTopItems().get(j), MODEL_ITEMS.get(j), rotation, combinedLightIn);
+          renderItem(poseStack, bufferSource, crystalChest.getTopItems().get(j), MODEL_ITEMS.get(j), rotation, packedLight);
         }
       }
     }
   }
 
-  private void render(PoseStack poseStack, VertexConsumer vertexConsumer, ModelPart lid, ModelPart lock, ModelPart bottom, float openness, int brightness, int combinedOverlayIn) {
-    lid.xRot = -(openness * ((float) Math.PI / 2F));
-    lock.xRot = lid.xRot;
-
-    lid.render(poseStack, vertexConsumer, brightness, combinedOverlayIn);
-    lock.render(poseStack, vertexConsumer, brightness, combinedOverlayIn);
-    bottom.render(poseStack, vertexConsumer, brightness, combinedOverlayIn);
+  private void render(PoseStack poseStack, VertexConsumer buffer, IronChestModel model, float openness, int packedLight, int packedOverlay) {
+    model.setupAnim(openness);
+    model.renderToBuffer(poseStack, buffer, packedLight, packedOverlay);
   }
 
   /**
