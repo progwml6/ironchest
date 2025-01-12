@@ -6,14 +6,13 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 import java.util.concurrent.CompletableFuture;
 
 public class IronChestsBlockTags extends BlockTagsProvider {
 
-  public IronChestsBlockTags(PackOutput output, CompletableFuture<HolderLookup.Provider> lookup, ExistingFileHelper existingFileHelper) {
-    super(output, lookup, IronChests.MODID, existingFileHelper);
+  public IronChestsBlockTags(PackOutput output, CompletableFuture<HolderLookup.Provider> lookup) {
+    super(output, lookup, IronChests.MODID);
   }
 
   @Override

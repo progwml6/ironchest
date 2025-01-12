@@ -2,25 +2,25 @@ package com.progwml6.ironchest.client;
 
 import com.progwml6.ironchest.IronChests;
 import com.progwml6.ironchest.client.model.IronChestModel;
-import com.progwml6.ironchest.client.render.IronChestRenderer;
+import com.progwml6.ironchest.client.renderer.IronChestRenderer;
+import com.progwml6.ironchest.client.renderer.special.IronChestSpecialRenderer;
 import com.progwml6.ironchest.client.screen.IronChestScreen;
 import com.progwml6.ironchest.common.block.IronChestsBlocks;
 import com.progwml6.ironchest.common.block.entity.IronChestsBlockEntityTypes;
 import com.progwml6.ironchest.common.inventory.IronChestsMenuTypes;
-import com.progwml6.ironchest.common.item.IronChestBlockItem;
 import net.minecraft.client.model.geom.ModelLayerLocation;
-import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
-import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
+import net.neoforged.neoforge.client.event.RegisterSpecialBlockModelRendererEvent;
+import net.neoforged.neoforge.client.event.RegisterSpecialModelRendererEvent;
 
 @EventBusSubscriber(modid = IronChests.MODID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
 public class IronChestsClientRegistration {
 
-  public static final ModelLayerLocation IRON_CHEST = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(IronChests.MODID, "iron_chest"), "main");
+  public static final ModelLayerLocation IRON_CHEST = new ModelLayerLocation(IronChests.prefix("iron_chest"), "main");
 
   @SubscribeEvent
   public static void registerLayer(EntityRenderersEvent.RegisterLayerDefinitions event) {
@@ -58,11 +58,31 @@ public class IronChestsClientRegistration {
   }
 
   @SubscribeEvent
-  public static void registerClientExtensions(RegisterClientExtensionsEvent event) {
-    event.registerItem(IronChestBlockItem.IronChestRender.INSTANCE,
-      IronChestsBlocks.IRON_CHEST.asItem(), IronChestsBlocks.TRAPPED_IRON_CHEST.asItem(), IronChestsBlocks.GOLD_CHEST.asItem(), IronChestsBlocks.TRAPPED_GOLD_CHEST.asItem(),
-      IronChestsBlocks.DIAMOND_CHEST.asItem(), IronChestsBlocks.TRAPPED_DIAMOND_CHEST.asItem(), IronChestsBlocks.COPPER_CHEST.asItem(), IronChestsBlocks.TRAPPED_COPPER_CHEST.asItem(),
-      IronChestsBlocks.CRYSTAL_CHEST.asItem(), IronChestsBlocks.TRAPPED_CRYSTAL_CHEST.asItem(), IronChestsBlocks.OBSIDIAN_CHEST.asItem(), IronChestsBlocks.TRAPPED_OBSIDIAN_CHEST.asItem(),
-      IronChestsBlocks.DIRT_CHEST.asItem(), IronChestsBlocks.TRAPPED_DIRT_CHEST.asItem());
+  public static void registerSpecialRenderers(RegisterSpecialModelRendererEvent event) {
+    event.register(IronChests.prefix("iron_chest"), IronChestSpecialRenderer.Unbaked.MAP_CODEC);
+  }
+
+  @SubscribeEvent
+  public static void registerSpecialBlockRenderers(RegisterSpecialBlockModelRendererEvent event) {
+    event.register(IronChestsBlocks.IRON_CHEST.get(), new IronChestSpecialRenderer.Unbaked(IronChestSpecialRenderer.IRON_CHEST_TEXTURE));
+    event.register(IronChestsBlocks.TRAPPED_IRON_CHEST.get(), new IronChestSpecialRenderer.Unbaked(IronChestSpecialRenderer.TRAPPED_IRON_CHEST_TEXTURE));
+
+    event.register(IronChestsBlocks.GOLD_CHEST.get(), new IronChestSpecialRenderer.Unbaked(IronChestSpecialRenderer.GOLD_CHEST_TEXTURE));
+    event.register(IronChestsBlocks.TRAPPED_GOLD_CHEST.get(), new IronChestSpecialRenderer.Unbaked(IronChestSpecialRenderer.TRAPPED_GOLD_CHEST_TEXTURE));
+
+    event.register(IronChestsBlocks.DIAMOND_CHEST.get(), new IronChestSpecialRenderer.Unbaked(IronChestSpecialRenderer.DIAMOND_CHEST_TEXTURE));
+    event.register(IronChestsBlocks.TRAPPED_DIAMOND_CHEST.get(), new IronChestSpecialRenderer.Unbaked(IronChestSpecialRenderer.TRAPPED_DIAMOND_CHEST_TEXTURE));
+
+    event.register(IronChestsBlocks.COPPER_CHEST.get(), new IronChestSpecialRenderer.Unbaked(IronChestSpecialRenderer.COPPER_CHEST_TEXTURE));
+    event.register(IronChestsBlocks.TRAPPED_COPPER_CHEST.get(), new IronChestSpecialRenderer.Unbaked(IronChestSpecialRenderer.TRAPPED_COPPER_CHEST_TEXTURE));
+
+    event.register(IronChestsBlocks.CRYSTAL_CHEST.get(), new IronChestSpecialRenderer.Unbaked(IronChestSpecialRenderer.CRYSTAL_CHEST_TEXTURE));
+    event.register(IronChestsBlocks.TRAPPED_CRYSTAL_CHEST.get(), new IronChestSpecialRenderer.Unbaked(IronChestSpecialRenderer.TRAPPED_CRYSTAL_CHEST_TEXTURE));
+
+    event.register(IronChestsBlocks.OBSIDIAN_CHEST.get(), new IronChestSpecialRenderer.Unbaked(IronChestSpecialRenderer.OBSIDIAN_CHEST_TEXTURE));
+    event.register(IronChestsBlocks.TRAPPED_OBSIDIAN_CHEST.get(), new IronChestSpecialRenderer.Unbaked(IronChestSpecialRenderer.TRAPPED_OBSIDIAN_CHEST_TEXTURE));
+
+    event.register(IronChestsBlocks.DIRT_CHEST.get(), new IronChestSpecialRenderer.Unbaked(IronChestSpecialRenderer.DIRT_CHEST_TEXTURE));
+    event.register(IronChestsBlocks.TRAPPED_DIRT_CHEST.get(), new IronChestSpecialRenderer.Unbaked(IronChestSpecialRenderer.TRAPPED_DIRT_CHEST_TEXTURE));
   }
 }

@@ -1,12 +1,11 @@
 package com.progwml6.ironchest.common.data;
 
 import com.progwml6.ironchest.IronChests;
-import com.progwml6.ironchest.client.model.IronChestsModels;
+import com.progwml6.ironchest.client.renderer.IronChestsModels;
 import com.progwml6.ironchest.common.block.IronChestsTypes;
 import net.minecraft.client.renderer.texture.atlas.sources.SingleFile;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.common.data.SpriteSourceProvider;
 
 import java.util.Optional;
@@ -14,8 +13,8 @@ import java.util.concurrent.CompletableFuture;
 
 public class IronChestsSpriteSourceProvider extends SpriteSourceProvider {
 
-  public IronChestsSpriteSourceProvider(PackOutput output, ExistingFileHelper fileHelper, CompletableFuture<Provider> lookupProvider) {
-    super(output, lookupProvider, IronChests.MODID, fileHelper);
+  public IronChestsSpriteSourceProvider(PackOutput output, CompletableFuture<Provider> lookupProvider) {
+    super(output, lookupProvider, IronChests.MODID);
   }
 
   @Override
@@ -26,6 +25,9 @@ public class IronChestsSpriteSourceProvider extends SpriteSourceProvider {
       }
       atlas(CHESTS_ATLAS).addSource(new SingleFile(IronChestsModels.chooseChestMaterial(type, false).texture(), Optional.empty()));
       atlas(CHESTS_ATLAS).addSource(new SingleFile(IronChestsModels.chooseChestMaterial(type, true).texture(), Optional.empty()));
+//      if (type != IronChestsTypes.DIRT && type != IronChestsTypes.OBSIDIAN) {
+//        atlas(BLOCKS_ATLAS).addSource(new SingleFile(IronChests.prefix("block/" + type.getSerializedName() + "_break"), Optional.empty()));
+//      }
     }
   }
 }

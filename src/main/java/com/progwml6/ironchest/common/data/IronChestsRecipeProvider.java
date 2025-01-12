@@ -19,11 +19,10 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
-import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 
 import java.util.concurrent.CompletableFuture;
 
-public class IronChestsRecipeProvider extends RecipeProvider implements IConditionBuilder {
+public class IronChestsRecipeProvider extends RecipeProvider {
 
   public IronChestsRecipeProvider(HolderLookup.Provider provider, RecipeOutput output) {
     super(provider, output);

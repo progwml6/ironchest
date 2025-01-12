@@ -1,0 +1,10 @@
+{
+  "model": {
+    "type": "minecraft:special",
+    "base": "ironchest:item/trapped_copper_chest",
+    "model": {
+      "type": "ironchest:iron_chest",
+      "texture": "ironchest:model/trapped_copper_chest"
+    }
+  }
+}

@@ -6,6 +6,7 @@ import com.progwml6.ironchest.common.block.regular.entity.AbstractIronChestBlock
 import com.progwml6.ironchest.common.creativetabs.IronChestsCreativeTabs;
 import com.progwml6.ironchest.common.data.IronChestsBlockTags;
 import com.progwml6.ironchest.common.data.IronChestsLanguageProvider;
+import com.progwml6.ironchest.common.data.IronChestsModelProvider;
 import com.progwml6.ironchest.common.data.IronChestsRecipeProvider;
 import com.progwml6.ironchest.common.data.IronChestsSpriteSourceProvider;
 import com.progwml6.ironchest.common.data.loot.IronChestsLootTableProvider;
@@ -27,7 +28,6 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.items.wrapper.InvWrapper;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
@@ -57,17 +57,17 @@ public class IronChests {
     IronChestsDataComponents.COMPONENTS.register(modEventBus);
   }
 
-  public void gatherData(GatherDataEvent event) {
-    ExistingFileHelper ext = event.getExistingFileHelper();
+  public void gatherData(GatherDataEvent.Client event) {
     DataGenerator gen = event.getGenerator();
     PackOutput packOutput = gen.getPackOutput();
     CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
-    gen.addProvider(event.includeServer(), new IronChestsLootTableProvider(packOutput, lookupProvider));
-    gen.addProvider(event.includeClient(), new IronChestsRecipeProvider.Runner(packOutput, lookupProvider));
-    gen.addProvider(event.includeClient(), new IronChestsBlockTags(packOutput, lookupProvider, ext));
-    gen.addProvider(event.includeClient(), new IronChestsSpriteSourceProvider(packOutput, ext, lookupProvider));
-    gen.addProvider(event.includeClient(), new IronChestsLanguageProvider(packOutput, "en_us"));
+    gen.addProvider(true, new IronChestsLootTableProvider(packOutput, lookupProvider));
+    gen.addProvider(true, new IronChestsRecipeProvider.Runner(packOutput, lookupProvider));
+    gen.addProvider(true, new IronChestsBlockTags(packOutput, lookupProvider));
+    gen.addProvider(true, new IronChestsSpriteSourceProvider(packOutput, lookupProvider));
+    gen.addProvider(true, new IronChestsLanguageProvider(packOutput, "en_us"));
+    gen.addProvider(true, new IronChestsModelProvider(packOutput));
     gen.addProvider(true, new PackMetadataGenerator(packOutput).add(PackMetadataSection.TYPE, new PackMetadataSection(
       Component.literal("Resources for Iron Chests"),
       DetectedVersion.BUILT_IN.getPackVersion(PackType.SERVER_DATA),

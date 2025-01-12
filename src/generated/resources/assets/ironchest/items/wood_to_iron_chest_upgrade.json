@@ -1,0 +1,6 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "ironchest:item/wood_to_iron_chest_upgrade"
+  }
+}

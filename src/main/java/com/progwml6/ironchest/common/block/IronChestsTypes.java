@@ -1,5 +1,6 @@
 package com.progwml6.ironchest.common.block;
 
+import com.progwml6.ironchest.IronChests;
 import com.progwml6.ironchest.common.Util;
 import com.progwml6.ironchest.common.block.regular.entity.AbstractIronChestBlockEntity;
 import com.progwml6.ironchest.common.block.regular.entity.CopperChestBlockEntity;
@@ -30,13 +31,13 @@ import java.util.Locale;
 
 public enum IronChestsTypes implements StringRepresentable {
 
-  IRON(54, 9, 184, 222, ResourceLocation.fromNamespaceAndPath("ironchest", "textures/gui/iron_container.png"), 256, 256),
-  GOLD(81, 9, 184, 276, ResourceLocation.fromNamespaceAndPath("ironchest", "textures/gui/gold_container.png"), 256, 276),
-  DIAMOND(108, 12, 238, 276, ResourceLocation.fromNamespaceAndPath("ironchest", "textures/gui/diamond_container.png"), 256, 276),
-  COPPER(45, 9, 184, 204, ResourceLocation.fromNamespaceAndPath("ironchest", "textures/gui/copper_container.png"), 256, 256),
-  CRYSTAL(108, 12, 238, 276, ResourceLocation.fromNamespaceAndPath("ironchest", "textures/gui/diamond_container.png"), 256, 276),
-  OBSIDIAN(108, 12, 238, 276, ResourceLocation.fromNamespaceAndPath("ironchest", "textures/gui/diamond_container.png"), 256, 276),
-  DIRT(1, 1, 184, 184, ResourceLocation.fromNamespaceAndPath("ironchest", "textures/gui/dirt_container.png"), 256, 256),
+  IRON(54, 9, 184, 222, IronChests.prefix("textures/gui/iron_container.png"), 256, 256),
+  GOLD(81, 9, 184, 276, IronChests.prefix("textures/gui/gold_container.png"), 256, 276),
+  DIAMOND(108, 12, 238, 276, IronChests.prefix("textures/gui/diamond_container.png"), 256, 276),
+  COPPER(45, 9, 184, 204, IronChests.prefix("textures/gui/copper_container.png"), 256, 256),
+  CRYSTAL(108, 12, 238, 276, IronChests.prefix("textures/gui/diamond_container.png"), 256, 276),
+  OBSIDIAN(108, 12, 238, 276, IronChests.prefix("textures/gui/diamond_container.png"), 256, 276),
+  DIRT(1, 1, 184, 184, IronChests.prefix("textures/gui/dirt_container.png"), 256, 256),
   WOOD(0, 0, 0, 0, null, 0, 0);
 
   private final String name;

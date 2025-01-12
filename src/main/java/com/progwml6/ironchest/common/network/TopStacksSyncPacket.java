@@ -9,7 +9,6 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -19,7 +18,7 @@ import java.util.List;
 
 public class TopStacksSyncPacket implements CustomPacketPayload {
 
-  public static final Type<TopStacksSyncPacket> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath(IronChests.MODID, "top_stacks"));
+  public static final Type<TopStacksSyncPacket> TYPE = new Type<>(IronChests.prefix("top_stacks"));
   public static final StreamCodec<RegistryFriendlyByteBuf, TopStacksSyncPacket> STREAM_CODEC = CustomPacketPayload.codec(TopStacksSyncPacket::write, TopStacksSyncPacket::new);
 
   private final BlockPos blockPos;

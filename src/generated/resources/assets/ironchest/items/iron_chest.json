@@ -1,0 +1,10 @@
+{
+  "model": {
+    "type": "minecraft:special",
+    "base": "ironchest:item/iron_chest",
+    "model": {
+      "type": "ironchest:iron_chest",
+      "texture": "ironchest:model/iron_chest"
+    }
+  }
+}

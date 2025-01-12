@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "ironchest:item/diamond_obsidian_upgrade"
+  }
+}
