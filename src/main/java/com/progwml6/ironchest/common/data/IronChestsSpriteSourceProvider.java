@@ -25,9 +25,6 @@ public class IronChestsSpriteSourceProvider extends SpriteSourceProvider {
       }
       atlas(CHESTS_ATLAS).addSource(new SingleFile(IronChestsModels.chooseChestMaterial(type, false).texture(), Optional.empty()));
       atlas(CHESTS_ATLAS).addSource(new SingleFile(IronChestsModels.chooseChestMaterial(type, true).texture(), Optional.empty()));
-//      if (type != IronChestsTypes.DIRT && type != IronChestsTypes.OBSIDIAN) {
-//        atlas(BLOCKS_ATLAS).addSource(new SingleFile(IronChests.prefix("block/" + type.getSerializedName() + "_break"), Optional.empty()));
-//      }
     }
   }
 }
