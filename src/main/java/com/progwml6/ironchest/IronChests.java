@@ -13,10 +13,16 @@ import com.progwml6.ironchest.common.datacomponents.IronChestsDataComponents;
 import com.progwml6.ironchest.common.inventory.IronChestsMenuTypes;
 import com.progwml6.ironchest.common.item.IronChestsItems;
 import com.progwml6.ironchest.common.network.TopStacksSyncPacket;
+import net.minecraft.DetectedVersion;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
+import net.minecraft.data.metadata.PackMetadataGenerator;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.PackType;
+import net.minecraft.server.packs.metadata.pack.PackMetadataSection;
+import net.minecraft.util.InclusiveRange;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.capabilities.Capabilities;
@@ -26,10 +32,9 @@ import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.items.wrapper.InvWrapper;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.Locale;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 @Mod(IronChests.MODID)
@@ -63,6 +68,10 @@ public class IronChests {
     gen.addProvider(event.includeClient(), new IronChestsBlockTags(packOutput, lookupProvider, ext));
     gen.addProvider(event.includeClient(), new IronChestsSpriteSourceProvider(packOutput, ext, lookupProvider));
     gen.addProvider(event.includeClient(), new IronChestsLanguageProvider(packOutput, "en_us"));
+    gen.addProvider(true, new PackMetadataGenerator(packOutput).add(PackMetadataSection.TYPE, new PackMetadataSection(
+      Component.literal("Resources for Iron Chests"),
+      DetectedVersion.BUILT_IN.getPackVersion(PackType.SERVER_DATA),
+      Optional.of(new InclusiveRange<>(0, Integer.MAX_VALUE)))));
   }
 
   public void setupPackets(RegisterPayloadHandlersEvent event) {

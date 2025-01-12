@@ -1,9 +1,60 @@
 {
   "sources": [
     {
-      "type": "minecraft:directory",
-      "prefix": "model/",
-      "source": "model"
+      "type": "minecraft:single",
+      "resource": "ironchest:model/iron_chest"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "ironchest:model/trapped_iron_chest"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "ironchest:model/gold_chest"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "ironchest:model/trapped_gold_chest"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "ironchest:model/diamond_chest"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "ironchest:model/trapped_diamond_chest"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "ironchest:model/copper_chest"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "ironchest:model/trapped_copper_chest"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "ironchest:model/crystal_chest"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "ironchest:model/trapped_crystal_chest"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "ironchest:model/obsidian_chest"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "ironchest:model/trapped_obsidian_chest"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "ironchest:model/dirt_chest"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "ironchest:model/trapped_dirt_chest"
     }
   ]
 }

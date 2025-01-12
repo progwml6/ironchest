@@ -53,8 +53,9 @@ public class IronChestsBlocks {
   public static final DeferredBlock<TrappedDirtChestBlock> TRAPPED_DIRT_CHEST = registerWithItem("trapped_dirt_chest", TrappedDirtChestBlock::new, () -> properties, IronChestsTypes.DIRT, true);
 
   public static <T extends Block> DeferredBlock<T> registerWithItem(String name, Function<BlockBehaviour.Properties, T> block, Supplier<BlockBehaviour.Properties> properties, IronChestsTypes chestType, Boolean trapped) {
-    DeferredBlock<T> ret = BLOCKS.register(name, () -> block.apply(properties.get().setId(ResourceKey.create(Registries.BLOCK, IronChests.prefix(name)))));
-    IronChestsItems.register(name, itemProps -> new IronChestBlockItem(ret.get(), itemProps, chestType, trapped), Item.Properties::new);
+    ResourceKey<Block> blockResourceKey = ResourceKey.create(Registries.BLOCK, IronChests.prefix(name));
+    DeferredBlock<T> ret = BLOCKS.register(name, () -> block.apply(properties.get().setId(blockResourceKey)));
+    IronChestsItems.register(name, itemProps -> new IronChestBlockItem(ret.get(), itemProps, chestType, trapped), Item.Properties::new, blockResourceKey);
     return ret;
   }
 }
