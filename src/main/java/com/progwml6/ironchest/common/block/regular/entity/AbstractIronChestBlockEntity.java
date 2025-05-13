@@ -182,9 +182,6 @@ public abstract class AbstractIronChestBlockEntity extends RandomizableContainer
     level.blockEvent(blockPos, block, 1, newCount);
   }
 
-  public void removeAdornments() {
-  }
-
   public IronChestsTypes getChestType() {
     IronChestsTypes type = IronChestsTypes.IRON;
 

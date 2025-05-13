@@ -61,7 +61,7 @@ public class IronChestRenderer<T extends BlockEntity & LidBlockEntity> implement
   }
 
   @Override
-  public void render(T blockEntity, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, int packedOverlay) {
+  public void render(T blockEntity, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, int packedOverlay, Vec3 p_401038_) {
     AbstractIronChestBlockEntity chestBlockEntity = (AbstractIronChestBlockEntity) blockEntity;
 
     Level level = chestBlockEntity.getLevel();

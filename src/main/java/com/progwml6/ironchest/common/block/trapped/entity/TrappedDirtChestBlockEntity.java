@@ -8,6 +8,7 @@ import com.progwml6.ironchest.common.datacomponents.IronChestsDataComponents;
 import com.progwml6.ironchest.common.inventory.IronChestMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponentGetter;
 import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Inventory;
@@ -32,10 +33,11 @@ public class TrappedDirtChestBlockEntity extends AbstractTrappedIronChestBlockEn
   }
 
   @Override
-  public void removeAdornments() {
+  public void preRemoveSideEffects(BlockPos blockPos, BlockState blockState) {
     if (!this.getItems().get(0).isEmpty() && ItemStack.isSameItem(this.getItems().get(0), DIRT_CHEST_BOOK)) {
       this.getItems().set(0, ItemStack.EMPTY);
     }
+    super.preRemoveSideEffects(blockPos, blockState);
   }
 
   @Override
@@ -47,10 +49,10 @@ public class TrappedDirtChestBlockEntity extends AbstractTrappedIronChestBlockEn
 
 
   @Override
-  protected void applyImplicitComponents(BlockEntity.DataComponentInput pComponentInput) {
-    super.applyImplicitComponents(pComponentInput);
+  protected void applyImplicitComponents(DataComponentGetter componentGetter) {
+    super.applyImplicitComponents(componentGetter);
 
-    if (!pComponentInput.getOrDefault(IronChestsDataComponents.CHEST_PLACED_ALREADY.get(), false)) {
+    if (!componentGetter.getOrDefault(IronChestsDataComponents.CHEST_PLACED_ALREADY.get(), false)) {
       this.setItem(0, DIRT_CHEST_BOOK.copy());
     }
   }

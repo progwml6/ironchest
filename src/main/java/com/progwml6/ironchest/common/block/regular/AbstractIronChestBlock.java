@@ -9,7 +9,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.stats.Stat;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.animal.Cat;
@@ -53,7 +52,7 @@ public abstract class AbstractIronChestBlock extends BaseEntityBlock implements 
   public static final EnumProperty<Direction> FACING = HorizontalDirectionalBlock.FACING;
   public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-  protected static final VoxelShape AABB = Block.box(1.0, 0.0, 1.0, 15.0, 14.0, 15.0);
+  private static final VoxelShape SHAPE = Block.column(14.0, 0.0, 14.0);
 
   private final IronChestsTypes type;
 
@@ -79,7 +78,7 @@ public abstract class AbstractIronChestBlock extends BaseEntityBlock implements 
 
   @Override
   protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-    return AABB;
+    return SHAPE;
   }
 
   @Override
@@ -97,19 +96,8 @@ public abstract class AbstractIronChestBlock extends BaseEntityBlock implements 
   }
 
   @Override
-  @Deprecated
-  public void onRemove(BlockState blockState, Level level, BlockPos blockPos, BlockState newState, boolean isMoving) {
-    if (!blockState.is(newState.getBlock())) {
-      BlockEntity blockEntity = level.getBlockEntity(blockPos);
-      if (blockEntity instanceof AbstractIronChestBlockEntity) {
-        ((AbstractIronChestBlockEntity) blockEntity).removeAdornments();
-
-        Containers.dropContents(level, blockPos, (AbstractIronChestBlockEntity) blockEntity);
-        level.updateNeighbourForOutputSignal(blockPos, this);
-      }
-
-      super.onRemove(blockState, level, blockPos, newState, isMoving);
-    }
+  public void affectNeighborsAfterRemoval(BlockState blockState, ServerLevel level, BlockPos blockPos, boolean isMoving) {
+    level.updateNeighbourForOutputSignal(blockPos, this);
   }
 
   @Override
@@ -167,15 +155,7 @@ public abstract class AbstractIronChestBlock extends BaseEntityBlock implements 
 
   private static boolean isCatSittingOnChest(LevelAccessor levelAccessor, BlockPos blockPos) {
     List<Cat> list = levelAccessor.getEntitiesOfClass(
-      Cat.class,
-      new AABB(
-        blockPos.getX(),
-        blockPos.getY() + 1,
-        blockPos.getZ(),
-        blockPos.getX() + 1,
-        blockPos.getY() + 2,
-        blockPos.getZ() + 1
-      )
+      Cat.class, new AABB(blockPos.getX(), blockPos.getY() + 1, blockPos.getZ(), blockPos.getX() + 1, blockPos.getY() + 2, blockPos.getZ() + 1)
     );
 
     if (!list.isEmpty()) {

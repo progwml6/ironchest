@@ -6,7 +6,7 @@ import com.progwml6.ironchest.common.block.IronChestsTypes;
 import net.minecraft.client.renderer.texture.atlas.sources.SingleFile;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
-import net.neoforged.neoforge.common.data.SpriteSourceProvider;
+import net.neoforged.neoforge.client.data.SpriteSourceProvider;
 
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
