@@ -20,6 +20,8 @@ import net.minecraft.world.item.ItemDisplayContext;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
+import java.util.Set;
+
 @OnlyIn(Dist.CLIENT)
 public class IronChestSpecialRenderer implements NoDataSpecialModelRenderer {
 
@@ -59,6 +61,11 @@ public class IronChestSpecialRenderer implements NoDataSpecialModelRenderer {
     VertexConsumer vertexconsumer = this.material.buffer(bufferSource, RenderType::entityCutout);
     this.model.setupAnim(this.openness);
     this.model.renderToBuffer(poseStack, vertexconsumer, packedLight, packedOverlay);
+  }
+
+  @Override
+  public void getExtents(Set<org.joml.Vector3f> extents) {
+    extents.clear();
   }
 
   @OnlyIn(Dist.CLIENT)

@@ -16,6 +16,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueOutput;
 
 import javax.annotation.Nullable;
 
@@ -41,10 +42,10 @@ public class TrappedDirtChestBlockEntity extends AbstractTrappedIronChestBlockEn
   }
 
   @Override
-  public void saveAdditional(CompoundTag pTag, HolderLookup.Provider pRegistries) {
-    super.saveAdditional(pTag, pRegistries);
+  public void saveAdditional(ValueOutput output) {
+    super.saveAdditional(output);
 
-    pTag.putBoolean("chest_placed_already", true);
+    output.putBoolean("chest_placed_already", true);
   }
 
 
@@ -64,8 +65,8 @@ public class TrappedDirtChestBlockEntity extends AbstractTrappedIronChestBlockEn
   }
 
   @Override
-  public void removeComponentsFromTag(CompoundTag pTag) {
-    super.removeComponentsFromTag(pTag);
-    pTag.remove("chest_placed_already");
+  public void removeComponentsFromTag(ValueOutput output) {
+    super.removeComponentsFromTag(output);
+    output.discard("chest_placed_already");
   }
 }

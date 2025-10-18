@@ -5,6 +5,7 @@ import com.progwml6.ironchest.common.inventory.IronChestMenu;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.inventory.MenuAccess;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
@@ -49,6 +50,6 @@ public class IronChestScreen extends AbstractContainerScreen<IronChestMenu> impl
     int x = (this.width - this.imageWidth) / 2;
     int y = (this.height - this.imageHeight) / 2;
 
-    guiGraphics.blit(RenderType::guiTextured, this.chestType.guiTexture, x, y, 0, 0, this.imageWidth, this.imageHeight, this.textureXSize, this.textureYSize);
+    guiGraphics.blit(RenderPipelines.GUI_TEXTURED, this.chestType.guiTexture, x, y, 0, 0, this.imageWidth, this.imageHeight, this.textureXSize, this.textureYSize);
   }
 }

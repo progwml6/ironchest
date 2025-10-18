@@ -10,7 +10,7 @@ import net.neoforged.neoforge.event.tick.EntityTickEvent;
 
 import java.util.HashSet;
 
-@EventBusSubscriber(modid = IronChests.MODID, bus = EventBusSubscriber.Bus.GAME)
+@EventBusSubscriber(modid = IronChests.MODID)
 public class CatsSitOnChestsHandler {
 
   @SubscribeEvent

@@ -70,7 +70,7 @@ public class IronChests {
     gen.addProvider(true, new IronChestsModelProvider(packOutput));
     gen.addProvider(true, new PackMetadataGenerator(packOutput).add(PackMetadataSection.TYPE, new PackMetadataSection(
       Component.literal("Resources for Iron Chests"),
-      DetectedVersion.BUILT_IN.getPackVersion(PackType.SERVER_DATA),
+      DetectedVersion.BUILT_IN.packVersion(PackType.SERVER_DATA),
       Optional.of(new InclusiveRange<>(0, Integer.MAX_VALUE)))));
   }
 

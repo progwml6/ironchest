@@ -27,6 +27,8 @@ import net.minecraft.world.level.block.entity.ContainerOpenersCounter;
 import net.minecraft.world.level.block.entity.LidBlockEntity;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 
 import java.util.function.Supplier;
 
@@ -81,22 +83,22 @@ public abstract class AbstractIronChestBlockEntity extends RandomizableContainer
   }
 
   @Override
-  public void loadAdditional(CompoundTag pTag, HolderLookup.Provider pRegistries) {
-    super.loadAdditional(pTag, pRegistries);
+  public void loadAdditional(ValueInput input) {
+    super.loadAdditional(input);
 
     this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
 
-    if (!this.tryLoadLootTable(pTag)) {
-      ContainerHelper.loadAllItems(pTag, this.items, pRegistries);
+    if (!this.tryLoadLootTable(input)) {
+      ContainerHelper.loadAllItems(input, this.items);
     }
   }
 
   @Override
-  public void saveAdditional(CompoundTag pTag, HolderLookup.Provider pRegistries) {
-    super.saveAdditional(pTag, pRegistries);
+  protected void saveAdditional(ValueOutput output) {
+    super.saveAdditional(output);
 
-    if (!this.trySaveLootTable(pTag)) {
-      ContainerHelper.saveAllItems(pTag, this.items, pRegistries);
+    if (!this.trySaveLootTable(output)) {
+      ContainerHelper.saveAllItems(output, this.items);
     }
   }
 
