@@ -19,9 +19,12 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
+import org.joml.Vector3f;
+
+import java.util.Set;
 
 @OnlyIn(Dist.CLIENT)
-public class IronChestSpecialRenderer implements NoDataSpecialModelRenderer {
+public  class IronChestSpecialRenderer implements NoDataSpecialModelRenderer {
 
   public static final ResourceLocation IRON_CHEST_TEXTURE = IronChests.prefix("model/iron_chest");
   public static final ResourceLocation TRAPPED_IRON_CHEST_TEXTURE = IronChests.prefix("model/trapped_iron_chest");
@@ -59,6 +62,13 @@ public class IronChestSpecialRenderer implements NoDataSpecialModelRenderer {
     VertexConsumer vertexconsumer = this.material.buffer(bufferSource, RenderType::entityCutout);
     this.model.setupAnim(this.openness);
     this.model.renderToBuffer(poseStack, vertexconsumer, packedLight, packedOverlay);
+  }
+
+  @Override
+  public void getExtents(Set<Vector3f> output) {
+    PoseStack posestack = new PoseStack();
+    this.model.setupAnim(this.openness);
+    this.model.root().getExtentsForGui(posestack, output);
   }
 
   @OnlyIn(Dist.CLIENT)

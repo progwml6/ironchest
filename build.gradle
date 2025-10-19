@@ -1,8 +1,8 @@
 plugins {
-    id 'idea'
     id 'java-library'
     id 'maven-publish'
-    id 'net.neoforged.moddev' version '2.0.88'
+    id 'net.neoforged.moddev' version '2.0.107'
+    id 'idea'
 }
 
 import org.gradle.api.provider.ValueSource
@@ -77,7 +77,7 @@ base {
     archivesName = mod_id
 }
 
-// Mojang ships Java 21 to end users starting in 1.20.5, so mods should target Java 21.
+// Mojang ships Java 21 to end users starting in 1.21.8, so mods should target Java 21.
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 
 neoForge {
@@ -163,10 +163,10 @@ configurations {
 }
 
 dependencies {
-    compileOnly "net.neoforged.moddev:net.neoforged.moddev.gradle.plugin:2.0.88"
-
-     compileOnly "me.shedaniel:RoughlyEnoughItems-neoforge:${rei_version}"
-     runtimeOnly "me.shedaniel:RoughlyEnoughItems-neoforge:${rei_version}"
+//    compileOnly "net.neoforged.moddev:net.neoforged.moddev.gradle.plugin:2.0.107"
+//
+//     compileOnly "me.shedaniel:RoughlyEnoughItems-neoforge:${rei_version}"
+//     runtimeOnly "me.shedaniel:RoughlyEnoughItems-neoforge:${rei_version}"
     // compile against the JEI API but do not include it at runtime
 //    compileOnly("mezz.jei:jei-1.21.1-common-api:${jei_version}")
 //    compileOnly("mezz.jei:jei-1.21.1-neoforge-api:${jei_version}")

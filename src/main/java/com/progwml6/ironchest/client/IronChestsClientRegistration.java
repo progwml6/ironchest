@@ -17,7 +17,7 @@ import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.client.event.RegisterSpecialBlockModelRendererEvent;
 import net.neoforged.neoforge.client.event.RegisterSpecialModelRendererEvent;
 
-@EventBusSubscriber(modid = IronChests.MODID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = IronChests.MODID, value = Dist.CLIENT)
 public class IronChestsClientRegistration {
 
   public static final ModelLayerLocation IRON_CHEST = new ModelLayerLocation(IronChests.prefix("iron_chest"), "main");

@@ -7,18 +7,13 @@ import com.progwml6.ironchest.common.block.entity.IronChestsBlockEntityTypes;
 import com.progwml6.ironchest.common.datacomponents.IronChestsDataComponents;
 import com.progwml6.ironchest.common.inventory.IronChestMenu;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponentGetter;
 import net.minecraft.core.component.DataComponentMap;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-
-import javax.annotation.Nullable;
+import net.minecraft.world.level.storage.ValueOutput;
 
 public class DirtChestBlockEntity extends AbstractIronChestBlockEntity {
 
@@ -42,10 +37,10 @@ public class DirtChestBlockEntity extends AbstractIronChestBlockEntity {
   }
 
   @Override
-  public void saveAdditional(CompoundTag pTag, HolderLookup.Provider pRegistries) {
-    super.saveAdditional(pTag, pRegistries);
+  public void saveAdditional(ValueOutput output) {
+    super.saveAdditional(output);
 
-    pTag.putBoolean("chest_placed_already", true);
+    output.putBoolean("chest_placed_already", true);
   }
 
   @Override
@@ -64,8 +59,8 @@ public class DirtChestBlockEntity extends AbstractIronChestBlockEntity {
   }
 
   @Override
-  public void removeComponentsFromTag(CompoundTag pTag) {
-    super.removeComponentsFromTag(pTag);
-    pTag.remove("chest_placed_already");
+  public void removeComponentsFromTag(ValueOutput output) {
+    super.removeComponentsFromTag(output);
+    output.discard("chest_placed_already");
   }
 }

@@ -1,7 +1,7 @@
 {
   "pack": {
     "description": "Resources for Iron Chests",
-    "pack_format": 71,
+    "pack_format": 80,
     "supported_formats": [
       0,
       2147483647
