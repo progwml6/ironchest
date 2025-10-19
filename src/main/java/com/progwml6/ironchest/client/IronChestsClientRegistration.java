@@ -8,6 +8,7 @@ import com.progwml6.ironchest.client.screen.IronChestScreen;
 import com.progwml6.ironchest.common.block.IronChestsBlocks;
 import com.progwml6.ironchest.common.block.entity.IronChestsBlockEntityTypes;
 import com.progwml6.ironchest.common.inventory.IronChestsMenuTypes;
+import com.progwml6.ironchest.common.network.TopStacksSyncPacket;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -16,6 +17,7 @@ import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.client.event.RegisterSpecialBlockModelRendererEvent;
 import net.neoforged.neoforge.client.event.RegisterSpecialModelRendererEvent;
+import net.neoforged.neoforge.client.network.event.RegisterClientPayloadHandlersEvent;
 
 @EventBusSubscriber(modid = IronChests.MODID, value = Dist.CLIENT)
 public class IronChestsClientRegistration {
@@ -84,5 +86,13 @@ public class IronChestsClientRegistration {
 
     event.register(IronChestsBlocks.DIRT_CHEST.get(), new IronChestSpecialRenderer.Unbaked(IronChestSpecialRenderer.DIRT_CHEST_TEXTURE));
     event.register(IronChestsBlocks.TRAPPED_DIRT_CHEST.get(), new IronChestSpecialRenderer.Unbaked(IronChestSpecialRenderer.TRAPPED_DIRT_CHEST_TEXTURE));
+  }
+
+  @SubscribeEvent // on the mod event bus only on the physical client
+  public static void register(RegisterClientPayloadHandlersEvent event) {
+    event.register(
+      TopStacksSyncPacket.TYPE,
+      TopStacksSyncPacket::handleClient
+    );
   }
 }

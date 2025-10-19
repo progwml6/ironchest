@@ -30,14 +30,11 @@ import net.minecraft.world.level.block.entity.LidBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 import org.joml.Vector3f;
 
 import java.util.Arrays;
 import java.util.List;
 
-@OnlyIn(Dist.CLIENT)
 public class IronChestRenderer<T extends BlockEntity & LidBlockEntity> implements BlockEntityRenderer<T> {
 
   private final IronChestModel model;

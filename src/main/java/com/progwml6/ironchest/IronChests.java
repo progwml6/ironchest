@@ -77,7 +77,7 @@ public class IronChests {
   public void setupPackets(RegisterPayloadHandlersEvent event) {
     PayloadRegistrar registrar = event.registrar(MODID).versioned("1.0.0").optional();
 
-    registrar.playBidirectional(TopStacksSyncPacket.TYPE, TopStacksSyncPacket.STREAM_CODEC, TopStacksSyncPacket::handle);
+    registrar.playBidirectional(TopStacksSyncPacket.TYPE, TopStacksSyncPacket.STREAM_CODEC, TopStacksSyncPacket::handleServer);
   }
 
   public void registerCapabilities(RegisterCapabilitiesEvent event) {

@@ -156,7 +156,6 @@ public class IronChestMenu extends AbstractContainerMenu {
     return this.container;
   }
 
-  @OnlyIn(Dist.CLIENT)
   public IronChestsTypes getChestType() {
     return this.chestType;
   }

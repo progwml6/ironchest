@@ -52,21 +52,25 @@ public class TopStacksSyncPacket implements CustomPacketPayload {
     return TYPE;
   }
 
-  public static void handle(TopStacksSyncPacket msg, IPayloadContext ctx) {
+  public static void handleServer(TopStacksSyncPacket msg, IPayloadContext ctx) {
     if (ctx.flow().isClientbound()) {
-      ctx.enqueueWork(() -> {
-        Level level = ctx.player().level();
-
-        BlockEntity blockEntity = level.getBlockEntity(msg.blockPos);
-
-        if (blockEntity != null) {
-          if (blockEntity instanceof ICrystalChest) {
-            ((ICrystalChest) blockEntity).receiveMessageFromServer(msg.topItemStacks);
-
-            Minecraft.getInstance().levelRenderer.blockChanged(null, msg.blockPos, null, null, 0);
-          }
-        }
-      });
+      handleClient(msg, ctx);
     }
+  }
+
+  public static void handleClient(TopStacksSyncPacket msg, IPayloadContext ctx) {
+    ctx.enqueueWork(() -> {
+      Level level = ctx.player().level();
+
+      BlockEntity blockEntity = level.getBlockEntity(msg.blockPos);
+
+      if (blockEntity != null) {
+        if (blockEntity instanceof ICrystalChest) {
+          ((ICrystalChest) blockEntity).receiveMessageFromServer(msg.topItemStacks);
+
+          Minecraft.getInstance().levelRenderer.blockChanged(null, msg.blockPos, null, null, 0);
+        }
+      }
+    });
   }
 }

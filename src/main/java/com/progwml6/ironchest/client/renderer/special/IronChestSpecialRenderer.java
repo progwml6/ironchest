@@ -17,13 +17,10 @@ import net.minecraft.client.renderer.special.SpecialModelRenderer;
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemDisplayContext;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 import org.joml.Vector3f;
 
 import java.util.Set;
 
-@OnlyIn(Dist.CLIENT)
 public  class IronChestSpecialRenderer implements NoDataSpecialModelRenderer {
 
   public static final ResourceLocation IRON_CHEST_TEXTURE = IronChests.prefix("model/iron_chest");
@@ -71,7 +68,6 @@ public  class IronChestSpecialRenderer implements NoDataSpecialModelRenderer {
     this.model.root().getExtentsForGui(posestack, output);
   }
 
-  @OnlyIn(Dist.CLIENT)
   public record Unbaked(ResourceLocation texture, float openness) implements SpecialModelRenderer.Unbaked {
 
     public static final MapCodec<IronChestSpecialRenderer.Unbaked> MAP_CODEC = RecordCodecBuilder.mapCodec(
