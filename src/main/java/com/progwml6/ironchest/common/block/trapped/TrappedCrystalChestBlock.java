@@ -32,7 +32,7 @@ public class TrappedCrystalChestBlock extends AbstractTrappedIronChestBlock {
   @Override
   @Nullable
   public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> blockEntityType) {
-    return level.isClientSide ? createTickerHelper(blockEntityType, this.blockEntityType(), AbstractIronChestBlockEntity::lidAnimateTick) : createTickerHelper(blockEntityType, this.blockEntityType(), TrappedCrystalChestBlockEntity::tick);
+    return level.isClientSide() ? createTickerHelper(blockEntityType, this.blockEntityType(), AbstractIronChestBlockEntity::lidAnimateTick) : createTickerHelper(blockEntityType, this.blockEntityType(), TrappedCrystalChestBlockEntity::tick);
   }
 
   @Override

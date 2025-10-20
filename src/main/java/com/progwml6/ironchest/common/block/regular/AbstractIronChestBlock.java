@@ -103,18 +103,15 @@ public abstract class AbstractIronChestBlock extends BaseEntityBlock implements 
   @Override
   @Deprecated
   public InteractionResult useWithoutItem(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, BlockHitResult pHitResult) {
-    if (pLevel.isClientSide) {
-      return InteractionResult.SUCCESS;
-    } else {
+    if (pLevel instanceof ServerLevel) {
       MenuProvider menuProvider = this.getMenuProvider(pState, pLevel, pPos);
 
       if (menuProvider != null) {
         pPlayer.openMenu(menuProvider);
         pPlayer.awardStat(this.getOpenChestStat());
       }
-
-      return InteractionResult.CONSUME;
     }
+    return InteractionResult.SUCCESS;
   }
 
   protected Stat<ResourceLocation> getOpenChestStat() {
@@ -140,7 +137,7 @@ public abstract class AbstractIronChestBlock extends BaseEntityBlock implements 
   @Nullable
   @Override
   public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
-    return level.isClientSide ? createTickerHelper(blockEntityType, this.blockEntityType(), AbstractIronChestBlockEntity::lidAnimateTick) : null;
+    return level.isClientSide() ? createTickerHelper(blockEntityType, this.blockEntityType(), AbstractIronChestBlockEntity::lidAnimateTick) : null;
   }
 
   public static boolean isChestBlockedAt(LevelAccessor level, BlockPos pos) {
@@ -175,7 +172,7 @@ public abstract class AbstractIronChestBlock extends BaseEntityBlock implements 
   }
 
   @Override
-  protected int getAnalogOutputSignal(BlockState blockState, Level level, BlockPos pos) {
+  protected int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos, Direction direction) {
     if (!isChestBlockedAt(level, pos) && level.getBlockEntity(pos) instanceof AbstractIronChestBlockEntity ironChestBlockEntity)
       return AbstractContainerMenu.getRedstoneSignalFromContainer(ironChestBlockEntity);
 

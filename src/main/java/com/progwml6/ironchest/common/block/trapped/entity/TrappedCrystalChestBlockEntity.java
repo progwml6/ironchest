@@ -33,7 +33,7 @@ public class TrappedCrystalChestBlockEntity extends AbstractTrappedIronChestBloc
 
   public static void tick(Level level, BlockPos blockPos, BlockState blockState, AbstractIronChestBlockEntity chestBlockEntity) {
     if (chestBlockEntity instanceof TrappedCrystalChestBlockEntity crystalChest) {
-      if (!level.isClientSide && crystalChest.inventoryTouched) {
+      if (!level.isClientSide() && crystalChest.inventoryTouched) {
         crystalChest.inventoryTouched = false;
 
         crystalChest.sortTopStacks();

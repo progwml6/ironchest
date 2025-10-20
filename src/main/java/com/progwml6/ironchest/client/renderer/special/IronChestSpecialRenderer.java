@@ -1,27 +1,26 @@
 package com.progwml6.ironchest.client.renderer.special;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.progwml6.ironchest.IronChests;
 import com.progwml6.ironchest.client.IronChestsClientRegistration;
 import com.progwml6.ironchest.client.model.IronChestModel;
-import net.minecraft.client.model.geom.EntityModelSet;
-import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Sheets;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.special.NoDataSpecialModelRenderer;
 import net.minecraft.client.renderer.special.SpecialModelRenderer;
 import net.minecraft.client.resources.model.Material;
+import net.minecraft.client.resources.model.MaterialSet;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemDisplayContext;
 import org.joml.Vector3f;
 
 import java.util.Set;
 
-public  class IronChestSpecialRenderer implements NoDataSpecialModelRenderer {
+public class IronChestSpecialRenderer implements NoDataSpecialModelRenderer {
 
   public static final ResourceLocation IRON_CHEST_TEXTURE = IronChests.prefix("model/iron_chest");
   public static final ResourceLocation TRAPPED_IRON_CHEST_TEXTURE = IronChests.prefix("model/trapped_iron_chest");
@@ -44,21 +43,34 @@ public  class IronChestSpecialRenderer implements NoDataSpecialModelRenderer {
   public static final ResourceLocation DIRT_CHEST_TEXTURE = IronChests.prefix("model/dirt_chest");
   public static final ResourceLocation TRAPPED_DIRT_CHEST_TEXTURE = IronChests.prefix("model/trapped_dirt_chest");
 
+  private final MaterialSet materials;
   private final IronChestModel model;
   private final Material material;
   private final float openness;
 
-  public IronChestSpecialRenderer(IronChestModel model, Material material, float openness) {
+  public IronChestSpecialRenderer(MaterialSet materials, IronChestModel model, Material material, float openness) {
+    this.materials = materials;
     this.model = model;
     this.material = material;
     this.openness = openness;
   }
 
   @Override
-  public void render(ItemDisplayContext displayContext, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, int packedOverlay, boolean hasFoilType) {
-    VertexConsumer vertexconsumer = this.material.buffer(bufferSource, RenderType::entityCutout);
-    this.model.setupAnim(this.openness);
-    this.model.renderToBuffer(poseStack, vertexconsumer, packedLight, packedOverlay);
+  public void submit(
+    ItemDisplayContext displayContext, PoseStack poseStack, SubmitNodeCollector nodeCollector, int packedLight, int packedOverlay, boolean hasFoil, int outlineColor
+  ) {
+    nodeCollector.submitModel(
+      this.model,
+      this.openness,
+      poseStack,
+      this.material.renderType(RenderType::entityCutout),
+      packedLight,
+      packedOverlay,
+      -1,
+      this.materials.get(this.material),
+      outlineColor,
+      null
+    );
   }
 
   @Override
@@ -88,10 +100,10 @@ public  class IronChestSpecialRenderer implements NoDataSpecialModelRenderer {
     }
 
     @Override
-    public SpecialModelRenderer<?> bake(EntityModelSet entityModelSet) {
-      IronChestModel chestModel = new IronChestModel(entityModelSet.bakeLayer(IronChestsClientRegistration.IRON_CHEST));
+    public SpecialModelRenderer<?> bake(SpecialModelRenderer.BakingContext context) {
+      IronChestModel chestModel = new IronChestModel(context.entityModelSet().bakeLayer(IronChestsClientRegistration.IRON_CHEST));
       Material material = new Material(Sheets.CHEST_SHEET, texture);
-      return new IronChestSpecialRenderer(chestModel, material, this.openness);
+      return new IronChestSpecialRenderer(context.materials(), chestModel, material, this.openness);
     }
   }
 }

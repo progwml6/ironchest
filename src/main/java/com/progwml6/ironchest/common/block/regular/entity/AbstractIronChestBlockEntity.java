@@ -13,6 +13,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.CompoundContainer;
 import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
+import net.minecraft.world.entity.ContainerUser;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
@@ -35,19 +36,23 @@ public abstract class AbstractIronChestBlockEntity extends RandomizableContainer
   private NonNullList<ItemStack> items;
 
   private final ContainerOpenersCounter openersCounter = new ContainerOpenersCounter() {
+    @Override
     protected void onOpen(Level level, BlockPos pos, BlockState blockState) {
       AbstractIronChestBlockEntity.playSound(level, pos, blockState, SoundEvents.CHEST_OPEN);
     }
 
+    @Override
     protected void onClose(Level level, BlockPos pos, BlockState blockState) {
       AbstractIronChestBlockEntity.playSound(level, pos, blockState, SoundEvents.CHEST_CLOSE);
     }
 
+    @Override
     protected void openerCountChanged(Level level, BlockPos pos, BlockState blockState, int previousCount, int newCount) {
       AbstractIronChestBlockEntity.this.signalOpenCount(level, pos, blockState, previousCount, newCount);
     }
 
-    protected boolean isOwnContainer(Player player) {
+    @Override
+    public boolean isOwnContainer(Player player) {
       if (!(player.containerMenu instanceof IronChestMenu)) {
         return false;
       } else {
@@ -123,16 +128,19 @@ public abstract class AbstractIronChestBlockEntity extends RandomizableContainer
   }
 
   @Override
-  public void startOpen(Player player) {
-    if (!this.remove && !player.isSpectator()) {
-      this.openersCounter.incrementOpeners(player, this.getLevel(), this.getBlockPos(), this.getBlockState());
+  public void startOpen(ContainerUser user) {
+    if (!this.remove && !user.getLivingEntity().isSpectator()) {
+      this.openersCounter
+        .incrementOpeners(
+          user.getLivingEntity(), this.getLevel(), this.getBlockPos(), this.getBlockState(), user.getContainerInteractionRange()
+        );
     }
   }
 
   @Override
-  public void stopOpen(Player player) {
-    if (!this.remove && !player.isSpectator()) {
-      this.openersCounter.decrementOpeners(player, this.getLevel(), this.getBlockPos(), this.getBlockState());
+  public void stopOpen(ContainerUser user) {
+    if (!this.remove && !user.getLivingEntity().isSpectator()) {
+      this.openersCounter.decrementOpeners(user.getLivingEntity(), this.getLevel(), this.getBlockPos(), this.getBlockState());
     }
   }
 

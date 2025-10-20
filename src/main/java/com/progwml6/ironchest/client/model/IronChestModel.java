@@ -9,7 +9,7 @@ import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.client.renderer.RenderType;
 
-public class IronChestModel extends Model {
+public class IronChestModel extends Model<Float>  {
   private static final String BOTTOM = "iron_bottom";
   private static final String LID = "iron_lid";
   private static final String LOCK = "iron_lock";
@@ -33,8 +33,10 @@ public class IronChestModel extends Model {
     return LayerDefinition.create(meshDefinition, 64, 64);
   }
 
-  public void setupAnim(float openness) {
-    this.lid.xRot = -(openness * (float) (Math.PI / 2));
+  @Override
+  public void setupAnim(Float renderState) {
+    super.setupAnim(renderState);
+    this.lid.xRot = -(renderState * (float) (Math.PI / 2));
     this.lock.xRot = this.lid.xRot;
   }
 }

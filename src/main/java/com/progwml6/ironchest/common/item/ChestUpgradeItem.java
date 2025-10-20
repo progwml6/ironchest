@@ -39,7 +39,7 @@ public class ChestUpgradeItem extends Item {
     ItemStack itemStack = context.getItemInHand();
     boolean passed = false;
 
-    if (world.isClientSide) {
+    if (world.isClientSide()) {
       return InteractionResult.PASS;
     }
 

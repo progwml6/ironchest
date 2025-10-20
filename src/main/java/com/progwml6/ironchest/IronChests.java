@@ -29,12 +29,11 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
-import net.neoforged.neoforge.items.wrapper.InvWrapper;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
+import net.neoforged.neoforge.transfer.item.VanillaContainerWrapper;
 
 import java.util.Locale;
-import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 @Mod(IronChests.MODID)
@@ -68,10 +67,9 @@ public class IronChests {
     gen.addProvider(true, new IronChestsSpriteSourceProvider(packOutput, lookupProvider));
     gen.addProvider(true, new IronChestsLanguageProvider(packOutput, "en_us"));
     gen.addProvider(true, new IronChestsModelProvider(packOutput));
-    gen.addProvider(true, new PackMetadataGenerator(packOutput).add(PackMetadataSection.TYPE, new PackMetadataSection(
+    gen.addProvider(true, new PackMetadataGenerator(packOutput).add(PackMetadataSection.SERVER_TYPE, new PackMetadataSection(
       Component.literal("Resources for Iron Chests"),
-      DetectedVersion.BUILT_IN.packVersion(PackType.SERVER_DATA),
-      Optional.of(new InclusiveRange<>(0, Integer.MAX_VALUE)))));
+      new InclusiveRange<>(DetectedVersion.BUILT_IN.packVersion(PackType.SERVER_DATA)))));
   }
 
   public void setupPackets(RegisterPayloadHandlersEvent event) {
@@ -81,7 +79,7 @@ public class IronChests {
   }
 
   public void registerCapabilities(RegisterCapabilitiesEvent event) {
-    event.registerBlock(Capabilities.ItemHandler.BLOCK, (level, pos, state, blockEntity, side) -> level.getBlockEntity(pos) instanceof AbstractIronChestBlockEntity ironChestBlockEntity ? new InvWrapper(ironChestBlockEntity) : null,
+    event.registerBlock(Capabilities.Item.BLOCK, (level, pos, state, blockEntity, side) -> level.getBlockEntity(pos) instanceof AbstractIronChestBlockEntity ironChestBlockEntity ? VanillaContainerWrapper.of(ironChestBlockEntity) : null,
       IronChestsBlocks.IRON_CHEST.get(), IronChestsBlocks.TRAPPED_IRON_CHEST.get(),
       IronChestsBlocks.GOLD_CHEST.get(), IronChestsBlocks.TRAPPED_GOLD_CHEST.get(),
       IronChestsBlocks.DIAMOND_CHEST.get(), IronChestsBlocks.TRAPPED_DIAMOND_CHEST.get(),

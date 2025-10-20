@@ -41,7 +41,7 @@ public interface ICrystalChest {
   default void sendTopStacksPacket() {
     NonNullList<ItemStack> stacks = this.buildItemStackDataList();
 
-    if (this.getChestLevel() != null && this.getChestLevel() instanceof ServerLevel serverLevel && !this.getChestLevel().isClientSide) {
+    if (this.getChestLevel() != null && this.getChestLevel() instanceof ServerLevel serverLevel && !this.getChestLevel().isClientSide()) {
       PacketDistributor.sendToPlayersTrackingChunk(serverLevel, serverLevel.getChunkAt(this.getChestWorldPosition()).getPos(), new TopStacksSyncPacket(this.getChestWorldPosition(), stacks));
     }
   }
@@ -56,7 +56,7 @@ public interface ICrystalChest {
   void receiveMessageFromServer(NonNullList<ItemStack> topStacks);
 
   default void sortTopStacks() {
-    if (!this.getChestType().isTransparent() || (this.getChestLevel() != null && this.getChestLevel().isClientSide)) {
+    if (!this.getChestType().isTransparent() || (this.getChestLevel() != null && this.getChestLevel().isClientSide())) {
       return;
     }
 
