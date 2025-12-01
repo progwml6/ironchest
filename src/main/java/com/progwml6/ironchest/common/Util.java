@@ -45,11 +45,12 @@ public class Util {
       .toList();
 
     book.set(DataComponents.WRITTEN_BOOK_CONTENT, new WrittenBookContent(
-      Filterable.passThrough("How to use your DirtChest 9000!"),
+      Filterable.passThrough(""),
       BOOK_AUTHOR,
       3,
       list,
       true
     ));
+    book.set(DataComponents.ITEM_NAME, Component.translatable(IronChests.MODID + ".book.dirtchest9000.title"));
   }
 }
