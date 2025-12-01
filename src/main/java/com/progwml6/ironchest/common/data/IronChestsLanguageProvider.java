@@ -55,8 +55,6 @@ public class IronChestsLanguageProvider extends LanguageProvider {
     this.add("ironchest.container.crystal_chest", "Crystal Chest");
     this.add("ironchest.container.obsidian_chest", "Obsidian Chest");
     this.add("ironchest.container.dirt_chest", "DirtChest 9000!");
-
-    this.add("ironchest.book.dirtchest9000.title", "How to use your DirtChest 9000!");
   }
 
   public void addBookAndContents(String bookKey, String bookTitle, String... pages) {

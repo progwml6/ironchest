@@ -51,6 +51,6 @@ public class Util {
       list,
       true
     ));
-    book.set(DataComponents.ITEM_NAME, Component.translatable(IronChests.MODID + ".book.dirtchest9000.title"));
+    book.set(DataComponents.ITEM_NAME, Component.translatable(IronChests.MODID + ".book.dirtchest9000"));
   }
 }
