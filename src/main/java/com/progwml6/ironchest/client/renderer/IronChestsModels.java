@@ -4,7 +4,7 @@ import com.progwml6.ironchest.IronChests;
 import com.progwml6.ironchest.common.block.IronChestsTypes;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.resources.model.Material;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import org.jetbrains.annotations.NotNull;
 
 public class IronChestsModels {
@@ -51,7 +51,7 @@ public class IronChestsModels {
 
   private static Material chestMaterial(boolean vanillaChest, String chestName) {
     if (vanillaChest) {
-      return new Material(Sheets.CHEST_SHEET, ResourceLocation.withDefaultNamespace("entity/chest/" + chestName));
+      return new Material(Sheets.CHEST_SHEET, Identifier.withDefaultNamespace("entity/chest/" + chestName));
     } else {
       return new Material(Sheets.CHEST_SHEET, IronChests.prefix(chestName));
     }

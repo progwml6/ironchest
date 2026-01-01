@@ -4,7 +4,7 @@ import com.progwml6.ironchest.common.block.regular.AbstractIronChestBlock;
 import com.progwml6.ironchest.common.block.regular.entity.AbstractIronChestBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.ai.goal.CatSitOnBlockGoal;
-import net.minecraft.world.entity.animal.Cat;
+import net.minecraft.world.entity.animal.feline.Cat;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;

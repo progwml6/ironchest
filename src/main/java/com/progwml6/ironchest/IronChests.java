@@ -20,7 +20,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.metadata.PackMetadataGenerator;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.metadata.pack.PackMetadataSection;
 import net.minecraft.util.InclusiveRange;
@@ -90,7 +90,7 @@ public class IronChests {
     );
   }
 
-  public static ResourceLocation prefix(String name) {
-    return ResourceLocation.fromNamespaceAndPath(MODID, name.toLowerCase(Locale.ROOT));
+  public static Identifier prefix(String name) {
+    return Identifier.fromNamespaceAndPath(MODID, name.toLowerCase(Locale.ROOT));
   }
 }

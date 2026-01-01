@@ -8,8 +8,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-
-import javax.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 
 public class TrappedObsidianChestBlock extends AbstractTrappedIronChestBlock {
 
@@ -19,9 +18,8 @@ public class TrappedObsidianChestBlock extends AbstractTrappedIronChestBlock {
     super(properties, IronChestsBlockEntityTypes.TRAPPED_OBSIDIAN_CHEST::get, IronChestsTypes.OBSIDIAN);
   }
 
-  @Nullable
   @Override
-  public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
+  public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
     return new TrappedObsidianChestBlockEntity(blockPos, blockState);
   }
 

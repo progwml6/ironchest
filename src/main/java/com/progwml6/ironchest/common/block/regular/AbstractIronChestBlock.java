@@ -4,14 +4,14 @@ import com.progwml6.ironchest.common.block.IronChestsTypes;
 import com.progwml6.ironchest.common.block.regular.entity.AbstractIronChestBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.stats.Stat;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
-import net.minecraft.world.entity.animal.Cat;
+import net.minecraft.world.entity.animal.feline.Cat;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -42,8 +42,8 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jspecify.annotations.Nullable;
 
-import javax.annotation.Nullable;
 import java.util.List;
 import java.util.function.Supplier;
 
@@ -114,7 +114,7 @@ public abstract class AbstractIronChestBlock extends BaseEntityBlock implements 
     return InteractionResult.SUCCESS;
   }
 
-  protected Stat<ResourceLocation> getOpenChestStat() {
+  protected Stat<Identifier> getOpenChestStat() {
     return Stats.CUSTOM.get(Stats.OPEN_CHEST);
   }
 
@@ -122,9 +122,8 @@ public abstract class AbstractIronChestBlock extends BaseEntityBlock implements 
     return this.blockEntityType.get();
   }
 
-  @Nullable
   @Override
-  public MenuProvider getMenuProvider(BlockState state, Level level, BlockPos pos) {
+  public @Nullable MenuProvider getMenuProvider(BlockState state, Level level, BlockPos pos) {
     if (isChestBlockedAt(level, pos))
       return null;
 
@@ -134,9 +133,8 @@ public abstract class AbstractIronChestBlock extends BaseEntityBlock implements 
     return null;
   }
 
-  @Nullable
   @Override
-  public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
+  public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
     return level.isClientSide() ? createTickerHelper(blockEntityType, this.blockEntityType(), AbstractIronChestBlockEntity::lidAnimateTick) : null;
   }
 

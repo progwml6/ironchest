@@ -7,41 +7,43 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.progwml6.ironchest.IronChests;
 import com.progwml6.ironchest.client.IronChestsClientRegistration;
 import com.progwml6.ironchest.client.model.IronChestModel;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.SubmitNodeCollector;
+import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.client.renderer.special.NoDataSpecialModelRenderer;
 import net.minecraft.client.renderer.special.SpecialModelRenderer;
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.client.resources.model.MaterialSet;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemDisplayContext;
 import org.joml.Vector3f;
+import org.joml.Vector3fc;
 
 import java.util.Set;
+import java.util.function.Consumer;
 
 public class IronChestSpecialRenderer implements NoDataSpecialModelRenderer {
 
-  public static final ResourceLocation IRON_CHEST_TEXTURE = IronChests.prefix("model/iron_chest");
-  public static final ResourceLocation TRAPPED_IRON_CHEST_TEXTURE = IronChests.prefix("model/trapped_iron_chest");
+  public static final Identifier IRON_CHEST_TEXTURE = IronChests.prefix("model/iron_chest");
+  public static final Identifier TRAPPED_IRON_CHEST_TEXTURE = IronChests.prefix("model/trapped_iron_chest");
 
-  public static final ResourceLocation GOLD_CHEST_TEXTURE = IronChests.prefix("model/gold_chest");
-  public static final ResourceLocation TRAPPED_GOLD_CHEST_TEXTURE = IronChests.prefix("model/trapped_gold_chest");
+  public static final Identifier GOLD_CHEST_TEXTURE = IronChests.prefix("model/gold_chest");
+  public static final Identifier TRAPPED_GOLD_CHEST_TEXTURE = IronChests.prefix("model/trapped_gold_chest");
 
-  public static final ResourceLocation DIAMOND_CHEST_TEXTURE = IronChests.prefix("model/diamond_chest");
-  public static final ResourceLocation TRAPPED_DIAMOND_CHEST_TEXTURE = IronChests.prefix("model/trapped_diamond_chest");
+  public static final Identifier DIAMOND_CHEST_TEXTURE = IronChests.prefix("model/diamond_chest");
+  public static final Identifier TRAPPED_DIAMOND_CHEST_TEXTURE = IronChests.prefix("model/trapped_diamond_chest");
 
-  public static final ResourceLocation COPPER_CHEST_TEXTURE = IronChests.prefix("model/copper_chest");
-  public static final ResourceLocation TRAPPED_COPPER_CHEST_TEXTURE = IronChests.prefix("model/trapped_copper_chest");
+  public static final Identifier COPPER_CHEST_TEXTURE = IronChests.prefix("model/copper_chest");
+  public static final Identifier TRAPPED_COPPER_CHEST_TEXTURE = IronChests.prefix("model/trapped_copper_chest");
 
-  public static final ResourceLocation CRYSTAL_CHEST_TEXTURE = IronChests.prefix("model/crystal_chest");
-  public static final ResourceLocation TRAPPED_CRYSTAL_CHEST_TEXTURE = IronChests.prefix("model/trapped_crystal_chest");
+  public static final Identifier CRYSTAL_CHEST_TEXTURE = IronChests.prefix("model/crystal_chest");
+  public static final Identifier TRAPPED_CRYSTAL_CHEST_TEXTURE = IronChests.prefix("model/trapped_crystal_chest");
 
-  public static final ResourceLocation OBSIDIAN_CHEST_TEXTURE = IronChests.prefix("model/obsidian_chest");
-  public static final ResourceLocation TRAPPED_OBSIDIAN_CHEST_TEXTURE = IronChests.prefix("model/trapped_obsidian_chest");
+  public static final Identifier OBSIDIAN_CHEST_TEXTURE = IronChests.prefix("model/obsidian_chest");
+  public static final Identifier TRAPPED_OBSIDIAN_CHEST_TEXTURE = IronChests.prefix("model/trapped_obsidian_chest");
 
-  public static final ResourceLocation DIRT_CHEST_TEXTURE = IronChests.prefix("model/dirt_chest");
-  public static final ResourceLocation TRAPPED_DIRT_CHEST_TEXTURE = IronChests.prefix("model/trapped_dirt_chest");
+  public static final Identifier DIRT_CHEST_TEXTURE = IronChests.prefix("model/dirt_chest");
+  public static final Identifier TRAPPED_DIRT_CHEST_TEXTURE = IronChests.prefix("model/trapped_dirt_chest");
 
   private final MaterialSet materials;
   private final IronChestModel model;
@@ -63,7 +65,7 @@ public class IronChestSpecialRenderer implements NoDataSpecialModelRenderer {
       this.model,
       this.openness,
       poseStack,
-      this.material.renderType(RenderType::entityCutout),
+      this.material.renderType(RenderTypes::entityCutout),
       packedLight,
       packedOverlay,
       -1,
@@ -74,24 +76,24 @@ public class IronChestSpecialRenderer implements NoDataSpecialModelRenderer {
   }
 
   @Override
-  public void getExtents(Set<Vector3f> output) {
+  public void getExtents(Consumer<Vector3fc> output) {
     PoseStack posestack = new PoseStack();
     this.model.setupAnim(this.openness);
     this.model.root().getExtentsForGui(posestack, output);
   }
 
-  public record Unbaked(ResourceLocation texture, float openness) implements SpecialModelRenderer.Unbaked {
+  public record Unbaked(Identifier texture, float openness) implements SpecialModelRenderer.Unbaked {
 
     public static final MapCodec<IronChestSpecialRenderer.Unbaked> MAP_CODEC = RecordCodecBuilder.mapCodec(
       unbakedInstance -> unbakedInstance.group(
-          ResourceLocation.CODEC.fieldOf("texture").forGetter(IronChestSpecialRenderer.Unbaked::texture),
+          Identifier.CODEC.fieldOf("texture").forGetter(IronChestSpecialRenderer.Unbaked::texture),
           Codec.FLOAT.optionalFieldOf("openness", 0.0F).forGetter(IronChestSpecialRenderer.Unbaked::openness)
         )
         .apply(unbakedInstance, IronChestSpecialRenderer.Unbaked::new)
     );
 
-    public Unbaked(ResourceLocation resourceLocation) {
-      this(resourceLocation, 0.0F);
+    public Unbaked(Identifier Identifier) {
+      this(Identifier, 0.0F);
     }
 
     @Override

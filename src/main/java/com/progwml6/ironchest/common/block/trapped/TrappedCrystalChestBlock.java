@@ -12,8 +12,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-
-import javax.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 
 public class TrappedCrystalChestBlock extends AbstractTrappedIronChestBlock {
 
@@ -23,15 +22,13 @@ public class TrappedCrystalChestBlock extends AbstractTrappedIronChestBlock {
     super(properties, IronChestsBlockEntityTypes.TRAPPED_CRYSTAL_CHEST::get, IronChestsTypes.CRYSTAL);
   }
 
-  @Nullable
   @Override
-  public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
+  public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
     return new TrappedCrystalChestBlockEntity(blockPos, blockState);
   }
 
   @Override
-  @Nullable
-  public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> blockEntityType) {
+  public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> blockEntityType) {
     return level.isClientSide() ? createTickerHelper(blockEntityType, this.blockEntityType(), AbstractIronChestBlockEntity::lidAnimateTick) : createTickerHelper(blockEntityType, this.blockEntityType(), TrappedCrystalChestBlockEntity::tick);
   }
 

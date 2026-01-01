@@ -9,8 +9,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.network.PacketDistributor;
-
-import javax.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 
 public interface ICrystalChest {
 
@@ -48,8 +47,7 @@ public interface ICrystalChest {
 
   NonNullList<ItemStack> getTopItems();
 
-  @Nullable
-  Level getChestLevel();
+  @Nullable Level getChestLevel();
 
   BlockPos getChestWorldPosition();
 

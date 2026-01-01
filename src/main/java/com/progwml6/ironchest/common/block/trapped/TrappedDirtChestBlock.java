@@ -8,8 +8,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-
-import javax.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 
 public class TrappedDirtChestBlock extends AbstractTrappedIronChestBlock {
 
@@ -19,9 +18,8 @@ public class TrappedDirtChestBlock extends AbstractTrappedIronChestBlock {
     super(properties, IronChestsBlockEntityTypes.TRAPPED_DIRT_CHEST::get, IronChestsTypes.DIRT);
   }
 
-  @Nullable
   @Override
-  public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
+  public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
     return new TrappedDirtChestBlockEntity(blockPos, blockState);
   }
 

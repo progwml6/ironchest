@@ -18,13 +18,13 @@ import com.progwml6.ironchest.common.block.trapped.entity.TrappedGoldChestBlockE
 import com.progwml6.ironchest.common.block.trapped.entity.TrappedIronChestBlockEntity;
 import com.progwml6.ironchest.common.block.trapped.entity.TrappedObsidianChestBlockEntity;
 import net.minecraft.core.BlockPos;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jspecify.annotations.Nullable;
 
-import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
@@ -45,15 +45,15 @@ public enum IronChestsTypes implements StringRepresentable {
   public final int rowLength;
   public final int xSize;
   public final int ySize;
-  public final ResourceLocation guiTexture;
+  public final Identifier guiTexture;
   public final int textureXSize;
   public final int textureYSize;
 
-  IronChestsTypes(int size, int rowLength, int xSize, int ySize, ResourceLocation guiTexture, int textureXSize, int textureYSize) {
+  IronChestsTypes(int size, int rowLength, int xSize, int ySize, Identifier guiTexture, int textureXSize, int textureYSize) {
     this(null, size, rowLength, xSize, ySize, guiTexture, textureXSize, textureYSize);
   }
 
-  IronChestsTypes(@Nullable String name, int size, int rowLength, int xSize, int ySize, ResourceLocation guiTexture, int textureXSize, int textureYSize) {
+  IronChestsTypes(@Nullable String name, int size, int rowLength, int xSize, int ySize, Identifier guiTexture, int textureXSize, int textureYSize) {
     this.name = name == null ? Util.toEnglishName(this.name()) : name;
     this.size = size;
     this.rowLength = rowLength;
@@ -98,8 +98,7 @@ public enum IronChestsTypes implements StringRepresentable {
     };
   }
 
-  @Nullable
-  public AbstractIronChestBlockEntity makeEntity(BlockPos blockPos, BlockState blockState, boolean trapped) {
+  public @Nullable AbstractIronChestBlockEntity makeEntity(BlockPos blockPos, BlockState blockState, boolean trapped) {
     if (trapped) {
       return switch (this) {
         case IRON -> new TrappedIronChestBlockEntity(blockPos, blockState);

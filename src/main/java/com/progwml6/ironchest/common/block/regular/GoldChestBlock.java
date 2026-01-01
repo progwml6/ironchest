@@ -8,8 +8,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-
-import javax.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 
 public class GoldChestBlock extends AbstractIronChestBlock {
 
@@ -19,9 +18,8 @@ public class GoldChestBlock extends AbstractIronChestBlock {
     super(properties, IronChestsBlockEntityTypes.GOLD_CHEST::get, IronChestsTypes.GOLD);
   }
 
-  @Nullable
   @Override
-  public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
+  public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
     return new GoldChestBlockEntity(blockPos, blockState);
   }
 

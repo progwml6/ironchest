@@ -10,13 +10,14 @@ import com.progwml6.ironchest.common.block.entity.ICrystalChest;
 import com.progwml6.ironchest.common.block.regular.AbstractIronChestBlock;
 import com.progwml6.ironchest.common.block.regular.entity.AbstractIronChestBlockEntity;
 import com.progwml6.ironchest.common.block.trapped.entity.AbstractTrappedIronChestBlockEntity;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.rendertype.RenderType;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
 import net.minecraft.client.renderer.item.ItemModelResolver;
 import net.minecraft.client.renderer.item.ItemStackRenderState;
+import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.client.renderer.state.CameraRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -32,8 +33,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Vector3f;
+import org.jspecify.annotations.Nullable;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -68,7 +69,7 @@ public class IronChestRenderer<T extends BlockEntity & LidBlockEntity> implement
   }
 
   @Override
-  public void extractRenderState(T blockEntity, IronChestRenderState renderState, float partialTick, Vec3 cameraPosition, @Nullable ModelFeatureRenderer.CrumblingOverlay breakProgress) {
+  public void extractRenderState(T blockEntity, IronChestRenderState renderState, float partialTick, Vec3 cameraPosition, ModelFeatureRenderer.@Nullable CrumblingOverlay breakProgress) {
     BlockEntityRenderer.super.extractRenderState(blockEntity, renderState, partialTick, cameraPosition, breakProgress);
 
     AbstractIronChestBlockEntity chestBlockEntity = (AbstractIronChestBlockEntity) blockEntity;
@@ -112,7 +113,7 @@ public class IronChestRenderer<T extends BlockEntity & LidBlockEntity> implement
     f = 1.0F - f * f * f;
 
     Material material = IronChestsModels.chooseChestMaterial(renderState.chestType, renderState.trapped);
-    RenderType renderType = material.renderType(RenderType::entityCutout);
+    RenderType renderType = material.renderType(RenderTypes::entityCutout);
     TextureAtlasSprite textureatlassprite = this.materials.get(material);
 
     nodeCollector.submitModel(

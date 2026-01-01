@@ -11,6 +11,8 @@ import net.neoforged.neoforge.client.data.SpriteSourceProvider;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
+import static net.minecraft.data.AtlasIds.CHESTS;
+
 public class IronChestsSpriteSourceProvider extends SpriteSourceProvider {
 
   public IronChestsSpriteSourceProvider(PackOutput output, CompletableFuture<Provider> lookupProvider) {
@@ -23,8 +25,8 @@ public class IronChestsSpriteSourceProvider extends SpriteSourceProvider {
       if (type == IronChestsTypes.WOOD) {
         continue;
       }
-      atlas(CHESTS_ATLAS).addSource(new SingleFile(IronChestsModels.chooseChestMaterial(type, false).texture(), Optional.empty()));
-      atlas(CHESTS_ATLAS).addSource(new SingleFile(IronChestsModels.chooseChestMaterial(type, true).texture(), Optional.empty()));
+      atlas(CHESTS).addSource(new SingleFile(IronChestsModels.chooseChestMaterial(type, false).texture(), Optional.empty()));
+      atlas(CHESTS).addSource(new SingleFile(IronChestsModels.chooseChestMaterial(type, true).texture(), Optional.empty()));
     }
   }
 }

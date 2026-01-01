@@ -8,7 +8,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class IronChestRenderState extends BlockEntityRenderState {
-  public IronChestsTypes chestType;
+  public IronChestsTypes chestType = IronChestsTypes.IRON;
   public boolean trapped;
   public float open;
   public float angle;

@@ -9,8 +9,7 @@ import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-
-import javax.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 
 public class ObsidianChestBlock extends AbstractIronChestBlock {
 
@@ -20,9 +19,8 @@ public class ObsidianChestBlock extends AbstractIronChestBlock {
     super(properties, IronChestsBlockEntityTypes.OBSIDIAN_CHEST::get, IronChestsTypes.OBSIDIAN);
   }
 
-  @Nullable
   @Override
-  public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
+  public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
     return new ObsidianChestBlockEntity(blockPos, blockState);
   }
 

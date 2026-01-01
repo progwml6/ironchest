@@ -28,6 +28,6 @@ public class IronChestsItems {
   }
 
   public static <T extends Item> void register(String name, Function<Item.Properties, T> item, Supplier<Item.Properties> properties, ResourceKey<Block> blockResourceKey) {
-    ITEMS.register(name, () -> item.apply(properties.get().setId(ResourceKey.create(Registries.ITEM, blockResourceKey.location())).useBlockDescriptionPrefix()));
+    ITEMS.register(name, () -> item.apply(properties.get().setId(ResourceKey.create(Registries.ITEM, blockResourceKey.identifier())).useBlockDescriptionPrefix()));
   }
 }

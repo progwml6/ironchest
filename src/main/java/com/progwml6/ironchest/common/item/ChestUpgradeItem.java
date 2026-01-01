@@ -17,6 +17,7 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ChestBlock;
+import net.minecraft.world.level.block.CopperChestBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.ChestBlockEntity;
 import net.minecraft.world.level.block.entity.TrappedChestBlockEntity;
@@ -48,7 +49,7 @@ public class ChestUpgradeItem extends Item {
     }
 
     if (this.type.canUpgrade(IronChestsTypes.WOOD)) {
-      if (world.getBlockState(blockPos).getBlock() instanceof ChestBlock) {
+      if (world.getBlockState(blockPos).getBlock() instanceof ChestBlock && !(world.getBlockState(blockPos).getBlock() instanceof CopperChestBlock)) {
         passed = true;
       }
     } else {

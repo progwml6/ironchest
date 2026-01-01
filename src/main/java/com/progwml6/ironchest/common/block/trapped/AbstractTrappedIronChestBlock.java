@@ -6,7 +6,7 @@ import com.progwml6.ironchest.common.block.regular.entity.AbstractIronChestBlock
 import com.progwml6.ironchest.common.block.trapped.entity.AbstractTrappedIronChestBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.stats.Stat;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.Mth;
@@ -23,7 +23,7 @@ public abstract class AbstractTrappedIronChestBlock extends AbstractIronChestBlo
   }
 
   @Override
-  protected Stat<ResourceLocation> getOpenChestStat() {
+  protected Stat<Identifier> getOpenChestStat() {
     return Stats.CUSTOM.get(Stats.TRIGGER_TRAPPED_CHEST);
   }
 
