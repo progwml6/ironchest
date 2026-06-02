@@ -9,14 +9,13 @@ import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
 import net.minecraft.client.data.models.MultiVariant;
 import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
-//import net.minecraft.client.data.models.blockstates.Variant;
-//import net.minecraft.client.data.models.blockstates.VariantProperties;
 import net.minecraft.client.data.models.model.ItemModelUtils;
 import net.minecraft.client.data.models.model.ModelLocationUtils;
 import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.client.data.models.model.TextureMapping;
-import net.minecraft.client.renderer.block.model.Variant;
+import net.minecraft.client.renderer.block.dispatch.Variant;
 import net.minecraft.client.renderer.item.ItemModel;
+import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.random.WeightedList;
@@ -32,20 +31,20 @@ public class IronChestsModelProvider extends ModelProvider {
 
   @Override
   protected void registerModels(BlockModelGenerators blockModels, ItemModelGenerators itemModels) {
-    this.createChest(blockModels, itemModels, IronChestsBlocks.IRON_CHEST.get(), IronChests.prefix("block/iron_break"), IronChestSpecialRenderer.IRON_CHEST_TEXTURE);
-    this.createChest(blockModels, itemModels, IronChestsBlocks.TRAPPED_IRON_CHEST.get(), IronChests.prefix("block/iron_break"), IronChestSpecialRenderer.TRAPPED_IRON_CHEST_TEXTURE);
+    this.createChest(blockModels, itemModels, IronChestsBlocks.IRON_CHEST.get(), new Material(IronChests.prefix("block/iron_break")), IronChestSpecialRenderer.IRON_CHEST_TEXTURE);
+    this.createChest(blockModels, itemModels, IronChestsBlocks.TRAPPED_IRON_CHEST.get(), new Material(IronChests.prefix("block/iron_break")), IronChestSpecialRenderer.TRAPPED_IRON_CHEST_TEXTURE);
 
-    this.createChest(blockModels, itemModels, IronChestsBlocks.GOLD_CHEST.get(), IronChests.prefix("block/gold_break"), IronChestSpecialRenderer.GOLD_CHEST_TEXTURE);
-    this.createChest(blockModels, itemModels, IronChestsBlocks.TRAPPED_GOLD_CHEST.get(), IronChests.prefix("block/gold_break"), IronChestSpecialRenderer.TRAPPED_GOLD_CHEST_TEXTURE);
+    this.createChest(blockModels, itemModels, IronChestsBlocks.GOLD_CHEST.get(), new Material(IronChests.prefix("block/gold_break")), IronChestSpecialRenderer.GOLD_CHEST_TEXTURE);
+    this.createChest(blockModels, itemModels, IronChestsBlocks.TRAPPED_GOLD_CHEST.get(), new Material(IronChests.prefix("block/gold_break")), IronChestSpecialRenderer.TRAPPED_GOLD_CHEST_TEXTURE);
 
-    this.createChest(blockModels, itemModels, IronChestsBlocks.DIAMOND_CHEST.get(), IronChests.prefix("block/diamond_break"), IronChestSpecialRenderer.DIAMOND_CHEST_TEXTURE);
-    this.createChest(blockModels, itemModels, IronChestsBlocks.TRAPPED_DIAMOND_CHEST.get(), IronChests.prefix("block/diamond_break"), IronChestSpecialRenderer.TRAPPED_DIAMOND_CHEST_TEXTURE);
+    this.createChest(blockModels, itemModels, IronChestsBlocks.DIAMOND_CHEST.get(), new Material(IronChests.prefix("block/diamond_break")), IronChestSpecialRenderer.DIAMOND_CHEST_TEXTURE);
+    this.createChest(blockModels, itemModels, IronChestsBlocks.TRAPPED_DIAMOND_CHEST.get(), new Material(IronChests.prefix("block/diamond_break")), IronChestSpecialRenderer.TRAPPED_DIAMOND_CHEST_TEXTURE);
 
-    this.createChest(blockModels, itemModels, IronChestsBlocks.COPPER_CHEST.get(), IronChests.prefix("block/copper_break"), IronChestSpecialRenderer.COPPER_CHEST_TEXTURE);
-    this.createChest(blockModels, itemModels, IronChestsBlocks.TRAPPED_COPPER_CHEST.get(), IronChests.prefix("block/copper_break"), IronChestSpecialRenderer.TRAPPED_COPPER_CHEST_TEXTURE);
+    this.createChest(blockModels, itemModels, IronChestsBlocks.COPPER_CHEST.get(), new Material(IronChests.prefix("block/copper_break")), IronChestSpecialRenderer.COPPER_CHEST_TEXTURE);
+    this.createChest(blockModels, itemModels, IronChestsBlocks.TRAPPED_COPPER_CHEST.get(), new Material(IronChests.prefix("block/copper_break")), IronChestSpecialRenderer.TRAPPED_COPPER_CHEST_TEXTURE);
 
-    this.createChest(blockModels, itemModels, IronChestsBlocks.CRYSTAL_CHEST.get(), IronChests.prefix("block/crystal_break"), IronChestSpecialRenderer.CRYSTAL_CHEST_TEXTURE);
-    this.createChest(blockModels, itemModels, IronChestsBlocks.TRAPPED_CRYSTAL_CHEST.get(), IronChests.prefix("block/crystal_break"), IronChestSpecialRenderer.TRAPPED_CRYSTAL_CHEST_TEXTURE);
+    this.createChest(blockModels, itemModels, IronChestsBlocks.CRYSTAL_CHEST.get(), new Material(IronChests.prefix("block/crystal_break")), IronChestSpecialRenderer.CRYSTAL_CHEST_TEXTURE);
+    this.createChest(blockModels, itemModels, IronChestsBlocks.TRAPPED_CRYSTAL_CHEST.get(), new Material(IronChests.prefix("block/crystal_break")), IronChestSpecialRenderer.TRAPPED_CRYSTAL_CHEST_TEXTURE);
 
     this.createChest(blockModels, itemModels, IronChestsBlocks.OBSIDIAN_CHEST.get(), TextureMapping.getBlockTexture(Blocks.OBSIDIAN), IronChestSpecialRenderer.OBSIDIAN_CHEST_TEXTURE);
     this.createChest(blockModels, itemModels, IronChestsBlocks.TRAPPED_OBSIDIAN_CHEST.get(), TextureMapping.getBlockTexture(Blocks.OBSIDIAN), IronChestSpecialRenderer.TRAPPED_OBSIDIAN_CHEST_TEXTURE);
@@ -62,7 +61,7 @@ public class IronChestsModelProvider extends ModelProvider {
     this.generateFlatItem(itemModels, IronChestsItems.DIAMOND_TO_OBSIDIAN_CHEST_UPGRADE.get(), IronChests.prefix("item/diamond_obsidian_upgrade"));
   }
 
-  public void createChest(BlockModelGenerators blockModels, ItemModelGenerators itemModels, Block chestBlock, Identifier particleTexture, Identifier texture) {
+  public void createChest(BlockModelGenerators blockModels, ItemModelGenerators itemModels, Block chestBlock, Material particleTexture, Identifier texture) {
     blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(chestBlock, new MultiVariant(WeightedList.of(new Variant(ModelTemplates.PARTICLE_ONLY.create(chestBlock, TextureMapping.particle(particleTexture), blockModels.modelOutput))))));
     Item chestItem = chestBlock.asItem();
     Identifier Identifier = ModelTemplates.CHEST_INVENTORY.create(chestItem, TextureMapping.particle(particleTexture), blockModels.modelOutput);
@@ -71,6 +70,6 @@ public class IronChestsModelProvider extends ModelProvider {
   }
 
   public void generateFlatItem(ItemModelGenerators itemModels, Item item, Identifier itemTexture) {
-    itemModels.itemModelOutput.accept(item, ItemModelUtils.plainModel(ModelTemplates.FLAT_ITEM.create(ModelLocationUtils.getModelLocation(item), TextureMapping.layer0(itemTexture), itemModels.modelOutput)));
+    itemModels.itemModelOutput.accept(item, ItemModelUtils.plainModel(ModelTemplates.FLAT_ITEM.create(ModelLocationUtils.getModelLocation(item), TextureMapping.layer0(new Material(itemTexture)), itemModels.modelOutput)));
   }
 }

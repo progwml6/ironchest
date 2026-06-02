@@ -25,8 +25,8 @@ public class IronChestsSpriteSourceProvider extends SpriteSourceProvider {
       if (type == IronChestsTypes.WOOD) {
         continue;
       }
-      atlas(CHESTS).addSource(new SingleFile(IronChestsModels.chooseChestMaterial(type, false).texture(), Optional.empty()));
-      atlas(CHESTS).addSource(new SingleFile(IronChestsModels.chooseChestMaterial(type, true).texture(), Optional.empty()));
+      atlas(CHESTS).addSource(new SingleFile(IronChestsModels.chooseChestSpriteId(type, false).texture(), Optional.empty()));
+      atlas(CHESTS).addSource(new SingleFile(IronChestsModels.chooseChestSpriteId(type, true).texture(), Optional.empty()));
     }
   }
 }

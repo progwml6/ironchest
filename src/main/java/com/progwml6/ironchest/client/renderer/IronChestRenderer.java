@@ -2,6 +2,7 @@ package com.progwml6.ironchest.client.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
+import com.mojang.math.Transformation;
 import com.progwml6.ironchest.client.IronChestsClientRegistration;
 import com.progwml6.ironchest.client.model.IronChestModel;
 import com.progwml6.ironchest.client.model.ModelItem;
@@ -10,21 +11,19 @@ import com.progwml6.ironchest.common.block.entity.ICrystalChest;
 import com.progwml6.ironchest.common.block.regular.AbstractIronChestBlock;
 import com.progwml6.ironchest.common.block.regular.entity.AbstractIronChestBlockEntity;
 import com.progwml6.ironchest.common.block.trapped.entity.AbstractTrappedIronChestBlockEntity;
-import net.minecraft.client.renderer.rendertype.RenderType;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
 import net.minecraft.client.renderer.item.ItemModelResolver;
 import net.minecraft.client.renderer.item.ItemStackRenderState;
-import net.minecraft.client.renderer.rendertype.RenderTypes;
-import net.minecraft.client.renderer.state.CameraRenderState;
+import net.minecraft.client.renderer.state.level.CameraRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.resources.model.Material;
-import net.minecraft.client.resources.model.MaterialSet;
+import net.minecraft.client.resources.model.sprite.SpriteGetter;
+import net.minecraft.client.resources.model.sprite.SpriteId;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.util.Util;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -32,16 +31,18 @@ import net.minecraft.world.level.block.entity.LidBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import org.joml.Matrix4f;
 import org.joml.Vector3f;
 import org.jspecify.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class IronChestRenderer<T extends BlockEntity & LidBlockEntity> implements BlockEntityRenderer<T, IronChestRenderState> {
 
-  private final MaterialSet materials;
+  private final SpriteGetter sprites;
   private final IronChestModel model;
   private final ItemModelResolver itemModelResolver;
 
@@ -57,8 +58,10 @@ public class IronChestRenderer<T extends BlockEntity & LidBlockEntity> implement
     new ModelItem(new Vector3f(0.5F, 0.32F, 0.5F), 3.0F)
   );
 
+  private static final Map<Direction, Transformation> TRANSFORMATIONS = Util.makeEnumMap(Direction.class, IronChestRenderer::createModelTransformation);
+
   public IronChestRenderer(BlockEntityRendererProvider.Context context) {
-    this.materials = context.materials();
+    this.sprites = context.sprites();
     this.itemModelResolver = context.itemModelResolver();
     this.model = new IronChestModel(context.bakeLayer(IronChestsClientRegistration.IRON_CHEST));
   }
@@ -86,7 +89,7 @@ public class IronChestRenderer<T extends BlockEntity & LidBlockEntity> implement
 
     renderState.chestType = chestType;
     renderState.open = chestBlockEntity.getOpenNess(partialTick);
-    renderState.angle = blockState.getValue(AbstractIronChestBlock.FACING).toYRot();
+    renderState.facing = blockState.getValue(AbstractIronChestBlock.FACING);
     renderState.trapped = blockEntity instanceof AbstractTrappedIronChestBlockEntity;
     renderState.items = new ArrayList<>();
     renderState.itemRotation = (float) (360D * (System.currentTimeMillis() & 0x3FFFL) / 0x3FFFL) - partialTick;
@@ -103,37 +106,23 @@ public class IronChestRenderer<T extends BlockEntity & LidBlockEntity> implement
   }
 
   @Override
-  public void submit(IronChestRenderState renderState, PoseStack poseStack, SubmitNodeCollector nodeCollector, CameraRenderState cameraRenderState) {
+  public void submit(IronChestRenderState state, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, CameraRenderState camera) {
     poseStack.pushPose();
-    poseStack.translate(0.5F, 0.5F, 0.5F);
-    poseStack.mulPose(Axis.YP.rotationDegrees(-renderState.angle));
-    poseStack.translate(-0.5F, -0.5F, -0.5F);
-    float f = renderState.open;
-    f = 1.0F - f;
-    f = 1.0F - f * f * f;
+    poseStack.mulPose(modelTransformation(state.facing));
 
-    Material material = IronChestsModels.chooseChestMaterial(renderState.chestType, renderState.trapped);
-    RenderType renderType = material.renderType(RenderTypes::entityCutout);
-    TextureAtlasSprite textureatlassprite = this.materials.get(material);
+    float open = state.open;
+    open = 1.0F - open;
+    open = 1.0F - open * open * open;
 
-    nodeCollector.submitModel(
-      this.model,
-      f,
-      poseStack,
-      renderType,
-      renderState.lightCoords,
-      OverlayTexture.NO_OVERLAY,
-      -1,
-      textureatlassprite,
-      0,
-      renderState.breakProgress
+    SpriteId spriteId = IronChestsModels.chooseChestSpriteId(state.chestType, state.trapped);
+    submitNodeCollector.submitModel(
+      model, open, poseStack, state.lightCoords, OverlayTexture.NO_OVERLAY, -1, spriteId, this.sprites, 0, state.breakProgress
     );
-
     poseStack.popPose();
 
-    if (renderState.chestType.isTransparent() && Vec3.atCenterOf(renderState.blockPos).closerThan(cameraRenderState.pos, 128d)) {
-      for (int i = 0; i < renderState.items.size(); i++) {
-        ItemStackRenderState itemStackRenderState = renderState.items.get(i);
+    if (state.chestType.isTransparent() && Vec3.atCenterOf(state.blockPos).closerThan(camera.pos, 128d)) {
+      for (int i = 0; i < state.items.size(); i++) {
+        ItemStackRenderState itemStackRenderState = state.items.get(i);
         if (!itemStackRenderState.isEmpty()) {
           ModelItem modelItem = MODEL_ITEMS.get(i);
           Vector3f center = modelItem.getCenter();
@@ -141,13 +130,21 @@ public class IronChestRenderer<T extends BlockEntity & LidBlockEntity> implement
 
           poseStack.pushPose();
           poseStack.translate(center.x(), center.y(), center.z());
-          poseStack.mulPose(Axis.YP.rotationDegrees(renderState.itemRotation));
+          poseStack.mulPose(Axis.YP.rotationDegrees(state.itemRotation));
           poseStack.scale(scale, scale, scale);
-          itemStackRenderState.submit(poseStack, nodeCollector, renderState.lightCoords, OverlayTexture.NO_OVERLAY, 0);
+          itemStackRenderState.submit(poseStack, submitNodeCollector, state.lightCoords, OverlayTexture.NO_OVERLAY, 0);
           poseStack.popPose();
         }
       }
     }
+  }
+
+  public static Transformation modelTransformation(Direction facing) {
+    return TRANSFORMATIONS.get(facing);
+  }
+
+  private static Transformation createModelTransformation(Direction facing) {
+    return new Transformation(new Matrix4f().rotationAround(Axis.YP.rotationDegrees(-facing.toYRot()), 0.5F, 0.0F, 0.5F));
   }
 
   @Override

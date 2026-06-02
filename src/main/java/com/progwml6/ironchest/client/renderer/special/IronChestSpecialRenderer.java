@@ -9,17 +9,13 @@ import com.progwml6.ironchest.client.IronChestsClientRegistration;
 import com.progwml6.ironchest.client.model.IronChestModel;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.SubmitNodeCollector;
-import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.client.renderer.special.NoDataSpecialModelRenderer;
 import net.minecraft.client.renderer.special.SpecialModelRenderer;
-import net.minecraft.client.resources.model.Material;
-import net.minecraft.client.resources.model.MaterialSet;
+import net.minecraft.client.resources.model.sprite.SpriteGetter;
+import net.minecraft.client.resources.model.sprite.SpriteId;
 import net.minecraft.resources.Identifier;
-import net.minecraft.world.item.ItemDisplayContext;
-import org.joml.Vector3f;
 import org.joml.Vector3fc;
 
-import java.util.Set;
 import java.util.function.Consumer;
 
 public class IronChestSpecialRenderer implements NoDataSpecialModelRenderer {
@@ -45,55 +41,41 @@ public class IronChestSpecialRenderer implements NoDataSpecialModelRenderer {
   public static final Identifier DIRT_CHEST_TEXTURE = IronChests.prefix("model/dirt_chest");
   public static final Identifier TRAPPED_DIRT_CHEST_TEXTURE = IronChests.prefix("model/trapped_dirt_chest");
 
-  private final MaterialSet materials;
+  private final SpriteGetter sprites;
   private final IronChestModel model;
-  private final Material material;
+  private final SpriteId sprite;
   private final float openness;
 
-  public IronChestSpecialRenderer(MaterialSet materials, IronChestModel model, Material material, float openness) {
-    this.materials = materials;
+  public IronChestSpecialRenderer(SpriteGetter sprites, IronChestModel model, SpriteId sprite, float openness) {
+    this.sprites = sprites;
     this.model = model;
-    this.material = material;
+    this.sprite = sprite;
     this.openness = openness;
   }
 
   @Override
-  public void submit(
-    ItemDisplayContext displayContext, PoseStack poseStack, SubmitNodeCollector nodeCollector, int packedLight, int packedOverlay, boolean hasFoil, int outlineColor
-  ) {
-    nodeCollector.submitModel(
-      this.model,
-      this.openness,
-      poseStack,
-      this.material.renderType(RenderTypes::entityCutout),
-      packedLight,
-      packedOverlay,
-      -1,
-      this.materials.get(this.material),
-      outlineColor,
-      null
-    );
+  public void submit(PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int lightCoords, int overlayCoords, boolean hasFoil, int outlineColor) {
+    submitNodeCollector.submitModel(this.model, this.openness, poseStack, lightCoords, overlayCoords, -1, this.sprite, this.sprites, outlineColor, null);
   }
 
   @Override
   public void getExtents(Consumer<Vector3fc> output) {
-    PoseStack posestack = new PoseStack();
+    PoseStack poseStack = new PoseStack();
     this.model.setupAnim(this.openness);
-    this.model.root().getExtentsForGui(posestack, output);
+    this.model.root().getExtentsForGui(poseStack, output);
   }
 
-  public record Unbaked(Identifier texture, float openness) implements SpecialModelRenderer.Unbaked {
-
+  public record Unbaked(Identifier texture, float openness) implements NoDataSpecialModelRenderer.Unbaked {
     public static final MapCodec<IronChestSpecialRenderer.Unbaked> MAP_CODEC = RecordCodecBuilder.mapCodec(
-      unbakedInstance -> unbakedInstance.group(
+      i -> i.group(
           Identifier.CODEC.fieldOf("texture").forGetter(IronChestSpecialRenderer.Unbaked::texture),
           Codec.FLOAT.optionalFieldOf("openness", 0.0F).forGetter(IronChestSpecialRenderer.Unbaked::openness)
         )
-        .apply(unbakedInstance, IronChestSpecialRenderer.Unbaked::new)
+        .apply(i, IronChestSpecialRenderer.Unbaked::new)
     );
 
-    public Unbaked(Identifier Identifier) {
-      this(Identifier, 0.0F);
+    public Unbaked(Identifier texture) {
+      this(texture, 0.0F);
     }
 
     @Override
@@ -101,11 +83,10 @@ public class IronChestSpecialRenderer implements NoDataSpecialModelRenderer {
       return MAP_CODEC;
     }
 
-    @Override
-    public SpecialModelRenderer<?> bake(SpecialModelRenderer.BakingContext context) {
-      IronChestModel chestModel = new IronChestModel(context.entityModelSet().bakeLayer(IronChestsClientRegistration.IRON_CHEST));
-      Material material = new Material(Sheets.CHEST_SHEET, texture);
-      return new IronChestSpecialRenderer(context.materials(), chestModel, material, this.openness);
+    public IronChestSpecialRenderer bake(SpecialModelRenderer.BakingContext context) {
+      IronChestModel model = new IronChestModel(context.entityModelSet().bakeLayer(IronChestsClientRegistration.IRON_CHEST));
+      SpriteId fullTexture = new SpriteId(Sheets.CHEST_SHEET, this.texture);
+      return new IronChestSpecialRenderer(context.sprites(), model, fullTexture, this.openness);
     }
   }
 }

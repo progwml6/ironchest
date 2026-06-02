@@ -114,7 +114,7 @@ public abstract class AbstractIronChestBlockEntity extends RandomizableContainer
     double d1 = (double) blockPos.getY() + 0.5;
     double d2 = (double) blockPos.getZ() + 0.5;
 
-    level.playSound(null, d0, d1, d2, soundEvent, SoundSource.BLOCKS, 0.5F, level.random.nextFloat() * 0.1F + 0.9F);
+    level.playSound(null, d0, d1, d2, soundEvent, SoundSource.BLOCKS, 0.5F, level.getRandom().nextFloat() * 0.1F + 0.9F);
   }
 
   @Override

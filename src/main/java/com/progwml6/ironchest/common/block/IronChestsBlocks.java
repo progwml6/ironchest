@@ -35,13 +35,14 @@ public class IronChestsBlocks {
   public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(IronChests.MODID);
 
   static final BlockBehaviour.Properties properties = BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(3.0F).sound(SoundType.METAL);
+  static final BlockBehaviour.Properties obsidianProperties = BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(3.0F).sound(SoundType.METAL).strength(3.0F, 1200.0F);
 
   public static final DeferredBlock<IronChestBlock> IRON_CHEST = registerWithItem("iron_chest", IronChestBlock::new, () -> properties, IronChestsTypes.IRON, false);
   public static final DeferredBlock<GoldChestBlock> GOLD_CHEST = registerWithItem("gold_chest", GoldChestBlock::new, () -> properties, IronChestsTypes.GOLD, false);
   public static final DeferredBlock<DiamondChestBlock> DIAMOND_CHEST = registerWithItem("diamond_chest", DiamondChestBlock::new, () -> properties, IronChestsTypes.DIAMOND, false);
   public static final DeferredBlock<CopperChestBlock> COPPER_CHEST = registerWithItem("copper_chest", CopperChestBlock::new, () -> properties, IronChestsTypes.COPPER, false);
   public static final DeferredBlock<CrystalChestBlock> CRYSTAL_CHEST = registerWithItem("crystal_chest", CrystalChestBlock::new, () -> properties, IronChestsTypes.CRYSTAL, false);
-  public static final DeferredBlock<ObsidianChestBlock> OBSIDIAN_CHEST = registerWithItem("obsidian_chest", ObsidianChestBlock::new, () -> properties, IronChestsTypes.OBSIDIAN, false);
+  public static final DeferredBlock<ObsidianChestBlock> OBSIDIAN_CHEST = registerWithItem("obsidian_chest", ObsidianChestBlock::new, () -> obsidianProperties, IronChestsTypes.OBSIDIAN, false);
   public static final DeferredBlock<DirtChestBlock> DIRT_CHEST = registerWithItem("dirt_chest", DirtChestBlock::new, () -> properties, IronChestsTypes.DIRT, false);
 
   public static final DeferredBlock<TrappedIronChestBlock> TRAPPED_IRON_CHEST = registerWithItem("trapped_iron_chest", TrappedIronChestBlock::new, () -> properties, IronChestsTypes.IRON, true);
@@ -49,7 +50,7 @@ public class IronChestsBlocks {
   public static final DeferredBlock<TrappedDiamondChestBlock> TRAPPED_DIAMOND_CHEST = registerWithItem("trapped_diamond_chest", TrappedDiamondChestBlock::new, () -> properties, IronChestsTypes.DIAMOND, true);
   public static final DeferredBlock<TrappedCopperChestBlock> TRAPPED_COPPER_CHEST = registerWithItem("trapped_copper_chest", TrappedCopperChestBlock::new, () -> properties, IronChestsTypes.COPPER, true);
   public static final DeferredBlock<TrappedCrystalChestBlock> TRAPPED_CRYSTAL_CHEST = registerWithItem("trapped_crystal_chest", TrappedCrystalChestBlock::new, () -> properties, IronChestsTypes.CRYSTAL, true);
-  public static final DeferredBlock<TrappedObsidianChestBlock> TRAPPED_OBSIDIAN_CHEST = registerWithItem("trapped_obsidian_chest", TrappedObsidianChestBlock::new, () -> properties, IronChestsTypes.OBSIDIAN, true);
+  public static final DeferredBlock<TrappedObsidianChestBlock> TRAPPED_OBSIDIAN_CHEST = registerWithItem("trapped_obsidian_chest", TrappedObsidianChestBlock::new, () -> obsidianProperties, IronChestsTypes.OBSIDIAN, true);
   public static final DeferredBlock<TrappedDirtChestBlock> TRAPPED_DIRT_CHEST = registerWithItem("trapped_dirt_chest", TrappedDirtChestBlock::new, () -> properties, IronChestsTypes.DIRT, true);
 
   public static <T extends Block> DeferredBlock<T> registerWithItem(String name, Function<BlockBehaviour.Properties, T> block, Supplier<BlockBehaviour.Properties> properties, IronChestsTypes chestType, Boolean trapped) {

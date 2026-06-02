@@ -23,20 +23,20 @@ public class IronChestModel extends Model<Float>  {
   }
 
   public static LayerDefinition createLayerDefinition() {
-    MeshDefinition meshDefinition = new MeshDefinition();
-    PartDefinition partDefinition = meshDefinition.getRoot();
+    MeshDefinition mesh = new MeshDefinition();
+    PartDefinition root = mesh.getRoot();
 
-    partDefinition.addOrReplaceChild(BOTTOM, CubeListBuilder.create().texOffs(0, 19).addBox(1.0F, 0.0F, 1.0F, 14.0F, 10.0F, 14.0F), PartPose.ZERO);
-    partDefinition.addOrReplaceChild(LID, CubeListBuilder.create().texOffs(0, 0).addBox(1.0F, 0.0F, 0.0F, 14.0F, 5.0F, 14.0F), PartPose.offset(0.0F, 9.0F, 1.0F));
-    partDefinition.addOrReplaceChild(LOCK, CubeListBuilder.create().texOffs(0, 0).addBox(7.0F, -2.0F, 14.0F, 2.0F, 4.0F, 1.0F), PartPose.offset(0.0F, 9.0F, 1.0F));
+    root.addOrReplaceChild(BOTTOM, CubeListBuilder.create().texOffs(0, 19).addBox(1.0F, 0.0F, 1.0F, 14.0F, 10.0F, 14.0F), PartPose.ZERO);
+    root.addOrReplaceChild(LID, CubeListBuilder.create().texOffs(0, 0).addBox(1.0F, 0.0F, 0.0F, 14.0F, 5.0F, 14.0F), PartPose.offset(0.0F, 9.0F, 1.0F));
+    root.addOrReplaceChild(LOCK, CubeListBuilder.create().texOffs(0, 0).addBox(7.0F, -2.0F, 14.0F, 2.0F, 4.0F, 1.0F), PartPose.offset(0.0F, 9.0F, 1.0F));
 
-    return LayerDefinition.create(meshDefinition, 64, 64);
+    return LayerDefinition.create(mesh, 64, 64);
   }
 
   @Override
-  public void setupAnim(Float renderState) {
-    super.setupAnim(renderState);
-    this.lid.xRot = -(renderState * (float) (Math.PI / 2));
+  public void setupAnim(Float open) {
+    super.setupAnim(open);
+    this.lid.xRot = -(open * (float) (Math.PI / 2));
     this.lock.xRot = this.lid.xRot;
   }
 }
