@@ -8,8 +8,8 @@ import net.neoforged.neoforge.common.data.LanguageProvider;
 
 public class IronChestsLanguageProvider extends LanguageProvider {
 
-  public IronChestsLanguageProvider(PackOutput output, String locale) {
-    super(output, IronChests.MODID, locale);
+  public IronChestsLanguageProvider(PackOutput output) {
+    super(output, IronChests.MODID, "en_us");
   }
 
   @Override

@@ -15,9 +15,7 @@ import com.progwml6.ironchest.common.inventory.IronChestsMenuTypes;
 import com.progwml6.ironchest.common.item.IronChestsItems;
 import com.progwml6.ironchest.common.network.TopStacksSyncPacket;
 import net.minecraft.DetectedVersion;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.PackOutput;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.metadata.PackMetadataGenerator;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
@@ -28,7 +26,11 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
+import net.neoforged.neoforge.common.data.internal.NeoForgeAdvancementProvider;
+import net.neoforged.neoforge.common.data.internal.NeoForgeLootDataProvider;
+import net.neoforged.neoforge.common.data.internal.NeoForgeRecipeProvider;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
+import net.neoforged.neoforge.data.event.GatherDataRegistryEntriesEvent;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import net.neoforged.neoforge.transfer.item.VanillaContainerWrapper;
@@ -43,6 +45,7 @@ public class IronChests {
 
   public IronChests(IEventBus modEventBus) {
     // General mod setup
+    modEventBus.addListener(this::onGatherRegistries);
     modEventBus.addListener(this::gatherData);
     modEventBus.addListener(this::setupPackets);
     modEventBus.addListener(this::registerCapabilities);
@@ -56,20 +59,22 @@ public class IronChests {
     IronChestsDataComponents.COMPONENTS.register(modEventBus);
   }
 
-  public void gatherData(GatherDataEvent.Client event) {
-    DataGenerator gen = event.getGenerator();
-    PackOutput packOutput = gen.getPackOutput();
-    CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
+  public void onGatherRegistries(GatherDataRegistryEntriesEvent event) {
+    event.gatherFor(IronChests.MODID)
+      .recipe(IronChestsRecipeProvider::new)
+      .add(Registries.LOOT_TABLE, IronChestsLootTableProvider.create());
+  }
 
-    gen.addProvider(true, new IronChestsLootTableProvider(packOutput, lookupProvider));
-    gen.addProvider(true, new IronChestsRecipeProvider.Runner(packOutput, lookupProvider));
-    gen.addProvider(true, new IronChestsBlockTags(packOutput, lookupProvider));
-    gen.addProvider(true, new IronChestsSpriteSourceProvider(packOutput, lookupProvider));
-    gen.addProvider(true, new IronChestsLanguageProvider(packOutput, "en_us"));
-    gen.addProvider(true, new IronChestsModelProvider(packOutput));
-    gen.addProvider(true, new PackMetadataGenerator(packOutput).add(PackMetadataSection.SERVER_TYPE, new PackMetadataSection(
-      Component.literal("Resources for Iron Chests"),
-      new InclusiveRange<>(DetectedVersion.BUILT_IN.packVersion(PackType.SERVER_DATA)))));
+  public void gatherData(GatherDataEvent.Client event) {
+    event.createProvider(output -> new PackMetadataGenerator(output)
+      .add(PackMetadataSection.SERVER_TYPE, new PackMetadataSection(
+        Component.translatable("pack.ironchests.description"),
+        new InclusiveRange<>(DetectedVersion.BUILT_IN.packVersion(PackType.SERVER_DATA)))));
+
+    event.createProvider(IronChestsBlockTags::new);
+    event.createProvider(IronChestsSpriteSourceProvider::new);
+    event.createProvider(IronChestsLanguageProvider::new);
+    event.createProvider(IronChestsModelProvider::new);
   }
 
   public void setupPackets(RegisterPayloadHandlersEvent event) {

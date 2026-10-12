@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "ironchest:chests/diamond_crystal_chest"
+        "recipes": "ironchest:chests/diamond_crystal_chest"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

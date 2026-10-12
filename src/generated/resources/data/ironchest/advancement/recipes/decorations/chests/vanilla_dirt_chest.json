@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "ironchest:chests/vanilla_dirt_chest"
+        "recipes": "ironchest:chests/vanilla_dirt_chest"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

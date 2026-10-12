@@ -115,9 +115,13 @@ public class IronChestRenderer<T extends BlockEntity & LidBlockEntity> implement
     open = 1.0F - open * open * open;
 
     SpriteId spriteId = IronChestsModels.chooseChestSpriteId(state.chestType, state.trapped);
-    submitNodeCollector.submitModel(
-      model, open, poseStack, state.lightCoords, OverlayTexture.NO_OVERLAY, -1, spriteId, this.sprites, 0, state.breakProgress
-    );
+    submitNodeCollector.submitModel(model, open, poseStack, state.lightCoords, OverlayTexture.NO_OVERLAY, -1, spriteId, this.sprites, 0);
+    if (state.breakProgress != null) {
+      submitNodeCollector.order(1)
+        .submitCrumblingOverlay(
+          model, open, poseStack, spriteId.renderType(model.renderType()), state.lightCoords, OverlayTexture.NO_OVERLAY, -1, state.breakProgress
+        );
+    }
     poseStack.popPose();
 
     if (state.chestType.isTransparent() && Vec3.atCenterOf(state.blockPos).closerThan(camera.pos, 128d)) {
@@ -130,7 +134,7 @@ public class IronChestRenderer<T extends BlockEntity & LidBlockEntity> implement
 
           poseStack.pushPose();
           poseStack.translate(center.x(), center.y(), center.z());
-          poseStack.mulPose(Axis.YP.rotationDegrees(state.itemRotation));
+          poseStack.rotateDegrees(Axis.YP, state.itemRotation);
           poseStack.scale(scale, scale, scale);
           itemStackRenderState.submit(poseStack, submitNodeCollector, state.lightCoords, OverlayTexture.NO_OVERLAY, 0);
           poseStack.popPose();

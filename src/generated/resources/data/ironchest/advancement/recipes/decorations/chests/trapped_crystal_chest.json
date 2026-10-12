@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "ironchest:chests/trapped_crystal_chest"
+        "recipes": "ironchest:chests/trapped_crystal_chest"
       },
       "trigger": "minecraft:recipe_unlocked"
     },

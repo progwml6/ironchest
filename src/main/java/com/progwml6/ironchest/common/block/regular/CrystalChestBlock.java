@@ -1,13 +1,11 @@
 package com.progwml6.ironchest.common.block.regular;
 
-import com.mojang.serialization.MapCodec;
 import com.progwml6.ironchest.common.block.IronChestsTypes;
 import com.progwml6.ironchest.common.block.entity.IronChestsBlockEntityTypes;
 import com.progwml6.ironchest.common.block.regular.entity.AbstractIronChestBlockEntity;
 import com.progwml6.ironchest.common.block.regular.entity.CrystalChestBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -15,8 +13,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.jspecify.annotations.Nullable;
 
 public class CrystalChestBlock extends AbstractIronChestBlock {
-
-  public static final MapCodec<CrystalChestBlock> CODEC = simpleCodec(CrystalChestBlock::new);
 
   public CrystalChestBlock(Properties properties) {
     super(properties, IronChestsBlockEntityTypes.CRYSTAL_CHEST::get, IronChestsTypes.CRYSTAL);
@@ -30,10 +26,5 @@ public class CrystalChestBlock extends AbstractIronChestBlock {
   @Override
   public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> blockEntityType) {
     return level.isClientSide() ? createTickerHelper(blockEntityType, this.blockEntityType(), AbstractIronChestBlockEntity::lidAnimateTick) : createTickerHelper(blockEntityType, this.blockEntityType(), CrystalChestBlockEntity::tick);
-  }
-
-  @Override
-  protected MapCodec<? extends BaseEntityBlock> codec() {
-    return CODEC;
   }
 }

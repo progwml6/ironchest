@@ -12,8 +12,6 @@ import org.jspecify.annotations.Nullable;
 
 public class TrappedDirtChestBlock extends AbstractTrappedIronChestBlock {
 
-  public static final MapCodec<TrappedDirtChestBlock> CODEC = simpleCodec(TrappedDirtChestBlock::new);
-
   public TrappedDirtChestBlock(Properties properties) {
     super(properties, IronChestsBlockEntityTypes.TRAPPED_DIRT_CHEST::get, IronChestsTypes.DIRT);
   }
@@ -21,10 +19,5 @@ public class TrappedDirtChestBlock extends AbstractTrappedIronChestBlock {
   @Override
   public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
     return new TrappedDirtChestBlockEntity(blockPos, blockState);
-  }
-
-  @Override
-  protected MapCodec<? extends BaseEntityBlock> codec() {
-    return CODEC;
   }
 }

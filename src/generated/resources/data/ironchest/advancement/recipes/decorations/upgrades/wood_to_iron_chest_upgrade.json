@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "ironchest:upgrades/wood_to_iron_chest_upgrade"
+        "recipes": "ironchest:upgrades/wood_to_iron_chest_upgrade"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

@@ -6,6 +6,7 @@ import it.unimi.dsi.fastutil.objects.ReferenceOpenHashSet;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.data.loot.BlockLootSubProvider;
+import net.minecraft.data.loot.LootTableSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.storage.loot.LootPool;
@@ -13,7 +14,7 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.CopyComponentsFunction;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
-import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
+import net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProviders;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collections;
@@ -24,8 +25,8 @@ public class IronChestsBlockLoot extends BlockLootSubProvider {
 
   private final Set<Block> knownBlocks = new ReferenceOpenHashSet<>();
 
-  public IronChestsBlockLoot(HolderLookup.Provider provider) {
-    super(Collections.emptySet(), FeatureFlags.REGISTRY.allFlags(), provider);
+  public IronChestsBlockLoot(LootTableSubProvider.Context context) {
+    super(Collections.emptySet(), FeatureFlags.REGISTRY.allFlags(), context);
   }
 
   @Override
@@ -54,7 +55,7 @@ public class IronChestsBlockLoot extends BlockLootSubProvider {
         this.applyExplosionCondition(
           pBlock,
           LootPool.lootPool()
-            .setRolls(ConstantValue.exactly(1.0F))
+            .setRolls(ContextIntProviders.exactly(1))
             .add(
               LootItem.lootTableItem(pBlock)
                 .apply(

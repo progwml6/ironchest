@@ -1,13 +1,12 @@
 {
   "pack": {
-    "description": "Resources for Iron Chests",
+    "description": {
+      "translate": "pack.ironchests.description"
+    },
     "max_format": [
-      101,
-      1
+      121,
+      0
     ],
-    "min_format": [
-      101,
-      1
-    ]
+    "min_format": 121
   }
 }

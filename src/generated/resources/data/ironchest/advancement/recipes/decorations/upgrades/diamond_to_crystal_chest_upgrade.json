@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "ironchest:upgrades/diamond_to_crystal_chest_upgrade"
+        "recipes": "ironchest:upgrades/diamond_to_crystal_chest_upgrade"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
