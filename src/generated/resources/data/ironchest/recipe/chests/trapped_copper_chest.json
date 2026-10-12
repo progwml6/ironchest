@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "category": "misc",
   "ingredients": [
     "ironchest:copper_chest",
     "minecraft:tripwire_hook"

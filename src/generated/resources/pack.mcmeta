@@ -2,11 +2,11 @@
   "pack": {
     "description": "Resources for Iron Chests",
     "max_format": [
-      101,
+      107,
       1
     ],
     "min_format": [
-      101,
+      107,
       1
     ]
   }
