@@ -9,7 +9,8 @@ import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.client.renderer.rendertype.RenderTypes;
 
-public class IronChestModel extends Model<Float>  {
+public class IronChestModel extends Model<Float> {
+
   private static final String BOTTOM = "iron_bottom";
   private static final String LID = "iron_lid";
   private static final String LOCK = "iron_lock";
@@ -17,7 +18,7 @@ public class IronChestModel extends Model<Float>  {
   private final ModelPart lock;
 
   public IronChestModel(ModelPart root) {
-    super(root, RenderTypes::entityCutout);
+    super(root, RenderTypes::entityCutoutCull);
     this.lid = root.getChild(LID);
     this.lock = root.getChild(LOCK);
   }
