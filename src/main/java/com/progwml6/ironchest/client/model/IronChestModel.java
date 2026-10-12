@@ -17,7 +17,7 @@ public class IronChestModel extends Model<Float>  {
   private final ModelPart lock;
 
   public IronChestModel(ModelPart root) {
-    super(root, RenderTypes::entitySolid);
+    super(root, RenderTypes::entityCutout);
     this.lid = root.getChild(LID);
     this.lock = root.getChild(LOCK);
   }
