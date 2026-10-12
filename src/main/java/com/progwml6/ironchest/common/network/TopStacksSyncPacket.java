@@ -68,7 +68,7 @@ public class TopStacksSyncPacket implements CustomPacketPayload {
         if (blockEntity instanceof ICrystalChest) {
           ((ICrystalChest) blockEntity).receiveMessageFromServer(msg.topItemStacks);
 
-          Minecraft.getInstance().levelRenderer.blockChanged(null, msg.blockPos, null, null, 0);
+          Minecraft.getInstance().levelExtractor.blockChanged(msg.blockPos, 0);
         }
       }
     });
